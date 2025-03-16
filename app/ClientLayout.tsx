@@ -47,7 +47,8 @@ function CustomCursor() {
           y: position.y - 10,
           scale: isPointer ? 0.5 : 1,
         }}
-        transition={{ type: "spring", damping: 20, stiffness: 300, mass: 0.5 }}
+        // Small circle now uses a quick tween for near-instantaneous movement
+        transition={{ type: "tween", duration: 0.05 }}
       />
       <motion.div
         className="custom-cursor cursor-outline"
@@ -56,7 +57,8 @@ function CustomCursor() {
           y: position.y - 20,
           scale: isPointer ? 1.5 : 1,
         }}
-        transition={{ type: "spring", damping: 15, stiffness: 150, mass: 0.8 }}
+        // Bigger circle uses a spring with slightly reduced stiffness for a smoother follow effect
+        transition={{ type: "spring", damping: 15, stiffness: 100, mass: 1 }}
       />
     </>
   )
@@ -76,7 +78,9 @@ function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-black/90 backdrop-blur-sm" : "bg-transparent"}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-black/90 backdrop-blur-sm" : "bg-transparent"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
         <Link href="/" className="text-2xl font-light tracking-tighter">
@@ -182,7 +186,9 @@ function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
             <h3 className="text-2xl font-light tracking-tighter">fiveroses</h3>
-            <p className="text-sm text-neutral-400">Full-service marketing agency helping your business bloom.</p>
+            <p className="text-sm text-neutral-400">
+              Full-service marketing agency helping your business bloom.
+            </p>
           </div>
 
           <div>
@@ -194,18 +200,12 @@ function Footer() {
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/work/web-solutions"
-                  className="text-sm text-neutral-400 hover:text-white transition-colors"
-                >
+                <Link href="/work/web-solutions" className="text-sm text-neutral-400 hover:text-white transition-colors">
                   Web Solutions
                 </Link>
               </li>
               <li>
-                <Link
-                  href="/work/creative-production"
-                  className="text-sm text-neutral-400 hover:text-white transition-colors"
-                >
+                <Link href="/work/creative-production" className="text-sm text-neutral-400 hover:text-white transition-colors">
                   Creative Production
                 </Link>
               </li>
@@ -292,4 +292,3 @@ export default function ClientLayout({
     </html>
   )
 }
-
