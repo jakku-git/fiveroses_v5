@@ -163,10 +163,11 @@ export const CanvasRevealEffect = ({
       return tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height)
     }
 
+    // Reduced the mouse.radius to confine the particles near their base positions.
     const mouse = {
       x: 0,
       y: 0,
-      radius: 20000,
+      radius: 100,
     }
 
     window.addEventListener("mousemove", (e) => {
@@ -209,4 +210,3 @@ export const CanvasRevealEffect = ({
     </div>
   )
 }
-
