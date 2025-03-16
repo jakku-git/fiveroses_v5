@@ -113,3 +113,22 @@ button {
   transition: transform 0.3s ease;
   will-change: transform;
 }
+
+/* Focus Cards Hover Effects */
+.focus-cards-container .focus-card {
+  transition: transform 300ms ease-out, filter 300ms ease-out;
+}
+
+.focus-cards-container:hover .focus-card:not(:hover) {
+  filter: blur(4px);
+  transform: scale(0.98);
+}
+
+.focus-card .overlay {
+  transition: opacity 300ms ease-out;
+  opacity: 0;
+}
+
+.focus-card:hover .overlay {
+  opacity: 1;
+}

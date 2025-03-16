@@ -1,16 +1,16 @@
 "use client"
 
-import React, { useEffect } from "react"
+import React, { memo, useEffect } from "react"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { motion } from "framer-motion"
-import CustomCursor from "@/components/ui/customcursors"  // Use the new custom cursor
+import CustomCursor from "@/components/ui/customcursors"  // Ensure this is optimized
 
 const inter = Inter({ subsets: ["latin"] })
 
-function Header() {
+const Header = memo(function Header() {
   const [isScrolled, setIsScrolled] = React.useState(false)
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
@@ -45,9 +45,9 @@ function Header() {
       </div>
     </header>
   )
-}
+})
 
-function MobileNav() {
+const MobileNav = memo(function MobileNav() {
   const [isOpen, setIsOpen] = React.useState(false)
   const menuVariants = {
     closed: {
@@ -101,9 +101,9 @@ function MobileNav() {
       </motion.div>
     </div>
   )
-}
+})
 
-function Footer() {
+const Footer = memo(function Footer() {
   return (
     <footer className="w-full bg-black text-white border-t border-white/10 py-12">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
@@ -196,7 +196,7 @@ function Footer() {
       </div>
     </footer>
   )
-}
+})
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   return (

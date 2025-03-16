@@ -10,17 +10,11 @@ export const metadata: Metadata = {
   title: "fiveroses | Marketing Agency",
   description:
     "Full-service marketing agency offering comprehensive marketing services, innovative web development, and a startup incubator.",
-    generator: 'v0.dev'
+  generator: "v0.dev"
 }
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return <ClientLayout>{children}</ClientLayout>
 }
-
-
-
-import './globals.css'
