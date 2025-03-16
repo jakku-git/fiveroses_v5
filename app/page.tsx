@@ -11,27 +11,27 @@ export default function Home() {
   const focusCardsData = [
     {
       title: "Marketing Strategy",
-      src: "/pexels-carrie-johnson-444447-1202849.jpg",
+      src: "/pexels-eva-bronzini-7661330.jpg",
     },
     {
       title: "Web Development",
-      src: "/pexels-carrie-johnson-444447-1202849.jpg",
+      src: "/pexels-tranmautritam-326503.jpg",
     },
     {
       title: "Creative Production",
-      src: "/pexels-carrie-johnson-444447-1202849.jpg",
+      src: "/pexels-minhle17vn-3062541.jpg",
     },
     {
       title: "Brand Identity",
-      src: "/pexels-carrie-johnson-444447-1202849.jpg",
+      src: "/pexels-ron-lach-9594419.jpg",
     },
     {
       title: "Content Strategy",
-      src: "/pexels-carrie-johnson-444447-1202849.jpg",
+      src: "/pexels-mart-production-7679690.jpg",
     },
     {
       title: "Social Media Management",
-      src: "/pexels-carrie-johnson-444447-1202849.jpg",
+      src: "/pexels-kseverin-1542252.jpg",
     },
   ]
 
