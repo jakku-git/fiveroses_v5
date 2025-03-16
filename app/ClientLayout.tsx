@@ -6,7 +6,6 @@ import "./globals.css"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { motion } from "framer-motion"
-// Removed CustomCursor import since we are not using it anymore
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -24,20 +23,20 @@ const Header = memo(function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-light tracking-tighter">
+        <Link href="/" className="text-3xl font-bold tracking-tighter">
           fiveroses
         </Link>
         <nav className="hidden md:flex items-center gap-8">
-          <Link href="/" className="text-sm hover:text-accent transition-colors">
+          <Link href="/" className="text-sm font-bold hover:text-accent transition-colors">
             Home
           </Link>
-          <Link href="/work" className="text-sm hover:text-accent transition-colors">
+          <Link href="/work" className="text-sm font-bold hover:text-accent transition-colors">
             Work
           </Link>
-          <Link href="/news" className="text-sm hover:text-accent transition-colors">
+          <Link href="/news" className="text-sm font-bold hover:text-accent transition-colors">
             News
           </Link>
-          <Link href="/contact" className="text-sm hover:text-accent transition-colors">
+          <Link href="/contact" className="text-sm font-bold hover:text-accent transition-colors">
             Contact
           </Link>
         </nav>
@@ -81,16 +80,23 @@ const MobileNav = memo(function MobileNav() {
         variants={menuVariants}
       >
         <nav className="flex flex-col items-center gap-12">
-          {[
-            { href: "/", label: "Home" },
-            { href: "/work", label: "Work" },
-            { href: "/news", label: "News" },
-            { href: "/contact", label: "Contact" },
-          ].map((link, i) => (
+          {[{
+            href: "/",
+            label: "Home"
+          }, {
+            href: "/work",
+            label: "Work"
+          }, {
+            href: "/news",
+            label: "News"
+          }, {
+            href: "/contact",
+            label: "Contact"
+          }].map((link, i) => (
             <motion.div key={link.href} custom={i} variants={linkVariants}>
               <Link
                 href={link.href}
-                className="text-3xl font-light tracking-tight hover:text-accent transition-colors"
+                className="text-3xl font-bold tracking-tight hover:text-accent transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
@@ -103,108 +109,12 @@ const MobileNav = memo(function MobileNav() {
   )
 })
 
-const Footer = memo(function Footer() {
-  return (
-    <footer className="w-full bg-black text-white border-t border-white/10 py-12">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="space-y-4">
-            <h3 className="text-2xl font-light tracking-tighter">fiveroses</h3>
-            <p className="text-sm text-neutral-400">
-              Full-service marketing agency helping your business bloom.
-            </p>
-          </div>
-          <div>
-            <h4 className="text-sm font-medium mb-4 uppercase tracking-wider">Services</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/work/marketing" className="text-sm text-neutral-400 hover:text-white transition-colors">
-                  Marketing
-                </Link>
-              </li>
-              <li>
-                <Link href="/work/web-solutions" className="text-sm text-neutral-400 hover:text-white transition-colors">
-                  Web Solutions
-                </Link>
-              </li>
-              <li>
-                <Link href="/work/creative-production" className="text-sm text-neutral-400 hover:text-white transition-colors">
-                  Creative Production
-                </Link>
-              </li>
-              <li>
-                <Link href="/work/incubator" className="text-sm text-neutral-400 hover:text-white transition-colors">
-                  Startup Incubator
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-sm font-medium mb-4 uppercase tracking-wider">Company</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/about" className="text-sm text-neutral-400 hover:text-white transition-colors">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link href="/news" className="text-sm text-neutral-400 hover:text-white transition-colors">
-                  News
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="text-sm text-neutral-400 hover:text-white transition-colors">
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-sm font-medium mb-4 uppercase tracking-wider">Connect</h4>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="text-sm text-neutral-400 hover:text-white transition-colors">
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-neutral-400 hover:text-white transition-colors">
-                  Twitter
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-sm text-neutral-400 hover:text-white transition-colors">
-                  LinkedIn
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-xs text-neutral-400">
-            &copy; {new Date().getFullYear()} fiveroses. All rights reserved.
-          </p>
-          <div className="flex gap-4 mt-4 md:mt-0">
-            <Link href="/privacy" className="text-xs text-neutral-400 hover:text-white transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/terms" className="text-xs text-neutral-400 hover:text-white transition-colors">
-              Terms of Service
-            </Link>
-          </div>
-        </div>
-      </div>
-    </footer>
-  )
-})
-
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={`${inter.className} bg-black text-white`}>
         <Header />
         {children}
-        <Footer />
       </body>
     </html>
   )
