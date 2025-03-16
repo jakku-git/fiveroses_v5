@@ -69,7 +69,7 @@ export default function Home() {
     {
       id: 6,
       content: <p className="text-white text-lg font-light">Social Media Management</p>,
-      className: "h-64 bg-transparent text-white flex items-center justify-center",
+      className: "h-64 bg-gray-900 text-white flex items-center justify-center",
       thumbnail: "/pexels-carrie-johnson-444447-1202849.jpg",
     },
   ]
@@ -78,12 +78,12 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between">
       {/* Hero Section */}
       <section className="w-full min-h-screen flex flex-col items-center justify-center relative bg-black text-white">
-        <CanvasRevealEffect
-          animationSpeed={0.5}
-          containerClassName="h-screen w-full"
-          revealText="fiveroses"
-          textClassName="text-[8vw] font-light tracking-tighter"
-        />
+      <CanvasRevealEffect
+  animationSpeed={0.5}
+  containerClassName="h-screen w-full"
+  revealText="fiveroses"
+  textClassName="text-[8vw] tracking-tighter" // font weight now forced to bold in the canvas code
+/>
       </section>
 
       {/* Focus Cards Section */}

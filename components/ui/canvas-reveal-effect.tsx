@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { motion } from "framer-motion"
 
 export const CanvasRevealEffect = ({
   revealText,
@@ -95,15 +94,16 @@ export const CanvasRevealEffect = ({
       density: number
       distance: number
       color: string
-      constructor(x: number, y: number) {
+      constructor(x: number, y: number, color: string) {
         this.x = x
         this.y = y
-        this.size = 3
+        // Particles are now a lot smaller
+        this.size = 1
         this.baseX = x
         this.baseY = y
         this.density = Math.random() * 30 + 1
         this.distance = 0
-        this.color = Math.random() < 0.9 ? "#ffffff" : "#000000" // ✅ 90% white, 10% black (Fix applied)
+        this.color = color
       }
       draw() {
         if (!ctx) return
@@ -126,8 +126,10 @@ export const CanvasRevealEffect = ({
         const directionY = forceDirectionY * force * this.density * animationSpeed
 
         if (distance < mouse.radius) {
-          this.x -= directionX
-          this.y -= directionY
+          // Increase the displacement to space particles out more upon interaction
+          const interactionMultiplier = 3
+          this.x -= directionX * interactionMultiplier
+          this.y -= directionY * interactionMultiplier
         } else {
           if (this.x !== this.baseX) {
             const dx = this.x - this.baseX
@@ -154,7 +156,8 @@ export const CanvasRevealEffect = ({
           const index = y * 4 * textData.width + x * 4
           const alpha = textData.data[index + 3]
           if (alpha > 128) {
-            particleArray.push(new Particle(x, y))
+            // All particles are white
+            particleArray.push(new Particle(x, y, "#ffffff"))
           }
         }
       }
@@ -171,7 +174,8 @@ export const CanvasRevealEffect = ({
       tempCanvas.height = dimensions.height
 
       const computedStyle = window.getComputedStyle(textRef.current)
-      const fontStyle = `${computedStyle.fontWeight} ${computedStyle.fontSize} ${computedStyle.fontFamily}`
+      // Force the font to be bold while keeping the original size and font family
+      const fontStyle = `bold ${computedStyle.fontSize} ${computedStyle.fontFamily}`
 
       tempCtx.font = fontStyle
       tempCtx.fillStyle = "white"
@@ -214,15 +218,44 @@ export const CanvasRevealEffect = ({
 
   return (
     <div className={`relative overflow-hidden ${containerClassName}`} ref={containerRef}>
-      {/* ✅ Kept your original video setup */}
+      {/* Original video setup */}
       <div className="absolute inset-0 z-0 flex">
-        <video className="hero-video w-1/3 h-full object-cover" autoPlay loop muted playsInline src="https://videos.pexels.com/video-files/18069237/18069237-uhd_1440_1440_24fps.mp4"></video>
-        <video className="hero-video w-1/3 h-full object-cover" autoPlay loop muted playsInline src="https://videos.pexels.com/video-files/17485992/17485992-uhd_1440_1800_25fps.mp4"></video>
-        <video className="hero-video w-1/3 h-full object-cover" autoPlay loop muted playsInline src="https://videos.pexels.com/video-files/18069473/18069473-sd_360_640_24fps.mp4"></video>
+        <video
+          className="hero-video w-1/3 h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          src="https://videos.pexels.com/video-files/18069237/18069237-uhd_1440_1440_24fps.mp4"
+        ></video>
+        <video
+          className="hero-video w-1/3 h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          src="https://videos.pexels.com/video-files/17485992/17485992-uhd_1440_1800_25fps.mp4"
+        ></video>
+        <video
+          className="hero-video w-1/3 h-full object-cover"
+          autoPlay
+          loop
+          muted
+          playsInline
+          src="https://videos.pexels.com/video-files/18069473/18069473-sd_360_640_24fps.mp4"
+        ></video>
       </div>
 
+      {/* Tint overlay */}
+      <div className="absolute inset-0 z-5 pointer-events-none" style={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }} />
+
       <canvas ref={canvasRef} className="absolute inset-0 z-10 w-full h-full" />
-      <div ref={textRef} className={`opacity-0 absolute inset-0 flex items-center justify-center ${textClassName}`}>{revealText}</div>
+      <div
+        ref={textRef}
+        className={`opacity-0 absolute inset-0 flex items-center justify-center ${textClassName}`}
+      >
+        {revealText}
+      </div>
     </div>
   )
 }
