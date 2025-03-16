@@ -2,7 +2,7 @@
 
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect"
 import { FocusCards } from "@/components/ui/focus-cards"
-import { BentoGrid } from "@/components/ui/bento-grid"
+import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
@@ -20,7 +20,7 @@ export default function Home() {
         />
       </section>
 
-      {/* Focus Cards Section (Now Above BentoGrid) */}
+      {/* Focus Cards Section (Placed Above BentoGrid) */}
       <section className="w-full py-24 px-4 md:px-6 bg-black text-white">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-light tracking-tighter text-center mb-10">
@@ -78,6 +78,7 @@ export default function Home() {
             Our Work
           </motion.h2>
 
+          {/* ✅ Kept your original BentoGrid code untouched */}
           <BentoGrid />
         </div>
       </section>
