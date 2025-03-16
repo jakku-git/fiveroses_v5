@@ -17,7 +17,6 @@ export default function Home() {
           containerClassName="h-screen w-full"
           revealText="fiveroses"
           textClassName="text-[8vw] font-light tracking-tighter"
-          colors={["#000000", "#ffffff"]}
         />
       </section>
 
