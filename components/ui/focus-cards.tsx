@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 
 export type CardType = {
   title: string;
@@ -9,6 +9,19 @@ export type CardType = {
 };
 
 export function FocusCards({ cards = [] }: { cards?: CardType[] }) {
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      const style = document.createElement("style");
+      style.innerHTML = `
+        .focus-cards-container:hover .focus-card:not(:hover) {
+          filter: blur(8px); /* Increased blur intensity */
+          transform: scale(0.95); /* Optional: Slightly reduce size for stronger effect */
+        }
+      `;
+      document.head.appendChild(style);
+    }
+  }, []);
+
   if (!cards || cards.length === 0) {
     return <p className="text-center text-white">No cards available.</p>;
   }
@@ -35,13 +48,3 @@ export function FocusCards({ cards = [] }: { cards?: CardType[] }) {
     </div>
   );
 }
-
-/* Double Blur Effect on Unfocused Cards */
-const style = document.createElement('style');
-style.innerHTML = `
-  .focus-cards-container:hover .focus-card:not(:hover) {
-    filter: blur(8px); /* Increased blur intensity */
-    transform: scale(0.95); /* Optional: Slightly reduce size for stronger effect */
-  }
-`;
-document.head.appendChild(style);
