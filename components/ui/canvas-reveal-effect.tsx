@@ -7,23 +7,21 @@ export const CanvasRevealEffect = ({
   revealText,
   textClassName,
   containerClassName,
-  colors = ["#111", "#fff"],
   animationSpeed = 1,
 }: {
   revealText: string
   textClassName?: string
   containerClassName?: string
-  colors?: string[]
   animationSpeed?: number
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const textRef = useRef<HTMLDivElement>(null)
-  const containerRef = useRef<HTMLDivElement>(null) // Reference for mouse interaction
+  const containerRef = useRef<HTMLDivElement>(null)
 
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
   const [isInView, setIsInView] = useState(false)
 
-  // ✅ Mouse Interaction Effect for Videos (from old hero section)
+  // ✅ Mouse Interaction Effect for Videos
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return
@@ -98,7 +96,7 @@ export const CanvasRevealEffect = ({
       density: number
       distance: number
       color: string
-      constructor(x: number, y: number, color: string) {
+      constructor(x: number, y: number) {
         this.x = x
         this.y = y
         this.size = 3
@@ -106,7 +104,7 @@ export const CanvasRevealEffect = ({
         this.baseY = y
         this.density = Math.random() * 30 + 1
         this.distance = 0
-        this.color = color
+        this.color = "#ffffff" // ✅ All particles are now white
       }
       draw() {
         if (!ctx) return
@@ -157,8 +155,7 @@ export const CanvasRevealEffect = ({
           const index = y * 4 * textData.width + x * 4
           const alpha = textData.data[index + 3]
           if (alpha > 128) {
-            const color = colors[Math.floor(Math.random() * colors.length)]
-            particleArray.push(new Particle(x, y, color))
+            particleArray.push(new Particle(x, y))
           }
         }
       }
@@ -214,7 +211,7 @@ export const CanvasRevealEffect = ({
     return () => {
       particleArray = []
     }
-  }, [dimensions, isInView, colors, revealText, animationSpeed])
+  }, [dimensions, isInView, revealText, animationSpeed])
 
   return (
     <div className={`relative overflow-hidden ${containerClassName}`} ref={containerRef}>
@@ -224,7 +221,6 @@ export const CanvasRevealEffect = ({
         <video className="hero-video w-1/3 h-full object-cover" autoPlay loop muted playsInline src="https://videos.pexels.com/video-files/18069473/18069473-sd_360_640_24fps.mp4"></video>
       </div>
 
-      {/* ✅ Very Faint Tint Overlay */}
       <div className="absolute inset-0 bg-black/10 z-5 pointer-events-none"></div>
 
       <canvas ref={canvasRef} className="absolute inset-0 z-10 w-full h-full" />
