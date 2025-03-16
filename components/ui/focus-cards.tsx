@@ -1,24 +1,24 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import React from "react"
+import Image from "next/image";
+import React from "react";
 
 export type CardType = {
-  title: string
-  src: string
-}
+  title: string;
+  src: string;
+};
 
 export function FocusCards({ cards = [] }: { cards?: CardType[] }) {
   if (!cards || cards.length === 0) {
-    return <p className="text-center text-white">No cards available.</p>
+    return <p className="text-center text-white">No cards available.</p>;
   }
 
   return (
-    <div className="focus-cards-container grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto md:px-8 w-full">
+    <div className="focus-cards-container grid grid-cols-1 md:grid-cols-3 gap-10 w-full px-0 md:px-0">
       {cards.map((card) => (
         <div
           key={card.title}
-          className="focus-card rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-60 md:h-96 w-full"
+          className="focus-card rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-60 md:h-96 w-full transition-all duration-300"
         >
           <Image
             src={card.src}
@@ -27,13 +27,21 @@ export function FocusCards({ cards = [] }: { cards?: CardType[] }) {
             className="object-cover absolute inset-0"
             loading="lazy"
           />
-          <div className="overlay absolute inset-0 bg-black/50 flex items-end py-8 px-4">
-            <div className="text-xl md:text-2xl font-medium bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-200">
-              {card.title}
-            </div>
+          <div className="absolute bottom-8 left-4 text-xl md:text-2xl font-medium text-white drop-shadow-md">
+            {card.title}
           </div>
         </div>
       ))}
     </div>
-  )
+  );
 }
+
+/* Double Blur Effect on Unfocused Cards */
+const style = document.createElement('style');
+style.innerHTML = `
+  .focus-cards-container:hover .focus-card:not(:hover) {
+    filter: blur(8px); /* Increased blur intensity */
+    transform: scale(0.95); /* Optional: Slightly reduce size for stronger effect */
+  }
+`;
+document.head.appendChild(style);
