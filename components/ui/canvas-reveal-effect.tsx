@@ -83,7 +83,8 @@ export const CanvasRevealEffect = ({
     canvas.height = dimensions.height
 
     let particleArray: Particle[] = []
-    const detail = 1
+    // Increase detail to reduce particle count
+    const detail = 3
 
     class Particle {
       x: number
@@ -97,7 +98,6 @@ export const CanvasRevealEffect = ({
       constructor(x: number, y: number, color: string) {
         this.x = x
         this.y = y
-        // Particles are now a lot smaller
         this.size = 1
         this.baseX = x
         this.baseY = y
@@ -126,7 +126,6 @@ export const CanvasRevealEffect = ({
         const directionY = forceDirectionY * force * this.density * animationSpeed
 
         if (distance < mouse.radius) {
-          // Increase the displacement to space particles out more upon interaction
           const interactionMultiplier = 3
           this.x -= directionX * interactionMultiplier
           this.y -= directionY * interactionMultiplier
@@ -156,7 +155,6 @@ export const CanvasRevealEffect = ({
           const index = y * 4 * textData.width + x * 4
           const alpha = textData.data[index + 3]
           if (alpha > 128) {
-            // All particles are white
             particleArray.push(new Particle(x, y, "#ffffff"))
           }
         }
@@ -174,7 +172,6 @@ export const CanvasRevealEffect = ({
       tempCanvas.height = dimensions.height
 
       const computedStyle = window.getComputedStyle(textRef.current)
-      // Force the font to be bold while keeping the original size and font family
       const fontStyle = `bold ${computedStyle.fontSize} ${computedStyle.fontFamily}`
 
       tempCtx.font = fontStyle
@@ -218,7 +215,6 @@ export const CanvasRevealEffect = ({
 
   return (
     <div className={`relative overflow-hidden ${containerClassName}`} ref={containerRef}>
-      {/* Original video setup */}
       <div className="absolute inset-0 z-0 flex">
         <video
           className="hero-video w-1/3 h-full object-cover"
@@ -246,7 +242,6 @@ export const CanvasRevealEffect = ({
         ></video>
       </div>
 
-      {/* Tint overlay */}
       <div className="absolute inset-0 z-5 pointer-events-none" style={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }} />
 
       <canvas ref={canvasRef} className="absolute inset-0 z-10 w-full h-full" />

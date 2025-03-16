@@ -1,9 +1,12 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { JSX, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
+
+// Create a motion-enabled version of Next.js Image for better optimization.
+const MotionImage = motion(Image)
 
 type Card = {
   id: number
@@ -27,18 +30,18 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
   }
 
   return (
-    <div className="w-full h-full p-10 grid grid-cols-1 md:grid-cols-3 max-w-7xl mx-auto gap-4 relative">
+    <div className="w-full h-full p-10 grid grid-cols-1 md:grid-cols-3 max-w-7xl mx-auto gap-4 relative layout-grid">
       {cards.map((card, i) => (
-        <div key={i} className={cn(card.className, "")}>
+        <div key={i} className={cn("layout-grid-item", card.className)}>
           <motion.div
             onClick={() => handleClick(card)}
             className={cn(
               card.className,
               "relative overflow-hidden",
               selected?.id === card.id
-                ? "rounded-lg cursor-pointer absolute inset-0 h-1/2 w-full md:w-1/2 m-auto z-50 flex justify-center items-center flex-wrap flex-col bg-transparent" // ✅ Fix applied here
+                ? "rounded-lg cursor-pointer absolute inset-0 h-1/2 w-full md:w-1/2 m-auto z-50 flex justify-center items-center flex-wrap flex-col bg-transparent"
                 : lastSelected?.id === card.id
-                ? "z-40 bg-transparent rounded-xl h-full w-full" // ✅ Removed any grayish tint here
+                ? "z-40 bg-transparent rounded-xl h-full w-full"
                 : "bg-transparent rounded-xl h-full w-full"
             )}
             layoutId={`card-${card.id}`}
@@ -49,12 +52,11 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
         </div>
       ))}
 
-      {/* Click outside to close effect */}
       <AnimatePresence>
         {selected && (
           <motion.div
             onClick={handleOutsideClick}
-            className="absolute inset-0 bg-transparent z-40 cursor-pointer" // ✅ Changed to fully transparent
+            className="absolute inset-0 bg-transparent z-40 cursor-pointer"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0 }}
             exit={{ opacity: 0 }}
@@ -67,25 +69,26 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
 
 const ImageComponent = ({ card }: { card: Card }) => {
   return (
-    <motion.img
+    <MotionImage
       layoutId={`image-${card.id}-image`}
       src={card.thumbnail}
-      height="500"
-      width="500"
+      height={500}
+      width={500}
       className={cn(
-        "object-cover object-top absolute inset-0 h-full w-full transition duration-200"
+        "layout-grid-image object-cover object-top absolute inset-0 h-full w-full transition duration-200"
       )}
       alt="thumbnail"
+      loading="lazy"
     />
   )
 }
 
 const SelectedCard = ({ selected }: { selected: Card | null }) => {
   return (
-    <div className="h-full w-full flex flex-col justify-end rounded-lg shadow-2xl relative z-[60] bg-transparent"> {/* ✅ Made fully transparent */}
+    <div className="h-full w-full flex flex-col justify-end rounded-lg shadow-2xl relative z-[60] bg-transparent">
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0 }} 
+        animate={{ opacity: 0 }}
         exit={{ opacity: 0 }}
         className="absolute inset-0 h-full w-full bg-transparent z-10"
       />

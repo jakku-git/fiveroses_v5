@@ -29,6 +29,7 @@ export const Card = React.memo(
         alt={card.title}
         fill
         className="object-cover absolute inset-0"
+        loading="lazy"
       />
       <div
         className={cn(
@@ -46,12 +47,12 @@ export const Card = React.memo(
 
 Card.displayName = "Card"
 
-type Card = {
+type CardType = {
   title: string
   src: string
 }
 
-export function FocusCards({ cards = [] }: { cards?: Card[] }) {
+export function FocusCards({ cards = [] }: { cards?: CardType[] }) {
   const [hovered, setHovered] = useState<number | null>(null)
 
   if (!cards || cards.length === 0) {

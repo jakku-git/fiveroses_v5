@@ -1,78 +1,22 @@
 "use client"
 
-import type React from "react"
+import React, { useEffect } from "react"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
-import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
+import CustomCursor from "@/components/ui/customcursors"  // Use the new custom cursor
 
 const inter = Inter({ subsets: ["latin"] })
 
-// CustomCursor now throttles mousemove updates using requestAnimationFrame.
-// All elements are centered via inline styles so that their centers always align with the pointer.
-function CustomCursor() {
-  const [position, setPosition] = useState({ x: 0, y: 0 })
-  const [isPointer, setIsPointer] = useState(false)
-
-  useEffect(() => {
-    let animationFrameId: number
-    const handleMouseMove = (e: MouseEvent) => {
-      if (animationFrameId) cancelAnimationFrame(animationFrameId)
-      animationFrameId = requestAnimationFrame(() => {
-        setPosition({ x: e.clientX, y: e.clientY })
-        const hoveredElement = document.elementFromPoint(e.clientX, e.clientY)
-        setIsPointer(
-          hoveredElement?.tagName === "A" ||
-            hoveredElement?.tagName === "BUTTON" ||
-            hoveredElement?.closest("a") !== null ||
-            hoveredElement?.closest("button") !== null
-        )
-      })
-    }
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => window.removeEventListener("mousemove", handleMouseMove)
-  }, [])
-
-  return (
-    <>
-      {/* Core circle: 24px diameter, follows instantly */}
-      <motion.div
-        className="custom-cursor cursor-core"
-        style={{ translateX: "-50%", translateY: "-50%" }}
-        animate={{ x: position.x, y: position.y }}
-        transition={{ type: "tween", duration: 0 }}
-      />
-      {/* Inner dot: 30px diameter, follows with a smooth spring transition */}
-      <motion.div
-        className="custom-cursor cursor-dot"
-        style={{ translateX: "-50%", translateY: "-50%" }}
-        animate={{ x: position.x, y: position.y, scale: isPointer ? 0.95 : 1 }}
-        transition={{ type: "spring", stiffness: 800, damping: 30, delay: 0.05 }}
-      />
-      {/* Outer outline: 40px diameter, follows with a smooth spring transition */}
-      <motion.div
-        className="custom-cursor cursor-outline"
-        style={{ translateX: "-50%", translateY: "-50%" }}
-        animate={{ x: position.x, y: position.y, scale: isPointer ? 1.05 : 1 }}
-        transition={{ type: "spring", stiffness: 800, damping: 30, delay: 0.1 }}
-      />
-    </>
-  )
-}
-
 function Header() {
-  const [isScrolled, setIsScrolled] = useState(false)
-
+  const [isScrolled, setIsScrolled] = React.useState(false)
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
+    const handleScroll = () => setIsScrolled(window.scrollY > 50)
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
-
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -104,8 +48,7 @@ function Header() {
 }
 
 function MobileNav() {
-  const [isOpen, setIsOpen] = useState(false)
-
+  const [isOpen, setIsOpen] = React.useState(false)
   const menuVariants = {
     closed: {
       opacity: 0,
@@ -118,20 +61,14 @@ function MobileNav() {
       transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
     },
   }
-
   const linkVariants = {
     closed: { opacity: 0, y: 20 },
     open: (i: number) => ({
       opacity: 1,
       y: 0,
-      transition: {
-        delay: 0.3 + i * 0.1,
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1],
-      },
+      transition: { delay: 0.3 + i * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] },
     }),
   }
-
   return (
     <div className="md:hidden">
       <button onClick={() => setIsOpen(!isOpen)} className="p-2">
@@ -261,11 +198,7 @@ function Footer() {
   )
 }
 
-export default function ClientLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function ClientLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={`${inter.className} bg-black text-white`}>

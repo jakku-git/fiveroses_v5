@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+  --cursor-x: 0px;
+  --cursor-y: 0px;
   --background: 0 0% 0%;
   --foreground: 0 0% 100%;
   --card: 0 0% 3%;
@@ -25,14 +27,12 @@
   --radius: 0.5rem;
 }
 
-/* Hide the default system cursor globally */
 body {
   cursor: none;
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
 }
 
-/* Hide default cursor for clickable elements */
 a,
 button {
   cursor: none !important;
@@ -42,8 +42,6 @@ button {
   text-wrap: balance;
 }
 
-/* Custom cursor container styles with dynamic contrast.
-   All elements are centered exactly on the pointer via transform: translate(-50%, -50%). */
 .custom-cursor {
   position: fixed;
   top: 0;
@@ -52,37 +50,40 @@ button {
   z-index: 100000;
   mix-blend-mode: difference;
   transform: translate(-50%, -50%);
+  will-change: transform;
 }
 
-/* Core circle: 24px diameter with pastel gradient animation (10s) */
 .cursor-core {
   width: 24px;
   height: 24px;
   border-radius: 50%;
   animation: pastelGradient 10s ease infinite;
-  transition: transform 0.05s ease;
+  transform: translate3d(var(--cursor-x), var(--cursor-y), 0) translate(-50%, -50%);
+  transition: transform 0.02s linear;
+  will-change: transform;
 }
 
-/* Inner dot: 30px diameter, white, with smooth transition */
 .cursor-dot {
   width: 30px;
   height: 30px;
   border-radius: 50%;
   background-color: white;
-  transition: transform 0.05s ease;
+  transform: translate3d(var(--cursor-x), var(--cursor-y), 0) translate(-50%, -50%);
+  transition: transform 0.1s ease-out;
+  will-change: transform;
 }
 
-/* Outer outline: 40px diameter, outlined, with smooth transition */
 .cursor-outline {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.5);
   background-color: transparent;
-  transition: transform 0.05s ease;
+  transform: translate3d(var(--cursor-x), var(--cursor-y), 0) translate(-50%, -50%);
+  transition: transform 0.1s ease-out;
+  will-change: transform;
 }
 
-/* Keyframes for pastel gradient animation */
 @keyframes pastelGradient {
   0% {
     background-color: #FF6B81;
@@ -101,8 +102,14 @@ button {
   }
 }
 
-/* Other global styles remain unchanged */
+.card,
+.image-hover,
+.focus-card {
+  will-change: transform;
+  transform: translateZ(0);
+}
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+.image-hover img {
+  transition: transform 0.3s ease;
+  will-change: transform;
+}
