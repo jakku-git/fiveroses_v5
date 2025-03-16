@@ -47,8 +47,8 @@ function CustomCursor() {
           y: position.y - 10,
           scale: isPointer ? 0.5 : 1,
         }}
-        // Small circle now uses a quick tween for near-instantaneous movement
-        transition={{ type: "tween", duration: 0.05 }}
+        // Small circle now updates instantly
+        transition={{ type: "tween", duration: 0 }}
       />
       <motion.div
         className="custom-cursor cursor-outline"
@@ -57,8 +57,8 @@ function CustomCursor() {
           y: position.y - 20,
           scale: isPointer ? 1.5 : 1,
         }}
-        // Bigger circle uses a spring with slightly reduced stiffness for a smoother follow effect
-        transition={{ type: "spring", damping: 15, stiffness: 100, mass: 1 }}
+        // Bigger circle follows more promptly with a faster spring
+        transition={{ type: "spring", stiffness: 300, damping: 20, mass: 0.5 }}
       />
     </>
   )
