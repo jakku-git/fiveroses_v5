@@ -21,7 +21,6 @@ export const CanvasRevealEffect = ({
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
   const [isInView, setIsInView] = useState(false)
 
-  // ✅ Mouse Interaction Effect for Videos
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (!containerRef.current) return
@@ -104,7 +103,7 @@ export const CanvasRevealEffect = ({
         this.baseY = y
         this.density = Math.random() * 30 + 1
         this.distance = 0
-        this.color = Math.random() < 0.8 ? "#ffffff" : "#000000" // ✅ 80% white, 20% black
+        this.color = Math.random() < 0.9 ? "#ffffff" : "#000000" // ✅ 90% white, 10% black (Fix applied)
       }
       draw() {
         if (!ctx) return
@@ -215,6 +214,13 @@ export const CanvasRevealEffect = ({
 
   return (
     <div className={`relative overflow-hidden ${containerClassName}`} ref={containerRef}>
+      {/* ✅ Kept your original video setup */}
+      <div className="absolute inset-0 z-0 flex">
+        <video className="hero-video w-1/3 h-full object-cover" autoPlay loop muted playsInline src="https://videos.pexels.com/video-files/18069237/18069237-uhd_1440_1440_24fps.mp4"></video>
+        <video className="hero-video w-1/3 h-full object-cover" autoPlay loop muted playsInline src="https://videos.pexels.com/video-files/17485992/17485992-uhd_1440_1800_25fps.mp4"></video>
+        <video className="hero-video w-1/3 h-full object-cover" autoPlay loop muted playsInline src="https://videos.pexels.com/video-files/18069473/18069473-sd_360_640_24fps.mp4"></video>
+      </div>
+
       <canvas ref={canvasRef} className="absolute inset-0 z-10 w-full h-full" />
       <div ref={textRef} className={`opacity-0 absolute inset-0 flex items-center justify-center ${textClassName}`}>{revealText}</div>
     </div>
