@@ -18,8 +18,36 @@ export const CanvasRevealEffect = ({
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const textRef = useRef<HTMLDivElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null) // Reference for mouse interaction
+
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
   const [isInView, setIsInView] = useState(false)
+
+  // ✅ Mouse Interaction Effect for Videos (from old hero section)
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!containerRef.current) return
+
+      const { clientX, clientY } = e
+      const rect = containerRef.current.getBoundingClientRect()
+      const x = clientX - rect.left
+      const y = clientY - rect.top
+
+      const xPercent = x / rect.width
+      const yPercent = y / rect.height
+
+      const videos = containerRef.current.querySelectorAll(".hero-video")
+      videos.forEach((video, index) => {
+        const factor = (index + 1) * 10
+        ;(video as HTMLElement).style.transform = `translate(${
+          (xPercent - 0.5) * factor
+        }px, ${(yPercent - 0.5) * factor}px)`
+      })
+    }
+
+    document.addEventListener("mousemove", handleMouseMove)
+    return () => document.removeEventListener("mousemove", handleMouseMove)
+  }, [])
 
   useEffect(() => {
     if (!canvasRef.current || !textRef.current) return
@@ -139,7 +167,6 @@ export const CanvasRevealEffect = ({
     function getImageData() {
       if (!ctx || !textRef.current) return null
 
-      // Create a temporary canvas to render the text
       const tempCanvas = document.createElement("canvas")
       const tempCtx = tempCanvas.getContext("2d")
       if (!tempCtx) return null
@@ -147,7 +174,6 @@ export const CanvasRevealEffect = ({
       tempCanvas.width = dimensions.width
       tempCanvas.height = dimensions.height
 
-      // Get computed style of the text element
       const computedStyle = window.getComputedStyle(textRef.current)
       const fontStyle = `${computedStyle.fontWeight} ${computedStyle.fontSize} ${computedStyle.fontFamily}`
 
@@ -156,13 +182,11 @@ export const CanvasRevealEffect = ({
       tempCtx.textBaseline = "middle"
       tempCtx.textAlign = "center"
 
-      // Draw text in the center of the canvas
       tempCtx.fillText(revealText, tempCanvas.width / 2, tempCanvas.height / 2)
 
       return tempCtx.getImageData(0, 0, tempCanvas.width, tempCanvas.height)
     }
 
-    // Reduced the mouse.radius to confine the particles near their base positions.
     const mouse = {
       x: 0,
       y: 0,
@@ -193,37 +217,15 @@ export const CanvasRevealEffect = ({
   }, [dimensions, isInView, colors, revealText, animationSpeed])
 
   return (
-    <div className={`relative overflow-hidden ${containerClassName}`}>
-      {/* Background videos container */}
+    <div className={`relative overflow-hidden ${containerClassName}`} ref={containerRef}>
       <div className="absolute inset-0 z-0 flex">
-        <video className="w-1/3 h-full object-cover" autoPlay loop muted playsInline>
-          <source src="https://videos.pexels.com/video-files/18069237/18069237-uhd_1440_1440_24fps.mp4" type="video/mp4" />
-        </video>
-        <video className="w-1/3 h-full object-cover" autoPlay loop muted playsInline>
-          <source src="https://videos.pexels.com/video-files/17485992/17485992-uhd_1440_1800_25fps.mp4" type="video/mp4" />
-        </video>
-        <video className="w-1/3 h-full object-cover" autoPlay loop muted playsInline>
-          <source src="https://videos.pexels.com/video-files/18069473/18069473-sd_360_640_24fps.mp4" type="video/mp4" />
-        </video>
+        <video className="hero-video w-1/3 h-full object-cover" autoPlay loop muted playsInline src="https://videos.pexels.com/video-files/18069237/18069237-uhd_1440_1440_24fps.mp4"></video>
+        <video className="hero-video w-1/3 h-full object-cover" autoPlay loop muted playsInline src="https://videos.pexels.com/video-files/18069237/18069237-uhd_1440_1440_24fps.mp4"></video>
+        <video className="hero-video w-1/3 h-full object-cover" autoPlay loop muted playsInline src="https://videos.pexels.com/video-files/18069237/18069237-uhd_1440_1440_24fps.mp4"></video>
       </div>
 
-      {/* Canvas for particle effect (on top of videos) */}
       <canvas ref={canvasRef} className="absolute inset-0 z-10 w-full h-full" />
-
-      {/* Text to generate particle positions (hidden) */}
-      <div ref={textRef} className={`opacity-0 absolute inset-0 flex items-center justify-center ${textClassName}`}>
-        {revealText}
-      </div>
-
-      {/* Additional overlay text */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isInView ? 1 : 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="absolute bottom-10 left-0 right-0 z-20 text-center text-white"
-      >
-        <p className="text-lg md:text-xl font-light">Full-service marketing agency</p>
-      </motion.div>
+      <div ref={textRef} className={`opacity-0 absolute inset-0 flex items-center justify-center ${textClassName}`}>{revealText}</div>
     </div>
   )
 }
