@@ -220,9 +220,12 @@ export const CanvasRevealEffect = ({
     <div className={`relative overflow-hidden ${containerClassName}`} ref={containerRef}>
       <div className="absolute inset-0 z-0 flex">
         <video className="hero-video w-1/3 h-full object-cover" autoPlay loop muted playsInline src="https://videos.pexels.com/video-files/18069237/18069237-uhd_1440_1440_24fps.mp4"></video>
-        <video className="hero-video w-1/3 h-full object-cover" autoPlay loop muted playsInline src="https://videos.pexels.com/video-files/18069237/18069237-uhd_1440_1440_24fps.mp4"></video>
-        <video className="hero-video w-1/3 h-full object-cover" autoPlay loop muted playsInline src="https://videos.pexels.com/video-files/18069237/18069237-uhd_1440_1440_24fps.mp4"></video>
+        <video className="hero-video w-1/3 h-full object-cover" autoPlay loop muted playsInline src="https://videos.pexels.com/video-files/17485992/17485992-uhd_1440_1800_25fps.mp4"></video>
+        <video className="hero-video w-1/3 h-full object-cover" autoPlay loop muted playsInline src="https://videos.pexels.com/video-files/18069473/18069473-sd_360_640_24fps.mp4"></video>
       </div>
+
+      {/* ✅ Very Faint Tint Overlay */}
+      <div className="absolute inset-0 bg-black/10 z-5 pointer-events-none"></div>
 
       <canvas ref={canvasRef} className="absolute inset-0 z-10 w-full h-full" />
       <div ref={textRef} className={`opacity-0 absolute inset-0 flex items-center justify-center ${textClassName}`}>{revealText}</div>
