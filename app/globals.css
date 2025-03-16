@@ -43,7 +43,7 @@ button {
 }
 
 /* Custom cursor container styles with dynamic contrast.
-   Each element is centered on the pointer via transform: translate(-50%, -50%). */
+   All elements are centered exactly on the pointer via transform: translate(-50%, -50%). */
 .custom-cursor {
   position: fixed;
   top: 0;
@@ -63,7 +63,7 @@ button {
   transition: transform 0.05s ease;
 }
 
-/* Inner dot: 30px diameter, white, with smooth spring transition */
+/* Inner dot: 30px diameter, white, with smooth transition */
 .cursor-dot {
   width: 30px;
   height: 30px;
@@ -72,7 +72,7 @@ button {
   transition: transform 0.05s ease;
 }
 
-/* Outer outline: 40px diameter, outlined, with smooth spring transition */
+/* Outer outline: 40px diameter, outlined, with smooth transition */
 .cursor-outline {
   width: 40px;
   height: 40px;

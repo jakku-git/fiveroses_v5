@@ -10,23 +10,26 @@ import { motion } from "framer-motion"
 
 const inter = Inter({ subsets: ["latin"] })
 
-// CustomCursor renders three circles that are centered on the mouse pointer.
-// We use the style prop to always apply translateX("-50%") and translateY("-50%") so that
-// the x,y animation positions refer to the element center.
+// CustomCursor now throttles mousemove updates using requestAnimationFrame.
+// All elements are centered via inline styles so that their centers always align with the pointer.
 function CustomCursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [isPointer, setIsPointer] = useState(false)
 
   useEffect(() => {
+    let animationFrameId: number
     const handleMouseMove = (e: MouseEvent) => {
-      setPosition({ x: e.clientX, y: e.clientY })
-      const hoveredElement = document.elementFromPoint(e.clientX, e.clientY)
-      setIsPointer(
-        hoveredElement?.tagName === "A" ||
-          hoveredElement?.tagName === "BUTTON" ||
-          hoveredElement?.closest("a") !== null ||
-          hoveredElement?.closest("button") !== null
-      )
+      if (animationFrameId) cancelAnimationFrame(animationFrameId)
+      animationFrameId = requestAnimationFrame(() => {
+        setPosition({ x: e.clientX, y: e.clientY })
+        const hoveredElement = document.elementFromPoint(e.clientX, e.clientY)
+        setIsPointer(
+          hoveredElement?.tagName === "A" ||
+            hoveredElement?.tagName === "BUTTON" ||
+            hoveredElement?.closest("a") !== null ||
+            hoveredElement?.closest("button") !== null
+        )
+      })
     }
     window.addEventListener("mousemove", handleMouseMove)
     return () => window.removeEventListener("mousemove", handleMouseMove)
@@ -41,14 +44,14 @@ function CustomCursor() {
         animate={{ x: position.x, y: position.y }}
         transition={{ type: "tween", duration: 0 }}
       />
-      {/* Inner dot: 30px diameter, smooth spring transition */}
+      {/* Inner dot: 30px diameter, follows with a smooth spring transition */}
       <motion.div
         className="custom-cursor cursor-dot"
         style={{ translateX: "-50%", translateY: "-50%" }}
         animate={{ x: position.x, y: position.y, scale: isPointer ? 0.95 : 1 }}
         transition={{ type: "spring", stiffness: 800, damping: 30, delay: 0.05 }}
       />
-      {/* Outer outline: 40px diameter, smooth spring transition */}
+      {/* Outer outline: 40px diameter, follows with a smooth spring transition */}
       <motion.div
         className="custom-cursor cursor-outline"
         style={{ translateX: "-50%", translateY: "-50%" }}
@@ -241,7 +244,9 @@ function Footer() {
           </div>
         </div>
         <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-xs text-neutral-400">&copy; {new Date().getFullYear()} fiveroses. All rights reserved.</p>
+          <p className="text-xs text-neutral-400">
+            &copy; {new Date().getFullYear()} fiveroses. All rights reserved.
+          </p>
           <div className="flex gap-4 mt-4 md:mt-0">
             <Link href="/privacy" className="text-xs text-neutral-400 hover:text-white transition-colors">
               Privacy Policy

@@ -38,39 +38,39 @@ export default function Home() {
   const layoutGridData = [
     {
       id: 1,
-      content: <p className="text-white text-lg font-light">Marketing Strategy</p>,
+      content: <p className="text-white text-lg font-light">Media Buying Campaign</p>,
       className: "h-64 bg-transparent text-white flex items-center justify-center",
-      thumbnail: "/pexels-carrie-johnson-444447-1202849.jpg", // ✅ Ensure this file exists in `/public/`
+      thumbnail: "/pexels-evonics-1058276.jpg", // ✅ Ensure this file exists in `/public/`
     },
     {
       id: 2,
-      content: <p className="text-white text-lg font-light">Web Development</p>,
+      content: <p className="text-white text-lg font-light">Metro Banners</p>,
       className: "h-64 bg-transparent text-white flex items-center justify-center",
       thumbnail: "/pexels-carrie-johnson-444447-1202849.jpg",
     },
     {
       id: 3,
-      content: <p className="text-white text-lg font-light">Creative Production</p>,
+      content: <p className="text-white text-lg font-light">AIS Campaign</p>,
       className: "h-64 bg-transparent text-white flex items-center justify-center",
-      thumbnail: "/pexels-carrie-johnson-444447-1202849.jpg",
+      thumbnail: "/pexels-freestockpro-1031700.jpg",
     },
     {
       id: 4,
-      content: <p className="text-white text-lg font-light">Brand Identity</p>,
+      content: <p className="text-white text-lg font-light">Use Your Voice Campaign</p>,
       className: "h-64 bg-transparent text-white flex items-center justify-center",
-      thumbnail: "/pexels-carrie-johnson-444447-1202849.jpg",
+      thumbnail: "/pexels-polina-kovaleva-6185245.jpg",
     },
     {
       id: 5,
-      content: <p className="text-white text-lg font-light">Content Strategy</p>,
+      content: <p className="text-white text-lg font-light">DKNY Campaign</p>,
       className: "h-64 bg-transparent text-white flex items-center justify-center",
-      thumbnail: "/pexels-carrie-johnson-444447-1202849.jpg",
+      thumbnail: "/pexels-garrison-gao-56316964-31165586.jpg",
     },
     {
       id: 6,
-      content: <p className="text-white text-lg font-light">Social Media Management</p>,
+      content: <p className="text-white text-lg font-light">Flipkart Campaign</p>,
       className: "h-64 bg-gray-900 text-white flex items-center justify-center",
-      thumbnail: "/pexels-carrie-johnson-444447-1202849.jpg",
+      thumbnail: "/pexels-twotriangles-14647786.jpg",
     },
   ]
 
