@@ -2,12 +2,78 @@
 
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect"
 import { FocusCards } from "@/components/ui/focus-cards"
-import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid"
+import { LayoutGrid } from "@/components/ui/layout-grid"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 
 export default function Home() {
+  const focusCardsData = [
+    {
+      title: "Marketing Strategy",
+      src: "/pexels-carrie-johnson-444447-1202849.jpg",
+    },
+    {
+      title: "Web Development",
+      src: "/pexels-carrie-johnson-444447-1202849.jpg",
+    },
+    {
+      title: "Creative Production",
+      src: "/pexels-carrie-johnson-444447-1202849.jpg",
+    },
+    {
+      title: "Brand Identity",
+      src: "/pexels-carrie-johnson-444447-1202849.jpg",
+    },
+    {
+      title: "Content Strategy",
+      src: "/pexels-carrie-johnson-444447-1202849.jpg",
+    },
+    {
+      title: "Social Media Management",
+      src: "/pexels-carrie-johnson-444447-1202849.jpg",
+    },
+  ]
+
+  const layoutGridData = [
+    {
+      id: 1,
+      content: <p className="text-white text-lg font-light">Marketing Strategy</p>,
+      className: "h-64 bg-transparent text-white flex items-center justify-center",
+      thumbnail: "/pexels-carrie-johnson-444447-1202849.jpg", // ✅ Ensure this file exists in `/public/`
+    },
+    {
+      id: 2,
+      content: <p className="text-white text-lg font-light">Web Development</p>,
+      className: "h-64 bg-transparent text-white flex items-center justify-center",
+      thumbnail: "/pexels-carrie-johnson-444447-1202849.jpg",
+    },
+    {
+      id: 3,
+      content: <p className="text-white text-lg font-light">Creative Production</p>,
+      className: "h-64 bg-transparent text-white flex items-center justify-center",
+      thumbnail: "/pexels-carrie-johnson-444447-1202849.jpg",
+    },
+    {
+      id: 4,
+      content: <p className="text-white text-lg font-light">Brand Identity</p>,
+      className: "h-64 bg-transparent text-white flex items-center justify-center",
+      thumbnail: "/pexels-carrie-johnson-444447-1202849.jpg",
+    },
+    {
+      id: 5,
+      content: <p className="text-white text-lg font-light">Content Strategy</p>,
+      className: "h-64 bg-transparent text-white flex items-center justify-center",
+      thumbnail: "/pexels-carrie-johnson-444447-1202849.jpg",
+    },
+    {
+      id: 6,
+      content: <p className="text-white text-lg font-light">Social Media Management</p>,
+      className: "h-64 bg-transparent text-white flex items-center justify-center",
+      thumbnail: "/pexels-carrie-johnson-444447-1202849.jpg",
+    },
+  ]
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       {/* Hero Section */}
@@ -20,52 +86,18 @@ export default function Home() {
         />
       </section>
 
-      {/* Focus Cards Section (Placed Above BentoGrid) */}
+      {/* Focus Cards Section */}
       <section className="w-full py-24 px-4 md:px-6 bg-black text-white">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-light tracking-tighter text-center mb-10">
             Discover Our <span className="text-accent">Expertise</span>
           </h1>
 
-          <FocusCards
-            items={[
-              {
-                title: "Marketing Strategy",
-                description: "Helping brands grow with tailored marketing solutions.",
-                image: "/pexels-carrie-johnson-444447-1202849.jpg",
-              },
-              {
-                title: "Web Development",
-                description: "Building high-performance websites and apps.",
-                image: "/pexels-carrie-johnson-444447-1202849.jpg",
-              },
-              {
-                title: "Creative Production",
-                description: "Bringing ideas to life with stunning visuals.",
-                image: "/pexels-carrie-johnson-444447-1202849.jpg",
-              },
-              {
-                title: "Brand Identity",
-                description: "Crafting unique brand stories and visuals.",
-                image: "/pexels-carrie-johnson-444447-1202849.jpg",
-              },
-              {
-                title: "Content Strategy",
-                description: "Developing engaging content for maximum impact.",
-                image: "/pexels-carrie-johnson-444447-1202849.jpg",
-              },
-              {
-                title: "Social Media Management",
-                description: "Driving engagement and growth on all platforms.",
-                image: "/pexels-carrie-johnson-444447-1202849.jpg",
-              },
-            ]}
-            className="max-w-5xl mx-auto"
-          />
+          <FocusCards cards={focusCardsData} />
         </div>
       </section>
 
-      {/* BentoGrid (Below Focus Cards) */}
+      {/* Layout Grid (Now Uses the Correct Image) */}
       <section className="w-full py-24 px-4 md:px-6 bg-black text-white">
         <div className="max-w-7xl mx-auto">
           <motion.h2
@@ -78,8 +110,7 @@ export default function Home() {
             Our Work
           </motion.h2>
 
-          {/* ✅ Kept your original BentoGrid code untouched */}
-          <BentoGrid />
+          <LayoutGrid cards={layoutGridData} />
         </div>
       </section>
 
