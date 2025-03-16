@@ -59,7 +59,6 @@ export const CanvasRevealEffect = ({
     canvas.height = dimensions.height
 
     let particleArray: Particle[] = []
-    const numberOfParticles = 350
     const detail = 1
 
     class Particle {
@@ -195,10 +194,28 @@ export const CanvasRevealEffect = ({
 
   return (
     <div className={`relative overflow-hidden ${containerClassName}`}>
+      {/* Background videos container */}
+      <div className="absolute inset-0 z-0 flex">
+        <video className="w-1/3 h-full object-cover" autoPlay loop muted playsInline>
+          <source src="https://videos.pexels.com/video-files/18069237/18069237-uhd_1440_1440_24fps.mp4" type="video/mp4" />
+        </video>
+        <video className="w-1/3 h-full object-cover" autoPlay loop muted playsInline>
+          <source src="https://videos.pexels.com/video-files/17485992/17485992-uhd_1440_1800_25fps.mp4" type="video/mp4" />
+        </video>
+        <video className="w-1/3 h-full object-cover" autoPlay loop muted playsInline>
+          <source src="https://videos.pexels.com/video-files/18069473/18069473-sd_360_640_24fps.mp4" type="video/mp4" />
+        </video>
+      </div>
+
+      {/* Canvas for particle effect (on top of videos) */}
       <canvas ref={canvasRef} className="absolute inset-0 z-10 w-full h-full" />
+
+      {/* Text to generate particle positions (hidden) */}
       <div ref={textRef} className={`opacity-0 absolute inset-0 flex items-center justify-center ${textClassName}`}>
         {revealText}
       </div>
+
+      {/* Additional overlay text */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: isInView ? 1 : 0 }}
