@@ -28,60 +28,26 @@
 }
 
 body {
-  cursor: none;
+  cursor: auto;
   background-color: hsl(var(--background));
   color: hsl(var(--foreground));
 }
 
 a,
 button {
-  cursor: none !important;
+  cursor: auto !important;
 }
 
 .text-balance {
   text-wrap: balance;
 }
 
-.custom-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 100000;
-  mix-blend-mode: difference;
-  transform: translate(-50%, -50%);
-  will-change: transform;
-}
-
-.cursor-core {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  animation: pastelGradient 10s ease infinite;
-  transform: translate3d(var(--cursor-x), var(--cursor-y), 0) translate(-50%, -50%);
-  transition: transform 0.02s linear;
-  will-change: transform;
-}
-
-.cursor-dot {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: white;
-  transform: translate3d(var(--cursor-x), var(--cursor-y), 0) translate(-50%, -50%);
-  transition: transform 0.1s ease-out;
-  will-change: transform;
-}
-
+/* Custom cursor styles removed */
+.custom-cursor,
+.cursor-core,
+.cursor-dot,
 .cursor-outline {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  background-color: transparent;
-  transform: translate3d(var(--cursor-x), var(--cursor-y), 0) translate(-50%, -50%);
-  transition: transform 0.1s ease-out;
-  will-change: transform;
+  display: none;
 }
 
 @keyframes pastelGradient {

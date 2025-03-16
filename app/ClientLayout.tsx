@@ -6,7 +6,7 @@ import "./globals.css"
 import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { motion } from "framer-motion"
-import CustomCursor from "@/components/ui/customcursors"  // Ensure this is optimized
+// Removed CustomCursor import since we are not using it anymore
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -202,7 +202,6 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   return (
     <html lang="en">
       <body className={`${inter.className} bg-black text-white`}>
-        <CustomCursor />
         <Header />
         {children}
         <Footer />
