@@ -61,7 +61,7 @@ export const TextGenerateEffect = ({
 
   const renderWords = () => {
     return (
-      <motion.div ref={scope}>
+      <motion.div ref={scope} style={{ whiteSpace: "pre-wrap" }}>
         {wordsArray.map((word, idx) => {
           // If the word contains a newline, split it and insert a <br /> between parts.
           if (word.includes("\n")) {
@@ -99,10 +99,7 @@ export const TextGenerateEffect = ({
   return (
     <div className={cn("font-bold", className)}>
       <div className="mt-4">
-        <div
-          className="dark:text-white text-black text-5xl leading-snug tracking-normal"
-          style={{ maxWidth: "1200px", margin: "0 auto" }}
-        >
+        <div className="dark:text-white text-black text-5xl leading-snug tracking-normal max-w-screen-xl mx-auto">
           {renderWords()}
         </div>
       </div>

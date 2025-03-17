@@ -1,9 +1,11 @@
-"use client"
+"use client";
 
-import { useEffect, useState } from "react"
-import { motion } from "framer-motion"
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect"
-// Removed TextHoverEffect import since it's no longer used in the overlay.
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+// Adjust this import if SparklesCore is a default export.
+// For a named export use: import { SparklesCore } from "../ui/sparkles";
+import { SparklesCore } from "../ui/sparkles";
 
 const Flower = ({
   left,
@@ -11,18 +13,19 @@ const Flower = ({
   size = 150,
   petals = 8,
 }: {
-  left: string
-  top: string
-  size?: number
-  petals?: number
+  left: string;
+  top: string;
+  size?: number;
+  petals?: number;
 }) => {
-  // Define a petal shape using an SVG path.
-  const petalClipPath = "path('M50 0 C65 10, 100 35, 50 100 C0 35, 35 10, 50 0 Z')"
+  // Define the petal shape using an SVG path.
+  const petalClipPath =
+    "path('M50 0 C65 10, 100 35, 50 100 C0 35, 35 10, 50 0 Z')";
 
   const generateRandomColor = () => {
-    const colors = ["#FF5F6D", "#FFC371", "#FF9A8B", "#FF6A88", "#FF99AC"]
-    return colors[Math.floor(Math.random() * colors.length)]
-  }
+    const colors = ["#FF5F6D", "#FFC371", "#FF9A8B", "#FF6A88", "#FF99AC"];
+    return colors[Math.floor(Math.random() * colors.length)];
+  };
 
   return (
     <div
@@ -46,32 +49,30 @@ const Flower = ({
             }}
             className="absolute inset-0 bg-white/[0.01] border border-white/[0.05]"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: i * 0.1 }}
             whileHover={{
-              backgroundColor: generateRandomColor(),
               opacity: 0.8,
+              backgroundColor: generateRandomColor(),
               transition: { duration: 0 },
             }}
           />
-        )
+        );
       })}
     </div>
-  )
-}
+  );
+};
 
-export const BackgroundBoxes = (props: React.HTMLAttributes<HTMLDivElement>) => {
-  const [mounted, setMounted] = useState(false)
+export const BackgroundBoxes = (
+  props: React.HTMLAttributes<HTMLDivElement>
+) => {
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
-  // Grid settings to cover the background.
-  const flowerRows = 12
-  const flowerCols = 16
-  const flowerSize = 150
-
-  // Compute positions for each flower with a slight negative offset to cover gaps.
+  // Set up the flower grid.
+  const flowerRows = 12;
+  const flowerCols = 16;
+  const flowerSize = 150;
   const offsetX = 3; // percentage offset on left/right
   const offsetY = 3; // percentage offset on top/bottom
   const flowers = [];
@@ -84,29 +85,49 @@ export const BackgroundBoxes = (props: React.HTMLAttributes<HTMLDivElement>) => 
   }
 
   return (
-    <div {...props} className={`absolute inset-0 ${props.className || ""}`}>
+    <div
+      {...props}
+      className={`absolute inset-0 overflow-hidden ${props.className || ""}`}
+    >
       {mounted && (
-        <div className="relative h-full w-full">
-          {flowers.map((flower, i) => (
-            <Flower
-              key={i}
-              left={flower.left}
-              top={flower.top}
-              size={flowerSize}
-              petals={8}
+        <>
+          {/* Sparkles effect layer without h-screen */}
+          <div className="absolute inset-0 w-full h-full">
+            <SparklesCore
+              id="tsparticlesfullpage"
+              background="transparent"
+              minSize={0.6}
+              maxSize={1.4}
+              particleDensity={100}
+              className="w-full h-full"
+              particleColor="#FFFFFF"
             />
-          ))}
-        </div>
+          </div>
+
+          {/* Flower background layer */}
+          <div className="relative h-full w-full">
+            {flowers.map((flower, i) => (
+              <Flower
+                key={i}
+                left={flower.left}
+                top={flower.top}
+                size={flowerSize}
+                petals={8}
+              />
+            ))}
+          </div>
+        </>
       )}
-      {/* Text overlay – using only TextGenerateEffect as the headline */}
+
+      {/* Text overlay */}
       <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
         <div className="text-center px-6">
           <TextGenerateEffect
             words="a creative digital agency focused on growing brands through strategic and innovative marketing solutions."
-            className="text-5xl md:text-6xl font-bold text-white max-w-2xl mx-auto"
+            className="text-5xl md:text-6xl font-bold text-white max-w-screen-xl mx-auto"
           />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
