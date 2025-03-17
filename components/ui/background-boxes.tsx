@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
+import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
@@ -17,55 +17,49 @@ export const BackgroundBoxes = ({
   className?: string
   boxes?: Box[]
 }) => {
-  const [hovered, setHovered] = useState(false)
   const [mounted, setMounted] = useState(false)
-  const boxesRef = useRef<HTMLDivElement>(null)
+
+  // Use provided boxes or create 12 default boxes
+  const defaultBoxes: Box[] = boxes && boxes.length > 0
+    ? boxes
+    : Array.from({ length: 12 }, (_, i) => ({
+        value: i + 1,
+        title: "",
+        icon: "",
+      }))
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  const defaultBoxes: Box[] = boxes || [
-    {
-      value: 1,
-    },
-    {
-      value: 2,
-    },
-    {
-      value: 3,
-    },
-    {
-      value: 4,
-    },
-  ]
-
   return (
-    <div
-      ref={boxesRef}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className={cn("p-4 bg-black relative flex items-center justify-center", className)}
-    >
+    <div className={cn("relative w-full h-full p-4", className)}>
       {mounted && (
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full h-full">
+        <div className="grid grid-cols-4 md:grid-cols-6 gap-4 w-full h-full">
           {defaultBoxes.map((box, i) => (
             <motion.div
               key={i}
-              className="relative flex items-center justify-center h-full w-full"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{
-                opacity: hovered ? 1 : 0.8,
-                scale: hovered ? 1 : 0.8,
-              }}
-              transition={{
-                duration: 0.5,
-                delay: i * 0.1,
-              }}
+              className="relative w-full h-full"
+              initial={{ opacity: 0, scale: 0.9, rotate: 5 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 0.6, delay: i * 0.05 }}
+              whileHover={{ scale: 1.1 }}
             >
-              <div className="h-full w-full bg-neutral-900 rounded-lg p-4 flex flex-col items-center justify-center border border-white/[0.08] group-hover:border-white/[0.2] transition-colors">
-                {box.icon && <div className="text-4xl mb-2">{box.icon}</div>}
-                {box.title && <div className="text-white font-light text-lg md:text-xl text-center">{box.title}</div>}
+              <div
+                className="rounded-lg p-1 shadow-lg"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(45deg, var(--purple-500), var(--pink-500))",
+                }}
+              >
+                <div className="bg-black rounded-lg p-4 flex flex-col items-center justify-center min-h-[80px]">
+                  {box.icon && <div className="text-2xl mb-2">{box.icon}</div>}
+                  {box.title && (
+                    <div className="text-sm font-medium text-white text-center">
+                      {box.title}
+                    </div>
+                  )}
+                </div>
               </div>
             </motion.div>
           ))}
@@ -74,4 +68,3 @@ export const BackgroundBoxes = ({
     </div>
   )
 }
-

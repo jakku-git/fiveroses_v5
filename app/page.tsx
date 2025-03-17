@@ -3,6 +3,7 @@
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect"
 import { FocusCards } from "@/components/ui/focus-cards"
 import { LayoutGrid } from "@/components/ui/layout-grid"
+import { FlipWords } from "@/components/ui/flip-words"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
@@ -40,7 +41,7 @@ export default function Home() {
       id: 1,
       content: <p className="text-white text-lg font-light">Media Buying Campaign</p>,
       className: "h-64 bg-transparent text-white flex items-center justify-center",
-      thumbnail: "/pexels-evonics-1058276.jpg", // ✅ Ensure this file exists in `/public/`
+      thumbnail: "/pexels-evonics-1058276.jpg", // Ensure this file exists in `/public/`
     },
     {
       id: 2,
@@ -78,26 +79,37 @@ export default function Home() {
     <main className="flex min-h-screen flex-col items-center justify-between">
       {/* Hero Section */}
       <section className="w-full min-h-screen flex flex-col items-center justify-center relative bg-black text-white">
-      <CanvasRevealEffect
-  animationSpeed={0.5}
-  containerClassName="h-screen w-full"
-  revealText="fiveroses"
-  textClassName="text-[8vw] tracking-tighter" // font weight now forced to bold in the canvas code
-/>
+        <CanvasRevealEffect
+          animationSpeed={0.5}
+          containerClassName="h-screen w-full"
+          revealText="fiveroses"
+          textClassName="text-[8vw] tracking-tighter"
+        />
       </section>
 
       {/* Focus Cards Section */}
       <section className="w-full py-24 px-4 md:px-6 bg-black text-white">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-light tracking-tighter text-center mb-10">
-            Discover Our <span className="text-accent">Expertise</span>
-          </h1>
+        <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-10">
+  Discover Our <FlipWords words={["Expertise",
+      "Innovation",
+      "Solutions",
+      "Strategy",
+      "Creativity",
+      "Excellence",
+      "Insight",
+      "Agility",
+      "Vision",
+      "Performance",
+      "Optimization",]} />
+</h1>
+
 
           <FocusCards cards={focusCardsData} />
         </div>
       </section>
 
-      {/* Layout Grid (Now Uses the Correct Image) */}
+      {/* Layout Grid */}
       <section className="w-full py-24 px-4 md:px-6 bg-black text-white">
         <div className="max-w-7xl mx-auto">
           <motion.h2

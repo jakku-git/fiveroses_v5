@@ -1,48 +1,101 @@
-"use client"
+"use client";
+import React, { useCallback, useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
-import { useEffect, useRef, useState } from "react"
-import { motion, useInView, useAnimation } from "framer-motion"
-
-export const FlipWords = ({
-  words = ["First", "Second", "Third"],
-}: {
-  words: string[]
-}) => {
-  const [index, setIndex] = useState(0)
-  const controls = useAnimation()
-  const containerRef = useRef<HTMLDivElement>(null)
-  const isInView = useInView(containerRef, { once: false, amount: 0.5 })
-
-  useEffect(() => {
-    let interval: NodeJS.Timeout
-
-    if (isInView) {
-      interval = setInterval(() => {
-        controls
-          .start({
-            y: "-100%",
-            transition: { duration: 0.5, ease: "easeInOut" },
-          })
-          .then(() => {
-            setIndex((prev) => (prev + 1) % words.length)
-            controls.set({ y: "100%" })
-            controls.start({
-              y: "0%",
-              transition: { duration: 0.5, ease: "easeInOut" },
-            })
-          })
-      }, 2000)
-    }
-
-    return () => clearInterval(interval)
-  }, [isInView, controls, words.length])
-
-  return (
-    <span ref={containerRef} className="inline-block h-[1.2em] overflow-hidden relative align-bottom">
-      <motion.span animate={controls} className="inline-block" style={{ y: 0 }}>
-        <span className="inline-block text-accent">{words[index]}</span>
-      </motion.span>
-    </span>
-  )
+// Utility to join class names. If you already have a cn function, you can import it instead.
+export function cn(...classes: string[]) {
+  return classes.filter(Boolean).join(" ");
 }
 
+export const FlipWords = ({
+  words,
+  duration = 500,
+  className,
+}: {
+  words: string[];
+  duration?: number;
+  className?: string;
+}) => {
+  const [currentWord, setCurrentWord] = useState(words[0]);
+  const [isAnimating, setIsAnimating] = useState<boolean>(false);
+
+  // thanks for the fix Julian - https://github.com/Julian-AT
+  const startAnimation = useCallback(() => {
+    const word = words[words.indexOf(currentWord) + 1] || words[0];
+    setCurrentWord(word);
+    setIsAnimating(true);
+  }, [currentWord, words]);
+
+  useEffect(() => {
+    if (!isAnimating)
+      setTimeout(() => {
+        startAnimation();
+      }, duration);
+  }, [isAnimating, duration, startAnimation]);
+
+  return (
+    <AnimatePresence
+      onExitComplete={() => {
+        setIsAnimating(false);
+      }}
+    >
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 10,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          type: "spring",
+          stiffness: 100,
+          damping: 10,
+        }}
+        exit={{
+          opacity: 0,
+          y: -40,
+          x: 40,
+          filter: "blur(8px)",
+          scale: 2,
+          position: "absolute",
+        }}
+        className={cn(
+          "z-10 inline-block relative text-left text-[#FF9AA2] font-bold px-2",
+          className || ""
+        )}
+        key={currentWord}
+      >
+        {currentWord.split(" ").map((word, wordIndex) => (
+          <motion.span
+            key={word + wordIndex}
+            initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{
+              delay: wordIndex * 0.3,
+              duration: 0.3,
+            }}
+            className="inline-block whitespace-nowrap"
+          >
+            {word.split("").map((letter, letterIndex) => (
+              <motion.span
+                key={word + letterIndex}
+                initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{
+                  delay: wordIndex * 0.3 + letterIndex * 0.05,
+                  duration: 0.2,
+                }}
+                className="inline-block"
+              >
+                {letter}
+              </motion.span>
+            ))}
+            <span className="inline-block">&nbsp;</span>
+          </motion.span>
+        ))}
+      </motion.div>
+    </AnimatePresence>
+  );
+};
