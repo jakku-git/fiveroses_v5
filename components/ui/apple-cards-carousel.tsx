@@ -188,7 +188,7 @@ export const Carousel = ({
     <CarouselContext.Provider value={{ onCardClose: handleCardClose, currentIndex }}>
       <div className="relative w-full">
         <div
-          className="flex w-full overflow-x-scroll overscroll-x-auto py-1 md:py-1 scroll-smooth [scrollbar-width:none]"
+          className="flex w-full overflow-x-scroll overscroll-x-auto py-10 md:py-10 scroll-smooth [scrollbar-width:none]"
           ref={carouselRef}
           onScroll={checkScrollability}
         >
@@ -393,9 +393,9 @@ export function AppleCardsCarouselDemo() {
   ));
 
   return (
-    <div className="w-full bg-black text-white mt-8 py-20">
+    <div className="w-full bg-black text-white mt-8 py-1">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-xl md:text-5xl font-bold text-white font-sans mb-8">
+        <h2 className="text-xl md:text-5xl font-bold text-white font-sans mb-8 text-center">
           Previous Works
         </h2>
         <Carousel items={cards} />
