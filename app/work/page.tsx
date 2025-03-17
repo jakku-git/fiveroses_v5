@@ -1,102 +1,22 @@
-import { BackgroundBoxes } from "@/components/ui/background-boxes";
+"use client";
+import React from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { CardRevealEffect } from "@/components/ui/card-reveal-effect";
+import { BackgroundBoxes } from "@/components/ui/background-boxes";
 
-export default function WorkPage() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between pt-16">
-      {/* Hero Section */}
-      <section className="w-full min-h-[60vh] relative bg-black text-white">
-        <BackgroundBoxes className="absolute inset-0" />
-      </section>
+// Horizontal Our Services Section
+const OurServicesHorizontal = () => {
+  // Red–purple scheme from aceternity’s demo.
+  const revealColors = [
+    [236, 72, 153],
+    [232, 121, 249],
+  ];
 
-      {/* Services Section */}
-      <section className="w-full py-24 px-4 md:px-6 bg-black text-white">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-12">
-            Our Services
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {services.map((service, index) => (
-              <Link
-                key={index}
-                href={service.href}
-                className="group relative overflow-hidden rounded-lg border border-white/10 p-8 hover:border-rose-200/50 transition-colors"
-              >
-                <div className="flex flex-col h-full">
-                  <h3 className="text-2xl font-bold mb-4 group-hover:text-rose-200 transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-neutral-300 mb-6">{service.description}</p>
-                  <ul className="space-y-2 mb-8">
-                    {service.items.map((item, i) => (
-                      <li key={i} className="flex items-center gap-2">
-                        <span className="h-1.5 w-1.5 rounded-full bg-rose-200"></span>
-                        <span className="text-sm">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-auto flex items-center text-sm font-medium">
-                    Learn more
-                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+  const services = ["Marketing", "Development", "Creative", "Incubator"];
 
-      {/* Featured Projects */}
-      <section className="w-full py-24 px-4 md:px-6 bg-neutral-950 text-white">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-12">
-            Featured Projects
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <div
-                key={index}
-                className="group relative overflow-hidden rounded-lg border border-white/10 hover:border-rose-200/50 transition-colors"
-              >
-                <div className="aspect-[16/9] w-full overflow-hidden rounded-t-lg">
-                  <img
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 group-hover:text-rose-200 transition-colors">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-neutral-300 mb-4">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag, i) => (
-                      <span key={i} className="text-xs px-2 py-1 bg-neutral-900 rounded-full">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </main>
-  );
-}
-
-const services = [
-  {
-    title: "Marketing",
-    description:
-      "Comprehensive marketing strategies to elevate your brand and drive growth.",
-    href: "/work/marketing",
-    items: [
+  const serviceDetails: { [key: string]: string[] } = {
+    Marketing: [
       "Marketing & Digital Strategy",
       "Brand & Campaign Strategy",
       "Content & Data Strategy",
@@ -104,13 +24,7 @@ const services = [
       "Social Media & SEO/SEM Strategy",
       "Email & Partnership Strategy",
     ],
-  },
-  {
-    title: "Web Solutions",
-    description:
-      "Innovative web development solutions tailored to your business needs.",
-    href: "/work/web-solutions",
-    items: [
+    Development: [
       "Website Design & UI/UX",
       "Web Development & Custom Applications",
       "E-Commerce & CMS Integration",
@@ -118,13 +32,7 @@ const services = [
       "Website Maintenance, Hosting & Security",
       "Conversion Optimization & Analytics",
     ],
-  },
-  {
-    title: "Creative Production",
-    description:
-      "Stunning creative assets that capture attention and communicate your message.",
-    href: "/work/creative-production",
-    items: [
+    Creative: [
       "Graphic & Branding Design",
       "Video Production & Animation",
       "Content Creation & Copywriting",
@@ -132,13 +40,7 @@ const services = [
       "Interactive & Multimedia Design",
       "Audio Production",
     ],
-  },
-  {
-    title: "Startup Incubator",
-    description:
-      "Comprehensive support to help your startup grow and succeed.",
-    href: "/work/incubator",
-    items: [
+    Incubator: [
       "Mentorship & Business Coaching",
       "Office Space & Co-working",
       "Networking & Workshops",
@@ -146,44 +48,131 @@ const services = [
       "Legal, Accounting & Marketing Support",
       "Technical Support & Accelerator Programs",
     ],
-  },
-];
+  };
 
-const projects = [
-  {
-    title: "Bloom Tech Rebrand",
-    description: "Complete brand overhaul for a tech education platform",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["Branding", "Strategy", "Design"],
-  },
-  {
-    title: "Evergreen E-commerce",
-    description: "Custom e-commerce platform for sustainable products",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["Web Development", "E-commerce", "UI/UX"],
-  },
-  {
-    title: "Pulse Marketing Campaign",
-    description: "Multi-channel marketing campaign for health tech startup",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["Marketing", "Content", "Social Media"],
-  },
-  {
-    title: "Nova Startup Accelerator",
-    description: "Mentorship program for early-stage tech startups",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["Incubator", "Mentorship", "Funding"],
-  },
-  {
-    title: "Horizon Video Series",
-    description: "Award-winning educational video series for environmental awareness",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["Video Production", "Content", "Animation"],
-  },
-  {
-    title: "Spark Social Campaign",
-    description: "Viral social media campaign for nonprofit organization",
-    image: "/placeholder.svg?height=400&width=600",
-    tags: ["Social Media", "Strategy", "Content"],
-  },
-];
+  return (
+    <section className="w-full min-h-[60vh] relative bg-black text-white mt-8">
+      <div className="relative z-10 flex items-center justify-center h-full px-8">
+        <div className="flex space-x-4">
+          {services.map((service, i) => (
+            <Card
+              key={i}
+              title={service}
+              link={`/work/${service.toLowerCase().replace(" ", "-")}`}
+            >
+              <div className="absolute inset-0">
+                <CardRevealEffect
+                  animationSpeed={2.0}
+                  containerClassName="bg-black"
+                  colors={revealColors}
+                  dotSize={3}
+                  showGradient={false}
+                />
+                <div className="absolute inset-0 bg-black/30 pointer-events-none" />
+                <div className="absolute inset-0 flex items-center justify-center p-6">
+                  <ul className="space-y-4 text-lg font-bold text-white leading-relaxed text-center">
+                    {serviceDetails[service].map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const Card = ({
+  title,
+  children,
+  link,
+}: {
+  title: string;
+  children?: React.ReactNode;
+  link: string;
+}) => {
+  const [hovered, setHovered] = React.useState(false);
+  return (
+    <Link
+      href={link}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="relative overflow-hidden rounded-lg border border-white/[0.2] group flex flex-col items-center justify-center p-4 h-[50vh] w-[23vw]"
+    >
+      <AnimatePresence>
+        {hovered && (
+          <motion.div
+            key="reveal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0"
+          >
+            {children}
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <motion.div
+        animate={{ opacity: hovered ? 0 : 1 }}
+        transition={{ duration: 0.2 }}
+        className="relative z-20 flex flex-col items-center justify-center h-full"
+      >
+        <div className="mb-3">
+          <AceternityIcon className="h-6 w-6" />
+        </div>
+        <h2 className="text-xl font-bold transition duration-200 text-white">
+          {title}
+        </h2>
+      </motion.div>
+    </Link>
+  );
+};
+
+const AceternityIcon = ({ className }: { className?: string }) => {
+  return (
+    <svg
+      width="66"
+      height="65"
+      viewBox="0 0 66 65"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      <path
+        d="M8 8.05571C8 8.05571 54.9009 18.1782 57.8687 30.062C60.8365 41.9458 9.05432 57.4696 9.05432 57.4696"
+        stroke="currentColor"
+        strokeWidth="15"
+        strokeMiterlimit="3.86874"
+        strokeLinecap="round"
+        style={{ mixBlendMode: "darken" }}
+      />
+    </svg>
+  );
+};
+
+export default function WorkPage() {
+  return (
+    <main className="flex flex-col">
+      {/* Hero Section */}
+      <section className="w-full min-h-[60vh] relative bg-black text-white">
+        <BackgroundBoxes className="absolute inset-0" />
+      </section>
+
+      {/* Our Services Horizontal Section */}
+      <OurServicesHorizontal />
+
+      {/* Featured Projects Section */}
+      <section className="w-full py-24 px-4 md:px-6 bg-neutral-950 text-white">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-12">
+            Featured Projects
+          </h2>
+          {/* Your existing featured projects code goes here */}
+        </div>
+      </section>
+    </main>
+  );
+}
