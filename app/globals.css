@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --cursor-x: 0px;
   --cursor-y: 0px;

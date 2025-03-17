@@ -1,81 +1,81 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useEffect, useRef, useState } from "react"
-import { motion, AnimatePresence, useAnimation } from "framer-motion"
+import React from "react";
+import { motion } from "framer-motion";
 
-export const LampContainer = ({
-  children,
-  className,
-}: {
-  children: React.ReactNode
-  className?: string
-}) => {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const controls = useAnimation()
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect()
-        const x = e.clientX - rect.left
-        const y = e.clientY - rect.top
-        setMousePosition({ x, y })
-      }
-    }
-
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove)
-    }
-  }, [])
-
-  useEffect(() => {
-    controls.start({
-      opacity: 1,
-      transition: { duration: 0.3 },
-    })
-  }, [controls])
-
+export function LampContainer({ children, className }: { children: React.ReactNode; className?: string }) {
   return (
-    <div
-      ref={containerRef}
-      className={`relative w-full overflow-hidden bg-black ${className}`}
-      style={{ minHeight: "100vh" }}
-    >
-      <div className="absolute inset-0">
-        <div
-          className="absolute inset-0 z-0 bg-black"
-          style={{
-            background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 182, 193, 0.15) 0%, rgba(0, 0, 0, 0.95) 50%)`,
+    <div className={`relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-black w-full rounded-md z-0 ${className}`}>
+      <div className="relative flex w-full flex-1 scale-y-125 items-center justify-center isolate z-0">
+        {/* Left Lamp */}
+        <motion.div
+          initial={{ opacity: 0.5, width: "15rem" }}
+          whileInView={{ opacity: 1, width: "30rem" }}
+          transition={{
+            delay: 0.3,
+            duration: 0.8,
+            ease: "easeInOut",
           }}
-        />
+          style={{
+            backgroundImage: `conic-gradient(var(--conic-position), var(--tw-gradient-stops))`,
+          }}
+          className="absolute inset-auto right-1/2 h-56 w-[30rem] bg-gradient-conic from-cyan-500 via-transparent to-transparent text-white [--conic-position:from_70deg_at_center_top]"
+        >
+          <div className="absolute w-[100%] left-0 bg-black h-40 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
+          <div className="absolute w-40 h-[100%] left-0 bg-black bottom-0 z-20 [mask-image:linear-gradient(to_right,white,transparent)]" />
+        </motion.div>
+
+        {/* Right Lamp */}
+        <motion.div
+          initial={{ opacity: 0.5, width: "15rem" }}
+          whileInView={{ opacity: 1, width: "30rem" }}
+          transition={{
+            delay: 0.3,
+            duration: 0.8,
+            ease: "easeInOut",
+          }}
+          style={{
+            backgroundImage: `conic-gradient(var(--conic-position), var(--tw-gradient-stops))`,
+          }}
+          className="absolute inset-auto left-1/2 h-56 w-[30rem] bg-gradient-conic from-transparent via-transparent to-cyan-500 text-white [--conic-position:from_290deg_at_center_top]"
+        >
+          <div className="absolute w-40 h-[100%] right-0 bg-black bottom-0 z-20 [mask-image:linear-gradient(to_left,white,transparent)]" />
+          <div className="absolute w-[100%] right-0 bg-black h-40 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
+        </motion.div>
+
+        {/* Ambient Glow */}
+        <div className="absolute top-1/2 h-48 w-full translate-y-12 scale-x-150 bg-black blur-2xl"></div>
+        <div className="absolute top-1/2 z-50 h-48 w-full bg-transparent opacity-10 backdrop-blur-md"></div>
+        <div className="absolute inset-auto z-50 h-36 w-[28rem] -translate-y-1/2 rounded-full bg-cyan-500 opacity-50 blur-3xl"></div>
+
+        {/* Central Glow Effect */}
+        <motion.div
+          initial={{ width: "8rem" }}
+          whileInView={{ width: "16rem" }}
+          transition={{
+            delay: 0.3,
+            duration: 0.8,
+            ease: "easeInOut",
+          }}
+          className="absolute inset-auto z-30 h-36 w-64 -translate-y-[6rem] rounded-full bg-cyan-400 blur-2xl"
+        ></motion.div>
+
+        {/* Light Beam */}
+        <motion.div
+          initial={{ width: "15rem" }}
+          whileInView={{ width: "30rem" }}
+          transition={{
+            delay: 0.3,
+            duration: 0.8,
+            ease: "easeInOut",
+          }}
+          className="absolute inset-auto z-50 h-0.5 w-[30rem] -translate-y-[7rem] bg-cyan-400"
+        ></motion.div>
+
+        <div className="absolute inset-auto z-40 h-44 w-full -translate-y-[12.5rem] bg-black"></div>
       </div>
 
-      <motion.div
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
-        animate={{
-          opacity: [0.5, 0.8, 0.5],
-          scale: [1, 1.05, 1],
-        }}
-        transition={{
-          duration: 4,
-          repeat: Number.POSITIVE_INFINITY,
-          repeatType: "reverse",
-        }}
-      >
-        <div className="w-56 h-56 md:w-96 md:h-96 rounded-full bg-accent/20 blur-3xl" />
-      </motion.div>
-
-      <div className="relative z-10 flex items-center justify-center min-h-screen">
-        <AnimatePresence>
-          <motion.div initial={{ opacity: 0, y: 10 }} animate={controls} className="relative z-10">
-            {children}
-          </motion.div>
-        </AnimatePresence>
-      </div>
+      <div className="relative z-50 flex -translate-y-80 flex-col items-center px-5">{children}</div>
     </div>
-  )
+  );
 }
-

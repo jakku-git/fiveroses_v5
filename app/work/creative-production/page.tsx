@@ -6,11 +6,11 @@ import { ArrowRight } from "lucide-react"
 
 export default function CreativeProductionPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between pt-16">
+    <main className="flex flex-col items-center justify-between min-h-screen">
       {/* Hero Section */}
-      <section className="w-full min-h-screen flex flex-col items-center justify-center relative">
+      <section className="w-full flex flex-col items-center justify-center relative min-h-screen">
         <AuroraBackground>
-          <div className="relative z-10 text-center px-4 md:px-6 max-w-4xl mx-auto">
+          <div className="relative z-10 text-center px-4 md:px-6 max-w-4xl mx-auto flex flex-col items-center justify-center min-h-screen">
             <h1 className="text-4xl md:text-7xl font-bold tracking-tighter mb-6">Creative Production</h1>
             <p className="text-xl md:text-2xl text-white/80 mb-8">
               Stunning creative assets that capture attention and communicate your message.
