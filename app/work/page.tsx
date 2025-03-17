@@ -1,51 +1,21 @@
-import { BackgroundBoxes } from "@/components/ui/background-boxes"
-import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { BackgroundBoxes } from "@/components/ui/background-boxes";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 
 export default function WorkPage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between pt-16">
       {/* Hero Section */}
-      <section className="w-full min-h-[60vh] flex flex-col items-center justify-center relative bg-black text-white">
-        <BackgroundBoxes
-          className="absolute inset-0 z-0"
-          boxes={[
-            {
-              value: 1,
-              title: "Marketing",
-              icon: "📊",
-            },
-            {
-              value: 2,
-              title: "Web Solutions",
-              icon: "💻",
-            },
-            {
-              value: 3,
-              title: "Creative Production",
-              icon: "🎨",
-            },
-            {
-              value: 4,
-              title: "Startup Incubator",
-              icon: "🚀",
-            },
-          ]}
-        />
-        <div className="relative z-10 text-center px-4 md:px-6 max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">Our Work</h1>
-          <p className="text-xl md:text-2xl text-neutral-300 mb-8">
-            Comprehensive marketing services, innovative web development, and a startup incubator to help your business
-            bloom.
-          </p>
-        </div>
+      <section className="w-full min-h-[60vh] relative bg-black text-white">
+        <BackgroundBoxes className="absolute inset-0" />
       </section>
 
       {/* Services Section */}
       <section className="w-full py-24 px-4 md:px-6 bg-black text-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-12">Our Services</h2>
-
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-12">
+            Our Services
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {services.map((service, index) => (
               <Link
@@ -80,8 +50,9 @@ export default function WorkPage() {
       {/* Featured Projects */}
       <section className="w-full py-24 px-4 md:px-6 bg-neutral-950 text-white">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-12">Featured Projects</h2>
-
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-12">
+            Featured Projects
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {projects.map((project, index) => (
               <div
@@ -99,7 +70,9 @@ export default function WorkPage() {
                   <h3 className="text-xl font-bold mb-2 group-hover:text-rose-200 transition-colors">
                     {project.title}
                   </h3>
-                  <p className="text-sm text-neutral-300 mb-4">{project.description}</p>
+                  <p className="text-sm text-neutral-300 mb-4">
+                    {project.description}
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag, i) => (
                       <span key={i} className="text-xs px-2 py-1 bg-neutral-900 rounded-full">
@@ -114,13 +87,14 @@ export default function WorkPage() {
         </div>
       </section>
     </main>
-  )
+  );
 }
 
 const services = [
   {
     title: "Marketing",
-    description: "Comprehensive marketing strategies to elevate your brand and drive growth.",
+    description:
+      "Comprehensive marketing strategies to elevate your brand and drive growth.",
     href: "/work/marketing",
     items: [
       "Marketing & Digital Strategy",
@@ -133,7 +107,8 @@ const services = [
   },
   {
     title: "Web Solutions",
-    description: "Innovative web development solutions tailored to your business needs.",
+    description:
+      "Innovative web development solutions tailored to your business needs.",
     href: "/work/web-solutions",
     items: [
       "Website Design & UI/UX",
@@ -146,7 +121,8 @@ const services = [
   },
   {
     title: "Creative Production",
-    description: "Stunning creative assets that capture attention and communicate your message.",
+    description:
+      "Stunning creative assets that capture attention and communicate your message.",
     href: "/work/creative-production",
     items: [
       "Graphic & Branding Design",
@@ -159,7 +135,8 @@ const services = [
   },
   {
     title: "Startup Incubator",
-    description: "Comprehensive support to help your startup grow and succeed.",
+    description:
+      "Comprehensive support to help your startup grow and succeed.",
     href: "/work/incubator",
     items: [
       "Mentorship & Business Coaching",
@@ -170,7 +147,7 @@ const services = [
       "Technical Support & Accelerator Programs",
     ],
   },
-]
+];
 
 const projects = [
   {
@@ -209,5 +186,4 @@ const projects = [
     image: "/placeholder.svg?height=400&width=600",
     tags: ["Social Media", "Strategy", "Content"],
   },
-]
-
+];
