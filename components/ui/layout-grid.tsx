@@ -1,54 +1,54 @@
-"use client"
-
-import React, { JSX, useState } from "react"
-import { AnimatePresence, motion } from "framer-motion"
-import { cn } from "@/lib/utils"
-import Image from "next/image"
-
-// Create a motion-enabled version of Next.js Image for better optimization.
-const MotionImage = motion(Image)
+"use client";
+import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { createPortal } from "react-dom";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 type Card = {
-  id: number
-  content: JSX.Element | React.ReactNode | string
-  className: string
-  thumbnail: string
-}
+  id: number;
+  content: React.ReactNode;
+  className: string;
+  thumbnail: string;
+};
 
 export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
-  const [selected, setSelected] = useState<Card | null>(null)
-  const [lastSelected, setLastSelected] = useState<Card | null>(null)
+  const [selected, setSelected] = useState<Card | null>(null);
 
   const handleClick = (card: Card) => {
-    setLastSelected(selected)
-    setSelected(card)
-  }
+    setSelected(card);
+  };
 
   const handleOutsideClick = () => {
-    setLastSelected(selected)
-    setSelected(null)
-  }
+    setSelected(null);
+  };
 
   return (
-    <div className="w-full h-full p-10 grid grid-cols-1 md:grid-cols-3 max-w-7xl mx-auto gap-4 relative layout-grid">
-      {cards.map((card, i) => (
-        <div key={i} className={cn("layout-grid-item", card.className)}>
-          <motion.div
+    // ✅ Keeps background black & grid unchanged
+    <div className="w-full p-10 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 relative bg-black">
+      {/* ✅ First Row: Keep original order */}
+      {cards.slice(0, 3).map((card, i) => (
+        <div key={i} className={cn(card.className, "h-[50vh]")}>
+          <motion.button
             onClick={() => handleClick(card)}
-            className={cn(
-              card.className,
-              "relative overflow-hidden",
-              selected?.id === card.id
-                ? "rounded-lg cursor-pointer absolute inset-0 h-1/2 w-full md:w-1/2 m-auto z-50 flex justify-center items-center flex-wrap flex-col bg-transparent"
-                : lastSelected?.id === card.id
-                ? "z-40 bg-transparent rounded-xl h-full w-full"
-                : "bg-transparent rounded-xl h-full w-full"
-            )}
+            className="relative overflow-hidden w-full h-full bg-white rounded-lg"
             layoutId={`card-${card.id}`}
           >
-            {selected?.id === card.id && <SelectedCard selected={selected} />}
             <ImageComponent card={card} />
-          </motion.div>
+          </motion.button>
+        </div>
+      ))}
+
+      {/* ✅ Second Row: Reorder 3 → 2 → 1 */}
+      {cards.slice(3, 6).reverse().map((card, i) => (
+        <div key={i} className={cn(card.className, "h-[50vh]")}>
+          <motion.button
+            onClick={() => handleClick(card)}
+            className="relative overflow-hidden w-full h-full bg-white rounded-lg"
+            layoutId={`card-${card.id}`}
+          >
+            <ImageComponent card={card} />
+          </motion.button>
         </div>
       ))}
 
@@ -56,52 +56,89 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
         {selected && (
           <motion.div
             onClick={handleOutsideClick}
-            className="absolute inset-0 bg-transparent z-40 cursor-pointer"
+            className="fixed inset-0 bg-black bg-opacity-30 z-40"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0 }}
+            animate={{ opacity: 0.3 }}
             exit={{ opacity: 0 }}
           />
         )}
       </AnimatePresence>
+      {selected && (
+        <SelectedCardPortal selected={selected} onClose={handleOutsideClick} />
+      )}
     </div>
-  )
-}
+  );
+};
 
 const ImageComponent = ({ card }: { card: Card }) => {
   return (
-    <MotionImage
-      layoutId={`image-${card.id}-image`}
-      src={card.thumbnail}
-      height={500}
-      width={500}
-      className={cn(
-        "layout-grid-image object-cover object-top absolute inset-0 h-full w-full transition duration-200"
-      )}
-      alt="thumbnail"
-      loading="lazy"
-    />
-  )
-}
-
-const SelectedCard = ({ selected }: { selected: Card | null }) => {
-  return (
-    <div className="h-full w-full flex flex-col justify-end rounded-lg shadow-2xl relative z-[60] bg-transparent">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0 }}
-        exit={{ opacity: 0 }}
-        className="absolute inset-0 h-full w-full bg-transparent z-10"
+    <motion.div className="relative w-full h-full">
+      <Image
+        src={card.thumbnail}
+        alt="thumbnail"
+        layout="fill"
+        objectFit="cover"
+        className="transition duration-200"
       />
+    </motion.div>
+  );
+};
+
+type SelectedCardPortalProps = {
+  selected: Card;
+  onClose: () => void;
+};
+
+const SelectedCardPortal = ({ selected, onClose }: SelectedCardPortalProps) => {
+  return createPortal(
+    <AnimatePresence>
       <motion.div
-        layoutId={`content-${selected?.id}`}
-        initial={{ opacity: 0, y: 100 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: 100 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="relative px-8 pb-4 z-[70]"
+        className="fixed inset-0 flex items-center justify-center z-50"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
       >
-        {selected?.content}
+        <motion.div
+          layoutId={`card-${selected.id}`}
+          className="relative w-full max-w-5xl h-[80vh] mx-auto bg-black rounded-3xl overflow-hidden z-[60]"
+          onClick={onClose} // ✅ Clicking image now closes it
+        >
+          {/* ✅ Dark tint over the image for better text visibility */}
+          <motion.div className="absolute inset-0 bg-black bg-opacity-50 z-10" />
+
+          {/* ✅ Full-size image */}
+          <motion.div
+            layoutId={`image-${selected.id}-image`}
+            className="relative w-full h-full"
+          >
+            <ImageComponent card={selected} />
+          </motion.div>
+
+          {/* ✅ Text now overlays the image, aligned at the bottom */}
+          <motion.div
+            layoutId={`content-${selected.id}`}
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 100 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="absolute bottom-0 left-0 w-full p-6 z-20 text-white"
+          >
+            {selected.content}
+          </motion.div>
+
+          {/* ✅ Removed extra button styling */}
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 text-white z-50"
+          >
+            ✖
+          </button>
+        </motion.div>
       </motion.div>
-    </div>
-  )
-}
+    </AnimatePresence>,
+    document.body
+  );
+};
+
+export default LayoutGrid;

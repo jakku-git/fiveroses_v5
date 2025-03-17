@@ -4,19 +4,22 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { CardRevealEffect } from "@/components/ui/card-reveal-effect";
 import { BackgroundBoxes } from "@/components/ui/background-boxes";
+import { AppleCardsCarouselDemo } from "@/components/ui/apple-cards-carousel";
+import { LayoutGridDemo } from "@/components/ui/layoutgriddemo";
 
-// Horizontal Our Services Section
 const OurServicesHorizontal = () => {
-  // Red–purple scheme from aceternity’s demo.
   const revealColors = [
     [236, 72, 153],
     [232, 121, 249],
   ];
-
-  const services = ["Marketing", "Development", "Creative", "Incubator"];
-
+  const services = [
+    { title: "Marketing & Strategy", slug: "marketing" },
+    { title: "Development & Solutions", slug: "web-solutions" },
+    { title: "Creation & Production", slug: "creative-production" },
+    { title: "Incubator & Consulting", slug: "incubator" },
+  ];
   const serviceDetails: { [key: string]: string[] } = {
-    Marketing: [
+    "Marketing & Strategy": [
       "Marketing & Digital Strategy",
       "Brand & Campaign Strategy",
       "Content & Data Strategy",
@@ -24,7 +27,7 @@ const OurServicesHorizontal = () => {
       "Social Media & SEO/SEM Strategy",
       "Email & Partnership Strategy",
     ],
-    Development: [
+    "Development & Solutions": [
       "Website Design & UI/UX",
       "Web Development & Custom Applications",
       "E-Commerce & CMS Integration",
@@ -32,7 +35,7 @@ const OurServicesHorizontal = () => {
       "Website Maintenance, Hosting & Security",
       "Conversion Optimization & Analytics",
     ],
-    Creative: [
+    "Creation & Production": [
       "Graphic & Branding Design",
       "Video Production & Animation",
       "Content Creation & Copywriting",
@@ -40,7 +43,7 @@ const OurServicesHorizontal = () => {
       "Interactive & Multimedia Design",
       "Audio Production",
     ],
-    Incubator: [
+    "Incubator & Consulting": [
       "Mentorship & Business Coaching",
       "Office Space & Co-working",
       "Networking & Workshops",
@@ -55,14 +58,10 @@ const OurServicesHorizontal = () => {
       <div className="relative z-10 flex items-center justify-center h-full px-8">
         <div className="flex space-x-4">
           {services.map((service, i) => (
-            <Card
-              key={i}
-              title={service}
-              link={`/work/${service.toLowerCase().replace(" ", "-")}`}
-            >
+            <Card key={i} title={service.title} link={`/work/${service.slug}`}>
               <div className="absolute inset-0">
                 <CardRevealEffect
-                  animationSpeed={2.0}
+                  animationSpeed={4.0}
                   containerClassName="bg-black"
                   colors={revealColors}
                   dotSize={3}
@@ -71,7 +70,7 @@ const OurServicesHorizontal = () => {
                 <div className="absolute inset-0 bg-black/30 pointer-events-none" />
                 <div className="absolute inset-0 flex items-center justify-center p-6">
                   <ul className="space-y-4 text-lg font-bold text-white leading-relaxed text-center">
-                    {serviceDetails[service].map((item, index) => (
+                    {serviceDetails[service.title].map((item, index) => (
                       <li key={index}>{item}</li>
                     ))}
                   </ul>
@@ -85,16 +84,11 @@ const OurServicesHorizontal = () => {
   );
 };
 
-const Card = ({
-  title,
-  children,
-  link,
-}: {
-  title: string;
-  children?: React.ReactNode;
-  link: string;
-}) => {
+const Card = ({ title, children, link }: { title: string; children?: React.ReactNode; link: string; }) => {
   const [hovered, setHovered] = React.useState(false);
+  const parts = title.split(" & ");
+  const firstPart = parts[0] || title;
+  const secondPart = parts[1] || "";
   return (
     <Link
       href={link}
@@ -104,28 +98,21 @@ const Card = ({
     >
       <AnimatePresence>
         {hovered && (
-          <motion.div
-            key="reveal"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="absolute inset-0"
-          >
+          <motion.div key="reveal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0">
             {children}
           </motion.div>
         )}
       </AnimatePresence>
-      <motion.div
-        animate={{ opacity: hovered ? 0 : 1 }}
-        transition={{ duration: 0.2 }}
-        className="relative z-20 flex flex-col items-center justify-center h-full"
-      >
-        <div className="mb-3">
-          <AceternityIcon className="h-6 w-6" />
-        </div>
-        <h2 className="text-xl font-bold transition duration-200 text-white">
-          {title}
-        </h2>
+      <motion.div animate={{ opacity: hovered ? 0 : 1 }} transition={{ duration: 0.2 }} className="relative z-20 flex flex-col items-center justify-center h-full">
+        {secondPart ? (
+          <>
+            <h2 className="text-xl font-bold text-white">{firstPart}</h2>
+            <AceternityIcon className="h-6 w-6 my-5" />
+            <h2 className="text-xl font-bold text-white">{secondPart}</h2>
+          </>
+        ) : (
+          <h2 className="text-xl font-bold text-white">{firstPart}</h2>
+        )}
       </motion.div>
     </Link>
   );
@@ -133,14 +120,7 @@ const Card = ({
 
 const AceternityIcon = ({ className }: { className?: string }) => {
   return (
-    <svg
-      width="66"
-      height="65"
-      viewBox="0 0 66 65"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-    >
+    <svg width="66" height="65" viewBox="0 0 66 65" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <path
         d="M8 8.05571C8 8.05571 54.9009 18.1782 57.8687 30.062C60.8365 41.9458 9.05432 57.4696 9.05432 57.4696"
         stroke="currentColor"
@@ -160,18 +140,19 @@ export default function WorkPage() {
       <section className="w-full min-h-[60vh] relative bg-black text-white">
         <BackgroundBoxes className="absolute inset-0" />
       </section>
-
       {/* Our Services Horizontal Section */}
       <OurServicesHorizontal />
-
       {/* Featured Projects Section */}
-      <section className="w-full py-24 px-4 md:px-6 bg-neutral-950 text-white">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-12">
+      <section className="w-full py-1 px-4 md:px-6 bg-black text-white">
+        <div className="w-full">
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-12 text-center">
             Featured Projects
           </h2>
-          {/* Your existing featured projects code goes here */}
         </div>
+        {/* Grid appears on top */}
+        <LayoutGridDemo />
+        {/* Carousel appears below */}
+        <AppleCardsCarouselDemo />
       </section>
     </main>
   );

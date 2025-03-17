@@ -1,10 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
-// Adjust this import if SparklesCore is a default export.
-// For a named export use: import { SparklesCore } from "../ui/sparkles";
 import { SparklesCore } from "../ui/sparkles";
 
 const Flower = ({
@@ -18,10 +16,8 @@ const Flower = ({
   size?: number;
   petals?: number;
 }) => {
-  // Define the petal shape using an SVG path.
   const petalClipPath =
     "path('M50 0 C65 10, 100 35, 50 100 C0 35, 35 10, 50 0 Z')";
-
   const generateRandomColor = () => {
     const colors = ["#FF5F6D", "#FFC371", "#FF9A8B", "#FF6A88", "#FF99AC"];
     return colors[Math.floor(Math.random() * colors.length)];
@@ -61,15 +57,13 @@ const Flower = ({
   );
 };
 
-export const BackgroundBoxes = (
-  props: React.HTMLAttributes<HTMLDivElement>
-) => {
+export const BackgroundBoxes = (props: React.HTMLAttributes<HTMLDivElement>) => {
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  // Set up the flower grid.
+  // Build a grid of flowers.
   const flowerRows = 12;
   const flowerCols = 16;
   const flowerSize = 150;
@@ -84,6 +78,16 @@ export const BackgroundBoxes = (
     }
   }
 
+  // Create a custom sparkle colors array:
+  // 83% white, 10% pastel red, and 7% pastel orange.
+  const customSparkleColors = useMemo(() => {
+    const colors = [];
+    for (let i = 0; i < 83; i++) colors.push("#FFFFFF");
+    for (let i = 0; i < 10; i++) colors.push("#FF9AA2");
+    for (let i = 0; i < 7; i++) colors.push("#FFD1A9");
+    return colors;
+  }, []);
+
   return (
     <div
       {...props}
@@ -91,7 +95,7 @@ export const BackgroundBoxes = (
     >
       {mounted && (
         <>
-          {/* Sparkles effect layer without h-screen */}
+          {/* Sparkles effect layer */}
           <div className="absolute inset-0 w-full h-full">
             <SparklesCore
               id="tsparticlesfullpage"
@@ -100,7 +104,7 @@ export const BackgroundBoxes = (
               maxSize={1.4}
               particleDensity={100}
               className="w-full h-full"
-              particleColor="#FFFFFF"
+              particleColor={customSparkleColors}
             />
           </div>
 
