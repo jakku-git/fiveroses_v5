@@ -87,43 +87,11 @@ export default function Home() {
         />
       </section>
 
-      {/* Discover Section */}
+      {/* Grow Your Brand Section (formerly Discover) */}
       <section className="w-full py-24 bg-black text-white">
-        <h1 className="text-4xl md:text-6xl font-light tracking-tighter text-left pl-10 mb-10">
-          Discover{" "}
-          <FlipWords
-            words={[
-              "Expertise",
-              "Innovation",
-              "Solutions",
-              "Strategy",
-              "Creativity",
-              "Excellence",
-              "Insight",
-              "Agility",
-              "Vision",
-              "Performance",
-              "Optimization",
-            ]}
-          />
-        </h1>
-
-        {/* Intro Text Block */}
-        <div className="max-w-3xl mx-auto bg-white text-black p-12 md:p-16 rounded-2xl shadow-lg mb-16">
-          <p className="text-sm uppercase tracking-widest font-semibold mb-4">
-            We’re an independent, award‑winning Australian agency.
-          </p>
-          <p className="text-lg md:text-xl font-light mb-6 leading-relaxed">
-            Our team of thinkers, dreamers and doers move ambitious brands forward using deep research, high technology, rare creativity, and trust.
-          </p>
-          <p className="text-lg md:text-xl font-medium">
-            If you think we’re a fit,{" "}
-            <Link href="/contact" className="underline hover:text-accent">
-              say hello.
-            </Link>
-          </p>
-        </div>
-
+        <h2 className="text-3xl md:text-5xl font-light tracking-tighter mb-12 text-left pl-10">
+          Grow Your Brand
+        </h2>
         <div className="pl-10">
           <FocusCards cards={focusCardsData} />
         </div>
@@ -154,7 +122,6 @@ export default function Home() {
         >
           Ready to Grow Your Business?
         </motion.h2>
-
         <Link
           href="/contact"
           className="group inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full hover:bg-accent transition-all duration-300"
