@@ -81,22 +81,23 @@ export default function Home() {
   return (
     <main className={`${inter.className} flex min-h-screen flex-col items-center justify-between`}>
       {/* Hero Section */}
-      <section className="w-full min-h-screen flex flex-col items-center justify-center relative bg-black text-white">
+      <section className="w-full min-h-screen flex flex-col items-center justify-center relative bg-gradient-to-b from-black via-black/95 to-black/90 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent" />
         <CanvasRevealEffect
           animationSpeed={0.5}
-          containerClassName="h-screen w-full"
+          containerClassName="h-screen w-full relative z-10"
           revealText="fiveroses"
-          textClassName="text-[8vw] tracking-tighter"
+          textClassName="text-[8vw] tracking-tighter font-black"
         />
       </section>
 
       {/* SVG Mask Effect Section - Full Edge-to-Edge */}
       <section className="w-full">
-        <div className="flex h-[40rem] w-full items-center justify-center overflow-hidden">
+        <div className="flex h-[45rem] w-full items-center justify-center overflow-hidden">
           <MaskContainer
             revealText={
               <div className="mx-auto max-w-4xl text-center">
-                <h2 className="text-6xl font-black text-slate-00 dark:text-white">
+                <h2 className="text-6xl font-black text-slate-00 dark:text-white whitespace-nowrap">
                   IGNITE. ENGAGE. ELEVATE.
                 </h2>
                 <p className="mt-4 text-2xl font-thin text-slate-800 dark:text-white">
@@ -107,7 +108,7 @@ export default function Home() {
                 </p>
               </div>
             }
-            className="w-full h-[40rem] text-white dark:text-black"
+            className="w-full h-[45rem] text-white dark:text-black"
           >
             <div className="mx-auto max-w-4xl text-center">
               <h1 className="text-6xl font-black whitespace-nowrap">

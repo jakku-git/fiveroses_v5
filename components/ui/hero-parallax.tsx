@@ -9,6 +9,7 @@ import {
 } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export const HeroParallax = ({
   products,
@@ -54,12 +55,20 @@ export const HeroParallax = ({
     useTransform(scrollYProgress, [0, 0.2], [-700, 500]),
     springConfig
   );
+  const backgroundColor = useTransform(
+    scrollYProgress,
+    [0, 0.5, 1],
+    ["rgb(0, 0, 0)", "rgb(147, 112, 219)", "rgb(255, 182, 193)"]
+  );
+
   return (
-    <div
+    <motion.div
       ref={ref}
-      className="h-[300vh] py-40 overflow-hidden  antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+      style={{ backgroundColor }}
+      className="h-[200vh] py-40 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
     >
       <Header />
+
       <motion.div
         style={{
           rotateX,
@@ -97,13 +106,37 @@ export const HeroParallax = ({
           ))}
         </motion.div>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 
 export const Header = () => {
+  const ref = React.useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const springConfig = { stiffness: 300, damping: 30, bounce: 100 };
+
+  const translateY = useSpring(
+    useTransform(scrollYProgress, [0, 0.2], [0, -200]),
+    springConfig
+  );
+  const opacity = useSpring(
+    useTransform(scrollYProgress, [0.95, 1], [1, 0]),
+    springConfig
+  );
+
   return (
-    <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full  left-0 top-0">
+    <motion.div
+      ref={ref}
+      style={{
+        translateY,
+        opacity,
+      }}
+      className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0"
+    >
       <h1 className="text-2xl md:text-7xl font-bold dark:text-white">
         The Ultimate <br /> development studio
       </h1>
@@ -112,7 +145,7 @@ export const Header = () => {
         We are a team of passionate developers and designers that love to build
         amazing products.
       </p>
-    </div>
+    </motion.div>
   );
 };
 

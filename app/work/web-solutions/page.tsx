@@ -8,82 +8,43 @@ import { ArrowRight } from "lucide-react"
 
 export default function WebSolutionsPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between pt-16">
+    <main className="flex min-h-screen flex-col items-center justify-between">
       {/* Hero Section */}
       <section className="w-full">
         <HeroParallax products={products} />
       </section>
 
-      {/* Intro Section with negative margin to reduce gap */}
+      {/* Intro Section */}
       <section className="w-full py-24 px-4 md:px-6 bg-black text-white">
-        <div className="max-w-7xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">
-            We build{" "}
-            <FlipWords words={["websites", "applications", "e-commerce", "platforms", "experiences"]} />
-          </h1>
-          <p className="text-xl text-neutral-300 max-w-2xl mx-auto mb-12">
-            Our web solutions are designed to deliver exceptional user experiences, drive conversions,
-            and help your business grow online.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full hover:bg-rose-200 transition-all duration-300"
-            >
-              Start your project
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href="#services"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-transparent text-white border border-white rounded-full hover:bg-white/10 transition-all duration-300"
-            >
-              Explore services
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Macbook Demo */}
-      <section className="w-full py-24 px-4 md:px-6 bg-neutral-950 text-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-6">Our Development Process</h2>
-            <p className="text-lg text-neutral-300 max-w-2xl mx-auto">
-              We follow a proven development process to ensure your project is delivered on time, on budget,
-              and exceeds expectations.
-            </p>
-          </div>
-
-          <MacbookScroll
-            title={
-              <span>
-                Building <span className="text-rose-200">exceptional</span> web experiences
-              </span>
-            }
-            src="/placeholder.svg?height=1200&width=2000"
-            showGradient={true}
-          />
-        </div>
-      </section>
-
-      {/* Services Grid */}
-      <section id="services" className="w-full py-24 px-4 md:px-6 bg-black text-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-6">Our Web Services</h2>
-            <p className="text-lg text-neutral-300 max-w-2xl mx-auto">
-              Comprehensive web development solutions tailored to your business needs.
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">
+              We build{" "}
+              <FlipWords words={["websites", "applications", "e-commerce", "platforms", "experiences"]} duration={1500} />
+            </h1>
+            <p className="text-xl text-neutral-300 max-w-2xl mx-auto mb-12">
+              Our web solutions are designed to deliver exceptional user experiences, drive conversions,
+              and help your business grow online.
             </p>
+            <div className="flex flex-wrap justify-center gap-4 mb-16">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full hover:bg-rose-200 transition-all duration-300"
+              >
+                Start your project
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="#services"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-transparent text-white border border-white rounded-full hover:bg-white/10 transition-all duration-300"
+              >
+                Explore services
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
           </div>
 
-          <LayoutGrid cards={webServices} />
-        </div>
-      </section>
-
-      {/* Featured Technology */}
-      <section className="w-full py-24 px-4 md:px-6 bg-neutral-950 text-white">
-        <div className="max-w-7xl mx-auto">
+          {/* Technology Section */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-6">Cutting-Edge Technology</h2>
@@ -105,10 +66,47 @@ export default function WebSolutionsPage() {
                 ))}
               </ul>
             </div>
-            <div className="w-full h-[400px] flex items-center justify-center">
-              <EvervaultCard text="fiveroses" />
+            <div className="w-full h-[400px] relative">
+              <EvervaultCard text="fiveroses" className="absolute inset-0" />
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Macbook Demo */}
+      <section className="w-full py-12 px-4 md:px-6 bg-neutral-950 text-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-4">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-6">Our Development Process</h2>
+            <p className="text-lg text-neutral-300 max-w-2xl mx-auto">
+              We follow a proven development process to ensure your project is delivered on time, on budget,
+              and exceeds expectations.
+            </p>
+          </div>
+
+          <MacbookScroll
+            title={
+              <span>
+                Building <span className="text-rose-200">exceptional</span> web experiences
+              </span>
+            }
+            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000&h=1200"
+            showGradient={true}
+          />
+        </div>
+      </section>
+
+      {/* Services Grid */}
+      <section id="services" className="w-full py-24 px-4 md:px-6 bg-black text-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-6">Our Web Services</h2>
+            <p className="text-lg text-neutral-300 max-w-2xl mx-auto">
+              Comprehensive web development solutions tailored to your business needs.
+            </p>
+          </div>
+
+          <LayoutGrid cards={webServices} />
         </div>
       </section>
 

@@ -54,7 +54,7 @@ const OurServicesHorizontal = () => {
   };
 
   return (
-    <section className="w-full min-h-[60vh] relative bg-black text-white mt-8">
+    <section className="w-full min-h-[60vh] relative bg-black text-white mt-16">
       <div className="relative z-10 flex items-center justify-center h-full px-8">
         <div className="flex space-x-4">
           {services.map((service, i) => (
@@ -69,11 +69,23 @@ const OurServicesHorizontal = () => {
                 />
                 <div className="absolute inset-0 bg-black/30 pointer-events-none" />
                 <div className="absolute inset-0 flex items-center justify-center p-6">
-                  <ul className="space-y-4 text-lg font-bold text-white leading-relaxed text-center">
-                    {serviceDetails[service.title].map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
+                  <div className="w-full flex justify-center">
+                    <ul className="space-y-3 text-base font-medium text-white/90 leading-relaxed text-left w-[70%] pl-12">
+                      {serviceDetails[service.title].map((item, index) => (
+                        <li key={index} className="transition-all duration-300 hover:text-white flex items-center gap-2 overflow-hidden">
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white/70 flex-shrink-0">
+                            <path
+                              d="M4 4C4 4 13.5 6.5 14 8C14.5 9.5 4 13 4 13"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                            />
+                          </svg>
+                          <span className="whitespace-nowrap overflow-hidden text-ellipsis">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             </Card>

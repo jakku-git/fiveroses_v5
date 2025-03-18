@@ -20,9 +20,22 @@ export const TextGenerateEffect = ({
 
   useEffect(() => {
     let isCancelled = false;
+    let mounted = false;
 
     const runLoop = async () => {
-      while (!isCancelled) {
+      // Wait for the component to be mounted
+      await new Promise(resolve => setTimeout(resolve, 100));
+      
+      if (isCancelled) return;
+      
+      try {
+        // Check if elements exist before starting animation
+        const elements = scope.current?.querySelectorAll("span");
+        if (!elements || elements.length === 0) {
+          console.warn("No elements found to animate");
+          return;
+        }
+
         // Animate to visible state and remove blur.
         await animate(
           "span",
@@ -35,8 +48,14 @@ export const TextGenerateEffect = ({
             delay: stagger(0.2),
           }
         );
+        
+        if (isCancelled) return;
+        
         // Add a 500ms pause before looping.
         await new Promise((resolve) => setTimeout(resolve, 500));
+        
+        if (isCancelled) return;
+        
         // Animate back to the initial state: hidden text with blur.
         await animate(
           "span",
@@ -49,6 +68,10 @@ export const TextGenerateEffect = ({
             delay: stagger(0.2),
           }
         );
+      } catch (error) {
+        console.error("Animation error:", error);
+        // Wait a bit before retrying if there's an error
+        await new Promise(resolve => setTimeout(resolve, 1000));
       }
     };
 
@@ -57,7 +80,7 @@ export const TextGenerateEffect = ({
     return () => {
       isCancelled = true;
     };
-  }, [animate, filter, duration]);
+  }, [animate, filter, duration, scope]);
 
   const renderWords = () => {
     return (

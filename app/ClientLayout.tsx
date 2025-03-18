@@ -88,11 +88,9 @@ const MobileNav = memo(function MobileNav() {
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={inter.className}>
-      <body className="bg-black text-white">
-        <Header />
-        {children}
-      </body>
-    </html>
+    <>
+      <Header />
+      {children}
+    </>
   )
 }

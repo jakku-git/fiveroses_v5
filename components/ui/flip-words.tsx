@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 export const FlipWords = ({
   words,
-  duration = 3000,
+  duration = 1500,
   className,
 }: {
   words: string[];
@@ -46,8 +46,8 @@ export const FlipWords = ({
         }}
         transition={{
           type: "spring",
-          stiffness: 100,
-          damping: 10,
+          stiffness: 150,
+          damping: 12,
         }}
         exit={{
           opacity: 0,
@@ -70,8 +70,8 @@ export const FlipWords = ({
             initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             transition={{
-              delay: wordIndex * 0.3,
-              duration: 0.3,
+              delay: wordIndex * 0.15,
+              duration: 0.15,
             }}
             className="inline-block whitespace-nowrap"
           >
@@ -81,8 +81,8 @@ export const FlipWords = ({
                 initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 transition={{
-                  delay: wordIndex * 0.3 + letterIndex * 0.05,
-                  duration: 0.2,
+                  delay: wordIndex * 0.15 + letterIndex * 0.02,
+                  duration: 0.1,
                 }}
                 className="inline-block"
               >

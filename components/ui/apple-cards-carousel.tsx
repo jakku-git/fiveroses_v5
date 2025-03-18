@@ -211,7 +211,7 @@ export const Carousel = ({
                   },
                 }}
                 key={"card" + index}
-                className="last:pr-[5%] md:last:pr-[33%] rounded-3xl"
+                className="last:pr-[5%] md:last:pr-[33%] rounded-3xl w-[230px] md:w-[384px]"
               >
                 {item}
               </motion.div>
