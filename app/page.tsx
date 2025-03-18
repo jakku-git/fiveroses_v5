@@ -1,7 +1,7 @@
 "use client"
 
 import { Inter } from "next/font/google"
-const inter = Inter({ subsets: ["latin"], weight: ["100", "900", "400", "700"] })
+const inter = Inter({ subsets: ["latin"], weight: ["100", "300", "400", "700", "900"] })
 
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect"
 import { FocusCards } from "@/components/ui/focus-cards"
@@ -100,10 +100,10 @@ export default function Home() {
                 <h2 className="text-5xl font-black text-slate-00 dark:text-white whitespace-nowrap">
                   IGNITE. ENGAGE. ELEVATE.
                 </h2>
-                <p className="mt-4 text-xl font-thin text-slate-800 dark:text-white">
+                <p className="mt-4 text-xl font-light text-slate-800 dark:text-white">
                   Where bold ideas spark breakthrough campaigns that redefine success.
                 </p>
-                <p className="mt-2 text-xl font-thin text-slate-800 dark:text-white">
+                <p className="mt-2 text-xl font-light text-slate-800 dark:text-white">
                   Unleash the full potential of your brand with fiveroses.
                 </p>
               </div>
@@ -114,7 +114,7 @@ export default function Home() {
               <h1 className="text-5xl font-black whitespace-nowrap">
                 CREATIVITY MEETS STRATEGY
               </h1>
-              <p className="mt-4 text-xl font-thin">
+              <p className="mt-4 text-xl font-light">
                 We transform visionary concepts into real growth by harnessing innovative marketing techniques.
               </p>
             </div>
