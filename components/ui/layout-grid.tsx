@@ -24,9 +24,8 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
   };
 
   return (
-    // ✅ Keeps background black & grid unchanged
-    <div className="w-full p-10 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 relative bg-transparent">
-      {/* ✅ First Row: Keep original order */}
+    <div className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 relative bg-transparent">
+      {/* First Row: Keep original order */}
       {cards.slice(0, 3).map((card, i) => (
         <div key={i} className={cn(card.className, "h-[50vh]")}>
           <motion.button
@@ -39,7 +38,7 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
         </div>
       ))}
 
-      {/* ✅ Second Row: Reorder 3 → 2 → 1 */}
+      {/* Second Row: Reorder 3 → 2 → 1 */}
       {cards.slice(3, 6).reverse().map((card, i) => (
         <div key={i} className={cn(card.className, "h-[50vh]")}>
           <motion.button

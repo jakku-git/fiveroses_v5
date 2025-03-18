@@ -13,7 +13,7 @@ export function FocusCards({ cards = [] }: { cards?: CardType[] }) {
   }
 
   return (
-    <div className="focus-cards-container grid grid-cols-1 md:grid-cols-3 gap-1 w-full px-0">
+    <div className="focus-cards-container grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
       {cards.map((card) => (
         <div
           key={card.title}

@@ -92,29 +92,29 @@ export default function Home() {
       </section>
 
       {/* SVG Mask Effect Section - Full Edge-to-Edge */}
-      <section className="w-full">
-        <div className="flex h-[45rem] w-full items-center justify-center overflow-hidden">
+      <section className="w-full py-20 bg-black">
+        <div className="flex h-[35rem] w-full items-center justify-center overflow-hidden">
           <MaskContainer
             revealText={
-              <div className="mx-auto max-w-4xl text-center">
-                <h2 className="text-6xl font-black text-slate-00 dark:text-white whitespace-nowrap">
+              <div className="mx-auto max-w-5xl text-center">
+                <h2 className="text-5xl font-black text-slate-00 dark:text-white whitespace-nowrap">
                   IGNITE. ENGAGE. ELEVATE.
                 </h2>
-                <p className="mt-4 text-2xl font-thin text-slate-800 dark:text-white">
+                <p className="mt-4 text-xl font-thin text-slate-800 dark:text-white">
                   Where bold ideas spark breakthrough campaigns that redefine success.
                 </p>
-                <p className="mt-2 text-2xl font-thin text-slate-800 dark:text-white">
+                <p className="mt-2 text-xl font-thin text-slate-800 dark:text-white">
                   Unleash the full potential of your brand with fiveroses.
                 </p>
               </div>
             }
-            className="w-full h-[45rem] text-white dark:text-black"
+            className="w-full h-[35rem] text-white dark:text-black"
           >
-            <div className="mx-auto max-w-4xl text-center">
-              <h1 className="text-6xl font-black whitespace-nowrap">
+            <div className="mx-auto max-w-5xl text-center">
+              <h1 className="text-5xl font-black whitespace-nowrap">
                 CREATIVITY MEETS STRATEGY
               </h1>
-              <p className="mt-4 text-2xl font-thin">
+              <p className="mt-4 text-xl font-thin">
                 We transform visionary concepts into real growth by harnessing innovative marketing techniques.
               </p>
             </div>
@@ -123,47 +123,51 @@ export default function Home() {
       </section>
 
       {/* Grow Your Brand Section */}
-      <section className="w-full py-24 bg-black text-white">
-        <h2 className="text-3xl md:text-5xl font-light tracking-tighter mb-12 text-left pl-10">
-          Grow Your Brand
-        </h2>
-        <div className="pl-10">
+      <section className="w-full py-20 bg-black text-white">
+        <div className="w-full px-4 md:px-6">
+          <h2 className="text-3xl md:text-5xl font-light tracking-tighter mb-12 text-left">
+            Grow Your Brand
+          </h2>
           <FocusCards cards={focusCardsData} />
         </div>
       </section>
 
       {/* Layout Grid Section */}
-      <section className="w-full py-24 bg-white text-black">
-        <motion.h2
-          className="text-3xl md:text-5xl font-light tracking-tighter mb-12 text-left pl-10"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          Our Work
-        </motion.h2>
-        <LayoutGrid cards={layoutGridData} />
+      <section className="w-full py-20 bg-white text-black">
+        <div className="w-full px-4 md:px-6">
+          <motion.h2
+            className="text-3xl md:text-5xl font-light tracking-tighter mb-12 text-left"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            Our Work
+          </motion.h2>
+          <LayoutGrid cards={layoutGridData} />
+        </div>
       </section>
 
       {/* Call to Action Section */}
-      <section className="w-full py-24 px-4 md:px-6 bg-black text-white text-center">
-        <motion.h2
-          className="text-3xl md:text-5xl font-light tracking-tighter mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          Ready to Grow Your Business?
-        </motion.h2>
-        <Link
-          href="/contact"
-          className="group inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full hover:bg-accent transition-all duration-300"
-        >
-          Get in Touch
-          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-        </Link>
+      <section className="w-full py-20 bg-black text-white">
+        <div className="w-full px-4 md:px-6 text-center">
+          <motion.h2
+            className="text-3xl md:text-5xl font-light tracking-tighter mb-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            Ready to Grow Your Business?
+          </motion.h2>
+          <Link
+            href="/contact"
+            className="group inline-flex items-center gap-2 px-8 py-4 bg-white text-black rounded-full hover:bg-accent transition-all duration-300"
+          >
+            Get in Touch
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </div>
       </section>
     </main>
   )
