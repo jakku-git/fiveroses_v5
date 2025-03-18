@@ -1,12 +1,15 @@
 "use client"
 
+import { Inter } from "next/font/google"
+const inter = Inter({ subsets: ["latin"], weight: ["100", "900", "400", "700"] })
+
 import { CanvasRevealEffect } from "@/components/ui/canvas-reveal-effect"
 import { FocusCards } from "@/components/ui/focus-cards"
 import { LayoutGrid } from "@/components/ui/layout-grid"
-import { FlipWords } from "@/components/ui/flip-words"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
+import { MaskContainer } from "@/components/ui/svg-mask-effect"
 
 export default function Home() {
   const focusCardsData = [
@@ -76,7 +79,7 @@ export default function Home() {
   ]
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
+    <main className={`${inter.className} flex min-h-screen flex-col items-center justify-between`}>
       {/* Hero Section */}
       <section className="w-full min-h-screen flex flex-col items-center justify-center relative bg-black text-white">
         <CanvasRevealEffect
@@ -87,7 +90,38 @@ export default function Home() {
         />
       </section>
 
-      {/* Grow Your Brand Section (formerly Discover) */}
+      {/* SVG Mask Effect Section - Full Edge-to-Edge */}
+      <section className="w-full">
+        <div className="flex h-[40rem] w-full items-center justify-center overflow-hidden">
+          <MaskContainer
+            revealText={
+              <div className="mx-auto max-w-4xl text-center">
+                <h2 className="text-6xl font-black text-slate-00 dark:text-white">
+                  IGNITE. ENGAGE. ELEVATE.
+                </h2>
+                <p className="mt-4 text-2xl font-thin text-slate-800 dark:text-white">
+                  Where bold ideas spark breakthrough campaigns that redefine success.
+                </p>
+                <p className="mt-2 text-2xl font-thin text-slate-800 dark:text-white">
+                  Unleash the full potential of your brand with fiveroses.
+                </p>
+              </div>
+            }
+            className="w-full h-[40rem] text-white dark:text-black"
+          >
+            <div className="mx-auto max-w-4xl text-center">
+              <h1 className="text-6xl font-black whitespace-nowrap">
+                CREATIVITY MEETS STRATEGY
+              </h1>
+              <p className="mt-4 text-2xl font-thin">
+                We transform visionary concepts into real growth by harnessing innovative marketing techniques.
+              </p>
+            </div>
+          </MaskContainer>
+        </div>
+      </section>
+
+      {/* Grow Your Brand Section */}
       <section className="w-full py-24 bg-black text-white">
         <h2 className="text-3xl md:text-5xl font-light tracking-tighter mb-12 text-left pl-10">
           Grow Your Brand
