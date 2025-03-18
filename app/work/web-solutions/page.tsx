@@ -11,18 +11,19 @@ export default function WebSolutionsPage() {
     <main className="flex min-h-screen flex-col items-center justify-between pt-16">
       {/* Hero Section */}
       <section className="w-full">
-        <HeroParallax products={webProjects} />
+        <HeroParallax products={products} />
       </section>
 
-      {/* Intro Section */}
+      {/* Intro Section with negative margin to reduce gap */}
       <section className="w-full py-24 px-4 md:px-6 bg-black text-white">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">
-            We build <FlipWords words={["websites", "applications", "e-commerce", "platforms", "experiences"]} />
+            We build{" "}
+            <FlipWords words={["websites", "applications", "e-commerce", "platforms", "experiences"]} />
           </h1>
           <p className="text-xl text-neutral-300 max-w-2xl mx-auto mb-12">
-            Our web solutions are designed to deliver exceptional user experiences, drive conversions, and help your
-            business grow online.
+            Our web solutions are designed to deliver exceptional user experiences, drive conversions,
+            and help your business grow online.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
@@ -49,8 +50,8 @@ export default function WebSolutionsPage() {
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-6">Our Development Process</h2>
             <p className="text-lg text-neutral-300 max-w-2xl mx-auto">
-              We follow a proven development process to ensure your project is delivered on time, on budget, and exceeds
-              expectations.
+              We follow a proven development process to ensure your project is delivered on time, on budget,
+              and exceeds expectations.
             </p>
           </div>
 
@@ -91,7 +92,7 @@ export default function WebSolutionsPage() {
                 for your business.
               </p>
               <ul className="space-y-4">
-                {technologies.map((tech, index) => (
+                {technologies.map((tech: { name: string; description: string }, index: number) => (
                   <li key={index} className="flex items-start gap-3">
                     <span className="h-6 w-6 rounded-full bg-rose-200 text-black flex items-center justify-center text-sm font-bold mt-0.5">
                       {index + 1}
@@ -133,36 +134,81 @@ export default function WebSolutionsPage() {
   )
 }
 
-const webProjects = [
+const products = [
   {
-    title: "E-Commerce Platform",
-    link: "#",
-    thumbnail: "/placeholder.svg?height=600&width=800",
+    title: "Moonbeam",
+    link: "https://gomoonbeam.com",
+    thumbnail: "https://aceternity.com/images/products/thumbnails/new/moonbeam.png",
   },
   {
-    title: "Corporate Website",
-    link: "#",
-    thumbnail: "/placeholder.svg?height=600&width=800",
+    title: "Cursor",
+    link: "https://cursor.so",
+    thumbnail: "https://aceternity.com/images/products/thumbnails/new/cursor.png",
   },
   {
-    title: "Mobile App",
-    link: "#",
-    thumbnail: "/placeholder.svg?height=600&width=800",
+    title: "Rogue",
+    link: "https://userogue.com",
+    thumbnail: "https://aceternity.com/images/products/thumbnails/new/rogue.png",
   },
   {
-    title: "Web Application",
-    link: "#",
-    thumbnail: "/placeholder.svg?height=600&width=800",
+    title: "Editorially",
+    link: "https://editorially.org",
+    thumbnail: "https://aceternity.com/images/products/thumbnails/new/editorially.png",
   },
   {
-    title: "Landing Page",
-    link: "#",
-    thumbnail: "/placeholder.svg?height=600&width=800",
+    title: "Editrix AI",
+    link: "https://editrix.ai",
+    thumbnail: "https://aceternity.com/images/products/thumbnails/new/editrix.png",
   },
   {
-    title: "SaaS Platform",
-    link: "#",
-    thumbnail: "/placeholder.svg?height=600&width=800",
+    title: "Pixel Perfect",
+    link: "https://app.pixelperfect.quest",
+    thumbnail: "https://aceternity.com/images/products/thumbnails/new/pixelperfect.png",
+  },
+  {
+    title: "Algochurn",
+    link: "https://algochurn.com",
+    thumbnail: "https://aceternity.com/images/products/thumbnails/new/algochurn.png",
+  },
+  {
+    title: "Aceternity UI",
+    link: "https://ui.aceternity.com",
+    thumbnail: "https://aceternity.com/images/products/thumbnails/new/aceternityui.png",
+  },
+  {
+    title: "Tailwind Master Kit",
+    link: "https://tailwindmasterkit.com",
+    thumbnail: "https://aceternity.com/images/products/thumbnails/new/tailwindmasterkit.png",
+  },
+  {
+    title: "SmartBridge",
+    link: "https://smartbridgetech.com",
+    thumbnail: "https://aceternity.com/images/products/thumbnails/new/smartbridge.png",
+  },
+  {
+    title: "Renderwork Studio",
+    link: "https://renderwork.studio",
+    thumbnail: "https://aceternity.com/images/products/thumbnails/new/renderwork.png",
+  },
+  {
+    title: "Creme Digital",
+    link: "https://cremedigital.com",
+    thumbnail: "https://aceternity.com/images/products/thumbnails/new/cremedigital.png",
+  },
+  {
+    title: "Golden Bells Academy",
+    link: "https://goldenbellsacademy.com",
+    thumbnail: "https://aceternity.com/images/products/thumbnails/new/goldenbellsacademy.png",
+  },
+  {
+    title: "Invoker Labs",
+    link: "https://invoker.lol",
+    thumbnail: "https://aceternity.com/images/products/thumbnails/new/invoker.png",
+  },
+  {
+    title: "E Free Invoice",
+    link: "https://efreeinvoice.com",
+    thumbnail: "https://aceternity.com/images/products/thumbnails/new/efreeinvoice.png",
   },
 ]
 
@@ -180,6 +226,8 @@ const webServices = [
         <img src="/placeholder.svg?height=300&width=400" alt="Website Design" className="mt-4 rounded-lg" />
       </div>
     ),
+    className: "",
+    thumbnail: "/placeholder.svg?height=300&width=400",
   },
   {
     id: 2,
@@ -194,6 +242,8 @@ const webServices = [
         <img src="/placeholder.svg?height=300&width=400" alt="Web Development" className="mt-4 rounded-lg" />
       </div>
     ),
+    className: "",
+    thumbnail: "/placeholder.svg?height=300&width=400",
   },
   {
     id: 3,
@@ -208,6 +258,8 @@ const webServices = [
         <img src="/placeholder.svg?height=300&width=400" alt="E-Commerce" className="mt-4 rounded-lg" />
       </div>
     ),
+    className: "",
+    thumbnail: "/placeholder.svg?height=300&width=400",
   },
   {
     id: 4,
@@ -222,6 +274,8 @@ const webServices = [
         <img src="/placeholder.svg?height=300&width=400" alt="Responsive Design" className="mt-4 rounded-lg" />
       </div>
     ),
+    className: "",
+    thumbnail: "/placeholder.svg?height=300&width=400",
   },
   {
     id: 5,
@@ -236,6 +290,8 @@ const webServices = [
         <img src="/placeholder.svg?height=300&width=400" alt="Website Maintenance" className="mt-4 rounded-lg" />
       </div>
     ),
+    className: "",
+    thumbnail: "/placeholder.svg?height=300&width=400",
   },
   {
     id: 6,
@@ -250,6 +306,8 @@ const webServices = [
         <img src="/placeholder.svg?height=300&width=400" alt="Analytics" className="mt-4 rounded-lg" />
       </div>
     ),
+    className: "",
+    thumbnail: "/placeholder.svg?height=300&width=400",
   },
 ]
 
@@ -275,4 +333,3 @@ const technologies = [
     description: "Web applications that provide app-like experiences with offline capabilities.",
   },
 ]
-

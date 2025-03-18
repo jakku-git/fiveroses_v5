@@ -1,15 +1,11 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-
-// Utility to join class names. If you already have a cn function, you can import it instead.
-export function cn(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 export const FlipWords = ({
   words,
-  duration = 500,
+  duration = 3000,
   className,
 }: {
   words: string[];
@@ -62,11 +58,12 @@ export const FlipWords = ({
           position: "absolute",
         }}
         className={cn(
-          "z-10 inline-block relative text-left text-[#FF9AA2] font-bold px-2",
-          className || ""
+          "z-10 inline-block relative text-left text-neutral-900 dark:text-neutral-100 px-2",
+          className
         )}
         key={currentWord}
       >
+        {/* edit suggested by Sajal: https://x.com/DewanganSajal */}
         {currentWord.split(" ").map((word, wordIndex) => (
           <motion.span
             key={word + wordIndex}

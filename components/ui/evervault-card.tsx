@@ -1,82 +1,107 @@
-"use client"
-
-import { useEffect, useRef, useState } from "react"
-import { motion } from "framer-motion"
+"use client";
+import { useMotionValue } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { useMotionTemplate, motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 export const EvervaultCard = ({
-  text = "fiveroses",
+  text,
   className,
 }: {
-  text?: string
-  className?: string
+  text?: string;
+  className?: string;
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+  let mouseX = useMotionValue(0);
+  let mouseY = useMotionValue(0);
+
+  const [randomString, setRandomString] = useState("");
 
   useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
+    let str = generateRandomString(1500);
+    setRandomString(str);
+  }, []);
 
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = container.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
-      setMousePosition({ x, y })
-    }
+  function onMouseMove({ currentTarget, clientX, clientY }: any) {
+    let { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
 
-    container.addEventListener("mousemove", handleMouseMove)
-    return () => {
-      container.removeEventListener("mousemove", handleMouseMove)
-    }
-  }, [])
-
-  const calculateRotation = () => {
-    if (!containerRef.current) return { x: 0, y: 0 }
-
-    const container = containerRef.current
-    const rect = container.getBoundingClientRect()
-    const centerX = rect.width / 2
-    const centerY = rect.height / 2
-
-    const rotateX = (mousePosition.y - centerY) / 20
-    const rotateY = (centerX - mousePosition.x) / 20
-
-    return { x: rotateX, y: rotateY }
+    const str = generateRandomString(1500);
+    setRandomString(str);
   }
-
-  const rotation = calculateRotation()
 
   return (
     <div
-      ref={containerRef}
-      className={`relative h-60 w-96 rounded-xl bg-neutral-900 border border-white/10 overflow-hidden ${className}`}
-      style={{
-        perspective: "1000px",
-      }}
+      className={cn(
+        "p-0.5  bg-transparent aspect-square  flex items-center justify-center w-full h-full relative",
+        className
+      )}
     >
-      <motion.div
-        className="absolute inset-0 flex items-center justify-center"
-        style={{
-          rotateX: rotation.x,
-          rotateY: rotation.y,
-          transformStyle: "preserve-3d",
-        }}
-        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      <div
+        onMouseMove={onMouseMove}
+        className="group/card rounded-3xl w-full relative overflow-hidden bg-transparent flex items-center justify-center h-full"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-
-        <div className="text-center z-10">
-          <h3 className="text-2xl font-light mb-2">{text}</h3>
-          <p className="text-neutral-300 text-sm">Web Development</p>
+        <CardPattern
+          mouseX={mouseX}
+          mouseY={mouseY}
+          randomString={randomString}
+        />
+        <div className="relative z-10 flex items-center justify-center">
+          <div className="relative h-44 w-44  rounded-full flex items-center justify-center text-white font-bold text-4xl">
+            <div className="absolute w-full h-full bg-white/[0.8] dark:bg-black/[0.8] blur-sm rounded-full" />
+            <span className="dark:text-white text-black z-20">{text}</span>
+          </div>
         </div>
+      </div>
+    </div>
+  );
+};
 
-        <div className="absolute inset-0 grid grid-cols-8 grid-rows-6 gap-0.5 p-4">
-          {Array.from({ length: 48 }).map((_, i) => (
-            <div key={i} className="bg-white/[0.01] rounded-sm border border-white/[0.05]" />
-          ))}
-        </div>
+export function CardPattern({ mouseX, mouseY, randomString }: any) {
+  let maskImage = useMotionTemplate`radial-gradient(250px at ${mouseX}px ${mouseY}px, white, transparent)`;
+  let style = { maskImage, WebkitMaskImage: maskImage };
+
+  return (
+    <div className="pointer-events-none">
+      <div className="absolute inset-0 rounded-2xl  [mask-image:linear-gradient(white,transparent)] group-hover/card:opacity-50"></div>
+      <motion.div
+        className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-500 to-blue-700 opacity-0  group-hover/card:opacity-100 backdrop-blur-xl transition duration-500"
+        style={style}
+      />
+      <motion.div
+        className="absolute inset-0 rounded-2xl opacity-0 mix-blend-overlay  group-hover/card:opacity-100"
+        style={style}
+      >
+        <p className="absolute inset-x-0 text-xs h-full break-words whitespace-pre-wrap text-white font-mono font-bold transition duration-500">
+          {randomString}
+        </p>
       </motion.div>
     </div>
-  )
+  );
 }
 
+const characters =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+export const generateRandomString = (length: number) => {
+  let result = "";
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return result;
+};
+
+export const Icon = ({ className, ...rest }: any) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth="1.5"
+      stroke="currentColor"
+      className={className}
+      {...rest}
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m6-6H6" />
+    </svg>
+  );
+};

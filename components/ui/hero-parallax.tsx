@@ -1,105 +1,159 @@
-"use client"
-
-import { useRef, useState, useEffect } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
-
-interface Product {
-  title: string
-  link: string
-  thumbnail: string
-}
+"use client";
+import React from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useSpring,
+  MotionValue,
+} from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
 
 export const HeroParallax = ({
   products,
 }: {
-  products: Product[]
+  products: {
+    title: string;
+    link: string;
+    thumbnail: string;
+  }[];
 }) => {
-  const firstRow = products.slice(0, 3)
-  const secondRow = products.slice(3, 6)
-  const ref = useRef(null)
+  const firstRow = products.slice(0, 5);
+  const secondRow = products.slice(5, 10);
+  const thirdRow = products.slice(10, 15);
+  const ref = React.useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
-  })
+  });
 
-  const [isMobile, setIsMobile] = useState(false)
+  const springConfig = { stiffness: 300, damping: 30, bounce: 100 };
 
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-
-    checkMobile()
-    window.addEventListener("resize", checkMobile)
-    return () => window.removeEventListener("resize", checkMobile)
-  }, [])
-
-  const yFirstRow = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 100 : 250])
-  const ySecondRow = useTransform(scrollYProgress, [0, 1], [0, isMobile ? 50 : 150])
-  const yText = useTransform(scrollYProgress, [0, 0.8], ["0%", "-100%"])
-  const xText = useTransform(scrollYProgress, [0, 0.8], ["0%", "-100%"])
-
+  const translateX = useSpring(
+    useTransform(scrollYProgress, [0, 1], [0, 1000]),
+    springConfig
+  );
+  const translateXReverse = useSpring(
+    useTransform(scrollYProgress, [0, 1], [0, -1000]),
+    springConfig
+  );
+  const rotateX = useSpring(
+    useTransform(scrollYProgress, [0, 0.2], [15, 0]),
+    springConfig
+  );
+  const opacity = useSpring(
+    useTransform(scrollYProgress, [0, 0.2], [0.2, 1]),
+    springConfig
+  );
+  const rotateZ = useSpring(
+    useTransform(scrollYProgress, [0, 0.2], [20, 0]),
+    springConfig
+  );
+  const translateY = useSpring(
+    useTransform(scrollYProgress, [0, 0.2], [-700, 500]),
+    springConfig
+  );
   return (
     <div
       ref={ref}
-      className="h-[140vh] md:h-[175vh] w-full bg-black overflow-hidden antialiased relative flex flex-col self-auto py-0 [perspective:1000px] [transform-style:preserve-3d]"
+      className="h-[300vh] py-40 overflow-hidden  antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
     >
       <Header />
       <motion.div
-        style={{ y: yText, x: xText }}
-        className="relative mt-20 md:mt-32 inset-0 flex items-center justify-center text-white"
+        style={{
+          rotateX,
+          rotateZ,
+          translateY,
+          opacity,
+        }}
+        className=""
       >
-        <h1 className="text-5xl md:text-7xl font-light tracking-tighter max-w-7xl mx-auto px-4 md:px-6 text-center">
-          <span className="block">Web Solutions</span>
-          <span className="block text-accent">That Drive Results</span>
-        </h1>
-      </motion.div>
-
-      <div className="h-full w-full absolute inset-0 z-10 pointer-events-none" />
-
-      <div className="flex flex-row items-start gap-4 md:gap-6 px-4 md:px-6 mt-32 md:mt-80">
-        <motion.div style={{ y: yFirstRow }} className="flex flex-col gap-4 md:gap-6 w-1/2">
+        <motion.div className="flex flex-row-reverse space-x-reverse space-x-20 mb-20">
           {firstRow.map((product) => (
-            <ProductCard key={product.title} product={product} />
+            <ProductCard
+              product={product}
+              translate={translateX}
+              key={product.title}
+            />
           ))}
         </motion.div>
-        <motion.div style={{ y: ySecondRow }} className="flex flex-col gap-4 md:gap-6 w-1/2 mt-10 md:mt-40">
+        <motion.div className="flex flex-row  mb-20 space-x-20 ">
           {secondRow.map((product) => (
-            <ProductCard key={product.title} product={product} />
+            <ProductCard
+              product={product}
+              translate={translateXReverse}
+              key={product.title}
+            />
           ))}
         </motion.div>
-      </div>
+        <motion.div className="flex flex-row-reverse space-x-reverse space-x-20">
+          {thirdRow.map((product) => (
+            <ProductCard
+              product={product}
+              translate={translateX}
+              key={product.title}
+            />
+          ))}
+        </motion.div>
+      </motion.div>
     </div>
-  )
-}
+  );
+};
 
-const Header = () => {
+export const Header = () => {
   return (
-    <div className="absolute top-0 inset-x-0 z-50 max-w-7xl mx-auto w-full px-4 md:px-6 py-10">
-      <h2 className="text-xl md:text-2xl font-light tracking-tighter text-white">Web Solutions</h2>
+    <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full  left-0 top-0">
+      <h1 className="text-2xl md:text-7xl font-bold dark:text-white">
+        The Ultimate <br /> development studio
+      </h1>
+      <p className="max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200">
+        We build beautiful products with the latest technologies and frameworks.
+        We are a team of passionate developers and designers that love to build
+        amazing products.
+      </p>
     </div>
-  )
-}
+  );
+};
 
-const ProductCard = ({ product }: { product: Product }) => {
+export const ProductCard = ({
+  product,
+  translate,
+}: {
+  product: {
+    title: string;
+    link: string;
+    thumbnail: string;
+  };
+  translate: MotionValue<number>;
+}) => {
   return (
-    <div className="relative group block w-full rounded-xl overflow-hidden bg-neutral-900 border border-white/10">
-      <div className="aspect-[16/9] w-full overflow-hidden rounded-t-xl">
-        <img
-          src={product.thumbnail || "/placeholder.svg"}
+    <motion.div
+      style={{
+        x: translate,
+      }}
+      whileHover={{
+        y: -20,
+      }}
+      key={product.title}
+      className="group/product h-96 w-[30rem] relative shrink-0"
+    >
+      <Link
+        href={product.link}
+        className="block group-hover/product:shadow-2xl "
+      >
+        <Image
+          src={product.thumbnail}
+          height="600"
+          width="600"
+          className="object-cover object-left-top absolute h-full w-full inset-0"
           alt={product.title}
-          width={600}
-          height={400}
-          className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
         />
-      </div>
-      <div className="p-4">
-        <h3 className="font-light text-white text-lg md:text-xl group-hover:text-accent transition-colors">
-          {product.title}
-        </h3>
-        <p className="text-neutral-300 text-sm">Innovative web solutions for modern businesses</p>
-      </div>
-    </div>
-  )
-}
-
+      </Link>
+      <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
+      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
+        {product.title}
+      </h2>
+    </motion.div>
+  );
+};
