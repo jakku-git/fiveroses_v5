@@ -12,27 +12,27 @@ export default function Home() {
   const focusCardsData = [
     {
       title: "Marketing Strategy",
-      src: "/pexels-eva-bronzini-7661330.jpg",
+      src: "https://videos.pexels.com/video-files/4630097/4630097-uhd_2560_1440_25fps.mp4",
     },
     {
       title: "Web Development",
-      src: "/pexels-tranmautritam-326503.jpg",
+      src: "https://videos.pexels.com/video-files/5483085/5483085-uhd_2732_1440_25fps.mp4",
     },
     {
       title: "Creative Production",
-      src: "/pexels-minhle17vn-3062541.jpg",
+      src: "https://videos.pexels.com/video-files/9810701/9810701-uhd_2732_1440_25fps.mp4",
     },
     {
       title: "Brand Identity",
-      src: "/pexels-ron-lach-9594419.jpg",
+      src: "https://videos.pexels.com/video-files/5310858/5310858-uhd_2560_1440_25fps.mp4",
     },
     {
       title: "Content Strategy",
-      src: "/pexels-mart-production-7679690.jpg",
+      src: "https://videos.pexels.com/video-files/4994039/4994039-uhd_2560_1440_25fps.mp4",
     },
     {
       title: "Social Media Management",
-      src: "/pexels-kseverin-1542252.jpg",
+      src: "https://videos.pexels.com/video-files/7793361/7793361-uhd_2732_1440_25fps.mp4",
     },
   ]
 
@@ -41,7 +41,7 @@ export default function Home() {
       id: 1,
       content: <p className="text-white text-lg font-light">Media Buying Campaign</p>,
       className: "h-64 bg-transparent text-white flex items-center justify-center",
-      thumbnail: "/pexels-evonics-1058276.jpg", // Ensure this file exists in `/public/`
+      thumbnail: "/pexels-evonics-1058276.jpg",
     },
     {
       id: 2,
@@ -70,7 +70,7 @@ export default function Home() {
     {
       id: 6,
       content: <p className="text-white text-lg font-light">Flipkart Campaign</p>,
-      className: "h-64 bg-gray-900 text-white flex items-center justify-center",
+      className: "h-64 bg-transparent text-white flex items-center justify-center",
       thumbnail: "/pexels-twotriangles-14647786.jpg",
     },
   ]
@@ -87,46 +87,63 @@ export default function Home() {
         />
       </section>
 
-      {/* Focus Cards Section */}
-      <section className="w-full py-24 px-4 md:px-6 bg-black text-white">
-        <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tighter text-center mb-10">
-  Discover Our <FlipWords words={["Expertise",
-      "Innovation",
-      "Solutions",
-      "Strategy",
-      "Creativity",
-      "Excellence",
-      "Insight",
-      "Agility",
-      "Vision",
-      "Performance",
-      "Optimization",]} />
-</h1>
+      {/* Discover Section */}
+      <section className="w-full py-24 bg-black text-white">
+        <h1 className="text-4xl md:text-6xl font-light tracking-tighter text-left pl-10 mb-10">
+          Discover{" "}
+          <FlipWords
+            words={[
+              "Expertise",
+              "Innovation",
+              "Solutions",
+              "Strategy",
+              "Creativity",
+              "Excellence",
+              "Insight",
+              "Agility",
+              "Vision",
+              "Performance",
+              "Optimization",
+            ]}
+          />
+        </h1>
 
+        {/* Intro Text Block */}
+        <div className="max-w-3xl mx-auto bg-white text-black p-12 md:p-16 rounded-2xl shadow-lg mb-16">
+          <p className="text-sm uppercase tracking-widest font-semibold mb-4">
+            We’re an independent, award‑winning Australian agency.
+          </p>
+          <p className="text-lg md:text-xl font-light mb-6 leading-relaxed">
+            Our team of thinkers, dreamers and doers move ambitious brands forward using deep research, high technology, rare creativity, and trust.
+          </p>
+          <p className="text-lg md:text-xl font-medium">
+            If you think we’re a fit,{" "}
+            <Link href="/contact" className="underline hover:text-accent">
+              say hello.
+            </Link>
+          </p>
+        </div>
 
+        <div className="pl-10">
           <FocusCards cards={focusCardsData} />
         </div>
       </section>
 
-      {/* Layout Grid */}
-      <section className="w-full py-24 px-4 md:px-6 bg-black text-white">
-        <div className="max-w-7xl mx-auto">
-          <motion.h2
-            className="text-3xl md:text-5xl font-light tracking-tighter mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            Our Work
-          </motion.h2>
-
-          <LayoutGrid cards={layoutGridData} />
-        </div>
+      {/* Layout Grid Section */}
+      <section className="w-full py-24 bg-white text-black">
+        <motion.h2
+          className="text-3xl md:text-5xl font-light tracking-tighter mb-12 text-left pl-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          Our Work
+        </motion.h2>
+        <LayoutGrid cards={layoutGridData} />
       </section>
 
-      {/* Call to Action */}
+      {/* Call to Action Section */}
       <section className="w-full py-24 px-4 md:px-6 bg-black text-white text-center">
         <motion.h2
           className="text-3xl md:text-5xl font-light tracking-tighter mb-8"

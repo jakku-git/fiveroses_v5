@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
   --cursor-x: 0px;
   --cursor-y: 0px;
@@ -83,7 +82,7 @@ button {
 
 /* Focus Cards Hover Effects */
 .focus-cards-container .focus-card {
-  transition: transform 300ms ease-out, filter 300ms ease-out;
+  transition: transform 200ms ease-out, filter 200ms ease-out;
 }
 
 .focus-cards-container:hover .focus-card:not(:hover) {

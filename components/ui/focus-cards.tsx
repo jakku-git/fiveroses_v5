@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import React, { useEffect } from "react";
+import React from "react";
 
 export type CardType = {
   title: string;
@@ -9,37 +8,39 @@ export type CardType = {
 };
 
 export function FocusCards({ cards = [] }: { cards?: CardType[] }) {
-  useEffect(() => {
-    if (typeof document !== "undefined") {
-      const style = document.createElement("style");
-      style.innerHTML = `
-        .focus-cards-container:hover .focus-card:not(:hover) {
-          filter: blur(8px); /* Increased blur intensity */
-          transform: scale(0.95); /* Optional: Slightly reduce size for stronger effect */
-        }
-      `;
-      document.head.appendChild(style);
-    }
-  }, []);
-
   if (!cards || cards.length === 0) {
     return <p className="text-center text-white">No cards available.</p>;
   }
 
   return (
-    <div className="focus-cards-container grid grid-cols-1 md:grid-cols-3 gap-10 w-full px-0 md:px-0">
+    <div className="focus-cards-container grid grid-cols-1 md:grid-cols-3 gap-1 w-full px-0">
       {cards.map((card) => (
         <div
           key={card.title}
-          className="focus-card rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-60 md:h-96 w-full transition-all duration-300"
+          className="focus-card rounded-lg relative bg-gray-100 dark:bg-neutral-900 overflow-hidden h-60 md:h-96 w-full transition-all duration-200"
+          onMouseEnter={(e) => {
+            const video = e.currentTarget.querySelector("video") as HTMLVideoElement;
+            if (video) {
+              video.play();
+            }
+          }}
+          onMouseLeave={(e) => {
+            const video = e.currentTarget.querySelector("video") as HTMLVideoElement;
+            if (video) {
+              video.pause();
+              video.currentTime = 0;
+            }
+          }}
         >
-          <Image
-            src={card.src}
-            alt={card.title}
-            fill
-            className="object-cover absolute inset-0"
-            loading="lazy"
-          />
+          <video
+            className="absolute inset-0 object-cover w-full h-full"
+            muted
+            loop
+            playsInline
+            preload="metadata"
+          >
+            <source src={card.src} type="video/mp4" />
+          </video>
           <div className="absolute bottom-8 left-4 text-xl md:text-2xl font-medium text-white drop-shadow-md">
             {card.title}
           </div>

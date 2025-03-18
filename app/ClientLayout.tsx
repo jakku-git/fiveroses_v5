@@ -7,7 +7,7 @@ import Link from "next/link"
 import { Menu, X } from "lucide-react"
 import { motion } from "framer-motion"
 
-const inter = Inter({ subsets: ["latin"] })
+const inter = Inter({ subsets: ["latin"], weight: ["100", "400", "700"] })
 
 const Header = memo(function Header() {
   const [isScrolled, setIsScrolled] = React.useState(false)
@@ -49,24 +49,12 @@ const Header = memo(function Header() {
 const MobileNav = memo(function MobileNav() {
   const [isOpen, setIsOpen] = React.useState(false)
   const menuVariants = {
-    closed: {
-      opacity: 0,
-      x: "100%",
-      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-    },
-    open: {
-      opacity: 1,
-      x: 0,
-      transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-    },
+    closed: { opacity: 0, x: "100%", transition: { duration: 0.5 } },
+    open: { opacity: 1, x: 0, transition: { duration: 0.5 } },
   }
   const linkVariants = {
     closed: { opacity: 0, y: 20 },
-    open: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: 0.3 + i * 0.1, duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-    }),
+    open: (i: number) => ({ opacity: 1, y: 0, transition: { delay: 0.3 + i * 0.1 } }),
   }
   return (
     <div className="md:hidden">
@@ -74,31 +62,20 @@ const MobileNav = memo(function MobileNav() {
         {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
       </button>
       <motion.div
-        className="fixed inset-0 top-0 bg-black z-40 flex flex-col items-center justify-center"
+        className="fixed inset-0 bg-black z-40 flex flex-col items-center justify-center"
         initial="closed"
         animate={isOpen ? "open" : "closed"}
         variants={menuVariants}
       >
         <nav className="flex flex-col items-center gap-12">
-          {[{
-            href: "/",
-            label: "Home"
-          }, {
-            href: "/work",
-            label: "Work"
-          }, {
-            href: "/news",
-            label: "News"
-          }, {
-            href: "/contact",
-            label: "Contact"
-          }].map((link, i) => (
+          {[
+            { href: "/", label: "Home" },
+            { href: "/work", label: "Work" },
+            { href: "/news", label: "News" },
+            { href: "/contact", label: "Contact" },
+          ].map((link, i) => (
             <motion.div key={link.href} custom={i} variants={linkVariants}>
-              <Link
-                href={link.href}
-                className="text-3xl font-bold tracking-tight hover:text-accent transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
+              <Link href={link.href} className="text-3xl font-bold tracking-tight hover:text-accent" onClick={() => setIsOpen(false)}>
                 {link.label}
               </Link>
             </motion.div>
@@ -111,8 +88,8 @@ const MobileNav = memo(function MobileNav() {
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} bg-black text-white`}>
+    <html lang="en" className={inter.className}>
+      <body className="bg-black text-white">
         <Header />
         {children}
       </body>
