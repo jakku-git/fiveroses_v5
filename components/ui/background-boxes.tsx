@@ -5,17 +5,19 @@ import { motion } from "framer-motion";
 import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
 import { SparklesCore } from "../ui/sparkles";
 
+interface FlowerProps {
+  left: string;
+  top: string;
+  size?: number;
+  petals?: number;
+}
+
 const Flower = ({
   left,
   top,
   size = 150,
   petals = 8,
-}: {
-  left: string;
-  top: string;
-  size?: number;
-  petals?: number;
-}) => {
+}: FlowerProps) => {
   const petalClipPath =
     "path('M50 0 C65 10, 100 35, 50 100 C0 35, 35 10, 50 0 Z')";
   const generateRandomColor = () => {
@@ -57,7 +59,11 @@ const Flower = ({
   );
 };
 
-export const BackgroundBoxes = (props: React.HTMLAttributes<HTMLDivElement>) => {
+interface BackgroundBoxesProps extends React.HTMLAttributes<HTMLDivElement> {
+  className?: string;
+}
+
+export const BackgroundBoxes = ({ className, ...props }: BackgroundBoxesProps) => {
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
@@ -91,7 +97,7 @@ export const BackgroundBoxes = (props: React.HTMLAttributes<HTMLDivElement>) => 
   return (
     <div
       {...props}
-      className={`absolute inset-0 overflow-hidden ${props.className || ""}`}
+      className={`absolute inset-0 overflow-hidden ${className || ""}`}
     >
       {mounted && (
         <>

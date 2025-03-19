@@ -13,6 +13,29 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { JSX } from "react/jsx-runtime";
 
+interface CardData {
+  category: string;
+  title: string;
+  src: string;
+  content: React.ReactNode;
+}
+
+interface CarouselContextType {
+  onCardClose: (index: number) => void;
+  currentIndex: number;
+}
+
+interface CarouselProps {
+  items: JSX.Element[];
+  initialScroll?: number;
+}
+
+interface CardProps {
+  card: CardData;
+  index: number;
+  layout?: boolean;
+}
+
 /* -------------------------------------------------------------------------- */
 /*                           useOutsideClick Hook                             */
 /* -------------------------------------------------------------------------- */
@@ -75,7 +98,7 @@ const DummyContent = () => {
 /* -------------------------------------------------------------------------- */
 /*                             Carousel Data                                  */
 /* -------------------------------------------------------------------------- */
-const data = [
+const data: CardData[] = [
   {
     category: "Artificial Intelligence",
     title: "You can do more with AI.",
@@ -112,15 +135,48 @@ const data = [
     src: "https://images.unsplash.com/photo-1511984804822-e16ba72f5848?q=80&w=2048&auto=format&fit=crop&ixlib=rb-4.0.3",
     content: <DummyContent />,
   },
+  {
+    category: "Design",
+    title: "Creating beautiful experiences.",
+    src: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?q=80&w=3556&auto=format&fit=crop&ixlib=rb-4.0.3",
+    content: <DummyContent />,
+  },
+  {
+    category: "Development",
+    title: "Building the future of web.",
+    src: "https://images.unsplash.com/photo-1531554694128-c4c6665f59c2?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3",
+    content: <DummyContent />,
+  },
+  {
+    category: "Marketing",
+    title: "Growing brands digitally.",
+    src: "https://images.unsplash.com/photo-1713869791518-a770879e60dc?q=80&w=2333&auto=format&fit=crop&ixlib=rb-4.0.3",
+    content: <DummyContent />,
+  },
+  {
+    category: "Strategy",
+    title: "Strategic solutions for success.",
+    src: "https://images.unsplash.com/photo-1599202860130-f600f4948364?q=80&w=2515&auto=format&fit=crop&ixlib=rb-4.0.3",
+    content: <DummyContent />,
+  },
+  {
+    category: "Innovation",
+    title: "Pushing boundaries forward.",
+    src: "https://images.unsplash.com/photo-1602081957921-9137a5d6eaee?q=80&w=2793&auto=format&fit=crop&ixlib=rb-4.0.3",
+    content: <DummyContent />,
+  },
+  {
+    category: "Technology",
+    title: "Advancing digital solutions.",
+    src: "https://images.unsplash.com/photo-1511984804822-e16ba72f5848?q=80&w=2048&auto=format&fit=crop&ixlib=rb-4.0.3",
+    content: <DummyContent />,
+  },
 ];
 
 /* -------------------------------------------------------------------------- */
 /*                           Carousel Context                                 */
 /* -------------------------------------------------------------------------- */
-export const CarouselContext = createContext<{
-  onCardClose: (index: number) => void;
-  currentIndex: number;
-}>({
+export const CarouselContext = createContext<CarouselContextType>({
   onCardClose: () => {},
   currentIndex: 0,
 });
@@ -128,13 +184,7 @@ export const CarouselContext = createContext<{
 /* -------------------------------------------------------------------------- */
 /*                            Carousel Component                              */
 /* -------------------------------------------------------------------------- */
-export const Carousel = ({
-  items,
-  initialScroll = 0,
-}: {
-  items: JSX.Element[];
-  initialScroll?: number;
-}) => {
+export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -197,7 +247,7 @@ export const Carousel = ({
               "absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l"
             )}
           ></div>
-          <div className={cn("flex flex-row justify-start gap-4 pl-4", "max-w-7xl mx-auto")}>
+          <div className={cn("flex flex-row justify-start gap-4 pl-4 w-full")}>
             {items.map((item, index) => (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -242,15 +292,7 @@ export const Carousel = ({
 /* -------------------------------------------------------------------------- */
 /*                              Card Component                                */
 /* -------------------------------------------------------------------------- */
-export const Card = ({
-  card,
-  index,
-  layout = false,
-}: {
-  card: { src: string; title: string; category: string; content: React.ReactNode };
-  index: number;
-  layout?: boolean;
-}) => {
+export const Card = ({ card, index, layout = false }: CardProps) => {
   const [open, setOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const { onCardClose } = useContext(CarouselContext);
@@ -394,12 +436,10 @@ export function AppleCardsCarouselDemo() {
 
   return (
     <div className="w-full bg-black text-white mt-8 py-1">
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-xl md:text-5xl font-bold text-white font-sans mb-8 text-center">
-          Previous Works
-        </h2>
-        <Carousel items={cards} />
-      </div>
+      <h2 className="text-3xl md:text-5xl font-light tracking-tighter mb-12 text-left">
+        Previous Works
+      </h2>
+      <Carousel items={cards} />
     </div>
   );
 }

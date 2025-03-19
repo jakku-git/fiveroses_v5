@@ -9,28 +9,30 @@ const cn = (...classes: string[]) => classes.filter(Boolean).join(" ");
 // =============================================================================
 // Main Component – CardRevealEffect (with red/purple default colors)
 // =============================================================================
-export const CardRevealEffect = ({
-  animationSpeed = 0.4,
-  opacities = [0.3, 0.3, 0.3, 0.5, 0.5, 0.5, 0.8, 0.8, 0.8, 1],
-  // Updated default colors: red and purple scheme.
-  colors = [
-    [236, 72, 153],
-    [232, 121, 249],
-  ],
-  containerClassName,
-  dotSize,
-  showGradient = true,
-}: {
-  /**
-   * 0.1 – slower, 1.0 – faster (the higher, the faster the reveal)
-   */
+interface CardRevealEffectProps {
   animationSpeed?: number;
   opacities?: number[];
   colors?: number[][];
   containerClassName?: string;
   dotSize?: number;
   showGradient?: boolean;
-}) => {
+  loop?: boolean;
+  loopDelay?: number;
+}
+
+export const CardRevealEffect = ({
+  animationSpeed = 0.4,
+  opacities = [0.3, 0.3, 0.3, 0.5, 0.5, 0.5, 0.8, 0.8, 0.8, 1],
+  colors = [
+    [236, 72, 153],
+    [232, 121, 249],
+  ],
+  containerClassName = "",
+  dotSize,
+  showGradient = true,
+  loop = false,
+  loopDelay = 2000,
+}: CardRevealEffectProps) => {
   return (
     <div className={cn("h-full relative w-full", containerClassName)}>
       <div className="h-full w-full">
@@ -41,8 +43,9 @@ export const CardRevealEffect = ({
           shader={`
               float animation_speed_factor = ${animationSpeed.toFixed(1)};
               float intro_offset = distance(u_resolution / 2.0 / u_total_size, st2) * 0.01 + (random(st2) * 0.15);
-              opacity *= step(intro_offset, u_time * animation_speed_factor);
-              opacity *= clamp((1.0 - step(intro_offset + 0.1, u_time * animation_speed_factor)) * 1.25, 1.0, 1.25);
+              float loop_time = ${loop ? `mod(u_time, ${(loopDelay / 1000).toFixed(1)} + 1.0)` : 'u_time'};
+              opacity *= step(intro_offset, loop_time * animation_speed_factor);
+              opacity *= clamp((1.0 - step(intro_offset + 0.1, loop_time * animation_speed_factor)) * 1.25, 1.0, 1.25);
             `}
           center={["x", "y"]}
         />
@@ -208,15 +211,17 @@ type Uniforms = {
   };
 };
 
+interface ShaderMaterialProps {
+  source: string;
+  uniforms: Uniforms;
+  maxFps?: number;
+}
+
 const ShaderMaterial = ({
   source,
   uniforms,
   maxFps = 60,
-}: {
-  source: string;
-  maxFps?: number;
-  uniforms: Uniforms;
-}) => {
+}: ShaderMaterialProps) => {
   const { size } = useThree();
   const ref = useRef<THREE.Mesh>();
   let lastFrameTime = 0;

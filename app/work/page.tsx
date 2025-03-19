@@ -7,12 +7,23 @@ import { BackgroundBoxes } from "@/components/ui/background-boxes";
 import { AppleCardsCarouselDemo } from "@/components/ui/apple-cards-carousel";
 import { LayoutGridDemo } from "@/components/ui/layoutgriddemo";
 
+interface Service {
+  title: string;
+  slug: string;
+}
+
+interface CardProps {
+  title: string;
+  children?: React.ReactNode;
+  link: string;
+}
+
 const OurServicesHorizontal = () => {
   const revealColors = [
     [236, 72, 153],
     [232, 121, 249],
   ];
-  const services = [
+  const services: Service[] = [
     { title: "Marketing & Strategy", slug: "marketing" },
     { title: "Development & Solutions", slug: "web-solutions" },
     { title: "Creation & Production", slug: "creative-production" },
@@ -47,16 +58,19 @@ const OurServicesHorizontal = () => {
       "Mentorship & Business Coaching",
       "Office Space & Co-working",
       "Networking & Workshops",
-      "Funding Access & Investor Pitching Preparation",
+      "Funding Access & Investor Pitching",
       "Legal, Accounting & Marketing Support",
       "Technical Support & Accelerator Programs",
     ],
   };
 
   return (
-    <section className="w-full min-h-[60vh] relative bg-black text-white mt-16">
-      <div className="relative z-10 flex items-center justify-center h-full px-8">
-        <div className="flex space-x-4">
+    <section className="w-full py-20 relative bg-black text-white">
+      <div className="w-full px-4 md:px-6">
+        <h2 className="text-3xl md:text-5xl font-light tracking-tighter mb-12 text-left">
+          Our Services
+        </h2>
+        <div className="flex gap-2">
           {services.map((service, i) => (
             <Card key={i} title={service.title} link={`/work/${service.slug}`}>
               <div className="absolute inset-0">
@@ -66,6 +80,8 @@ const OurServicesHorizontal = () => {
                   colors={revealColors}
                   dotSize={3}
                   showGradient={false}
+                  loop={true}
+                  loopDelay={2000}
                 />
                 <div className="absolute inset-0 bg-black/30 pointer-events-none" />
                 <div className="absolute inset-0 flex items-center justify-center p-6">
@@ -96,7 +112,7 @@ const OurServicesHorizontal = () => {
   );
 };
 
-const Card = ({ title, children, link }: { title: string; children?: React.ReactNode; link: string; }) => {
+const Card = ({ title, children, link }: CardProps) => {
   const [hovered, setHovered] = React.useState(false);
   const parts = title.split(" & ");
   const firstPart = parts[0] || title;
@@ -106,7 +122,7 @@ const Card = ({ title, children, link }: { title: string; children?: React.React
       href={link}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="relative overflow-hidden rounded-lg border border-white/[0.2] group flex flex-col items-center justify-center p-4 h-[50vh] w-[23vw]"
+      className="relative overflow-hidden rounded-lg border border-white/[0.2] group flex flex-col items-center justify-center p-4 h-[50vh] w-[24.75%]"
     >
       <AnimatePresence>
         {hovered && (
@@ -115,22 +131,27 @@ const Card = ({ title, children, link }: { title: string; children?: React.React
           </motion.div>
         )}
       </AnimatePresence>
-      <motion.div animate={{ opacity: hovered ? 0 : 1 }} transition={{ duration: 0.2 }} className="relative z-20 flex flex-col items-center justify-center h-full">
-        {secondPart ? (
-          <>
-            <h2 className="text-xl font-bold text-white">{firstPart}</h2>
-            <AceternityIcon className="h-6 w-6 my-5" />
-            <h2 className="text-xl font-bold text-white">{secondPart}</h2>
-          </>
-        ) : (
+      <motion.div animate={{ opacity: hovered ? 0 : 1 }} transition={{ duration: 0.2 }} className="relative z-20 flex flex-col items-center justify-center h-full -mt-8">
+        <AceternityIcon className="h-6 w-6 mb-4" />
+        <div className="flex items-center gap-2">
           <h2 className="text-xl font-bold text-white">{firstPart}</h2>
-        )}
+          {secondPart && (
+            <>
+              <span className="text-xl font-bold text-white">&</span>
+              <h2 className="text-xl font-bold text-white">{secondPart}</h2>
+            </>
+          )}
+        </div>
       </motion.div>
     </Link>
   );
 };
 
-const AceternityIcon = ({ className }: { className?: string }) => {
+interface AceternityIconProps {
+  className?: string;
+}
+
+const AceternityIcon = ({ className }: AceternityIconProps) => {
   return (
     <svg width="66" height="65" viewBox="0 0 66 65" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
       <path
@@ -155,16 +176,18 @@ export default function WorkPage() {
       {/* Our Services Horizontal Section */}
       <OurServicesHorizontal />
       {/* Featured Projects Section */}
-      <section className="w-full py-1 px-4 md:px-6 bg-black text-white">
-        <div className="w-full">
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-12 text-center">
+      <section className="w-full py-20 bg-black text-white">
+        <div className="w-full px-4 md:px-6">
+          <h2 className="text-3xl md:text-5xl font-light tracking-tighter mb-12 text-left">
             Featured Projects
           </h2>
+          {/* Grid appears on top */}
+          <LayoutGridDemo />
+          {/* Carousel appears below */}
+          <div className="mt-12">
+            <AppleCardsCarouselDemo />
+          </div>
         </div>
-        {/* Grid appears on top */}
-        <LayoutGridDemo />
-        {/* Carousel appears below */}
-        <AppleCardsCarouselDemo />
       </section>
     </main>
   );
