@@ -7,6 +7,7 @@ import React, {
   createContext,
   useContext,
   RefObject,
+  useMemo,
 } from "react";
 import { IconArrowNarrowLeft, IconArrowNarrowRight, IconX } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
@@ -430,6 +431,9 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const scrollTimeout = useRef<NodeJS.Timeout>();
+  const scrollBehavior = useMemo(() => getScrollBehavior(), []);
 
   useEffect(() => {
     if (carouselRef.current) {
@@ -446,26 +450,39 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
     }
   };
 
+  const handleScroll = (event: React.UIEvent<HTMLDivElement>) => {
+    if (scrollTimeout.current) {
+      clearTimeout(scrollTimeout.current);
+    }
+    
+    setIsScrolling(true);
+    checkScrollability();
+    
+    scrollTimeout.current = setTimeout(() => {
+      setIsScrolling(false);
+    }, 150);
+  };
+
   const scrollLeft = () => {
-    if (carouselRef.current) {
-      const cardWidth = isMobile() ? 230 : 384; // (md:w-96)
+    if (carouselRef.current && !isScrolling) {
+      const cardWidth = isMobile() ? 230 : 384;
       const gap = isMobile() ? 4 : 8;
       const scrollAmount = cardWidth + gap;
       carouselRef.current.scrollBy({
         left: -scrollAmount,
-        behavior: "smooth"
+        behavior: scrollBehavior
       });
     }
   };
 
   const scrollRight = () => {
-    if (carouselRef.current) {
-      const cardWidth = isMobile() ? 230 : 384; // (md:w-96)
+    if (carouselRef.current && !isScrolling) {
+      const cardWidth = isMobile() ? 230 : 384;
       const gap = isMobile() ? 4 : 8;
       const scrollAmount = cardWidth + gap;
       carouselRef.current.scrollBy({
         left: scrollAmount,
-        behavior: "smooth"
+        behavior: scrollBehavior
       });
     }
   };
@@ -484,7 +501,8 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
         <div
           className="flex w-full overflow-x-hidden py-10 md:py-10 scroll-smooth [scrollbar-width:none]"
           ref={carouselRef}
-          onScroll={checkScrollability}
+          onScroll={(e: React.UIEvent<HTMLDivElement>) => handleScroll(e)}
+          style={{ willChange: 'scroll-position' }}
         >
           <div
             className={cn(
@@ -539,9 +557,13 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
 export const Card = ({ card, index, layout = false }: CardProps) => {
   const [open, setOpen] = useState(false);
   const [backgroundColor, setBackgroundColor] = useState('rgb(255, 255, 255)');
+  const [colorError, setColorError] = useState(false);
+  const [isColorLoading, setIsColorLoading] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
   const { onCardClose } = useContext(CarouselContext);
   const imageRef = useRef<HTMLImageElement>(null);
+  const colorCache = useRef<Map<string, string>>(new Map());
+  const animationSettings = useMemo(() => getAnimationSettings(), []);
 
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
@@ -562,13 +584,39 @@ export const Card = ({ card, index, layout = false }: CardProps) => {
 
   useEffect(() => {
     if (imageRef.current) {
-      const colorThief = new ColorThief();
       const img = imageRef.current;
+      setIsColorLoading(true);
+      
+      // Check cache first
+      if (colorCache.current.has(card.src)) {
+        setBackgroundColor(colorCache.current.get(card.src)!);
+        setIsColorLoading(false);
+        return;
+      }
+
+      const colorThief = new ColorThief();
       
       img.onload = () => {
-        const [r, g, b] = colorThief.getColor(img);
-        const baseColor = `rgb(${r}, ${g}, ${b})`;
-        setBackgroundColor(softenColor(baseColor));
+        try {
+          const [r, g, b] = colorThief.getColor(img);
+          const baseColor = `rgb(${r}, ${g}, ${b})`;
+          const softenedColor = softenColor(baseColor);
+          colorCache.current.set(card.src, softenedColor);
+          setBackgroundColor(softenedColor);
+        } catch (error) {
+          console.error('Color extraction failed:', error);
+          setColorError(true);
+          setBackgroundColor('rgb(255, 255, 255)');
+        } finally {
+          setIsColorLoading(false);
+        }
+      };
+
+      img.onerror = () => {
+        console.error('Image failed to load:', card.src);
+        setColorError(true);
+        setBackgroundColor('rgb(255, 255, 255)');
+        setIsColorLoading(false);
       };
     }
   }, [card.src]);
@@ -597,18 +645,26 @@ export const Card = ({ card, index, layout = false }: CardProps) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={animationSettings}
               className="bg-black/80 backdrop-blur-lg h-full w-full fixed inset-0"
+              style={{ willChange: 'opacity' }}
             />
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={animationSettings}
               ref={containerRef}
               layoutId={layout ? `card-${card.title}` : undefined}
-              className="max-w-5xl mx-auto h-fit z-[60] my-10 p-4 md:p-10 rounded-3xl font-sans relative"
+              className={cn(
+                "max-w-5xl mx-auto h-fit z-[60] my-10 p-4 md:p-10 rounded-3xl font-sans relative",
+                isColorLoading && "bg-white",
+                colorError && "bg-white"
+              )}
               style={{
-                backgroundColor: backgroundColor,
-                color: getContrastColor(backgroundColor)
+                backgroundColor: !isColorLoading && !colorError ? backgroundColor : 'rgb(255, 255, 255)',
+                color: getContrastColor(backgroundColor),
+                willChange: 'transform, opacity'
               }}
             >
               <button
@@ -650,6 +706,7 @@ export const Card = ({ card, index, layout = false }: CardProps) => {
         layoutId={layout ? `card-${card.title}` : undefined}
         onClick={handleOpen}
         className="rounded-3xl h-80 w-56 md:h-[40rem] md:w-96 overflow-hidden flex flex-col items-start justify-start relative z-10"
+        style={{ willChange: 'transform' }}
       >
         <div className="absolute h-full top-0 inset-x-0 bg-gradient-to-b from-black/50 via-transparent to-transparent z-30 pointer-events-none" />
         <div className="relative z-40 p-8">
@@ -673,12 +730,17 @@ export const Card = ({ card, index, layout = false }: CardProps) => {
           className="absolute z-10 inset-0 w-full h-full object-cover"
           style={{ display: 'none' }}
           crossOrigin="anonymous"
+          loading="lazy"
+          decoding="async"
         />
         <BlurImage
           src={card.src}
           alt={card.title}
           fill
           className="object-cover absolute z-10 inset-0"
+          crossOrigin="anonymous"
+          loading="lazy"
+          decoding="async"
         />
       </motion.button>
     </>
@@ -697,10 +759,18 @@ export const BlurImage = ({
   ...rest
 }: ImageProps) => {
   const [isLoading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
   return (
     <Image
-      className={cn("transition duration-300", isLoading ? "blur-sm" : "blur-0", className)}
+      className={cn(
+        "transition duration-300",
+        isLoading ? "blur-sm" : "blur-0",
+        error && "opacity-50",
+        className
+      )}
       onLoad={() => setLoading(false)}
+      onError={() => setError(true)}
       src={src}
       width={width}
       height={height}
@@ -708,6 +778,8 @@ export const BlurImage = ({
       decoding="async"
       blurDataURL={typeof src === "string" ? src : undefined}
       alt={alt ? alt : "Background of a beautiful view"}
+      sizes="(max-width: 768px) 230px, 384px"
+      quality={75}
       {...rest}
     />
   );
@@ -773,3 +845,29 @@ export function AppleCardsCarouselDemo() {
     </div>
   );
 }
+
+// Add performance optimizations for Mac/iOS
+const isMac = typeof window !== 'undefined' && /Mac|iPod|iPhone|iPad/.test(navigator.platform);
+const prefersReducedMotion = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Optimize scroll behavior for Mac
+const getScrollBehavior = () => {
+  if (isMac) {
+    return 'smooth';
+  }
+  return 'auto';
+};
+
+// Optimize animation settings for Mac/iOS
+const getAnimationSettings = () => {
+  if (prefersReducedMotion) {
+    return {
+      duration: 0,
+      ease: 'linear'
+    };
+  }
+  return {
+    duration: 0.5,
+    ease: 'easeOut'
+  };
+};
