@@ -101,12 +101,10 @@ const SelectedCardPortal = ({ selected, onClose }: SelectedCardPortalProps) => {
         <motion.div
           layoutId={`card-${selected.id}`}
           className="relative w-full max-w-5xl h-[80vh] mx-auto bg-black rounded-3xl overflow-hidden z-[60]"
-          onClick={onClose} // ✅ Clicking image now closes it
+          onClick={onClose}
         >
-          {/* ✅ Dark tint over the image for better text visibility */}
           <motion.div className="absolute inset-0 bg-black bg-opacity-50 z-10" />
 
-          {/* ✅ Full-size image */}
           <motion.div
             layoutId={`image-${selected.id}-image`}
             className="relative w-full h-full"
@@ -114,7 +112,6 @@ const SelectedCardPortal = ({ selected, onClose }: SelectedCardPortalProps) => {
             <ImageComponent card={selected} />
           </motion.div>
 
-          {/* ✅ Text now overlays the image, aligned at the bottom */}
           <motion.div
             layoutId={`content-${selected.id}`}
             initial={{ opacity: 0, y: 100 }}
@@ -123,10 +120,19 @@ const SelectedCardPortal = ({ selected, onClose }: SelectedCardPortalProps) => {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="absolute bottom-0 left-0 w-full p-6 z-20 text-white"
           >
-            {selected.content}
+            <div className="flex flex-col">
+              {selected.content}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+                className="text-white/80 hover:text-white transition-colors cursor-pointer mt-2"
+              >
+                Read More →
+              </motion.div>
+            </div>
           </motion.div>
 
-          {/* ✅ Removed extra button styling */}
           <button
             onClick={onClose}
             className="absolute top-4 right-4 text-white z-50"

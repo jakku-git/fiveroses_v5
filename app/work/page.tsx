@@ -173,8 +173,6 @@ export default function WorkPage() {
       <section className="w-full min-h-[60vh] relative bg-black text-white">
         <BackgroundBoxes className="absolute inset-0" />
       </section>
-      {/* Our Services Horizontal Section */}
-      <OurServicesHorizontal />
       {/* Featured Projects Section */}
       <section className="w-full py-20 bg-black text-white">
         <div className="w-full px-4 md:px-6">
@@ -183,7 +181,13 @@ export default function WorkPage() {
           </h2>
           {/* Grid appears on top */}
           <LayoutGridDemo />
-          {/* Carousel appears below */}
+        </div>
+      </section>
+      {/* Our Services Horizontal Section */}
+      <OurServicesHorizontal />
+      {/* Previous Works Section */}
+      <section className="w-full py-20 bg-black text-white">
+        <div className="w-full px-4 md:px-6">
           <div className="mt-12">
             <AppleCardsCarouselDemo />
           </div>

@@ -19,11 +19,11 @@ export function LayoutGridDemo() {
 const SkeletonOne = () => (
   <div>
     <p className="font-bold md:text-4xl text-xl text-white">
-      House in the Woods
+      Ceramics
     </p>
     <p className="font-normal text-base text-white"></p>
     <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-      A serene retreat set amidst towering trees, offering peaceful solitude.
+    This campaign centers on the unique artistry of handcrafted ceramics, highlighting sustainable production methods and timeless design.
     </p>
   </div>
 );
@@ -31,11 +31,11 @@ const SkeletonOne = () => (
 const SkeletonTwo = () => (
   <div>
     <p className="font-bold md:text-4xl text-xl text-white">
-      House Above the Clouds
+      Heat
     </p>
     <p className="font-normal text-base text-white"></p>
     <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-      Perched high above, this dwelling offers breathtaking, expansive views.
+    The campaign spotlights the vibrant essence of summer with a fresh clothing brand featuring lightweight fabrics and bold, breezy designs.
     </p>
   </div>
 );
@@ -43,11 +43,11 @@ const SkeletonTwo = () => (
 const SkeletonThree = () => (
   <div>
     <p className="font-bold md:text-4xl text-xl text-white">
-      Greens All Over
+      Social Distance
     </p>
     <p className="font-normal text-base text-white"></p>
     <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-      A house surrounded by lush, vibrant nature—an idyllic escape.
+    This campaign emphasizes the importance of social distancing through clear, relatable messaging.
     </p>
   </div>
 );
@@ -67,11 +67,11 @@ const SkeletonFour = () => (
 const SkeletonFive = () => (
   <div>
     <p className="font-bold md:text-4xl text-xl text-white">
-      Urban Oasis
+      Deep Dive
     </p>
     <p className="font-normal text-base text-white"></p>
     <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-      A modern retreat blending city energy with natural comfort.
+    Using compelling narratives through engaging storytelling and expert interviews.
     </p>
   </div>
 );
@@ -79,11 +79,11 @@ const SkeletonFive = () => (
 const SkeletonSix = () => (
   <div>
     <p className="font-bold md:text-4xl text-xl text-white">
-      Coastal Charm
+      Image
     </p>
     <p className="font-normal text-base text-white"></p>
     <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-      A stunning seaside home where ocean breezes and scenic views abound.
+    This campaign invites a deeper reflection on the gap between self-representation and public perception.
     </p>
   </div>
 );
@@ -121,42 +121,42 @@ const cards = [
     content: <SkeletonOne />,
     className: "md:col-span-2",
     thumbnail:
-      "https://images.unsplash.com/photo-1476231682828-37e571bc172f?q=80&w=3474&auto=format&fit=crop",
+      "ceramics.jpg",
   },
   {
     id: 2,
     content: <SkeletonTwo />,
     className: "col-span-1",
     thumbnail:
-      "https://images.unsplash.com/photo-1464457312035-3d7d0e0c058e?q=80&w=3540&auto=format&fit=crop",
+      "heat.jpg",
   },
   {
     id: 3,
     content: <SkeletonThree />,
     className: "col-span-1",
     thumbnail:
-      "https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?q=80&w=3540&auto=format&fit=crop",
+      "socialdistance.jpg",
   },
   {
     id: 4,
     content: <SkeletonFour />,
     className: "md:col-span-2",
     thumbnail:
-      "https://images.unsplash.com/photo-1475070929565-c985b496cb9f?q=80&w=3540&auto=format&fit=crop",
+      "river.jpg",
   },
   {
     id: 5,
     content: <SkeletonFive />,
     className: "col-span-1",
     thumbnail:
-      "https://images.unsplash.com/photo-1597262975002-c5c3b14bbd62?q=80&w=3540&auto=format&fit=crop",
+      "podcast.jpg",
   },
   {
     id: 6,
     content: <SkeletonSix />,
     className: "col-span-1",
     thumbnail:
-      "https://images.unsplash.com/photo-1511984804822-e16ba72f5848?q=80&w=3540&auto=format&fit=crop",
+      "power.jpg",
   },
   {
     id: 7,
