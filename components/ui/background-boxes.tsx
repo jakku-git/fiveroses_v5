@@ -65,32 +65,42 @@ interface BackgroundBoxesProps extends React.HTMLAttributes<HTMLDivElement> {
 
 export const BackgroundBoxes = ({ className, ...props }: BackgroundBoxesProps) => {
   const [mounted, setMounted] = useState(false);
+  const [isReducedMotion, setIsReducedMotion] = useState(false);
+
   useEffect(() => {
     setMounted(true);
+    // Check for reduced motion preference
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setIsReducedMotion(mediaQuery.matches);
+    const handler = (e: MediaQueryListEvent) => setIsReducedMotion(e.matches);
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
   }, []);
 
-  // Build a grid of flowers.
-  const flowerRows = 12;
-  const flowerCols = 16;
+  // Build a grid of flowers with reduced count for better performance
+  const flowerRows = 8; // Reduced from 12
+  const flowerCols = 12; // Reduced from 16
   const flowerSize = 150;
-  const offsetX = 3; // percentage offset on left/right
-  const offsetY = 3; // percentage offset on top/bottom
-  const flowers = [];
-  for (let row = 0; row < flowerRows; row++) {
-    for (let col = 0; col < flowerCols; col++) {
-      const left = `${(col / (flowerCols - 1)) * 100 - offsetX}%`;
-      const top = `${(row / (flowerRows - 1)) * 100 - offsetY}%`;
-      flowers.push({ left, top });
+  const offsetX = 3;
+  const offsetY = 3;
+  const flowers = useMemo(() => {
+    const result = [];
+    for (let row = 0; row < flowerRows; row++) {
+      for (let col = 0; col < flowerCols; col++) {
+        const left = `${(col / (flowerCols - 1)) * 100 - offsetX}%`;
+        const top = `${(row / (flowerRows - 1)) * 100 - offsetY}%`;
+        result.push({ left, top });
+      }
     }
-  }
+    return result;
+  }, []);
 
-  // Create a custom sparkle colors array:
-  // 83% white, 10% pastel red, and 7% pastel orange.
+  // Create a custom sparkle colors array with reduced particle count
   const customSparkleColors = useMemo(() => {
     const colors = [];
-    for (let i = 0; i < 83; i++) colors.push("#FFFFFF");
-    for (let i = 0; i < 10; i++) colors.push("#FF9AA2");
-    for (let i = 0; i < 7; i++) colors.push("#FFD1A9");
+    for (let i = 0; i < 50; i++) colors.push("#FFFFFF"); // Reduced from 83
+    for (let i = 0; i < 6; i++) colors.push("#FF9AA2"); // Reduced from 10
+    for (let i = 0; i < 4; i++) colors.push("#FFD1A9"); // Reduced from 7
     return colors;
   }, []);
 
@@ -99,7 +109,7 @@ export const BackgroundBoxes = ({ className, ...props }: BackgroundBoxesProps) =
       {...props}
       className={`absolute inset-0 overflow-hidden ${className || ""}`}
     >
-      {mounted && (
+      {mounted && !isReducedMotion && (
         <>
           {/* Sparkles effect layer */}
           <div className="absolute inset-0 w-full h-full">
@@ -108,7 +118,7 @@ export const BackgroundBoxes = ({ className, ...props }: BackgroundBoxesProps) =
               background="transparent"
               minSize={0.6}
               maxSize={1.4}
-              particleDensity={100}
+              particleDensity={50} // Reduced from 100
               className="w-full h-full"
               particleColor={customSparkleColors}
             />

@@ -2,10 +2,29 @@
 import React from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { CardRevealEffect } from "@/components/ui/card-reveal-effect";
-import { BackgroundBoxes } from "@/components/ui/background-boxes";
-import { AppleCardsCarouselDemo } from "@/components/ui/apple-cards-carousel";
-import { LayoutGridDemo } from "@/components/ui/layoutgriddemo";
+import dynamic from "next/dynamic";
+import { ArrowRight } from "lucide-react";
+
+// Dynamically import heavy components
+const CardRevealEffect = dynamic(() => import("@/components/ui/card-reveal-effect").then(mod => mod.CardRevealEffect), {
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-black/50" />
+});
+
+const BackgroundBoxes = dynamic(() => import("@/components/ui/background-boxes").then(mod => mod.BackgroundBoxes), {
+  ssr: false,
+  loading: () => <div className="w-full h-full bg-black" />
+});
+
+const AppleCardsCarouselDemo = dynamic(() => import("@/components/ui/apple-cards-carousel").then(mod => mod.AppleCardsCarouselDemo), {
+  ssr: false,
+  loading: () => <div className="w-full h-[40rem] bg-black/50 animate-pulse" />
+});
+
+const LayoutGridDemo = dynamic(() => import("@/components/ui/layoutgriddemo").then(mod => mod.LayoutGridDemo), {
+  ssr: false,
+  loading: () => <div className="w-full h-[50vh] bg-black/50 animate-pulse" />
+});
 
 interface Service {
   title: string;
@@ -122,7 +141,7 @@ const Card = ({ title, children, link }: CardProps) => {
       href={link}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="relative overflow-hidden rounded-lg border border-white/[0.2] group flex flex-col items-center justify-center p-4 h-[50vh] w-[24.75%]"
+      className="relative overflow-hidden rounded-lg border border-white/[0.2] group flex flex-col items-center justify-center p-4 h-[35vh] w-[24.75%]"
     >
       <AnimatePresence>
         {hovered && (
@@ -132,13 +151,13 @@ const Card = ({ title, children, link }: CardProps) => {
         )}
       </AnimatePresence>
       <motion.div animate={{ opacity: hovered ? 0 : 1 }} transition={{ duration: 0.2 }} className="relative z-20 flex flex-col items-center justify-center h-full -mt-8">
-        <AceternityIcon className="h-6 w-6 mb-4" />
+        <AceternityIcon className="h-5 w-5 mb-3" />
         <div className="flex items-center gap-2">
-          <h2 className="text-xl font-bold text-white">{firstPart}</h2>
+          <h2 className="text-lg font-bold text-white">{firstPart}</h2>
           {secondPart && (
             <>
-              <span className="text-xl font-bold text-white">&</span>
-              <h2 className="text-xl font-bold text-white">{secondPart}</h2>
+              <span className="text-lg font-bold text-white">&</span>
+              <h2 className="text-lg font-bold text-white">{secondPart}</h2>
             </>
           )}
         </div>
@@ -167,32 +186,45 @@ const AceternityIcon = ({ className }: AceternityIconProps) => {
 };
 
 export default function WorkPage() {
+  const [isVisible, setIsVisible] = React.useState(false);
+
+  React.useEffect(() => {
+    // Only show heavy components after initial load
+    const timer = setTimeout(() => setIsVisible(true), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <main className="flex flex-col">
       {/* Hero Section */}
       <section className="w-full min-h-[60vh] relative bg-black text-white">
-        <BackgroundBoxes className="absolute inset-0" />
+        {isVisible && <BackgroundBoxes className="absolute inset-0" />}
       </section>
-      {/* Featured Projects Section */}
-      <section className="w-full py-20 bg-black text-white">
-        <div className="w-full px-4 md:px-6">
-          <h2 className="text-3xl md:text-5xl font-light tracking-tighter mb-12 text-left">
-            Featured Projects
-          </h2>
-          {/* Grid appears on top */}
-          <LayoutGridDemo />
-        </div>
-      </section>
-      {/* Our Services Horizontal Section */}
-      <OurServicesHorizontal />
-      {/* Previous Works Section */}
-      <section className="w-full py-20 bg-black text-white">
-        <div className="w-full px-4 md:px-6">
-          <div className="mt-12">
-            <AppleCardsCarouselDemo />
+
+      {/* Content Container */}
+      <div className="w-[80%] mx-auto">
+        {/* Our Services Section */}
+        <OurServicesHorizontal />
+
+        {/* Featured Projects Section */}
+        <section className="w-full py-20 bg-black text-white">
+          <div className="w-full">
+            <h2 className="text-3xl md:text-5xl font-light tracking-tighter mb-12 text-left">
+              Featured Projects
+            </h2>
+            {isVisible && <LayoutGridDemo />}
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* Previous Works Section */}
+        <section className="w-full py-20 bg-black text-white">
+          <div className="w-full">
+            <div className="mt-12">
+              {isVisible && <AppleCardsCarouselDemo />}
+            </div>
+          </div>
+        </section>
+      </div>
     </main>
   );
 }

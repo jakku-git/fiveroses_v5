@@ -14,6 +14,7 @@ import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { JSX } from "react/jsx-runtime";
 import ColorThief from 'colorthief';
+import { debounce } from 'lodash';
 
 interface CardData {
   category: string;
@@ -127,7 +128,7 @@ const Card1Content: React.FC<ContentProps> = ({ backgroundColor }) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="relative aspect-video rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-800">
           <MediaContent
-            src="heat2.jpg"
+            src="heat2.webp"
             alt="heat products"
             type="image"
           />
@@ -153,7 +154,7 @@ const Card1Content: React.FC<ContentProps> = ({ backgroundColor }) => {
         </div>
         <div className="relative aspect-video rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-800">
           <MediaContent
-            src="heat3.jpg"
+            src="heat3.webp"
             alt="Custom Solutions"
             type="image"
           />
@@ -182,7 +183,7 @@ const Card1Content: React.FC<ContentProps> = ({ backgroundColor }) => {
 };
 
 const Card2Content: React.FC<ContentProps> = ({ backgroundColor }) => {
-  return (
+        return (
     <div className="space-y-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-4">
@@ -255,8 +256,8 @@ const Card2Content: React.FC<ContentProps> = ({ backgroundColor }) => {
           </p>
         </div>
       </div>
-    </div>
-  );
+          </div>
+        );
 };
 
 const Card3Content: React.FC<ContentProps> = ({ backgroundColor }) => {
@@ -344,7 +345,7 @@ const data: CardData[] = [
   {
     category: "Project Heat",
     title: "Sizzle in Style Your Summer, Your Statement.",
-    src: "heat-cover.jpg",
+    src: "heat-cover.webp",
     content: <Card1Content backgroundColor="rgb(255, 255, 255)" />,
   },
   {
@@ -432,7 +433,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isScrolling, setIsScrolling] = useState(false);
-  const scrollTimeout = useRef<NodeJS.Timeout>();
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
   const scrollBehavior = useMemo(() => getScrollBehavior(), []);
 
   useEffect(() => {
@@ -488,7 +489,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
   };
 
   const handleCardClose = (index: number) => {
-    setCurrentIndex(index);
+      setCurrentIndex(index);
   };
 
   const isMobile = () => {
@@ -556,81 +557,87 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
 /* -------------------------------------------------------------------------- */
 export const Card = ({ card, index, layout = false }: CardProps) => {
   const [open, setOpen] = useState(false);
-  const [backgroundColor, setBackgroundColor] = useState('rgb(255, 255, 255)');
-  const [colorError, setColorError] = useState(false);
   const [isColorLoading, setIsColorLoading] = useState(true);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { onCardClose } = useContext(CarouselContext);
+  const [colorError, setColorError] = useState(false);
+  const [backgroundColor, setBackgroundColor] = useState('rgb(255, 255, 255)');
   const imageRef = useRef<HTMLImageElement>(null);
-  const colorCache = useRef<Map<string, string>>(new Map());
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isMacOrIOS = useMemo(() => {
+    if (typeof window === 'undefined') return false;
+    return /Mac|iPhone|iPad|iPod/i.test(navigator.platform);
+  }, []);
+
+  // Optimize scroll behavior for Mac/iOS
+  const scrollBehavior = isMacOrIOS ? 'smooth' : 'auto';
+
+  // Cache color extraction results
+  const colorCache = useMemo(() => new Map<string, string>(), []);
+
   const animationSettings = useMemo(() => getAnimationSettings(), []);
-
-  useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        handleClose();
-      }
-    };
-
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [open]);
-
-  useEffect(() => {
-    if (imageRef.current) {
-      const img = imageRef.current;
-      setIsColorLoading(true);
-      
-      // Check cache first
-      if (colorCache.current.has(card.src)) {
-        setBackgroundColor(colorCache.current.get(card.src)!);
-        setIsColorLoading(false);
-        return;
-      }
-
-      const colorThief = new ColorThief();
-      
-      img.onload = () => {
-        try {
-          const [r, g, b] = colorThief.getColor(img);
-          const baseColor = `rgb(${r}, ${g}, ${b})`;
-          const softenedColor = softenColor(baseColor);
-          colorCache.current.set(card.src, softenedColor);
-          setBackgroundColor(softenedColor);
-        } catch (error) {
-          console.error('Color extraction failed:', error);
-          setColorError(true);
-          setBackgroundColor('rgb(255, 255, 255)');
-        } finally {
-          setIsColorLoading(false);
-        }
-      };
-
-      img.onerror = () => {
-        console.error('Image failed to load:', card.src);
-        setColorError(true);
-        setBackgroundColor('rgb(255, 255, 255)');
-        setIsColorLoading(false);
-      };
-    }
-  }, [card.src]);
-
-  useOutsideClick(containerRef, () => handleClose());
 
   const handleOpen = () => {
     setOpen(true);
+    document.body.style.overflow = 'hidden';
   };
 
   const handleClose = () => {
     setOpen(false);
-    onCardClose(index);
+    document.body.style.overflow = 'auto';
   };
+
+  // Debounced scroll handler
+  const debouncedScroll = useMemo(
+    () => debounce((e: WheelEvent) => {
+      if (!containerRef.current) return;
+      const container = containerRef.current;
+      const scrollAmount = e.deltaY;
+      container.scrollLeft += scrollAmount;
+      e.preventDefault();
+    }, 16),
+    []
+  );
+
+  useEffect(() => {
+    if (open && containerRef.current) {
+      containerRef.current.addEventListener('wheel', debouncedScroll, { passive: false });
+    }
+    return () => {
+      if (containerRef.current) {
+        containerRef.current.removeEventListener('wheel', debouncedScroll);
+      }
+    };
+  }, [open, debouncedScroll]);
+
+  useEffect(() => {
+    const checkImage = async () => {
+      if (!imageRef.current) return;
+      
+      setIsColorLoading(true);
+      setColorError(false);
+
+      try {
+        const img = imageRef.current;
+        if (colorCache.has(card.src)) {
+          setBackgroundColor(colorCache.get(card.src)!);
+          setIsColorLoading(false);
+          return;
+        }
+
+        const color = await extractDominantColor(img);
+        const softenedColor = softenColor(color);
+        colorCache.set(card.src, softenedColor);
+        setBackgroundColor(softenedColor);
+      } catch (error) {
+        console.error('Error extracting color:', error);
+        setColorError(true);
+        setBackgroundColor('rgb(255, 255, 255)');
+      } finally {
+        setIsColorLoading(false);
+      }
+    };
+
+    checkImage();
+  }, [card.src, colorCache]);
 
   const contentWithBackground = React.cloneElement(card.content as React.ReactElement<ContentProps>, {
     backgroundColor
@@ -838,10 +845,10 @@ export function AppleCardsCarouselDemo() {
 
   return (
     <div className="w-full bg-black text-white mt-8 py-1">
-      <h2 className="text-3xl md:text-5xl font-light tracking-tighter mb-12 text-left">
-        Previous Works
-      </h2>
-      <Carousel items={cards} />
+      <h2 className="text-2xl md:text-4xl font-light tracking-tighter mb-8 text-left">
+          Previous Works
+        </h2>
+        <Carousel items={cards} />
     </div>
   );
 }
@@ -871,3 +878,37 @@ const getAnimationSettings = () => {
     ease: 'easeOut'
   };
 };
+
+function extractDominantColor(img: HTMLImageElement): Promise<string> {
+  const canvas = document.createElement('canvas');
+  const ctx = canvas.getContext('2d');
+  if (!ctx) throw new Error('Canvas context is not supported');
+
+  canvas.width = img.width;
+  canvas.height = img.height;
+  ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  const data = imageData.data;
+  const colors = new Map<string, number>();
+
+  for (let i = 0; i < data.length; i += 4) {
+    const r = data[i];
+    const g = data[i + 1];
+    const b = data[i + 2];
+    const color = `rgb(${r}, ${g}, ${b})`;
+    colors.set(color, (colors.get(color) || 0) + 1);
+  }
+
+  let dominantColor = '';
+  let maxCount = 0;
+
+  for (const [color, count] of colors.entries()) {
+    if (count > maxCount) {
+      maxCount = count;
+      dominantColor = color;
+    }
+  }
+
+  return Promise.resolve(dominantColor);
+}

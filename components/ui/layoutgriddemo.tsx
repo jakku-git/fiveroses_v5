@@ -121,42 +121,42 @@ const cards = [
     content: <SkeletonOne />,
     className: "md:col-span-2",
     thumbnail:
-      "ceramics.jpg",
+      "ceramics.webp",
   },
   {
     id: 2,
     content: <SkeletonTwo />,
     className: "col-span-1",
     thumbnail:
-      "heat.jpg",
+      "heat.webp",
   },
   {
     id: 3,
     content: <SkeletonThree />,
     className: "col-span-1",
     thumbnail:
-      "socialdistance.jpg",
+      "socialdistance.webp",
   },
   {
     id: 4,
     content: <SkeletonFour />,
     className: "md:col-span-2",
     thumbnail:
-      "river.jpg",
+      "river.webp",
   },
   {
     id: 5,
     content: <SkeletonFive />,
     className: "col-span-1",
     thumbnail:
-      "podcast.jpg",
+      "podcast.webp",
   },
   {
     id: 6,
     content: <SkeletonSix />,
     className: "col-span-1",
     thumbnail:
-      "power.jpg",
+      "power.webp",
   },
   {
     id: 7,

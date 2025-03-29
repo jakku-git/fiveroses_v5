@@ -6,19 +6,14 @@ import { Suspense } from 'react'
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import { ThreeDMarquee } from "@/components/ui/3d-marquee"
+import { SnapScroll } from "@/components/ui/snap-scroll"
+import { AnimatedText } from "@/components/ui/animated-text"
 
 // Dynamically import heavy components
 const CanvasRevealEffect = dynamic(() => import("@/components/ui/canvas-reveal-effect").then(mod => mod.CanvasRevealEffect), {
   ssr: false,
   loading: () => <div className="h-screen w-full relative z-10" />
-})
-const FocusCards = dynamic(() => import("@/components/ui/focus-cards").then(mod => mod.FocusCards), {
-  ssr: false,
-  loading: () => <div className="w-full h-[400px]" />
-})
-const LayoutGrid = dynamic(() => import("@/components/ui/layout-grid").then(mod => mod.LayoutGrid), {
-  ssr: false,
-  loading: () => <div className="w-full h-[400px]" />
 })
 const MaskContainer = dynamic(() => import("@/components/ui/svg-mask-effect").then(mod => mod.MaskContainer), {
   ssr: false,
@@ -33,70 +28,38 @@ const inter = Inter({
 })
 
 export default function Home() {
-  const focusCardsData = [
-    {
-      title: "Marketing Strategy",
-      src: "https://videos.pexels.com/video-files/4630097/4630097-uhd_2560_1440_25fps.mp4",
-    },
-    {
-      title: "Web Development",
-      src: "https://videos.pexels.com/video-files/5483085/5483085-uhd_2732_1440_25fps.mp4",
-    },
-    {
-      title: "Creative Production",
-      src: "https://videos.pexels.com/video-files/9810701/9810701-uhd_2732_1440_25fps.mp4",
-    },
-    {
-      title: "Brand Identity",
-      src: "https://videos.pexels.com/video-files/5310858/5310858-uhd_2560_1440_25fps.mp4",
-    },
-    {
-      title: "Content Strategy",
-      src: "https://videos.pexels.com/video-files/4994039/4994039-uhd_2560_1440_25fps.mp4",
-    },
-    {
-      title: "Social Media Management",
-      src: "https://videos.pexels.com/video-files/7793361/7793361-uhd_2732_1440_25fps.mp4",
-    },
-  ]
-
-  const layoutGridData = [
-    {
-      id: 1,
-      content: <p className="text-white text-lg font-light">Media Buying Campaign</p>,
-      className: "h-64 bg-transparent text-white flex items-center justify-center",
-      thumbnail: "/pexels-evonics-1058276.jpg",
-    },
-    {
-      id: 2,
-      content: <p className="text-white text-lg font-light">Metro Banners</p>,
-      className: "h-64 bg-transparent text-white flex items-center justify-center",
-      thumbnail: "/pexels-carrie-johnson-444447-1202849.jpg",
-    },
-    {
-      id: 3,
-      content: <p className="text-white text-lg font-light">AIS Campaign</p>,
-      className: "h-64 bg-transparent text-white flex items-center justify-center",
-      thumbnail: "/pexels-freestockpro-1031700.jpg",
-    },
-    {
-      id: 4,
-      content: <p className="text-white text-lg font-light">Use Your Voice Campaign</p>,
-      className: "h-64 bg-transparent text-white flex items-center justify-center",
-      thumbnail: "/pexels-polina-kovaleva-6185245.jpg",
-    },
-    {
-      id: 5,
-      content: <p className="text-white text-lg font-light">DKNY Campaign</p>,
-      className: "h-64 bg-transparent text-white flex items-center justify-center",
-      thumbnail: "/pexels-garrison-gao-56316964-31165586.jpg",
-    },
-    {
-      id: 6,
-      content: <p className="text-white text-lg font-light">Flipkart Campaign</p>,
-      className: "h-64 bg-transparent text-white flex items-center justify-center",
-      thumbnail: "/pexels-twotriangles-14647786.jpg",
-    },
+  const marqueeImages = [
+    "https://assets.aceternity.com/cloudinary_bkp/3d-card.png",
+    "https://assets.aceternity.com/animated-modal.png",
+    "https://assets.aceternity.com/animated-testimonials.webp",
+    "https://assets.aceternity.com/cloudinary_bkp/Tooltip_luwy44.png",
+    "https://assets.aceternity.com/github-globe.png",
+    "https://assets.aceternity.com/glare-card.png",
+    "https://assets.aceternity.com/layout-grid.png",
+    "https://assets.aceternity.com/flip-text.png",
+    "https://assets.aceternity.com/hero-highlight.png",
+    "https://assets.aceternity.com/carousel.webp",
+    "https://assets.aceternity.com/placeholders-and-vanish-input.png",
+    "https://assets.aceternity.com/shooting-stars-and-stars-background.png",
+    "https://assets.aceternity.com/signup-form.png",
+    "https://assets.aceternity.com/cloudinary_bkp/stars_sxle3d.png",
+    "https://assets.aceternity.com/spotlight-new.webp",
+    "https://assets.aceternity.com/cloudinary_bkp/Spotlight_ar5jpr.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Parallax_Scroll_pzlatw_anfkh7.png",
+    "https://assets.aceternity.com/tabs.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Tracing_Beam_npujte.png",
+    "https://assets.aceternity.com/cloudinary_bkp/typewriter-effect.png",
+    "https://assets.aceternity.com/glowing-effect.webp",
+    "https://assets.aceternity.com/hover-border-gradient.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Infinite_Moving_Cards_evhzur.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Lamp_hlq3ln.png",
+    "https://assets.aceternity.com/macbook-scroll.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Meteors_fye3ys.png",
+    "https://assets.aceternity.com/cloudinary_bkp/Moving_Border_yn78lv.png",
+    "https://assets.aceternity.com/multi-step-loader.png",
+    "https://assets.aceternity.com/vortex.png",
+    "https://assets.aceternity.com/wobble-card.png",
+    "https://assets.aceternity.com/world-map.webp",
   ]
 
   return (
@@ -111,17 +74,24 @@ export default function Home() {
             revealText="fiveroses"
             textClassName="text-[8vw] tracking-tighter font-black"
           />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 translate-y-[10vh] z-20 w-full max-w-[90vw] mx-auto">
+          </div>
         </Suspense>
       </section>
 
+      {/* Snap Scroll Section */}
+      <section className="w-full bg-transparent">
+        <SnapScroll />
+      </section>
+
       {/* SVG Mask Effect Section */}
-      <section className="w-full py-20 bg-black">
+      <section className="w-full py-20 bg-white">
         <div className="flex h-[35rem] w-full items-center justify-center overflow-hidden">
           <Suspense fallback={<div className="w-full h-[35rem]" />}>
             <MaskContainer
               revealText={
                 <div className="mx-auto max-w-5xl text-center">
-                  <h2 className="text-5xl font-black text-slate-00 dark:text-white whitespace-nowrap">
+                  <h2 className="text-5xl font-black text-slate-800 dark:text-white whitespace-nowrap">
                     IGNITE. ENGAGE. ELEVATE.
                   </h2>
                   <p className="mt-4 text-xl font-light text-slate-800 dark:text-white">
@@ -145,36 +115,20 @@ export default function Home() {
             </MaskContainer>
           </Suspense>
         </div>
-      </section>
-
-      {/* Grow Your Brand Section */}
-      <section className="w-full py-20 bg-black text-white">
-        <div className="w-full px-4 md:px-6">
-          <h2 className="text-3xl md:text-5xl font-light tracking-tighter mb-12 text-left">
-            Grow Your Brand
-          </h2>
-          <Suspense fallback={<div className="w-full h-[400px]" />}>
-            <FocusCards cards={focusCardsData} />
-          </Suspense>
-        </div>
-      </section>
-
-      {/* Layout Grid Section */}
-      <section className="w-full py-20 bg-white text-black">
-        <div className="w-full px-4 md:px-6">
-          <motion.h2
-            className="text-3xl md:text-5xl font-light tracking-tighter mb-12 text-left"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
+        <div className="flex justify-center mt-8">
+          <Link
+            href="/contact"
+            className="group inline-flex items-center gap-2 px-8 py-4 bg-black text-white rounded-full hover:bg-accent transition-all duration-300"
           >
-            Our Work
-          </motion.h2>
-          <Suspense fallback={<div className="w-full h-[400px]" />}>
-            <LayoutGrid cards={layoutGridData} />
-          </Suspense>
+            Get in Touch
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
+      </section>
+
+      {/* 3D Marquee Section */}
+      <section className="w-full py-20 bg-black">
+        <ThreeDMarquee images={marqueeImages} />
       </section>
 
       {/* Call to Action Section */}

@@ -22,9 +22,15 @@ export const MaskContainer = ({
     y: null,
   });
   const containerRef = useRef<HTMLDivElement>(null);
+  const lastMousePosition = useRef<{ x: number | null; y: number | null }>({
+    x: null,
+    y: null,
+  });
+
   const updateMousePosition = (e: MouseEvent) => {
     const rect = containerRef.current?.getBoundingClientRect();
     if (rect) {
+      lastMousePosition.current = mousePosition;
       setMousePosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
     }
   };
@@ -39,6 +45,23 @@ export const MaskContainer = ({
   }, []);
 
   let maskSize = isHovered ? revealSize : size;
+
+  // Calculate the distance between current and last mouse position
+  const getDistance = () => {
+    if (!lastMousePosition.current.x || !lastMousePosition.current.y || !mousePosition.x || !mousePosition.y) {
+      return 0;
+    }
+    return Math.sqrt(
+      Math.pow(mousePosition.x - lastMousePosition.current.x, 2) +
+      Math.pow(mousePosition.y - lastMousePosition.current.y, 2)
+    );
+  };
+
+  // Adjust transition duration based on mouse movement speed
+  const getTransitionDuration = () => {
+    const distance = getDistance();
+    return Math.max(0.05, Math.min(0.2, distance * 0.001));
+  };
 
   return (
     <motion.div
@@ -61,7 +84,10 @@ export const MaskContainer = ({
         }}
         transition={{
           maskSize: { duration: 0.3, ease: "easeInOut" },
-          maskPosition: { duration: 0.15, ease: "linear" },
+          maskPosition: { 
+            duration: getTransitionDuration(),
+            ease: [0.25, 0.1, 0.25, 1] // Custom easing for smoother movement
+          },
         }}
       >
         <div className="absolute inset-0 z-0 h-full w-full bg-black opacity-50 dark:bg-white" />

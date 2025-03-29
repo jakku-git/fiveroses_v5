@@ -98,3 +98,22 @@ button {
 .focus-card:hover .overlay {
   opacity: 1;
 }
+
+.ml4 {
+  position: relative;
+  font-weight: 900;
+  font-size: 4.5em;
+  width: 100%;
+  text-align: center;
+}
+
+.ml4 .letters {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  top: 0.3em;
+  opacity: 0;
+  width: 100%;
+  text-align: center;
+}
