@@ -8,7 +8,7 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { ThreeDMarquee } from "@/components/ui/3d-marquee"
 import { SnapScroll } from "@/components/ui/snap-scroll"
-import { AnimatedText } from "@/components/ui/animated-text"
+import { MorphingText } from "@/components/ui/morphing-text"
 
 // Dynamically import heavy components
 const CanvasRevealEffect = dynamic(() => import("@/components/ui/canvas-reveal-effect").then(mod => mod.CanvasRevealEffect), {
@@ -74,8 +74,6 @@ export default function Home() {
             revealText="fiveroses"
             textClassName="text-[8vw] tracking-tighter font-black"
           />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 translate-y-[10vh] z-20 w-full max-w-[90vw] mx-auto">
-          </div>
         </Suspense>
       </section>
 

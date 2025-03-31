@@ -19,7 +19,7 @@ export const SnapScroll = ({ className }: SnapScrollProps) => {
   // Create multiple text instances with different scroll positions and colors
   const textInstances = [
     { 
-      bgColor: "bg-[#FF6B6B]", // Vibrant coral
+      bgColor: "bg-[#382C41]", // Deep purple
       textColor: "text-white", // Pure white for contrast
       title: "Create",
       subtitle: "Fearlessly.",
@@ -28,7 +28,7 @@ export const SnapScroll = ({ className }: SnapScrollProps) => {
       bgImage: "bg-[url('/images/pattern-1.svg')]"
     },
     { 
-      bgColor: "bg-[#2D3436]", // Deep charcoal
+      bgColor: "bg-[#524C73]", // Muted purple
       textColor: "text-white", // Pure white for contrast
       title: "Break",
       subtitle: "Boundaries.",
@@ -37,7 +37,7 @@ export const SnapScroll = ({ className }: SnapScrollProps) => {
       bgImage: "bg-[url('/images/pattern-2.svg')]"
     },
     { 
-      bgColor: "bg-[#00B894]", // Fresh mint
+      bgColor: "bg-[#65B2A0]", // Sage
       textColor: "text-white", // Pure white for contrast
       title: "Strategize",
       subtitle: "Success.",
@@ -46,8 +46,8 @@ export const SnapScroll = ({ className }: SnapScrollProps) => {
       bgImage: "bg-[url('/images/pattern-3.svg')]"
     },
     { 
-      bgColor: "bg-[#6C5CE7]", // Rich purple
-      textColor: "text-white", // Pure white for contrast
+      bgColor: "bg-[#ADDEC1]", // Light sage
+      textColor: "text-black", // Changed to black for better contrast on light background
       title: "Craft",
       subtitle: "Magic.",
       description: "We brand. You bloom.",
@@ -77,13 +77,13 @@ export const SnapScroll = ({ className }: SnapScrollProps) => {
               {/* Background gradient */}
               <div className={cn(
                 "absolute inset-0 bg-gradient-to-b",
-                instance.bgColor === "bg-[#FF6B6B]" 
-                  ? "from-[#FF6B6B] via-[#FF6B6B]/95 to-[#FF6B6B]/90" 
-                  : instance.bgColor === "bg-[#2D3436]"
-                  ? "from-[#2D3436] via-[#2D3436]/95 to-[#2D3436]/90"
-                  : instance.bgColor === "bg-[#00B894]"
-                  ? "from-[#00B894] via-[#00B894]/95 to-[#00B894]/90"
-                  : "from-[#6C5CE7] via-[#6C5CE7]/95 to-[#6C5CE7]/90"
+                instance.bgColor === "bg-[#382C41]" 
+                  ? "from-[#382C41] via-[#382C41]/95 to-[#382C41]/90" 
+                  : instance.bgColor === "bg-[#524C73]"
+                  ? "from-[#524C73] via-[#524C73]/95 to-[#524C73]/90"
+                  : instance.bgColor === "bg-[#65B2A0]"
+                  ? "from-[#65B2A0] via-[#65B2A0]/95 to-[#65B2A0]/90"
+                  : "from-[#ADDEC1] via-[#ADDEC1]/95 to-[#ADDEC1]/90"
               )} />
               
               {/* Content */}
@@ -111,8 +111,9 @@ export const SnapScroll = ({ className }: SnapScrollProps) => {
                 
                 <Parallax translateY={[-5, 5]} speed={-2}>
                   <p className={cn(
-                    "mt-24 text-xl font-light",
-                    "text-white/90"
+                    instance.bgColor === "bg-[#ADDEC1]" ? "mt-32" : "mt-24",
+                    "text-xl font-light",
+                    instance.bgColor === "bg-[#ADDEC1]" ? "text-black/90" : "text-white/90"
                   )}>
                     {instance.description}
                   </p>
@@ -122,8 +123,11 @@ export const SnapScroll = ({ className }: SnapScrollProps) => {
                   <a
                     href="/contact"
                     className={cn(
-                      "group mt-8 text-xl font-light inline-flex items-center gap-2",
-                      "text-white/80 hover:text-white",
+                      "group text-xl font-light inline-flex items-center gap-2",
+                      instance.bgColor === "bg-[#ADDEC1]" ? "mt-12" : "mt-8",
+                      instance.bgColor === "bg-[#ADDEC1]" 
+                        ? "text-black/80 hover:text-black"
+                        : "text-white/80 hover:text-white",
                       "transition-all duration-300 hover:scale-105"
                     )}
                   >
