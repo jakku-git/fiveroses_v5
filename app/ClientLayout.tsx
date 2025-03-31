@@ -20,23 +20,23 @@ const Header = memo(function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? "bg-black/90 backdrop-blur-sm" : "bg-transparent"
-      }`}
+      } ${inter.className}`}
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-6 flex justify-between items-center">
         <Link href="/" className="text-3xl font-bold tracking-tighter">
           fiveroses
         </Link>
-        <nav className="hidden md:flex items-center gap-8">
-          <Link href="/" className="text-sm font-bold hover:text-accent transition-colors">
+        <nav className="hidden md:flex items-center gap-12">
+          <Link href="/" className="text-lg font-light tracking-wide hover:text-accent transition-all duration-300">
             Home
           </Link>
-          <Link href="/work" className="text-sm font-bold hover:text-accent transition-colors">
+          <Link href="/work" className="text-lg font-light tracking-wide hover:text-accent transition-all duration-300">
             Work
           </Link>
-          <Link href="/news" className="text-sm font-bold hover:text-accent transition-colors">
+          <Link href="/news" className="text-lg font-light tracking-wide hover:text-accent transition-all duration-300">
             News
           </Link>
-          <Link href="/contact" className="text-sm font-bold hover:text-accent transition-colors">
+          <Link href="/contact" className="text-lg font-light tracking-wide hover:text-accent transition-all duration-300">
             Contact
           </Link>
         </nav>
@@ -62,7 +62,7 @@ const MobileNav = memo(function MobileNav() {
         {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
       </button>
       <motion.div
-        className="fixed inset-0 bg-black z-40 flex flex-col items-center justify-center"
+        className={`fixed inset-0 bg-black z-40 flex flex-col items-center justify-center ${inter.className}`}
         initial="closed"
         animate={isOpen ? "open" : "closed"}
         variants={menuVariants}
@@ -75,7 +75,7 @@ const MobileNav = memo(function MobileNav() {
             { href: "/contact", label: "Contact" },
           ].map((link, i) => (
             <motion.div key={link.href} custom={i} variants={linkVariants}>
-              <Link href={link.href} className="text-3xl font-bold tracking-tight hover:text-accent" onClick={() => setIsOpen(false)}>
+              <Link href={link.href} className="text-3xl font-light tracking-wide hover:text-accent transition-all duration-300" onClick={() => setIsOpen(false)}>
                 {link.label}
               </Link>
             </motion.div>

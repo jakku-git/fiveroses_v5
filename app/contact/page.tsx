@@ -17,7 +17,7 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="w-full py-32 px-4 md:px-6 bg-black text-white">
+      <section className="w-full py-16 px-4 md:px-6 bg-black text-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             <div>
@@ -224,26 +224,6 @@ export default function ContactPage() {
                 </button>
               </form>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Map Section */}
-      <section className="w-full py-32 px-4 md:px-6 bg-neutral-950 text-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tighter mb-6">Visit Our Office</h2>
-            <p className="text-lg text-neutral-300 max-w-2xl mx-auto">
-              We're located in the heart of San Francisco's tech district.
-            </p>
-          </div>
-
-          <div className="rounded-lg overflow-hidden h-[400px] md:h-[500px]">
-            <img
-              src="/placeholder.svg?height=500&width=1200"
-              alt="Office Location Map"
-              className="w-full h-full object-cover"
-            />
           </div>
         </div>
       </section>
