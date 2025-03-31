@@ -21,6 +21,16 @@ const AppleCardsCarouselDemo = dynamic(() => import("@/components/ui/apple-cards
   loading: () => <div className="w-full h-[40rem] bg-black/50 animate-pulse" />
 });
 
+const ScrollAccordion = dynamic(() => import("@/components/ui/scroll-accordion").then(mod => mod.ScrollAccordion), {
+  ssr: false,
+  loading: () => <div className="w-full h-[400vh] bg-black/50 animate-pulse" />
+});
+
+const ServicesAccordion = dynamic(() => import("@/components/ui/services-accordion").then(mod => mod.ServicesAccordion), {
+  ssr: false,
+  loading: () => <div className="w-full h-[60vh] bg-[#4A148C]/50 animate-pulse" />
+});
+
 const LayoutGridDemo = dynamic(() => import("@/components/ui/layoutgriddemo").then(mod => mod.LayoutGridDemo), {
   ssr: false,
   loading: () => <div className="w-full h-[50vh] bg-black/50 animate-pulse" />
@@ -201,11 +211,14 @@ export default function WorkPage() {
         {isVisible && <BackgroundBoxes className="absolute inset-0" />}
       </section>
 
+      {/* Scroll Accordion Section */}
+      {isVisible && <ScrollAccordion />}
+
+      {/* Services Accordion Section */}
+      {isVisible && <ServicesAccordion />}
+
       {/* Content Container */}
       <div className="w-[80%] mx-auto">
-        {/* Our Services Section */}
-        <OurServicesHorizontal />
-
         {/* Featured Projects Section */}
         <section className="w-full py-20 bg-black text-white">
           <div className="w-full">
