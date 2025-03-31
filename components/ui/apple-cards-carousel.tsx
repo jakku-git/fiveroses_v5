@@ -617,16 +617,33 @@ export const Card = ({ card, index, layout = false }: CardProps) => {
 
       try {
         const img = imageRef.current;
+        
+        // If color is cached, use it
         if (colorCache.has(card.src)) {
           setBackgroundColor(colorCache.get(card.src)!);
           setIsColorLoading(false);
           return;
         }
 
+        // Wait for image to load if it hasn't already
+        if (!img.complete) {
+          await new Promise((resolve, reject) => {
+            img.onload = resolve;
+            img.onerror = reject;
+          });
+        }
+
+        // Temporarily make the image visible for color extraction
+        const originalDisplay = img.style.display;
+        img.style.display = 'block';
+        
         const color = await extractDominantColor(img);
         const softenedColor = softenColor(color);
         colorCache.set(card.src, softenedColor);
         setBackgroundColor(softenedColor);
+
+        // Restore original display style
+        img.style.display = originalDisplay;
       } catch (error) {
         console.error('Error extracting color:', error);
         setColorError(true);

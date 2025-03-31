@@ -1,22 +1,23 @@
-import { GithubGlobe } from "@/components/ui/github-globe"
+import { GithubGlobeDemo } from "@/components/ui/github-globe-demo"
 import { Mail, Phone, MapPin } from "lucide-react"
+import { FaqAccordion } from "@/components/ui/faq-accordion"
 
 export default function ContactPage() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between pt-16">
+    <main className="flex min-h-screen flex-col items-center justify-between">
       {/* Hero Section */}
-      <section className="w-full min-h-[60vh] flex flex-col items-center justify-center relative bg-black text-white">
+      <section className="w-full h-screen flex flex-col items-center justify-center relative bg-black text-white">
         <div className="absolute inset-0 z-0">
-          <GithubGlobe />
+          <GithubGlobeDemo />
         </div>
         <div className="relative z-10 text-center px-4 md:px-6 max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-7xl font-bold tracking-tighter mb-6">Get in Touch</h1>
-          <p className="text-xl md:text-2xl text-white/80 mb-8">Let's discuss how we can help your business bloom.</p>
+          <h1 className="text-4xl md:text-7xl font-bold tracking-tighter mb-6">fiveroses</h1>
+          <p className="text-xl md:text-2xl text-white/80 mb-8"></p>
         </div>
       </section>
 
       {/* Contact Form Section */}
-      <section className="w-full py-24 px-4 md:px-6 bg-black text-white">
+      <section className="w-full py-32 px-4 md:px-6 bg-black text-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
             <div>
@@ -228,7 +229,7 @@ export default function ContactPage() {
       </section>
 
       {/* Map Section */}
-      <section className="w-full py-24 px-4 md:px-6 bg-neutral-950 text-white">
+      <section className="w-full py-32 px-4 md:px-6 bg-neutral-950 text-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tighter mb-6">Visit Our Office</h2>
@@ -248,22 +249,8 @@ export default function ContactPage() {
       </section>
 
       {/* FAQ Section */}
-      <section className="w-full py-24 px-4 md:px-6 bg-black text-white">
-        <div className="max-w-3xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tighter mb-6">Frequently Asked Questions</h2>
-            <p className="text-lg text-neutral-300">Find answers to common questions about our services.</p>
-          </div>
-
-          <div className="space-y-6">
-            {faqs.map((faq, index) => (
-              <div key={index} className="border border-neutral-800 rounded-lg p-6">
-                <h3 className="text-xl font-bold mb-3">{faq.question}</h3>
-                <p className="text-neutral-300">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+      <section className="w-full">
+        <FaqAccordion />
       </section>
     </main>
   )
