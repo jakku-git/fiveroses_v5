@@ -207,7 +207,7 @@ export default function WorkPage() {
   return (
     <main className="flex flex-col">
       {/* Hero Section */}
-      <section className="w-full min-h-[60vh] relative bg-black text-white">
+      <section className="w-full h-screen relative bg-black text-white">
         {isVisible && <BackgroundBoxes className="absolute inset-0" />}
       </section>
 

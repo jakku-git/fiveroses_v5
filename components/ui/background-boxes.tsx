@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useMemo } from "react";
 import { motion } from "framer-motion";
-import { TextGenerateEffect } from "@/components/ui/text-generate-effect";
+import { MorphingText } from "@/components/ui/morphing-text";
 import { SparklesCore } from "../ui/sparkles";
 
 interface FlowerProps {
@@ -77,12 +77,12 @@ export const BackgroundBoxes = ({ className, ...props }: BackgroundBoxesProps) =
     return () => mediaQuery.removeEventListener('change', handler);
   }, []);
 
-  // Build a grid of flowers with reduced count for better performance
-  const flowerRows = 8; // Reduced from 12
-  const flowerCols = 12; // Reduced from 16
-  const flowerSize = 150;
-  const offsetX = 3;
-  const offsetY = 3;
+  // Build a grid of flowers with increased count for full viewport
+  const flowerRows = 10; // Increased for better coverage
+  const flowerCols = 15; // Increased for better coverage
+  const flowerSize = 180; // Slightly larger flowers
+  const offsetX = 5; // Adjusted offset
+  const offsetY = 5; // Adjusted offset
   const flowers = useMemo(() => {
     const result = [];
     for (let row = 0; row < flowerRows; row++) {
@@ -95,19 +95,19 @@ export const BackgroundBoxes = ({ className, ...props }: BackgroundBoxesProps) =
     return result;
   }, []);
 
-  // Create a custom sparkle colors array with reduced particle count
+  // Create a custom sparkle colors array with adjusted particle count
   const customSparkleColors = useMemo(() => {
     const colors = [];
-    for (let i = 0; i < 50; i++) colors.push("#FFFFFF"); // Reduced from 83
-    for (let i = 0; i < 6; i++) colors.push("#FF9AA2"); // Reduced from 10
-    for (let i = 0; i < 4; i++) colors.push("#FFD1A9"); // Reduced from 7
+    for (let i = 0; i < 70; i++) colors.push("#FFFFFF"); // Increased for larger area
+    for (let i = 0; i < 8; i++) colors.push("#FF9AA2"); // Increased proportionally
+    for (let i = 0; i < 6; i++) colors.push("#FFD1A9"); // Increased proportionally
     return colors;
   }, []);
 
   return (
     <div
       {...props}
-      className={`absolute inset-0 overflow-hidden ${className || ""}`}
+      className={`fixed inset-0 w-screen h-screen overflow-hidden ${className || ""}`}
     >
       {mounted && !isReducedMotion && (
         <>
@@ -140,13 +140,19 @@ export const BackgroundBoxes = ({ className, ...props }: BackgroundBoxesProps) =
       )}
 
       {/* Text overlay */}
-      <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
-        <div className="text-center px-6">
-          <TextGenerateEffect
-            words="a creative digital agency focused on growing brands through strategic and innovative marketing solutions."
-            className="text-5xl md:text-6xl font-bold text-white max-w-screen-xl mx-auto"
-          />
-        </div>
+      <div className="absolute inset-0 z-10 grid place-items-center pointer-events-none">
+        <MorphingText
+          texts={[
+            "BUILD",
+            "CRAFT",
+            "CREATE",
+            "DESIGN",
+            "GROW",
+            "SCALE",
+            "THINK"
+          ]}
+          className="text-[clamp(5rem,25vw,25rem)] font-medium text-white text-center tracking-tighter"
+        />
       </div>
     </div>
   );
