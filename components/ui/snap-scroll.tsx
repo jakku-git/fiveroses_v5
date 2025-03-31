@@ -100,27 +100,42 @@ export const SnapScroll = ({ className }: SnapScrollProps) => {
               >
                 <Parallax translateY={[-10, 10]} speed={-5}>
                   <div className="flex flex-col items-center">
-                    <h1 className="text-[12vw] font-black tracking-tighter text-center leading-[0.85] drop-shadow-sm">
+                    <motion.h1 
+                      className="text-[12vw] font-black tracking-tighter text-center leading-[0.85] drop-shadow-sm"
+                      initial={{ x: -100, opacity: 0 }}
+                      whileInView={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                    >
                       {instance.title}
-                    </h1>
-                    <h1 className="text-[16vw] font-black tracking-tighter text-center leading-[0.85] -mt-4 drop-shadow-sm">
+                    </motion.h1>
+                    <motion.h1 
+                      className="text-[16vw] font-black tracking-tighter text-center leading-[0.85] -mt-4 drop-shadow-sm"
+                      initial={{ x: 100, opacity: 0 }}
+                      whileInView={{ x: 0, opacity: 1 }}
+                      transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
+                    >
                       {instance.subtitle}
-                    </h1>
+                    </motion.h1>
                   </div>
                 </Parallax>
                 
                 <Parallax translateY={[-5, 5]} speed={-2}>
-                  <p className={cn(
-                    instance.bgColor === "bg-[#ADDEC1]" ? "mt-32" : "mt-24",
-                    "text-xl font-light",
-                    instance.bgColor === "bg-[#ADDEC1]" ? "text-black/90" : "text-white/90"
-                  )}>
+                  <motion.p 
+                    className={cn(
+                      instance.bgColor === "bg-[#ADDEC1]" ? "mt-32" : "mt-24",
+                      "text-xl font-light",
+                      instance.bgColor === "bg-[#ADDEC1]" ? "text-black/90" : "text-white/90"
+                    )}
+                    initial={{ y: 20, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+                  >
                     {instance.description}
-                  </p>
+                  </motion.p>
                 </Parallax>
                 
                 <Parallax translateY={[-3, 3]} speed={-1}>
-                  <a
+                  <motion.a
                     href="/contact"
                     className={cn(
                       "group text-xl font-light inline-flex items-center gap-2",
@@ -130,10 +145,13 @@ export const SnapScroll = ({ className }: SnapScrollProps) => {
                         : "text-white/80 hover:text-white",
                       "transition-all duration-300 hover:scale-105"
                     )}
+                    initial={{ y: 20, opacity: 0 }}
+                    whileInView={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
                   >
                     {instance.link}
                     <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  </a>
+                  </motion.a>
                 </Parallax>
               </motion.div>
             </div>
