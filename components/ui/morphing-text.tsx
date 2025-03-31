@@ -4,8 +4,8 @@ import { useCallback, useEffect, useRef } from "react";
 
 import { cn } from "@/lib/utils";
 
-const morphTime = 2.5;
-const cooldownTime = 1.0;
+const morphTime = 1.7;
+const cooldownTime = 0.8;
 
 const useMorphingText = (texts: string[]) => {
   const textIndexRef = useRef(0);
@@ -21,12 +21,12 @@ const useMorphingText = (texts: string[]) => {
       const [current1, current2] = [text1Ref.current, text2Ref.current];
       if (!current1 || !current2) return;
 
-      current2.style.filter = `blur(${Math.min(12 / fraction - 12, 100)}px)`;
-      current2.style.opacity = `${Math.pow(fraction, 0.3) * 100}%`;
+      current2.style.filter = `blur(${Math.min(24 / fraction - 24, 100)}px)`;
+      current2.style.opacity = `${Math.pow(fraction, 0.15) * 100}%`;
 
       const invertedFraction = 1 - fraction;
-      current1.style.filter = `blur(${Math.min(12 / invertedFraction - 12, 100)}px)`;
-      current1.style.opacity = `${Math.pow(invertedFraction, 0.3) * 100}%`;
+      current1.style.filter = `blur(${Math.min(24 / invertedFraction - 24, 100)}px)`;
+      current1.style.opacity = `${Math.pow(invertedFraction, 0.15) * 100}%`;
 
       current1.textContent = texts[textIndexRef.current % texts.length];
       current2.textContent = texts[(textIndexRef.current + 1) % texts.length];
