@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { ArrowRight } from "lucide-react";
 import ShuffleHero from "../components/shuffle-hero";
 import { SmoothScrollHero } from "../components/smooth-scroll-hero";
+import { useInView } from 'react-intersection-observer';
 
 // Dynamically import heavy components
 const CardRevealEffect = dynamic(() => import("@/components/ui/card-reveal-effect").then(mod => mod.CardRevealEffect), {
@@ -199,6 +200,10 @@ const AceternityIcon = ({ className }: AceternityIconProps) => {
 
 export default function WorkPage() {
   const [isVisible, setIsVisible] = React.useState(false);
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
   React.useEffect(() => {
     // Only show heavy components after initial load
@@ -227,8 +232,8 @@ export default function WorkPage() {
               >
                 Previous Works
               </motion.h3>
-              <div>
-                {isVisible && <AppleCardsCarouselDemo />}
+              <div ref={ref}>
+                {inView && isVisible && <AppleCardsCarouselDemo />}
               </div>
             </div>
           </section>
@@ -244,7 +249,7 @@ export default function WorkPage() {
               >
                 Featured Projects
               </motion.h3>
-              {isVisible && <LayoutGridDemo />}
+              {inView && isVisible && <LayoutGridDemo />}
             </div>
           </section>
         </div>

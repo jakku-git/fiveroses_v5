@@ -83,6 +83,8 @@ const MediaContent = ({ src, alt, type }: MediaContentProps) => {
         muted
         loop
         playsInline
+        preload="metadata"
+        loading="lazy"
       />
     );
   }
@@ -93,6 +95,9 @@ const MediaContent = ({ src, alt, type }: MediaContentProps) => {
       alt={alt}
       fill
       className="object-cover"
+      loading="lazy"
+      sizes="(max-width: 768px) 100vw, 50vw"
+      quality={75}
     />
   );
 };

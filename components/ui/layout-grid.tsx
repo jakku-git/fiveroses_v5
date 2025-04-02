@@ -78,6 +78,9 @@ const ImageComponent = ({ card }: { card: Card }) => {
         layout="fill"
         objectFit="cover"
         className="transition duration-200"
+        loading="lazy"
+        sizes="(max-width: 768px) 100vw, 50vw"
+        quality={75}
       />
     </motion.div>
   );

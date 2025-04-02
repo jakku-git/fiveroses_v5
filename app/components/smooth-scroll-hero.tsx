@@ -1,34 +1,46 @@
 "use client";
 
-import { ReactLenis } from "lenis/dist/lenis-react";
+import Lenis from '@studio-freight/lenis';
 import {
   motion,
   useMotionTemplate,
   useScroll,
   useTransform,
 } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 
 interface ParallaxImgProps {
   className: string;
   alt: string;
-  src: string;
-  videoSrc?: string;
+  videoSrc: string;
   start: number;
   end: number;
 }
 
 export const SmoothScrollHero = () => {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      smoothWheel: true,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
   return (
     <div className="bg-zinc-950 w-full">
-      <ReactLenis
-        root
-        options={{
-          lerp: 0.05,
-        }}
-      >
-        <Hero />
-      </ReactLenis>
+      <Hero />
     </div>
   );
 };
@@ -82,6 +94,7 @@ const CenterVideo = () => {
         loop
         muted
         playsInline
+        preload="metadata"
         className="w-full h-full object-cover"
         style={{
           transform: `scale(${scale})`,
@@ -99,7 +112,6 @@ const ParallaxImages = () => {
   return (
     <div className="w-full px-2 md:px-4 pt-[100px] md:pt-[200px]">
       <ParallaxImg
-        src="/media/hero/heroscroll2.webp"
         videoSrc="/media/hero/scroll3.webm"
         alt="First parallax image"
         start={-200}
@@ -107,7 +119,6 @@ const ParallaxImages = () => {
         className="w-full md:w-1/3"
       />
       <ParallaxImg
-        src="/media/hero/heroscroll4.webp"
         videoSrc="/media/hero/scroll1.webm"
         alt="Second parallax image"
         start={200}
@@ -115,7 +126,6 @@ const ParallaxImages = () => {
         className="mx-auto w-full md:w-2/3"
       />
       <ParallaxImg
-        src="/media/hero/heroscroll1.webp"
         videoSrc="/media/hero/scroll2.webm"
         alt="Third parallax image"
         start={-200}
@@ -123,7 +133,6 @@ const ParallaxImages = () => {
         className="ml-auto w-full md:w-1/3"
       />
       <ParallaxImg
-        src="/media/hero/heroscroll3.webp"
         videoSrc="/media/hero/scroll4.webm"
         alt="Fourth parallax image"
         start={0}
@@ -134,7 +143,7 @@ const ParallaxImages = () => {
   );
 };
 
-const ParallaxImg = ({ className, alt, src, videoSrc, start, end }: ParallaxImgProps) => {
+const ParallaxImg = ({ className, alt, videoSrc, start, end }: ParallaxImgProps) => {
   const ref = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -154,20 +163,16 @@ const ParallaxImg = ({ className, alt, src, videoSrc, start, end }: ParallaxImgP
       className={className}
       style={{ transform, opacity }}
     >
-      {videoSrc ? (
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-        >
-          <source src={videoSrc} type="video/webm" />
-          <img src={src} alt={alt} className="w-full h-full object-cover" />
-        </video>
-      ) : (
-        <img src={src} alt={alt} className="w-full h-full object-cover" />
-      )}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        className="w-full h-full object-cover"
+      >
+        <source src={videoSrc} type="video/webm" />
+      </video>
     </motion.div>
   );
 }; 

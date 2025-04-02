@@ -222,6 +222,7 @@ export const CanvasRevealEffect = ({
           loop
           muted
           playsInline
+          preload="metadata"
           src="deepmind1.webm"
         ></video>
         <video
@@ -230,6 +231,7 @@ export const CanvasRevealEffect = ({
           loop
           muted
           playsInline
+          preload="metadata"
           src="deepmind3.webm"
         ></video>
         <video
@@ -238,6 +240,7 @@ export const CanvasRevealEffect = ({
           loop
           muted
           playsInline
+          preload="metadata"
           src="deepmind2.webm"
         ></video>
       </div>
