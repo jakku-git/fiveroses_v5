@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
+import { FuzzyOverlay } from "./fuzzy-overlay";
 
 interface SnapScrollProps {
   className?: string;
@@ -86,10 +87,13 @@ export const SnapScroll = ({ className }: SnapScrollProps) => {
                   : "from-[#ADDEC1] via-[#ADDEC1]/95 to-[#ADDEC1]/90"
               )} />
               
+              {/* Fuzzy Overlay */}
+              <FuzzyOverlay />
+              
               {/* Content */}
               <motion.div 
                 className={cn(
-                  "relative z-10 flex flex-col items-center justify-center h-full",
+                  "relative z-20 flex flex-col items-center justify-center h-full",
                   instance.textColor
                 )}
                 style={{ 
@@ -101,7 +105,7 @@ export const SnapScroll = ({ className }: SnapScrollProps) => {
                 <Parallax translateY={[-10, 10]} speed={-5}>
                   <div className="flex flex-col items-center">
                     <motion.h1 
-                      className="text-[12vw] font-black tracking-tighter text-center leading-[0.85] drop-shadow-sm"
+                      className="text-[12vw] font-black tracking-tighter text-center leading-[0.85] drop-shadow-[0_0_15px_rgba(255,255,255,0.3),0_0_30px_rgba(255,255,255,0.2),0_0_45px_rgba(255,255,255,0.1)]"
                       initial={{ x: -100, opacity: 0 }}
                       whileInView={{ x: 0, opacity: 1 }}
                       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -109,7 +113,7 @@ export const SnapScroll = ({ className }: SnapScrollProps) => {
                       {instance.title}
                     </motion.h1>
                     <motion.h1 
-                      className="text-[16vw] font-black tracking-tighter text-center leading-[0.85] -mt-4 drop-shadow-sm"
+                      className="text-[16vw] font-black tracking-tighter text-center leading-[0.85] -mt-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.3),0_0_30px_rgba(255,255,255,0.2),0_0_45px_rgba(255,255,255,0.1)]"
                       initial={{ x: 100, opacity: 0 }}
                       whileInView={{ x: 0, opacity: 1 }}
                       transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}

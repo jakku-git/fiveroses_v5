@@ -4,6 +4,8 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { ArrowRight } from "lucide-react";
+import ShuffleHero from "../components/shuffle-hero";
+import { SmoothScrollHero } from "../components/smooth-scroll-hero";
 
 // Dynamically import heavy components
 const CardRevealEffect = dynamic(() => import("@/components/ui/card-reveal-effect").then(mod => mod.CardRevealEffect), {
@@ -205,38 +207,47 @@ export default function WorkPage() {
   }, []);
 
   return (
-    <main className="flex flex-col">
-      {/* Hero Section */}
-      <section className="w-full h-screen relative bg-black text-white">
-        {isVisible && <BackgroundBoxes className="absolute inset-0" />}
-      </section>
-
-      {/* Scroll Accordion Section */}
-      {isVisible && <ScrollAccordion />}
-
-      {/* Services Accordion Section */}
-      {isVisible && <ServicesAccordion />}
+    <main className="flex min-h-screen flex-col items-center justify-between">
+      <SmoothScrollHero />
+      <div className="w-[80%] mx-auto py-20">
+        <ShuffleHero />
+      </div>
 
       {/* Content Container */}
       <div className="w-[80%] mx-auto">
-        {/* Featured Projects Section */}
-        <section className="w-full py-20 bg-black text-white">
-          <div className="w-full">
-            <h2 className="text-3xl md:text-5xl font-light tracking-tighter mb-12 text-left">
-              Featured Projects
-            </h2>
-            {isVisible && <LayoutGridDemo />}
-          </div>
-        </section>
-
-        {/* Previous Works Section */}
-        <section className="w-full py-20 bg-black text-white">
-          <div className="w-full">
-            <div className="mt-12">
-              {isVisible && <AppleCardsCarouselDemo />}
+        <div className="space-y-32">
+          {/* Previous Works Section */}
+          <section className="w-full py-20 bg-black text-white">
+            <div className="w-full">
+              <motion.h3 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-4xl md:text-6xl font-light tracking-tight leading-tight mb-12"
+              >
+                Previous Works
+              </motion.h3>
+              <div>
+                {isVisible && <AppleCardsCarouselDemo />}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+
+          {/* Featured Projects Section */}
+          <section className="w-full py-20 bg-black text-white">
+            <div className="w-full">
+              <motion.h3 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-4xl md:text-6xl font-light tracking-tight leading-tight mb-12"
+              >
+                Featured Projects
+              </motion.h3>
+              {isVisible && <LayoutGridDemo />}
+            </div>
+          </section>
+        </div>
       </div>
     </main>
   );

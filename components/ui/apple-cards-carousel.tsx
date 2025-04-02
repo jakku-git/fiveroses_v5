@@ -500,7 +500,7 @@ export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
     <CarouselContext.Provider value={{ onCardClose: handleCardClose, currentIndex }}>
       <div className="relative w-full">
         <div
-          className="flex w-full overflow-x-hidden py-10 md:py-10 scroll-smooth [scrollbar-width:none]"
+          className="flex w-full overflow-x-hidden py-8 md:py-8 scroll-smooth [scrollbar-width:none]"
           ref={carouselRef}
           onScroll={(e: React.UIEvent<HTMLDivElement>) => handleScroll(e)}
           style={{ willChange: 'scroll-position' }}
@@ -861,11 +861,8 @@ export function AppleCardsCarouselDemo() {
   ));
 
   return (
-    <div className="w-full bg-black text-white mt-8 py-1">
-      <h2 className="text-2xl md:text-4xl font-light tracking-tighter mb-8 text-left">
-          Previous Works
-        </h2>
-        <Carousel items={cards} />
+    <div className="w-full bg-black text-white mt-0 py-1">
+      <Carousel items={cards} />
     </div>
   );
 }

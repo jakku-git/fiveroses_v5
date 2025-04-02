@@ -222,7 +222,7 @@ export const CanvasRevealEffect = ({
           loop
           muted
           playsInline
-          src="https://videos.pexels.com/video-files/18069237/18069237-uhd_1440_1440_24fps.mp4"
+          src="deepmind1.webm"
         ></video>
         <video
           className="hero-video w-1/3 h-full object-cover"
@@ -230,7 +230,7 @@ export const CanvasRevealEffect = ({
           loop
           muted
           playsInline
-          src="https://videos.pexels.com/video-files/17485992/17485992-uhd_1440_1800_25fps.mp4"
+          src="deepmind3.webm"
         ></video>
         <video
           className="hero-video w-1/3 h-full object-cover"
@@ -238,7 +238,7 @@ export const CanvasRevealEffect = ({
           loop
           muted
           playsInline
-          src="https://videos.pexels.com/video-files/18069473/18069473-sd_360_640_24fps.mp4"
+          src="deepmind2.webm"
         ></video>
       </div>
 

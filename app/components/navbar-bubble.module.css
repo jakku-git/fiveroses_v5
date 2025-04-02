@@ -1,0 +1,64 @@
+.bubbleText {
+  transition:
+    0.35s font-weight,
+    0.35s color,
+    0.35s opacity,
+    0.35s text-shadow,
+    0.35s letter-spacing;
+  display: inline-block;
+  font-weight: inherit;
+  position: relative;
+}
+
+.bubbleText:hover {
+  font-weight: 700;
+  color: rgb(255, 255, 255);
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.5),
+               0 0 25px rgba(125, 125, 255, 0.3);
+  letter-spacing: 0.03em;
+}
+
+/* To the right */
+.bubbleText:hover + .bubbleText {
+  font-weight: 500;
+  color: rgba(168, 185, 255, 0.95);
+  text-shadow: 0 0 10px rgba(125, 125, 255, 0.2);
+  letter-spacing: 0.02em;
+}
+
+.bubbleText:hover + .bubbleText + .bubbleText {
+  font-weight: 400;
+  color: rgba(147, 168, 255, 0.85);
+  letter-spacing: 0.01em;
+}
+
+/* To the left */
+.bubbleText:has(+ .bubbleText:hover) {
+  font-weight: 500;
+  color: rgba(168, 185, 255, 0.95);
+  text-shadow: 0 0 10px rgba(125, 125, 255, 0.2);
+  letter-spacing: 0.02em;
+}
+
+.bubbleText:has(+ .bubbleText + .bubbleText:hover) {
+  font-weight: 400;
+  color: rgba(147, 168, 255, 0.85);
+  letter-spacing: 0.01em;
+}
+
+.navLink {
+  position: relative;
+  display: inline-flex;
+  gap: 0.15em;
+  letter-spacing: 0.02em;
+}
+
+.navLink:hover .bubbleText {
+  animation: subtle-bounce 1s infinite;
+  animation-delay: calc(var(--index) * 0.1s);
+}
+
+@keyframes subtle-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+} 

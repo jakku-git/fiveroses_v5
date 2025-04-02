@@ -3,6 +3,7 @@ import { ParallaxScroll } from "@/components/ui/parallax-scroll"
 import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import Image from "next/image"
 
 export default function CreativeProductionPage() {
   return (
@@ -66,10 +67,12 @@ export default function CreativeProductionPage() {
                 </div>
               </div>
               <div className="relative h-[500px] w-full rounded-lg overflow-hidden">
-                <img
-                  src="/placeholder.svg?height=800&width=600"
+                <Image
+                  src="/media/creative-production/process/creative-process.jpg"
                   alt="Creative Process"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  priority
                 />
               </div>
             </div>
@@ -91,9 +94,11 @@ export default function CreativeProductionPage() {
             {portfolioItems.map((item, index) => (
               <div key={index} className="group relative overflow-hidden rounded-lg">
                 <div className="aspect-[4/3] w-full overflow-hidden">
-                  <img
-                    src={item.image || "/placeholder.svg"}
+                  <Image
+                    src={item.image}
                     alt={item.title}
+                    width={800}
+                    height={600}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
@@ -144,39 +149,39 @@ const creativeServices = [
     description:
       "Comprehensive brand identity design including logos, color palettes, typography, and brand guidelines.",
     link: "#",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/media/creative-production/services/design.webp",
   },
   {
     title: "Video Production & Animation",
     description:
       "High-quality video production and animation services for commercials, explainer videos, and social media content.",
     link: "#",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/media/creative-production/services/production.webp",
   },
   {
     title: "Content Creation & Copywriting",
     description:
       "Engaging content creation and copywriting services for websites, social media, and marketing materials.",
     link: "#",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/media/creative-production/services/copywriting.webp",
   },
   {
     title: "Photography & Illustration",
     description: "Professional photography and illustration services to enhance your brand's visual identity.",
     link: "#",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/media/creative-production/services/photography.webp",
   },
   {
     title: "Interactive & Multimedia Design",
     description: "Interactive and multimedia design services for websites, apps, and digital experiences.",
     link: "#",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/media/creative-production/services/multimedia-design.webp",
   },
   {
     title: "Audio Production",
     description: "Professional audio production services for podcasts, commercials, and other audio content.",
     link: "#",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/media/creative-production/services/audio-production.webp",
   },
 ]
 
@@ -212,37 +217,37 @@ const portfolioItems = [
   {
     title: "Bloom Brand Identity",
     description: "Complete brand identity design for a sustainable skincare brand",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/media/creative-production/portfolio/bloom-brand.jpg",
     tags: ["Branding", "Graphic Design", "Packaging"],
   },
   {
     title: "Horizon Video Series",
     description: "Award-winning educational video series for environmental awareness",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/media/creative-production/portfolio/horizon-video.jpg",
     tags: ["Video Production", "Animation", "Storytelling"],
   },
   {
     title: "Pulse Campaign",
     description: "Integrated marketing campaign for a health tech startup",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/media/creative-production/portfolio/pulse-campaign.jpg",
     tags: ["Campaign", "Content", "Social Media"],
   },
   {
     title: "Nova Photography",
     description: "Product photography for a luxury watch brand",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/media/creative-production/portfolio/nova-photography.jpg",
     tags: ["Photography", "Product", "Luxury"],
   },
   {
     title: "Echo Podcast Branding",
     description: "Brand identity and audio production for a business podcast",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/media/creative-production/portfolio/echo-podcast.jpg",
     tags: ["Audio", "Branding", "Podcast"],
   },
   {
     title: "Spark Social Content",
     description: "Ongoing social media content creation for a lifestyle brand",
-    image: "/placeholder.svg?height=600&width=800",
+    image: "/media/creative-production/portfolio/spark-social.jpg",
     tags: ["Social Media", "Content", "Photography"],
   },
 ]
