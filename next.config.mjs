@@ -30,7 +30,6 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  swcMinify: true,
 }
 
 mergeConfig(nextConfig, userConfig)
