@@ -1,6 +1,6 @@
-import { HeroHighlight } from "@/components/ui/hero-highlight"
 import { Lens } from "@/components/ui/lens"
 import { FocusCards } from "@/components/ui/focus-cards"
+import { Vortex } from "@/components/ui/vortex"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
@@ -9,15 +9,32 @@ export default function MarketingPage() {
     <main className="flex min-h-screen flex-col items-center justify-between pt-16">
       {/* Hero Section */}
       <section className="w-full min-h-[70vh] flex flex-col items-center justify-center relative bg-black text-white">
-        <HeroHighlight
-          title="Marketing & Strategy"
-          description="Comprehensive marketing strategies to elevate your brand and drive growth."
-          highlightColor="rgb(253, 224, 224)"
-        />
+        <Vortex
+          backgroundColor="black"
+          className="flex items-center flex-col justify-center px-2 md:px-10 py-4 w-full h-full"
+        >
+          <h2 className="text-white text-2xl md:text-6xl font-bold text-center">
+            Marketing & Strategy
+          </h2>
+          <p className="text-white text-sm md:text-2xl max-w-xl mt-6 text-center">
+            Comprehensive marketing strategies to elevate your brand and drive growth.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center gap-4 mt-6">
+            <Link
+              href="/contact"
+              className="px-4 py-2 bg-rose-200 hover:bg-rose-300 transition duration-200 rounded-lg text-black shadow-[0px_2px_0px_0px_#FFFFFF40_inset]"
+            >
+              Get in touch
+            </Link>
+            <Link href="#services" className="px-4 py-2 text-white">
+              Explore services
+            </Link>
+          </div>
+        </Vortex>
       </section>
 
       {/* Services Section */}
-      <section className="w-full py-24 px-4 md:px-6 bg-black text-white">
+      <section id="services" className="w-full py-24 px-4 md:px-6 bg-black text-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div>
@@ -58,7 +75,7 @@ export default function MarketingPage() {
             </p>
           </div>
 
-          <FocusCards items={focusAreas} />
+          <FocusCards cards={focusAreas} />
         </div>
       </section>
 
@@ -114,31 +131,37 @@ const focusAreas = [
     title: "Digital Marketing",
     description: "Comprehensive digital marketing strategies to reach your target audience online.",
     icon: "🌐",
+    src: "https://videos.pexels.com/video-files/4630097/4630097-uhd_2560_1440_25fps.mp4"
   },
   {
     title: "Content Marketing",
     description: "Engaging content that resonates with your audience and drives conversions.",
     icon: "📝",
+    src: "https://videos.pexels.com/video-files/5483085/5483085-uhd_2732_1440_25fps.mp4"
   },
   {
     title: "Social Media",
     description: "Strategic social media management to build community and increase engagement.",
     icon: "📱",
+    src: "https://videos.pexels.com/video-files/9810701/9810701-uhd_2732_1440_25fps.mp4"
   },
   {
     title: "SEO & SEM",
     description: "Search engine optimization and marketing to improve visibility and drive traffic.",
     icon: "🔍",
+    src: "https://videos.pexels.com/video-files/5310858/5310858-uhd_2560_1440_25fps.mp4"
   },
   {
     title: "Email Marketing",
     description: "Targeted email campaigns to nurture leads and maintain customer relationships.",
     icon: "📧",
+    src: "https://videos.pexels.com/video-files/4994039/4994039-uhd_2560_1440_25fps.mp4"
   },
   {
     title: "Analytics & Reporting",
     description: "Data-driven insights to measure performance and optimize marketing efforts.",
     icon: "📊",
+    src: "https://videos.pexels.com/video-files/7793361/7793361-uhd_2732_1440_25fps.mp4"
   },
 ]
 

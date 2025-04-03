@@ -71,9 +71,10 @@ interface MediaContentProps {
   src: string;
   alt: string;
   type: 'image' | 'video';
+  isHero?: boolean;
 }
 
-const MediaContent = ({ src, alt, type }: MediaContentProps) => {
+const MediaContent = ({ src, alt, type, isHero = false }: MediaContentProps) => {
   if (type === 'video') {
     return (
       <video
@@ -83,8 +84,7 @@ const MediaContent = ({ src, alt, type }: MediaContentProps) => {
         muted
         loop
         playsInline
-        preload="metadata"
-        loading="lazy"
+        preload={isHero ? "auto" : "metadata"}
       />
     );
   }
@@ -95,9 +95,10 @@ const MediaContent = ({ src, alt, type }: MediaContentProps) => {
       alt={alt}
       fill
       className="object-cover"
-      loading="lazy"
+      loading={isHero ? "eager" : "lazy"}
       sizes="(max-width: 768px) 100vw, 50vw"
       quality={75}
+      priority={isHero}
     />
   );
 };

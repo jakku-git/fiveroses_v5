@@ -38,6 +38,7 @@ export const Lens = () => {
           src="/placeholder.svg?height=800&width=600"
           alt="Marketing Strategy"
           className="w-full h-full object-cover opacity-50"
+          loading="eager"
         />
       </div>
 

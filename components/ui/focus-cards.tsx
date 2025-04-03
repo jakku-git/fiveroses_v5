@@ -37,9 +37,9 @@ export function FocusCards({ cards = [] }: { cards?: CardType[] }) {
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="auto"
           >
-            <source src={card.src} type="video/mp4" loading="lazy" />
+            <source src={card.src} type="video/mp4" />
           </video>
           <div className="absolute bottom-8 left-4 text-xl md:text-2xl font-medium text-white drop-shadow-md">
             {card.title}

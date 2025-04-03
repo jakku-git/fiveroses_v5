@@ -49,7 +49,7 @@ export default function SustainableBrandPage() {
                   src="/placeholder.svg?height=100&width=100"
                   alt="Jessica Williams"
                   className="w-full h-full object-cover"
-                  loading="lazy"
+                  loading="eager"
                 />
               </div>
               <div>
@@ -69,7 +69,7 @@ export default function SustainableBrandPage() {
               src="/placeholder.svg?height=600&width=1200"
               alt="Sustainable Branding"
               className="w-full h-full object-cover"
-              loading="lazy"
+              loading="eager"
             />
           </motion.div>
 

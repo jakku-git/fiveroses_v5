@@ -94,7 +94,7 @@ const CenterVideo = () => {
         loop
         muted
         playsInline
-        preload="metadata"
+        preload="auto"
         className="w-full h-full object-cover"
         style={{
           transform: `scale(${scale})`,
@@ -168,7 +168,7 @@ const ParallaxImg = ({ className, alt, videoSrc, start, end }: ParallaxImgProps)
         loop
         muted
         playsInline
-        preload="metadata"
+        preload="auto"
         className="w-full h-full object-cover"
       >
         <source src={videoSrc} type="video/webm" />

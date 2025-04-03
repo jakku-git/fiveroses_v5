@@ -49,7 +49,7 @@ export default function AITransformingContentCreationPage() {
                   src="/placeholder.svg?height=100&width=100"
                   alt="Michael Chen"
                   className="w-full h-full object-cover"
-                  loading="lazy"
+                  loading="eager"
                 />
               </div>
               <div>
@@ -69,7 +69,7 @@ export default function AITransformingContentCreationPage() {
               src="/placeholder.svg?height=600&width=1200"
               alt="AI Content Creation"
               className="w-full h-full object-cover"
-              loading="lazy"
+              loading="eager"
             />
           </motion.div>
 
