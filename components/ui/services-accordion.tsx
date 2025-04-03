@@ -84,7 +84,15 @@ const servicesData = [
 ];
 
 const ServicesAccordion = () => {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [expandedIndices, setExpandedIndices] = useState<number[]>([]);
+
+  const toggleSection = (index: number) => {
+    setExpandedIndices(prev => 
+      prev.includes(index) 
+        ? prev.filter(i => i !== index)
+        : [...prev, index]
+    );
+  };
 
   return (
     <div className="w-full bg-black text-white">
@@ -100,21 +108,21 @@ const ServicesAccordion = () => {
           {servicesData.map((service, index) => (
             <div key={index} className="border-t border-white/10 first:border-t-0">
               <motion.button
-                onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
+                onClick={() => toggleSection(index)}
                 className="w-full py-8 flex items-center justify-between text-left group"
               >
                 <motion.span 
                   className="text-2xl md:text-3xl font-light tracking-tight"
                   animate={{
-                    opacity: expandedIndex === index ? 1 : 0.7
+                    opacity: expandedIndices.includes(index) ? 1 : 0.7
                   }}
                 >
                   {service.title}
                 </motion.span>
                 <motion.div
                   animate={{ 
-                    rotate: expandedIndex === index ? 180 : 0,
-                    opacity: expandedIndex === index ? 1 : 0.7
+                    rotate: expandedIndices.includes(index) ? 180 : 0,
+                    opacity: expandedIndices.includes(index) ? 1 : 0.7
                   }}
                   transition={{ duration: 0.3 }}
                   className="transform group-hover:opacity-100 transition-opacity"
@@ -124,7 +132,7 @@ const ServicesAccordion = () => {
               </motion.button>
               
               <AnimatePresence>
-                {expandedIndex === index && (
+                {expandedIndices.includes(index) && (
                   <motion.div
                     initial={{ height: 0, opacity: 0 }}
                     animate={{ height: "auto", opacity: 1 }}
