@@ -1,21 +1,16 @@
 "use client"
 
-import React, { memo, useEffect, useCallback } from "react"
+import React, { memo, useEffect } from "react"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import Link from "next/link"
 import { Menu, X, Instagram, Twitter, Linkedin } from "lucide-react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { motion } from "framer-motion"
 import styles from "./components/navbar-bubble.module.css"
 
-const inter = Inter({ 
-  subsets: ["latin"], 
-  weight: ["200", "400", "500", "700"],
-  display: 'swap',
-  preload: true
-})
+const inter = Inter({ subsets: ["latin"], weight: ["200", "400", "500", "700"] })
 
-const NavLink = memo(function NavLink({ href, text }: { href: string; text: string }) {
+const NavLink = ({ href, text }: { href: string; text: string }) => {
   return (
     <Link href={href} className={`${styles.navLink} text-[13px] font-normal tracking-[0.02em] text-white uppercase`}>
       {text.split("").map((char, idx) => (
@@ -29,30 +24,21 @@ const NavLink = memo(function NavLink({ href, text }: { href: string; text: stri
       ))}
     </Link>
   )
-})
+}
 
 const Header = memo(function Header() {
   const [isScrolled, setIsScrolled] = React.useState(false)
-  const { scrollY } = useScroll()
-  const headerOpacity = useTransform(scrollY, [0, 50], [0.3, 0.4])
-  const headerBlur = useTransform(scrollY, [0, 50], [12, 16])
-
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
-    window.addEventListener("scroll", handleScroll, { passive: true })
+    window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
-
   return (
-    <motion.header
-      style={{
-        opacity: headerOpacity,
-        backdropFilter: `blur(${headerBlur}px)`,
-      }}
+    <header
       className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-[800px] ${
         isScrolled 
-          ? "bg-gradient-to-r from-black/40 via-black/30 to-black/40 shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.1)] border-white/20" 
-          : "bg-gradient-to-r from-black/30 via-black/25 to-black/30 shadow-[0_4px_24px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] border-white/15"
+          ? "bg-gradient-to-r from-black/40 via-black/30 to-black/40 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.1)] border-white/20" 
+          : "bg-gradient-to-r from-black/30 via-black/25 to-black/30 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] border-white/15"
       } ${inter.className} rounded-full border`}
     >
       <div className="w-full px-16 py-3 flex justify-between items-center relative">
@@ -74,7 +60,7 @@ const Header = memo(function Header() {
           <MobileNav />
         </div>
       </div>
-    </motion.header>
+    </header>
   )
 })
 
@@ -88,9 +74,6 @@ const MobileNav = memo(function MobileNav() {
     closed: { opacity: 0, y: 20 },
     open: (i: number) => ({ opacity: 1, y: 0, transition: { delay: 0.3 + i * 0.1 } }),
   }
-
-  const handleClose = useCallback(() => setIsOpen(false), [])
-
   return (
     <div className="md:hidden">
       <button onClick={() => setIsOpen(!isOpen)} className="p-2">
@@ -113,7 +96,7 @@ const MobileNav = memo(function MobileNav() {
               <Link 
                 href={link.href} 
                 className="text-2xl font-[200] tracking-wide text-white/90 hover:text-white uppercase transition-all duration-300" 
-                onClick={handleClose}
+                onClick={() => setIsOpen(false)}
               >
                 {link.label}
               </Link>
@@ -126,8 +109,6 @@ const MobileNav = memo(function MobileNav() {
 })
 
 const Footer = memo(function Footer() {
-  const currentYear = new Date().getFullYear()
-  
   return (
     <footer className="w-full bg-black text-white py-32 border-t border-white/10">
       <div className="max-w-[90rem] mx-auto px-8 sm:px-12 lg:px-16">
@@ -156,7 +137,20 @@ const Footer = memo(function Footer() {
                 { href: "/contact", label: "Contact" },
               ].map((link) => (
                 <li key={link.href}>
-                  <NavLink href={link.href} text={link.label} />
+                  <Link 
+                    href={link.href}
+                    className={`${styles.navLink} text-[13px] font-normal tracking-[0.02em] text-white/60 hover:text-white uppercase`}
+                  >
+                    {link.label.split("").map((char, idx) => (
+                      <span 
+                        className={styles.bubbleText} 
+                        key={idx}
+                        style={{ '--index': idx } as React.CSSProperties}
+                      >
+                        {char}
+                      </span>
+                    ))}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -173,7 +167,20 @@ const Footer = memo(function Footer() {
                 { title: "Incubator / Consulting", href: "/work/incubator" },
               ].map((service) => (
                 <li key={service.href}>
-                  <NavLink href={service.href} text={service.title} />
+                  <Link 
+                    href={service.href}
+                    className={`${styles.navLink} text-[13px] font-normal tracking-[0.02em] text-white/60 hover:text-white uppercase`}
+                  >
+                    {service.title.split("").map((char, idx) => (
+                      <span 
+                        className={styles.bubbleText} 
+                        key={idx}
+                        style={{ '--index': idx } as React.CSSProperties}
+                      >
+                        {char}
+                      </span>
+                    ))}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -206,7 +213,7 @@ const Footer = memo(function Footer() {
         <div className="mt-24 pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-sm text-white/40">
-              © {currentYear} fiveroses. All rights reserved.
+              © {new Date().getFullYear()} fiveroses. All rights reserved.
             </p>
             <div className="flex space-x-12">
               <Link href="/privacy" className={`${styles.navLink} text-[13px] font-normal tracking-[0.02em] text-white/40 hover:text-white/60 uppercase mr-12`}>

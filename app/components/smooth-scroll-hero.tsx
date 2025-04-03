@@ -1,6 +1,6 @@
 "use client";
 
-import Lenis from 'lenis';
+import Lenis from '@studio-freight/lenis';
 import {
   motion,
   useMotionTemplate,
