@@ -7,11 +7,21 @@ export const CanvasRevealEffect = ({
   textClassName,
   containerClassName,
   animationSpeed = 1,
+  videoUrls = {
+    video1: "deepmind1.webm",
+    video2: "deepmind3.webm",
+    video3: "deepmind2.webm"
+  }
 }: {
   revealText: string
   textClassName?: string
   containerClassName?: string
   animationSpeed?: number
+  videoUrls?: {
+    video1: string
+    video2: string
+    video3: string
+  }
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const textRef = useRef<HTMLDivElement>(null)
@@ -155,7 +165,7 @@ export const CanvasRevealEffect = ({
           const index = y * 4 * textData.width + x * 4
           const alpha = textData.data[index + 3]
           if (alpha > 128) {
-            particleArray.push(new Particle(x, y, "#ffffff"))
+            particleArray.push(new Particle(x, y, "rgba(255, 255, 255, 0.9)"))
           }
         }
       }
@@ -223,7 +233,7 @@ export const CanvasRevealEffect = ({
           muted
           playsInline
           preload="auto"
-          src="deepmind1.webm"
+          src={videoUrls.video1}
         ></video>
         <video
           className="hero-video w-1/3 h-full object-cover"
@@ -232,7 +242,7 @@ export const CanvasRevealEffect = ({
           muted
           playsInline
           preload="auto"
-          src="deepmind3.webm"
+          src={videoUrls.video2}
         ></video>
         <video
           className="hero-video w-1/3 h-full object-cover"
@@ -241,7 +251,7 @@ export const CanvasRevealEffect = ({
           muted
           playsInline
           preload="auto"
-          src="deepmind2.webm"
+          src={videoUrls.video3}
         ></video>
       </div>
 
@@ -251,6 +261,7 @@ export const CanvasRevealEffect = ({
       <div
         ref={textRef}
         className={`opacity-0 absolute inset-0 flex items-center justify-center ${textClassName}`}
+        style={{ color: "rgba(255, 255, 255, 0.9)", textShadow: "0 0 10px rgba(255, 255, 255, 0.5)" }}
       >
         {revealText}
       </div>

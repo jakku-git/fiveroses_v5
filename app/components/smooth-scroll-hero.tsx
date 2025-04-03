@@ -17,7 +17,17 @@ interface ParallaxImgProps {
   end: number;
 }
 
-export const SmoothScrollHero = () => {
+interface SmoothScrollHeroProps {
+  mainVideoUrl: string;
+  parallaxVideoUrls: {
+    video1: string;
+    video2: string;
+    video3: string;
+    video4: string;
+  };
+}
+
+export const SmoothScrollHero = ({ mainVideoUrl, parallaxVideoUrls }: SmoothScrollHeroProps) => {
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -40,29 +50,29 @@ export const SmoothScrollHero = () => {
 
   return (
     <div className="bg-zinc-950 w-full">
-      <Hero />
+      <Hero mainVideoUrl={mainVideoUrl} parallaxVideoUrls={parallaxVideoUrls} />
     </div>
   );
 };
 
 const SECTION_HEIGHT = 3500;
 
-const Hero = () => {
+const Hero = ({ mainVideoUrl, parallaxVideoUrls }: SmoothScrollHeroProps) => {
   return (
     <div
       style={{ height: `calc(${SECTION_HEIGHT}px + 100vh)` }}
       className="relative w-full"
     >
-      <CenterVideo />
+      <CenterVideo videoUrl={mainVideoUrl} />
 
-      <ParallaxImages />
+      <ParallaxImages parallaxVideoUrls={parallaxVideoUrls} />
 
       <div className="absolute bottom-0 left-0 right-0 h-48 md:h-96 bg-gradient-to-b from-zinc-950/0 to-zinc-950" />
     </div>
   );
 };
 
-const CenterVideo = () => {
+const CenterVideo = ({ videoUrl }: { videoUrl: string }) => {
   const { scrollY } = useScroll();
 
   const clip1 = useTransform(scrollY, [0, 3500], [25, 0]);
@@ -101,39 +111,38 @@ const CenterVideo = () => {
           transformOrigin: "center",
         }}
       >
-        <source src="/media/hero/heroscrollvideo.webm" type="video/webm" />
-        <source src="/media/hero/main.mp4" type="video/mp4" />
+        <source src={videoUrl} type="video/mp4" />
       </motion.video>
     </motion.div>
   );
 };
 
-const ParallaxImages = () => {
+const ParallaxImages = ({ parallaxVideoUrls }: { parallaxVideoUrls: SmoothScrollHeroProps['parallaxVideoUrls'] }) => {
   return (
     <div className="w-full px-2 md:px-4 pt-[100px] md:pt-[200px]">
       <ParallaxImg
-        videoSrc="/media/hero/scroll3.webm"
+        videoSrc={parallaxVideoUrls.video1}
         alt="First parallax image"
         start={-200}
         end={200}
         className="w-full md:w-1/3"
       />
       <ParallaxImg
-        videoSrc="/media/hero/scroll1.webm"
+        videoSrc={parallaxVideoUrls.video2}
         alt="Second parallax image"
         start={200}
         end={-250}
         className="mx-auto w-full md:w-2/3"
       />
       <ParallaxImg
-        videoSrc="/media/hero/scroll2.webm"
+        videoSrc={parallaxVideoUrls.video3}
         alt="Third parallax image"
         start={-200}
         end={200}
         className="ml-auto w-full md:w-1/3"
       />
       <ParallaxImg
-        videoSrc="/media/hero/scroll4.webm"
+        videoSrc={parallaxVideoUrls.video4}
         alt="Fourth parallax image"
         start={0}
         end={-500}
@@ -171,7 +180,7 @@ const ParallaxImg = ({ className, alt, videoSrc, start, end }: ParallaxImgProps)
         preload="auto"
         className="w-full h-full object-cover"
       >
-        <source src={videoSrc} type="video/webm" />
+        <source src={videoSrc} type="video/mp4" />
       </video>
     </motion.div>
   );

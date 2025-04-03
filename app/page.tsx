@@ -72,7 +72,12 @@ export default function Home() {
             animationSpeed={0.5}
             containerClassName="h-screen w-full relative z-10"
             revealText="fiveroses"
-            textClassName="text-[8vw] tracking-tighter font-black"
+            textClassName="text-[8vw] tracking-tighter font-black text-white"
+            videoUrls={{
+              video1: "https://pub-172cf25c478a4ad6ab218ee60b1a4b4f.r2.dev/deepmind1.webm",
+              video2: "https://pub-172cf25c478a4ad6ab218ee60b1a4b4f.r2.dev/deepmind3.webm",
+              video3: "https://pub-172cf25c478a4ad6ab218ee60b1a4b4f.r2.dev/deepmind2.webm"
+            }}
           />
         </Suspense>
       </section>

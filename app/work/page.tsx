@@ -213,7 +213,15 @@ export default function WorkPage() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
-      <SmoothScrollHero />
+      <SmoothScrollHero 
+        mainVideoUrl="https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/heroscrollvideo.webm"
+        parallaxVideoUrls={{
+          video1: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/scroll3.webm",
+          video2: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/scroll1.webm",
+          video3: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/scroll2.webm",
+          video4: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/scroll4.webm"
+        }}
+      />
       <div className="w-[80%] mx-auto py-20">
         <ShuffleHero />
       </div>
