@@ -24,8 +24,6 @@ const nextConfig = {
     webpackBuildWorker: true,
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
-    optimizeCss: true,
-    optimizePackageImports: ['framer-motion', '@radix-ui/react-*'],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
