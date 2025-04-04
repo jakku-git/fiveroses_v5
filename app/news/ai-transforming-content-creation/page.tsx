@@ -1,6 +1,6 @@
 "use client"
 
-import { StickyScrollReveal } from "@/components/ui/sticky-scroll-reveal"
+import { StickyScroll } from "@/components/ui/sticky-scroll-reveal"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
@@ -90,7 +90,7 @@ export default function AITransformingContentCreationPage() {
       {/* Article Content with Sticky Scroll Reveal */}
       <section className="w-full py-24 px-4 md:px-6 bg-neutral-950 text-white">
         <div className="max-w-7xl mx-auto">
-          <StickyScrollReveal items={articleSections} />
+          <StickyScroll content={articleSections} />
         </div>
       </section>
 
