@@ -7,7 +7,7 @@ export const MaskContainer = ({
   children,
   revealText,
   size = 10,
-  revealSize = 600,
+  revealSize = 700,
   className,
 }: {
   children?: string | React.ReactNode;
@@ -44,7 +44,7 @@ export const MaskContainer = ({
     };
   }, []);
 
-  let maskSize = isHovered ? revealSize : size;
+  let maskSize = isHovered ? revealSize : size * 2.5;
 
   // Calculate the distance between current and last mouse position
   const getDistance = () => {

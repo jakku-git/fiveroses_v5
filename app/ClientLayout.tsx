@@ -35,13 +35,13 @@ const Header = memo(function Header() {
   }, [])
   return (
     <header
-      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-[800px] ${
+      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-[95%] md:w-[800px] ${
         isScrolled 
           ? "bg-gradient-to-r from-black/40 via-black/30 to-black/40 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.1)] border-white/20" 
           : "bg-gradient-to-r from-black/30 via-black/25 to-black/30 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] border-white/15"
       } ${inter.className} rounded-full border`}
     >
-      <div className="w-full px-16 py-3 flex justify-between items-center relative">
+      <div className="w-full px-4 md:px-16 py-3 flex justify-between items-center relative">
         <nav className="hidden md:flex items-center gap-16">
           <NavLink href="/work" text="Work" />
           <NavLink href="/news" text="News" />
@@ -110,18 +110,18 @@ const MobileNav = memo(function MobileNav() {
 
 const Footer = memo(function Footer() {
   return (
-    <footer className="w-full bg-black text-white py-32 border-t border-white/10">
-      <div className="max-w-[90rem] mx-auto px-8 sm:px-12 lg:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-24">
+    <footer className="w-full bg-black text-white py-16 md:py-32 border-t border-white/10">
+      <div className="max-w-[90rem] mx-auto px-4 sm:px-8 lg:px-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-24">
           {/* Brand Section */}
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             <Link 
               href="/" 
-              className="text-4xl font-bold tracking-tighter hover:text-white/90 transition-colors duration-300 inline-block"
+              className="text-3xl md:text-4xl font-bold tracking-tighter hover:text-white/90 transition-colors duration-300 inline-block"
             >
               <span className="font-black">fiveroses</span>
             </Link>
-            <p className="text-base text-white/60 font-light tracking-wide leading-relaxed">
+            <p className="text-sm md:text-base text-white/60 font-light tracking-wide leading-relaxed">
               Crafting digital experiences that inspire and innovate.
             </p>
           </div>

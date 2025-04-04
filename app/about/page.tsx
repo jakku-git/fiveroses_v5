@@ -216,28 +216,6 @@ export default function AboutPage() {
 
       {/* Services Accordion Section */}
       {isVisible && <ServicesAccordion />}
-
-      {/* Content Container */}
-      <div className="w-[80%] mx-auto">
-        {/* Featured Projects Section */}
-        <section className="w-full py-20 bg-black text-white">
-          <div className="w-full">
-            <h2 className="text-3xl md:text-5xl font-light tracking-tighter mb-12 text-left">
-              Featured Projects
-            </h2>
-            {isVisible && <LayoutGridDemo />}
-          </div>
-        </section>
-
-        {/* Previous Works Section */}
-        <section className="w-full py-20 bg-black text-white">
-          <div className="w-full">
-            <div className="mt-12">
-              {isVisible && <AppleCardsCarouselDemo />}
-            </div>
-          </div>
-        </section>
-      </div>
     </main>
   );
 } 

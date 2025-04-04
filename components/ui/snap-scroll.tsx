@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ArrowUpRight } from "lucide-react";
 import { Parallax, ParallaxProvider } from "react-scroll-parallax";
-import { FuzzyOverlay } from "./fuzzy-overlay";
 
 interface SnapScrollProps {
   className?: string;
@@ -86,9 +85,6 @@ export const SnapScroll = ({ className }: SnapScrollProps) => {
                   ? "from-[#65B2A0] via-[#65B2A0]/95 to-[#65B2A0]/90"
                   : "from-[#ADDEC1] via-[#ADDEC1]/95 to-[#ADDEC1]/90"
               )} />
-              
-              {/* Fuzzy Overlay */}
-              <FuzzyOverlay />
               
               {/* Content */}
               <motion.div 

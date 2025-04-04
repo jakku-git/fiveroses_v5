@@ -1,10 +1,126 @@
+"use client";
+
 import { LampContainer } from "@/components/ui/lamp-effect"
 import { PlaceholdersAndVanishInput } from "@/components/ui/placeholders-and-vanish-input"
-import { StickyScrollReveal } from "@/components/ui/sticky-scroll-reveal"
+import { Timeline } from "@/components/ui/timeline"
 import { Compare } from "@/components/ui/compare"
 import { AnimatedTooltip } from "@/components/ui/animated-tooltip"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
+import Image from "next/image"
+
+const timelineData = [
+  {
+    title: "2024",
+    content: (
+      <div>
+        <p className="text-neutral-200 text-xs md:text-sm font-normal mb-8">
+          Launched our incubator program with a focus on AI and Web3 startups
+        </p>
+        <div className="grid grid-cols-2 gap-4">
+          <Image
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+            alt="Mentorship program"
+            width={500}
+            height={500}
+            className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+          />
+          <Image
+            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+            alt="Workshop session"
+            width={500}
+            height={500}
+            className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+          />
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "Early 2023",
+    content: (
+      <div>
+        <p className="text-neutral-200 text-xs md:text-sm font-normal mb-8">
+          Expanded our mentorship network and launched new programs
+        </p>
+        <div className="grid grid-cols-2 gap-4">
+          <Image
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+            alt="Office space"
+            width={500}
+            height={500}
+            className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+          />
+          <Image
+            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+            alt="Networking event"
+            width={500}
+            height={500}
+            className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+          />
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "2022",
+    content: (
+      <div>
+        <p className="text-neutral-200 text-xs md:text-sm font-normal mb-4">
+          Key milestones achieved:
+        </p>
+        <div className="mb-8">
+          <div className="flex gap-2 items-center text-neutral-300 text-xs md:text-sm">
+            ✅ Launched first cohort of startups
+          </div>
+          <div className="flex gap-2 items-center text-neutral-300 text-xs md:text-sm">
+            ✅ Secured partnerships with major investors
+          </div>
+          <div className="flex gap-2 items-center text-neutral-300 text-xs md:text-sm">
+            ✅ Expanded to new locations
+          </div>
+          <div className="flex gap-2 items-center text-neutral-300 text-xs md:text-sm">
+            ✅ Launched mentorship program
+          </div>
+          <div className="flex gap-2 items-center text-neutral-300 text-xs md:text-sm">
+            ✅ Hosted first demo day
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-4">
+          <Image
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+            alt="Demo day"
+            width={500}
+            height={500}
+            className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+          />
+          <Image
+            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80"
+            alt="First cohort"
+            width={500}
+            height={500}
+            className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+          />
+        </div>
+      </div>
+    ),
+  },
+];
+
+const imageVariants = {
+  enter: {
+    opacity: 0,
+    filter: "blur(10px)",
+  },
+  center: {
+    opacity: 1,
+    filter: "blur(0px)",
+  },
+  exit: {
+    opacity: 0,
+    filter: "blur(10px)",
+  }
+}
 
 export default function IncubatorPage() {
   return (
@@ -28,17 +144,16 @@ export default function IncubatorPage() {
         </LampContainer>
       </section>
 
-      {/* Services Section */}
+      {/* Timeline Section */}
       <section className="w-full py-24 px-4 md:px-6 bg-black text-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-6">Our Incubator Services</h2>
-            <p className="text-lg text-neutral-300 max-w-2xl mx-auto">
-              We offer a comprehensive suite of services to help startups at every stage of their journey.
+        <div className="max-w-[90rem] mx-auto">
+          <div className="mb-16">
+            <h2 className="text-4xl md:text-7xl font-bold tracking-tighter mb-6">Our Journey</h2>
+            <p className="text-xl md:text-2xl text-white/80 max-w-3xl">
+              Follow our timeline to see how we've grown and evolved over the years.
             </p>
           </div>
-
-          <StickyScrollReveal items={incubatorServices} />
+          <Timeline data={timelineData} />
         </div>
       </section>
 
@@ -181,52 +296,6 @@ export default function IncubatorPage() {
     </main>
   )
 }
-
-const incubatorServices = [
-  {
-    title: "Mentorship & Business Coaching",
-    description: "One-on-one mentorship and coaching from experienced entrepreneurs and industry experts.",
-    content:
-      "Our mentors provide personalized guidance to help you navigate the challenges of building a startup. From refining your business model to scaling your operations, our mentors are there every step of the way.",
-    image: "/placeholder.svg?height=600&width=800",
-  },
-  {
-    title: "Office Space & Co-working",
-    description: "Modern co-working space with all the amenities you need to run your business.",
-    content:
-      "Our state-of-the-art co-working space provides a professional environment for your team to work and collaborate. With high-speed internet, meeting rooms, and common areas, you have everything you need to succeed.",
-    image: "/placeholder.svg?height=600&width=800",
-  },
-  {
-    title: "Networking & Workshops",
-    description:
-      "Regular networking events and workshops to help you connect with other entrepreneurs and learn new skills.",
-    content:
-      "Our networking events and workshops provide opportunities to connect with other founders, investors, and industry experts. Learn new skills, share experiences, and build relationships that can help your business grow.",
-    image: "/placeholder.svg?height=600&width=800",
-  },
-  {
-    title: "Funding Access & Investor Pitching",
-    description: "Direct access to investors and funding opportunities, plus help preparing your pitch.",
-    content:
-      "We connect you with our network of investors and help you prepare a compelling pitch. Our team will work with you to refine your pitch deck, financial projections, and presentation skills to maximize your chances of securing funding.",
-    image: "/placeholder.svg?height=600&width=800",
-  },
-  {
-    title: "Legal, Accounting & Marketing Support",
-    description: "Professional services to help you with legal, accounting, and marketing challenges.",
-    content:
-      "Our network of legal, accounting, and marketing professionals provides the support you need to navigate complex business challenges. From incorporation and contracts to financial planning and marketing strategy, we've got you covered.",
-    image: "/placeholder.svg?height=600&width=800",
-  },
-  {
-    title: "Technical Support & Accelerator Programs",
-    description: "Technical expertise and accelerator programs to help you build and scale your product.",
-    content:
-      "Our technical team provides guidance on product development, technology stack, and scaling your infrastructure. Our accelerator programs offer intensive support to help you rapidly grow your business and achieve your goals.",
-    image: "/placeholder.svg?height=600&width=800",
-  },
-]
 
 const mentors = [
   {

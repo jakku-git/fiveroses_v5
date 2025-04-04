@@ -1,7 +1,9 @@
 "use client"
 
-import { useRef, useState, useEffect } from "react"
+import React, { useEffect, useRef, useState } from "react"
+import { useMotionValueEvent, useScroll } from "framer-motion"
 import { motion } from "framer-motion"
+import { cn } from "@/lib/utils"
 
 interface Item {
   title: string
@@ -10,93 +12,108 @@ interface Item {
   image: string
 }
 
-export const StickyScrollReveal = ({ items }: { items: Item[] }) => {
-  const [activeCard, setActiveCard] = useState(0)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([])
+export const StickyScroll = ({
+  content,
+  contentClassName,
+}: {
+  content: {
+    title: string
+    description: string
+    content?: React.ReactNode | any
+  }[]
+  contentClassName?: string
+}) => {
+  const [activeCard, setActiveCard] = React.useState(0)
+  const ref = useRef<any>(null)
+  const { scrollYProgress } = useScroll({
+    container: ref,
+    offset: ["start start", "end start"]
+  })
+  const cardLength = content.length
+
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    const cardsBreakpoints = content.map((_, index) => index / cardLength)
+    const closestBreakpointIndex = cardsBreakpoints.reduce(
+      (acc, breakpoint, index) => {
+        const distance = Math.abs(latest - breakpoint)
+        if (distance < Math.abs(latest - cardsBreakpoints[acc])) {
+          return index
+        }
+        return acc
+      },
+      0,
+    )
+    setActiveCard(closestBreakpointIndex)
+  })
+
+  const backgroundColors = [
+    "#0f172a", // slate-900
+    "#000000", // black
+    "#171717", // neutral-900
+  ]
+  const linearGradients = [
+    "linear-gradient(to bottom right, #06b6d4, #10b981)", // cyan-500 to emerald-500
+    "linear-gradient(to bottom right, #ec4899, #6366f1)", // pink-500 to indigo-500
+    "linear-gradient(to bottom right, #f97316, #eab308)", // orange-500 to yellow-500
+  ]
+
+  const [backgroundGradient, setBackgroundGradient] = useState(
+    linearGradients[0],
+  )
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const index = cardRefs.current.findIndex((ref) => ref === entry.target)
-            if (index !== -1) {
-              setActiveCard(index)
-            }
-          }
-        })
-      },
-      { threshold: 0.5 },
-    )
-
-    cardRefs.current.forEach((ref) => {
-      if (ref) observer.observe(ref)
-    })
-
-    return () => {
-      cardRefs.current.forEach((ref) => {
-        if (ref) observer.unobserve(ref)
-      })
-    }
-  }, [])
+    setBackgroundGradient(linearGradients[activeCard % linearGradients.length])
+  }, [activeCard])
 
   return (
-    <div ref={containerRef} className="relative w-full">
-      <div className="flex flex-col md:flex-row">
-        {/* Left side - sticky content */}
-        <div className="w-full md:w-1/2 md:sticky md:top-32 md:h-[calc(100vh-8rem)] flex flex-col justify-center">
-          <div className="relative h-[400px] md:h-[500px] w-full rounded-lg overflow-hidden">
-            <motion.img
-              key={activeCard}
-              src={items[activeCard].image}
-              alt={items[activeCard].title}
-              initial={{ opacity: 0, scale: 1.1 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5 }}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6">
-              <motion.h3
-                key={`title-${activeCard}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="text-2xl md:text-3xl font-light mb-2"
+    <motion.div
+      animate={{
+        backgroundColor: backgroundColors[activeCard % backgroundColors.length],
+      }}
+      className="relative flex h-[30rem] justify-center space-x-10 overflow-y-auto rounded-md p-10"
+      ref={ref}
+    >
+      <div className="div relative flex items-start px-4">
+        <div className="max-w-2xl">
+          {content.map((item, index) => (
+            <div key={item.title + index} className="my-20">
+              <motion.h2
+                initial={{
+                  opacity: 0,
+                }}
+                animate={{
+                  opacity: activeCard === index ? 1 : 0.3,
+                }}
+                className="text-2xl font-bold text-slate-100"
               >
-                {items[activeCard].title}
-              </motion.h3>
+                {item.title}
+              </motion.h2>
               <motion.p
-                key={`desc-${activeCard}`}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="text-white/80"
+                initial={{
+                  opacity: 0,
+                }}
+                animate={{
+                  opacity: activeCard === index ? 1 : 0.3,
+                }}
+                className="text-kg mt-10 max-w-sm text-slate-300"
               >
-                {items[activeCard].description}
+                {item.description}
               </motion.p>
             </div>
-          </div>
-        </div>
-
-        {/* Right side - scrolling content */}
-        <div className="w-full md:w-1/2 space-y-24 py-12 md:py-0 md:pl-12">
-          {items.map((item, index) => (
-            <div
-              key={index}
-              ref={(el) => (cardRefs.current[index] = el)}
-              className={`p-6 rounded-lg transition-colors ${
-                activeCard === index ? "bg-neutral-900/80 border border-accent/20" : "bg-transparent"
-              }`}
-            >
-              <h3 className="text-2xl font-light mb-4">{item.title}</h3>
-              <p className="text-neutral-300 mb-4">{item.description}</p>
-              <p className="text-white/80">{item.content}</p>
-            </div>
           ))}
+          <div className="h-40" />
         </div>
       </div>
-    </div>
+      <div
+        style={{ background: backgroundGradient }}
+        className={cn(
+          "sticky top-10 hidden h-60 w-80 overflow-hidden rounded-md bg-white lg:block",
+          contentClassName,
+        )}
+      >
+        {content[activeCard].content ?? null}
+      </div>
+    </motion.div>
   )
 }
 

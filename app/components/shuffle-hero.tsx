@@ -2,50 +2,98 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { ContactModal } from "@/components/ui/contact-modal";
+import { ArrowUpRight } from "lucide-react";
 
 interface SquareData {
   id: number;
   src: string;
 }
 
-const ShuffleHero = () => {
+interface ShuffleHeroProps {
+  isContactOpen: boolean;
+  setIsContactOpen: (open: boolean) => void;
+}
+
+const ShuffleHero = ({ isContactOpen, setIsContactOpen }: ShuffleHeroProps) => {
   return (
-    <section className="w-full py-12 grid grid-cols-1 md:grid-cols-2 items-center gap-12">
-      <div className="max-w-xl">
-        <motion.span 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="block mb-6 text-sm md:text-base text-indigo-400 font-medium tracking-wider uppercase"
-        >
-          A Creative Agency Reimagined For Creative People
-        </motion.span>
-        <motion.h3 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-4xl md:text-6xl font-light tracking-tight leading-tight mb-6"
-        >
-          We work with ambitious brands and people.
-        </motion.h3>
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-base md:text-lg text-slate-600 leading-relaxed mb-8"
-        >
-          Together, we craft ideas into identities, and ambition into lasting impact. Because ambition deserves more than execution. It deserves elevation.
-        </motion.p>
-        <motion.button 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="bg-indigo-500 text-white font-medium py-3 px-8 rounded-lg text-base tracking-wide transition-all hover:bg-indigo-600 active:scale-95 hover:shadow-lg hover:shadow-indigo-500/20"
-        >
-          Let's Talk
-        </motion.button>
+    <section className="w-full h-screen relative flex items-center justify-center bg-black text-white overflow-hidden">
+      <div className="absolute inset-0">
+        <ShuffleGrid />
       </div>
-      <ShuffleGrid />
+      <div className="relative w-[90%] mx-auto">
+        <div className="relative z-10">
+          <div className="w-[30vw] backdrop-blur-2xl bg-gradient-to-r from-black/40 via-black/30 to-black/40 border border-white/20 rounded-2xl p-8 shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.1)]">
+            <motion.span 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="block mb-4 text-[11px] md:text-sm text-white/80 font-medium tracking-wider uppercase"
+            >
+              A Creative Agency Reimagined For Creative People
+            </motion.span>
+            <motion.h3 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-3xl md:text-6xl font-light tracking-tight leading-[1.1] text-white mb-4"
+            >
+              We work with ambitious<br />
+              brands and people.
+            </motion.h3>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="text-sm md:text-lg text-white/80 leading-relaxed mb-6"
+            >
+              Together, we craft ideas into identities, and ambition into lasting impact.<br />
+              Because ambition deserves more than execution. It deserves elevation.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+            >
+              <motion.button 
+                onClick={() => setIsContactOpen(true)}
+                className="group text-lg md:text-2xl text-white/80 hover:text-white inline-flex items-center gap-2 transition-all duration-300 font-light"
+                whileHover="hover"
+              >
+                <motion.span 
+                  className="relative"
+                  initial={{ backgroundSize: "0% 2px" }}
+                  animate={{ backgroundSize: "0% 2px" }}
+                  variants={{
+                    hover: {
+                      backgroundSize: "100% 2px"
+                    }
+                  }}
+                  style={{
+                    background: "linear-gradient(currentColor, currentColor) no-repeat 0 100%",
+                    backgroundSize: "0% 2px",
+                    transition: "background-size 0.3s"
+                  }}
+                >
+                  Let's Talk
+                </motion.span>
+                <motion.div
+                  variants={{
+                    hover: {
+                      x: 5,
+                      y: -5,
+                      transition: { type: "spring", stiffness: 300, damping: 10 }
+                    }
+                  }}
+                >
+                  <ArrowUpRight className="w-5 h-5 transition-transform" />
+                </motion.div>
+              </motion.button>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+      <ContactModal open={isContactOpen} setOpen={setIsContactOpen} />
     </section>
   );
 };
@@ -165,12 +213,11 @@ const ShuffleGrid = () => {
 
   const shuffleSquares = () => {
     setSquares(generateSquares());
-
     timeoutRef.current = setTimeout(shuffleSquares, 3000);
   };
 
   return (
-    <div className="grid grid-cols-4 grid-rows-4 h-[600px] gap-2 w-full">
+    <div className="grid grid-cols-4 grid-rows-4 h-full w-full gap-1">
       {squares.map((sq) => sq)}
     </div>
   );
