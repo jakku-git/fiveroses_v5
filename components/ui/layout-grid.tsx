@@ -24,7 +24,7 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
   };
 
   return (
-    <div className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 relative bg-transparent">
+    <div className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 relative bg-transparent">
       {/* First Row: Keep original order */}
       {cards.slice(0, 3).map((card, i) => (
         <div key={i} className={cn(card.className, "h-[35vh] md:h-[50vh]", selected?.id === card.id && "opacity-0")}>
