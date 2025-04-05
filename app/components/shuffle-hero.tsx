@@ -17,79 +17,81 @@ interface ShuffleHeroProps {
 
 const ShuffleHero = ({ isContactOpen, setIsContactOpen }: ShuffleHeroProps) => {
   return (
-    <section className="w-full h-screen relative flex items-center justify-center bg-black text-white overflow-hidden">
-      <div className="absolute inset-0">
+    <section className="w-full h-screen relative bg-black text-white overflow-hidden">
+      <div className="absolute inset-0 px-6">
         <ShuffleGrid />
       </div>
-      <div className="relative w-[90%] mx-auto">
-        <div className="relative z-10">
-          <div className="w-[30vw] backdrop-blur-2xl bg-gradient-to-r from-black/40 via-black/30 to-black/40 border border-white/20 rounded-2xl p-8 shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.1)]">
-            <motion.span 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="block mb-4 text-[11px] md:text-sm text-white/80 font-medium tracking-wider uppercase"
-            >
-              A Creative Agency Reimagined For Creative People
-            </motion.span>
-            <motion.h3 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-3xl md:text-6xl font-light tracking-tight leading-[1.1] text-white mb-4"
-            >
-              We work with ambitious<br />
-              brands and people.
-            </motion.h3>
-            <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-sm md:text-lg text-white/80 leading-relaxed mb-6"
-            >
-              Together, we craft ideas into identities, and ambition into lasting impact.<br />
-              Because ambition deserves more than execution. It deserves elevation.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-            >
-              <motion.button 
-                onClick={() => setIsContactOpen(true)}
-                className="group text-lg md:text-2xl text-white/80 hover:text-white inline-flex items-center gap-2 transition-all duration-300 font-light"
-                whileHover="hover"
+      <div className="relative h-full flex items-center justify-center">
+        <div className="w-full max-w-[90%] px-6">
+          <div className="relative z-10">
+            <div className="w-full md:w-[30vw] backdrop-blur-2xl bg-gradient-to-r from-black/40 via-black/30 to-black/40 border border-white/20 rounded-2xl p-6 md:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.1)]">
+              <motion.span 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="block mb-4 text-[11px] md:text-sm text-white/80 font-medium tracking-wider uppercase"
               >
-                <motion.span 
-                  className="relative"
-                  initial={{ backgroundSize: "0% 2px" }}
-                  animate={{ backgroundSize: "0% 2px" }}
-                  variants={{
-                    hover: {
-                      backgroundSize: "100% 2px"
-                    }
-                  }}
-                  style={{
-                    background: "linear-gradient(currentColor, currentColor) no-repeat 0 100%",
-                    backgroundSize: "0% 2px",
-                    transition: "background-size 0.3s"
-                  }}
+                A Creative Agency Reimagined For Creative People
+              </motion.span>
+              <motion.h3 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-2xl md:text-6xl font-light tracking-tight leading-[1.1] text-white mb-4"
+              >
+                We work with ambitious<br />
+                brands and people.
+              </motion.h3>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="text-sm md:text-lg text-white/80 leading-relaxed mb-6"
+              >
+                Together, we craft ideas into identities, and ambition into lasting impact.<br />
+                Because ambition deserves more than execution. It deserves elevation.
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+              >
+                <motion.button 
+                  onClick={() => setIsContactOpen(true)}
+                  className="group text-base md:text-2xl text-white/80 hover:text-white inline-flex items-center gap-2 transition-all duration-300 font-light"
+                  whileHover="hover"
                 >
-                  Let's Talk
-                </motion.span>
-                <motion.div
-                  variants={{
-                    hover: {
-                      x: 5,
-                      y: -5,
-                      transition: { type: "spring", stiffness: 300, damping: 10 }
-                    }
-                  }}
-                >
-                  <ArrowUpRight className="w-5 h-5 transition-transform" />
-                </motion.div>
-              </motion.button>
-            </motion.div>
+                  <motion.span 
+                    className="relative"
+                    initial={{ backgroundSize: "0% 2px" }}
+                    animate={{ backgroundSize: "0% 2px" }}
+                    variants={{
+                      hover: {
+                        backgroundSize: "100% 2px"
+                      }
+                    }}
+                    style={{
+                      background: "linear-gradient(currentColor, currentColor) no-repeat 0 100%",
+                      backgroundSize: "0% 2px",
+                      transition: "background-size 0.3s"
+                    }}
+                  >
+                    Let's Talk
+                  </motion.span>
+                  <motion.div
+                    variants={{
+                      hover: {
+                        x: 5,
+                        y: -5,
+                        transition: { type: "spring", stiffness: 300, damping: 10 }
+                      }
+                    }}
+                  >
+                    <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 transition-transform" />
+                  </motion.div>
+                </motion.button>
+              </motion.div>
+            </div>
           </div>
         </div>
       </div>
@@ -188,12 +190,13 @@ const generateSquares = () => {
       key={sq.id}
       layout
       transition={{ duration: 1.5, type: "spring" }}
-      className="w-full h-full"
+      className="w-full h-full overflow-hidden"
       style={{
         backgroundImage: `url(${sq.src})`,
         backgroundSize: "cover",
+        backgroundPosition: "center"
       }}
-    ></motion.div>
+    />
   ));
 };
 
@@ -217,7 +220,7 @@ const ShuffleGrid = () => {
   };
 
   return (
-    <div className="grid grid-cols-4 grid-rows-4 h-full w-full gap-1">
+    <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-4 h-full w-full gap-1 will-change-transform [transform:translateZ(0)] [backface-visibility:hidden] overflow-hidden">
       {squares.map((sq) => sq)}
     </div>
   );

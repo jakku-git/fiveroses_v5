@@ -17,22 +17,11 @@ interface ContactModalProps {
 
 export const ContactModal = ({ open, setOpen }: ContactModalProps) => {
   const [scope, animate] = useAnimate();
-  const [drawerRef, { height }] = useMeasure();
-
-  const y = useMotionValue(0);
-  const controls = useDragControls();
 
   const handleClose = async () => {
-    animate(scope.current, {
+    await animate(scope.current, {
       opacity: [1, 0],
     });
-
-    const yStart = typeof y.get() === "number" ? y.get() : 0;
-
-    await animate("#drawer", {
-      y: [yStart, height],
-    });
-
     setOpen(false);
   };
 
@@ -47,56 +36,39 @@ export const ContactModal = ({ open, setOpen }: ContactModalProps) => {
           className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm"
         >
           <motion.div
-            id="drawer"
-            ref={drawerRef}
             onClick={(e) => e.stopPropagation()}
             initial={{ y: "100%" }}
             animate={{ y: "0%" }}
+            exit={{ y: "100%" }}
             transition={{
               ease: "easeInOut",
             }}
             className="absolute bottom-0 h-[55vh] w-full overflow-hidden rounded-t-3xl bg-gradient-to-r from-black/40 via-black/30 to-black/40 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.1)] border border-white/20"
-            style={{ y }}
-            drag="y"
-            dragControls={controls}
-            onDragEnd={() => {
-              if (y.get() >= 100) {
-                handleClose();
-              }
-            }}
-            dragListener={true}
-            dragConstraints={{
-              top: 0,
-              bottom: 0,
-            }}
-            dragElastic={{
-              top: 0,
-              bottom: 0.5,
-            }}
           >
-            <div className="absolute left-0 right-0 top-0 z-10 flex justify-center p-4">
+            <div className="absolute right-4 top-4 z-10">
               <button
-                onPointerDown={(e) => {
-                  controls.start(e);
-                }}
-                className="h-1 w-14 cursor-grab touch-none rounded-full bg-white/30 active:cursor-grabbing"
-              ></button>
+                onClick={handleClose}
+                className="text-white/70 hover:text-white transition-colors"
+              >
+                ✖
+              </button>
             </div>
-            <div className="relative z-0 h-full p-6 pt-12">
-              <div className="mx-auto max-w-2xl space-y-8">
-                <div className="space-y-4 text-center">
-                  <h2 className="text-3xl font-bold text-white">Let's Create Something Amazing</h2>
-                  <p className="text-white/70">Fill out the form below and we'll get back to you within 24 hours.</p>
+            
+            <div className="h-full overflow-y-auto px-4 md:px-6 py-6">
+              <div className="mx-auto max-w-2xl space-y-6 md:space-y-8">
+                <div className="space-y-3 md:space-y-4 text-center">
+                  <h2 className="text-2xl md:text-3xl font-bold text-white">Let's Create Something Amazing</h2>
+                  <p className="text-sm md:text-base text-white/70">Fill out the form below and we'll get back to you within 24 hours.</p>
                 </div>
 
-                <form className="space-y-6">
-                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <form className="space-y-4 md:space-y-6">
+                  <div className="grid grid-cols-1 gap-4 md:gap-6 sm:grid-cols-2">
                     <div className="space-y-2">
                       <label htmlFor="name" className="text-sm font-medium text-white/80">Name</label>
                       <input
                         type="text"
                         id="name"
-                        className="w-full rounded-lg bg-white/5 px-4 py-3 text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all"
+                        className="w-full rounded-lg bg-white/5 px-3 md:px-4 py-2 md:py-3 text-sm md:text-base text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all"
                         placeholder="Your name"
                       />
                     </div>
@@ -105,19 +77,19 @@ export const ContactModal = ({ open, setOpen }: ContactModalProps) => {
                       <input
                         type="email"
                         id="email"
-                        className="w-full rounded-lg bg-white/5 px-4 py-3 text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all"
+                        className="w-full rounded-lg bg-white/5 px-3 md:px-4 py-2 md:py-3 text-sm md:text-base text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all"
                         placeholder="your@email.com"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                  <div className="grid grid-cols-1 gap-4 md:gap-6 sm:grid-cols-2">
                     <div className="space-y-2">
                       <label htmlFor="phone" className="text-sm font-medium text-white/80">Contact Number</label>
                       <input
                         type="tel"
                         id="phone"
-                        className="w-full rounded-lg bg-white/5 px-4 py-3 text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all"
+                        className="w-full rounded-lg bg-white/5 px-3 md:px-4 py-2 md:py-3 text-sm md:text-base text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all"
                         placeholder="+1 (555) 123-4567"
                       />
                     </div>
@@ -126,7 +98,7 @@ export const ContactModal = ({ open, setOpen }: ContactModalProps) => {
                       <input
                         type="text"
                         id="company"
-                        className="w-full rounded-lg bg-white/5 px-4 py-3 text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all"
+                        className="w-full rounded-lg bg-white/5 px-3 md:px-4 py-2 md:py-3 text-sm md:text-base text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all"
                         placeholder="Your company name"
                       />
                     </div>
@@ -137,18 +109,18 @@ export const ContactModal = ({ open, setOpen }: ContactModalProps) => {
                     <input
                       type="text"
                       id="position"
-                      className="w-full rounded-lg bg-white/5 px-4 py-3 text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all"
+                      className="w-full rounded-lg bg-white/5 px-3 md:px-4 py-2 md:py-3 text-sm md:text-base text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all"
                       placeholder="Your position in the company"
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                  <div className="grid grid-cols-1 gap-4 md:gap-6 sm:grid-cols-2">
                     <div className="space-y-2">
                       <label htmlFor="project" className="text-sm font-medium text-white/80">Project Type</label>
                       <div className="relative">
                         <select
                           id="project"
-                          className="w-full rounded-lg bg-white/5 px-4 py-3 text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all appearance-none pr-10"
+                          className="w-full rounded-lg bg-white/5 px-3 md:px-4 py-2 md:py-3 text-sm md:text-base text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all appearance-none pr-10"
                         >
                           <option value="" className="bg-black">Select a project type</option>
                           <option value="marketing" className="bg-black">Marketing</option>
@@ -168,7 +140,7 @@ export const ContactModal = ({ open, setOpen }: ContactModalProps) => {
                       <div className="relative">
                         <select
                           id="budget"
-                          className="w-full rounded-lg bg-white/5 px-4 py-3 text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all appearance-none pr-10"
+                          className="w-full rounded-lg bg-white/5 px-3 md:px-4 py-2 md:py-3 text-sm md:text-base text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all appearance-none pr-10"
                         >
                           <option value="" className="bg-black">Select a budget range</option>
                           <option value="5k-10k" className="bg-black">$5,000 - $10,000</option>
@@ -190,7 +162,7 @@ export const ContactModal = ({ open, setOpen }: ContactModalProps) => {
                     <textarea
                       id="message"
                       rows={3}
-                      className="w-full rounded-lg bg-white/5 px-4 py-3 text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all"
+                      className="w-full rounded-lg bg-white/5 px-3 md:px-4 py-2 md:py-3 text-sm md:text-base text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all"
                       placeholder="Tell us about your project..."
                     />
                   </div>
@@ -198,11 +170,11 @@ export const ContactModal = ({ open, setOpen }: ContactModalProps) => {
                   <div className="flex items-center gap-4">
                     <button
                       type="submit"
-                      className="group flex-1 rounded-lg bg-white px-6 py-3 text-black transition-all hover:bg-white/90"
+                      className="group flex-1 rounded-lg bg-white px-4 md:px-6 py-2 md:py-3 text-sm md:text-base text-black transition-all hover:bg-white/90"
                     >
                       <span className="flex items-center justify-center gap-2">
                         Send Message
-                        <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                        <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                       </span>
                     </button>
                   </div>

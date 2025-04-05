@@ -24,10 +24,10 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
   };
 
   return (
-    <div className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 relative bg-transparent">
+    <div className="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 relative bg-transparent">
       {/* First Row: Keep original order */}
       {cards.slice(0, 3).map((card, i) => (
-        <div key={i} className={cn(card.className, "h-[50vh]")}>
+        <div key={i} className={cn(card.className, "h-[35vh] md:h-[50vh]", selected?.id === card.id && "opacity-0")}>
           <motion.button
             onClick={() => handleClick(card)}
             className="relative overflow-hidden w-full h-full bg-white rounded-lg"
@@ -40,7 +40,7 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
 
       {/* Second Row: Reorder 3 → 2 → 1 */}
       {cards.slice(3, 6).reverse().map((card, i) => (
-        <div key={i} className={cn(card.className, "h-[50vh]")}>
+        <div key={i} className={cn(card.className, "h-[35vh] md:h-[50vh]", selected?.id === card.id && "opacity-0")}>
           <motion.button
             onClick={() => handleClick(card)}
             className="relative overflow-hidden w-full h-full bg-white rounded-lg"
@@ -55,9 +55,9 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
         {selected && (
           <motion.div
             onClick={handleOutsideClick}
-            className="fixed inset-0 bg-black bg-opacity-30 z-40"
+            className="fixed inset-0 bg-black/30 z-40"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 0.3 }}
+            animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           />
         )}
@@ -104,11 +104,9 @@ const SelectedCardPortal = ({ selected, onClose }: SelectedCardPortalProps) => {
       >
         <motion.div
           layoutId={`card-${selected.id}`}
-          className="relative w-full max-w-5xl h-[80vh] mx-auto bg-black rounded-3xl overflow-hidden z-[60]"
-          onClick={onClose}
+          className="relative w-[95%] md:w-full max-w-5xl h-[60vh] md:h-[80vh] mx-auto bg-black rounded-3xl overflow-hidden z-[60]"
+          onClick={(e) => e.stopPropagation()}
         >
-          <motion.div className="absolute inset-0 bg-black bg-opacity-50 z-10" />
-
           <motion.div
             layoutId={`image-${selected.id}-image`}
             className="relative w-full h-full"
@@ -122,7 +120,7 @@ const SelectedCardPortal = ({ selected, onClose }: SelectedCardPortalProps) => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 100 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="absolute bottom-0 left-0 w-full p-6 z-20 text-white"
+            className="absolute bottom-0 left-0 w-full p-4 md:p-6 z-20 text-white"
           >
             <div className="flex flex-col">
               {selected.content}

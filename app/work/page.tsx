@@ -481,7 +481,7 @@ export default function WorkPage() {
       </motion.section>
 
       {/* Content Container */}
-      <div className="w-[90%] mx-auto">
+      <div className="w-full px-6">
         <div className="space-y-16 md:space-y-32">
           {/* Featured Projects Section */}
           <section className="w-full py-12 md:py-20 bg-black text-white">
