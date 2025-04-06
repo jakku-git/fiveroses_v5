@@ -4,61 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-
-// Client Component for animated sections
-const AnimatedSection = ({ children, className }: { children: React.ReactNode; className?: string }) => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-    rootMargin: "-50px",
-  });
-
-  return (
-    <div ref={ref} className="w-full">
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        animate={{
-          opacity: inView ? 1 : 0,
-          y: inView ? 0 : 60,
-        }}
-        transition={{
-          duration: 1.2,
-          ease: [0.21, 0.47, 0.32, 0.98],
-        }}
-        className={className}
-      >
-        {children}
-      </motion.div>
-    </div>
-  );
-};
-
-const AnimatedImage = ({ children }: { children: React.ReactNode }) => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-    rootMargin: "-50px",
-  });
-
-  return (
-    <div ref={ref} className="w-full overflow-hidden">
-      <motion.div
-        initial={{ opacity: 0, scale: 1.1 }}
-        animate={{
-          opacity: inView ? 1 : 0,
-          scale: inView ? 1 : 1.1,
-        }}
-        transition={{
-          duration: 1.8,
-          ease: [0.21, 0.47, 0.32, 0.98],
-        }}
-      >
-        {children}
-      </motion.div>
-    </div>
-  );
-};
+import { AnimatedSection } from "@/components/ui/animated-section";
+import { AnimatedImage, OptimizedImage } from "@/components/ui/animated-image";
 
 export default function LittleMessMakersBrandPage() {
   const { scrollY } = useScroll();
@@ -78,7 +25,7 @@ export default function LittleMessMakersBrandPage() {
               muted
               playsInline
               className="h-full w-full object-cover"
-              preload="none"
+              preload="metadata"
             />
             <motion.div 
               style={{ opacity: gradientOpacity }}
@@ -172,13 +119,10 @@ export default function LittleMessMakersBrandPage() {
             <div className="space-y-8">
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
-                  <Image
+                  <OptimizedImage
                     src="https://pub-762008b27cff430289f9cb812010d371.r2.dev/artscraft%20(2).webp"
                     alt="Website homepage with illustrated elements"
-                    fill
-                    className="object-cover"
                     sizes="100vw"
-                    quality={90}
                   />
                 </div>
                 <p className="text-[13px] text-black/50 mt-1.5 font-light">Website homepage with illustrated elements</p>
@@ -186,13 +130,10 @@ export default function LittleMessMakersBrandPage() {
 
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
-                  <Image
+                  <OptimizedImage
                     src="https://pub-762008b27cff430289f9cb812010d371.r2.dev/artscraft%20(5).webp"
                     alt="In-class photography and promo posters"
-                    fill
-                    className="object-cover"
                     sizes="100vw"
-                    quality={90}
                   />
                 </div>
                 <p className="text-[13px] text-black/50 mt-1.5 font-light">In-class photography and promo posters</p>
@@ -201,13 +142,10 @@ export default function LittleMessMakersBrandPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                 <AnimatedImage>
                   <div className="aspect-[8/9] relative w-full">
-                    <Image
+                    <OptimizedImage
                       src="https://pub-762008b27cff430289f9cb812010d371.r2.dev/artscraft%20(1).webp"
                       alt="Custom illustrated stickers"
-                      fill
-                      className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      quality={90}
                     />
                   </div>
                   <p className="text-[13px] text-black/50 mt-1.5 font-light">Custom illustrated stickers</p>
@@ -215,13 +153,10 @@ export default function LittleMessMakersBrandPage() {
 
                 <AnimatedImage>
                   <div className="aspect-[8/9] relative w-full">
-                    <Image
+                    <OptimizedImage
                       src="https://pub-762008b27cff430289f9cb812010d371.r2.dev/artscraft%20(3).webp"
                       alt="Welcome kit packaging"
-                      fill
-                      className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      quality={90}
                     />
                   </div>
                   <p className="text-[13px] text-black/50 mt-1.5 font-light">Welcome kit packaging</p>
@@ -230,13 +165,10 @@ export default function LittleMessMakersBrandPage() {
 
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
-                  <Image
+                  <OptimizedImage
                     src="https://pub-762008b27cff430289f9cb812010d371.r2.dev/artscraft%20(4).webp"
                     alt="Animated splash screen for app"
-                    fill
-                    className="object-cover"
                     sizes="100vw"
-                    quality={90}
                   />
                 </div>
                 <p className="text-[13px] text-black/50 mt-1.5 font-light">Animated splash screen for app</p>
@@ -251,9 +183,10 @@ export default function LittleMessMakersBrandPage() {
                     muted
                     playsInline
                     className="h-full w-full object-cover"
+                    preload="metadata"
                   />
-                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Social content templates</p>
                 </div>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">App onboarding flow</p>
               </AnimatedImage>
             </div>
           </AnimatedSection>
@@ -262,7 +195,7 @@ export default function LittleMessMakersBrandPage() {
             <div>
               <h2 className="text-2xl md:text-3xl font-extralight mb-2 text-black tracking-tight leading-none">Results & Impact</h2>
               <p className="text-base text-black/80 max-w-3xl font-light leading-tight">
-                Parent signups doubled in the first 30 days after launch. Kids loved the character mascots we created.
+                The brand helped Little Mess Makers triple their enrollment and expand to three new locations.
               </p>
             </div>
           </AnimatedSection>
@@ -271,21 +204,36 @@ export default function LittleMessMakersBrandPage() {
           <AnimatedSection className="w-full pt-2 px-6">
             <h2 className="text-2xl md:text-3xl font-extralight mb-4 text-black tracking-tight leading-none">More Projects</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-              <Link href="/work/terra-and-tone-ceramics" className="group">
+              <Link href="/work/verdella-farms-brand" className="group">
                 <AnimatedImage>
                   <div className="relative aspect-[4/5] overflow-hidden">
-                    <Image
-                      src="https://pub-af52e145b46f4643840668ef5bf23952.r2.dev/ceramics%20(4).webp"
-                      alt="terra&tone"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    <OptimizedImage
+                      src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/farm%20(5).webp"
+                      alt="Verdella Farms"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
                     <div className="absolute bottom-0 p-5">
-                      <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Identity</p>
-                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">terra&tone</h3>
+                      <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Campaign</p>
+                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Verdella Farms</h3>
                       <p className="text-[15px] text-white/80 font-light">Brand Identity</p>
+                    </div>
+                  </div>
+                </AnimatedImage>
+              </Link>
+              <Link href="/work/nailpop-brand-campaign" className="group">
+                <AnimatedImage>
+                  <div className="relative aspect-[4/5] overflow-hidden">
+                    <OptimizedImage
+                      src="https://pub-ad061bfadf884f598139510ae71023ba.r2.dev/nails%20(4).webp"
+                      alt="NAILPOP"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
+                    <div className="absolute bottom-0 p-5">
+                      <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Campaign</p>
+                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">NAILPOP</h3>
+                      <p className="text-[15px] text-white/80 font-light">Brand Campaign</p>
                     </div>
                   </div>
                 </AnimatedImage>
@@ -293,37 +241,16 @@ export default function LittleMessMakersBrandPage() {
               <Link href="/work/zesteo-drink-brand" className="group">
                 <AnimatedImage>
                   <div className="relative aspect-[4/5] overflow-hidden">
-                    <Image
-                      src="https://pub-a74269ab9d1140f4b9b01e4b98c35bc7.r2.dev/drinks%20(6).webp"
-                      alt="Zesteo"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
-                    <div className="absolute bottom-0 p-5">
-                      <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Campaign</p>
-                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Zesteo</h3>
-                      <p className="text-[15px] text-white/80 font-light">Brand Identity</p>
-                    </div>
-                  </div>
-                </AnimatedImage>
-              </Link>
-              <Link href="/work/luma-glassworks-visuals" className="group">
-                <AnimatedImage>
-                  <div className="relative aspect-[4/5] overflow-hidden">
-                    <Image
-                      src="https://pub-5d7c3f192a6844559ecb0366466f8b3e.r2.dev/glass%20(4).webp"
-                      alt="Lūma Glassworks"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    <OptimizedImage
+                      src="https://pub-1a0c0a0c0c0c0c0c0c0c0c0c0c0c0c0c.r2.dev/zesteo%20(1).webp"
+                      alt="ZESTEO"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
                     <div className="absolute bottom-0 p-5">
                       <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Identity</p>
-                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Lūma Glassworks</h3>
-                      <p className="text-[15px] text-white/80 font-light">Visual Identity</p>
+                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">ZESTEO</h3>
+                      <p className="text-[15px] text-white/80 font-light">Drink Brand</p>
                     </div>
                   </div>
                 </AnimatedImage>
@@ -334,19 +261,17 @@ export default function LittleMessMakersBrandPage() {
 
         {/* CTA Section */}
         <AnimatedSection className="w-full py-12 px-6 bg-black">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-extralight mb-1.5 text-white tracking-tight leading-none">
-              Ready to start your project?
-            </h2>
-            <p className="text-base text-white/80 mb-4 font-light leading-tight">
-              Let's create something extraordinary together.
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-extralight mb-4 text-white tracking-tight leading-none">Ready to start your project?</h2>
+            <p className="text-base text-white/80 mb-8 max-w-2xl font-light leading-tight">
+              Let's create something amazing together. Get in touch to discuss your next project.
             </p>
-            <Link 
-              href="/contact" 
-              className="group inline-flex items-center gap-2 hover:gap-3 transition-all duration-300"
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 text-white hover:text-white/80 transition-colors duration-300"
             >
-              <span className="text-2xl md:text-3xl font-extralight tracking-tight leading-none text-white relative after:absolute after:bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-white after:transition-all after:duration-300 group-hover:after:w-full">Let's Talk</span>
-              <ArrowUpRight className="w-6 h-6 text-white" />
+              <span className="text-[15px] font-light">Start a Project</span>
+              <ArrowUpRight className="w-4 h-4" />
             </Link>
           </div>
         </AnimatedSection>

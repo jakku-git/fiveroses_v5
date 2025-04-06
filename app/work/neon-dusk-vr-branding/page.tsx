@@ -4,63 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import { AnimatedSection } from "@/components/ui/animated-section";
+import { AnimatedImage, OptimizedImage } from "@/components/ui/animated-image";
 
-// Client Component for animated sections
-const AnimatedSection = ({ children, className }: { children: React.ReactNode; className?: string }) => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-    rootMargin: "-50px",
-  });
-
-  return (
-    <div ref={ref} className="w-full">
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        animate={{
-          opacity: inView ? 1 : 0,
-          y: inView ? 0 : 60,
-        }}
-        transition={{
-          duration: 1.2,
-          ease: [0.21, 0.47, 0.32, 0.98],
-        }}
-        className={className}
-      >
-        {children}
-      </motion.div>
-    </div>
-  );
-};
-
-const AnimatedImage = ({ children }: { children: React.ReactNode }) => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-    rootMargin: "-50px",
-  });
-
-  return (
-    <div ref={ref} className="w-full overflow-hidden">
-      <motion.div
-        initial={{ opacity: 0, scale: 1.1 }}
-        animate={{
-          opacity: inView ? 1 : 0,
-          scale: inView ? 1 : 1.1,
-        }}
-        transition={{
-          duration: 1.8,
-          ease: [0.21, 0.47, 0.32, 0.98],
-        }}
-      >
-        {children}
-      </motion.div>
-    </div>
-  );
-};
-
-export default function NeonDuskPage() {
+export default function NeonDuskVRBrandingPage() {
   const { scrollY } = useScroll();
   const titleY = useTransform(scrollY, [0, 800], [0, -100]);
   const gradientOpacity = useTransform(scrollY, [0, 800], [1, 0.5]);

@@ -1,10 +1,20 @@
+'use client';
+
 import { Lens } from "@/components/ui/lens"
 import { FocusCards } from "@/components/ui/focus-cards"
 import { Vortex } from "@/components/ui/vortex"
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, ArrowUpRight } from "lucide-react"
+import Image from "next/image"
+import { motion, useScroll, useTransform } from "framer-motion"
+import { AnimatedSection } from "@/components/ui/animated-section"
+import { AnimatedImage, OptimizedImage } from "@/components/ui/animated-image"
 
 export default function MarketingPage() {
+  const { scrollY } = useScroll();
+  const titleY = useTransform(scrollY, [0, 800], [0, -100]);
+  const gradientOpacity = useTransform(scrollY, [0, 800], [1, 0.5]);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between pt-16">
       {/* Hero Section */}

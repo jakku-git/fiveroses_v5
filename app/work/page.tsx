@@ -7,8 +7,9 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import ShuffleHero from "../components/shuffle-hero";
 import { SmoothScrollHero } from "../components/smooth-scroll-hero";
 import { useInView } from 'react-intersection-observer';
-import Image from "next/image";
 import { ContactModal } from "@/components/ui/contact-modal";
+import { AnimatedSection } from "@/components/ui/animated-section";
+import { AnimatedImage, OptimizedImage } from "@/components/ui/animated-image";
 
 // Dynamically import heavy components
 const CardRevealEffect = dynamic(() => import("@/components/ui/card-reveal-effect").then(mod => mod.CardRevealEffect), {
@@ -325,342 +326,355 @@ export default function WorkPage() {
           video4: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/scroll4z.webm"
         }}
       />
-      <motion.div 
-        ref={shuffleHeroRef}
-        className="w-full h-screen flex items-center"
-        initial={{ opacity: 0, y: 100, scale: 0.95 }}
-        animate={{ 
-          opacity: shuffleHeroInView ? 1 : 0,
-          y: shuffleHeroInView ? 0 : 100,
-          scale: shuffleHeroInView ? 1 : 0.95,
-          transition: { 
-            duration: 1,
-            ease: [0.16, 1, 0.3, 1],
-            opacity: { duration: 0.8 },
-            y: { duration: 1 },
-            scale: { duration: 1.2 }
-          }
-        }}
-      >
-        <ShuffleHero isContactOpen={isContactOpen} setIsContactOpen={setIsContactOpen} />
-      </motion.div>
+
+      <AnimatedSection>
+        <motion.div 
+          ref={shuffleHeroRef}
+          className="w-full h-screen flex items-center"
+          initial={{ opacity: 0, y: 100, scale: 0.95 }}
+          animate={{ 
+            opacity: shuffleHeroInView ? 1 : 0,
+            y: shuffleHeroInView ? 0 : 100,
+            scale: shuffleHeroInView ? 1 : 0.95,
+            transition: { 
+              duration: 1,
+              ease: [0.16, 1, 0.3, 1],
+              opacity: { duration: 0.8 },
+              y: { duration: 1 },
+              scale: { duration: 1.2 }
+            }
+          }}
+        >
+          <ShuffleHero isContactOpen={isContactOpen} setIsContactOpen={setIsContactOpen} />
+        </motion.div>
+      </AnimatedSection>
 
       {/* Middle Section */}
-      <motion.section 
-        ref={middleSectionRef}
-        className="w-full h-screen relative overflow-hidden"
-        initial={{ opacity: 0, y: 100, scale: 0.95 }}
-        animate={{ 
-          opacity: middleSectionInView ? 1 : 0,
-          y: middleSectionInView ? 0 : 100,
-          scale: middleSectionInView ? 1 : 0.95,
-          transition: { 
-            duration: 1.2,
-            ease: [0.16, 1, 0.3, 1],
-            opacity: { duration: 1 },
-            y: { duration: 1.2 },
-            scale: { duration: 1.4 }
-          }
-        }}
-      >
-        <div className="absolute inset-0">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentImageIndex}
-              variants={imageVariants}
-              initial="enter"
-              animate="center"
-              className="absolute inset-0"
-            >
-              {mediaItems[currentImageIndex].type === 'image' ? (
-                <Image
-                  src={mediaItems[currentImageIndex].url}
-                  alt="Middle Section Background"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              ) : (
-                <video
-                  src={mediaItems[currentImageIndex].url}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                />
-              )}
-            </motion.div>
-          </AnimatePresence>
-          <div className="absolute inset-0 bg-black/30" />
-        </div>
-        
-        {/* Progress Bars */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-10">
-          {mediaItems.map((_, index) => (
-            <div 
-              key={index}
-              onClick={() => handleProgressClick(index)}
-              className="w-16 md:w-24 h-[2px] bg-white/20 rounded-full overflow-hidden cursor-pointer hover:bg-white/30 transition-colors relative"
-            >
-              <div className="absolute inset-0 bg-white/20" />
-              <motion.div 
-                className="absolute left-0 top-0 h-full bg-white"
-                initial={{ width: 0 }}
-                animate={{ 
-                  width: `${index === 0 ? bar1Progress : index === 1 ? bar2Progress : bar3Progress}%`,
-                  transition: {
-                    duration: 0.1,
-                    ease: "linear"
-                  }
-                }}
-              />
-            </div>
-          ))}
-        </div>
-
-        <div className="relative w-[90%] mx-auto h-full flex items-end pb-12 md:pb-20">
-          <div className="space-y-1 w-full">
+      <AnimatedSection>
+        <motion.section 
+          ref={middleSectionRef}
+          className="w-full h-screen relative overflow-hidden"
+          initial={{ opacity: 0, y: 100, scale: 0.95 }}
+          animate={{ 
+            opacity: middleSectionInView ? 1 : 0,
+            y: middleSectionInView ? 0 : 100,
+            scale: middleSectionInView ? 1 : 0.95,
+            transition: { 
+              duration: 1.2,
+              ease: [0.16, 1, 0.3, 1],
+              opacity: { duration: 1 },
+              y: { duration: 1.2 },
+              scale: { duration: 1.4 }
+            }
+          }}
+        >
+          <div className="absolute inset-0">
             <AnimatePresence mode="wait">
-              <motion.p 
-                key={`top-${currentImageIndex}`}
-                initial={{ opacity: 0, y: 50, filter: "blur(5px)" }}
-                animate={{ 
-                  opacity: 1,
-                  y: 0,
-                  filter: "blur(0px)",
-                  transition: { 
-                    duration: 0.8,
-                    ease: [0.16, 1, 0.3, 1]
-                  }
-                }}
-                className="text-xs md:text-sm text-white/80"
-              >
-                {mediaItems[currentImageIndex].top}
-              </motion.p>
-            </AnimatePresence>
-            <AnimatePresence mode="wait">
-              <motion.h3 
-                key={`title-${currentImageIndex}`}
-                initial={{ opacity: 0, y: 70, filter: "blur(5px)" }}
-                animate={{ 
-                  opacity: 1,
-                  y: 0,
-                  filter: "blur(0px)",
-                  transition: { 
-                    duration: 0.8,
-                    delay: 0.1,
-                    ease: [0.16, 1, 0.3, 1]
-                  }
-                }}
-                className="text-2xl md:text-5xl font-light tracking-tight leading-[0.9] text-white uppercase"
-              >
-                {mediaItems[currentImageIndex].title}
-              </motion.h3>
-            </AnimatePresence>
-            <AnimatePresence mode="wait">
-              <motion.button 
-                key={`cta-${currentImageIndex}`}
-                onClick={() => setIsContactOpen(true)}
-                initial={{ opacity: 0, y: 50, filter: "blur(5px)" }}
-                animate={{ 
-                  opacity: 1,
-                  y: 0,
-                  filter: "blur(0px)",
-                  transition: { 
-                    duration: 0.8,
-                    delay: 0.2,
-                    ease: [0.16, 1, 0.3, 1]
-                  }
-                }}
-                className="group text-sm md:text-base text-white/80 hover:text-white inline-flex items-center gap-2 transition-all duration-300"
-                whileHover="hover"
-              >
-                <motion.span 
-                  className="relative"
-                  initial={{ backgroundSize: "0% 2px" }}
-                  animate={{ backgroundSize: "0% 2px" }}
-                  variants={{
-                    hover: {
-                      backgroundSize: "100% 2px"
-                    }
-                  }}
-                  style={{
-                    background: "linear-gradient(currentColor, currentColor) no-repeat 0 100%",
-                    backgroundSize: "0% 2px",
-                    transition: "background-size 0.3s"
-                  }}
-                >
-                  {mediaItems[currentImageIndex].cta}
-                </motion.span>
-                <motion.div
-                  variants={{
-                    hover: {
-                      x: 5,
-                      y: -5,
-                      transition: { type: "spring", stiffness: 300, damping: 10 }
-                    }
-                  }}
-                >
-                  <ArrowUpRight className="w-3 h-3 md:w-4 md:h-4 transition-transform" />
-                </motion.div>
-              </motion.button>
-            </AnimatePresence>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Three Cards Section */}
-      <motion.section 
-        ref={threeCardsRef}
-        className="w-full h-screen relative overflow-hidden bg-black text-white"
-        initial={{ opacity: 0, y: 100, scale: 0.95 }}
-        animate={{ 
-          opacity: threeCardsInView ? 1 : 0,
-          y: threeCardsInView ? 0 : 100,
-          scale: threeCardsInView ? 1 : 0.95,
-          transition: { 
-            duration: 1.2,
-            ease: [0.16, 1, 0.3, 1],
-            opacity: { duration: 1 },
-            y: { duration: 1.2 },
-            scale: { duration: 1.4 }
-          }
-        }}
-      >
-        <div className="w-full h-full px-4 md:px-6 flex items-center">
-          <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-            {[
-              {
-                title: "Card 1",
-                image: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/scroll1.webm",
-                description: "Description for card 1"
-              },
-              {
-                title: "Card 2",
-                image: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/scroll2.webm",
-                description: "Description for card 2"
-              },
-              {
-                title: "Secret Spells",
-                image: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/secretspell6.webp",
-                description: "Branding, Design, Packaging"
-              }
-            ].map((card, index) => (
               <motion.div
-                key={index}
-                className="relative h-[50vh] md:h-[80vh] rounded-lg overflow-hidden group"
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ 
-                  opacity: threeCardsInView ? 1 : 0,
-                  y: threeCardsInView ? 0 : 50,
-                  transition: { 
-                    duration: 0.8,
-                    delay: 0.2 * index,
-                    ease: [0.16, 1, 0.3, 1]
-                  }
-                }}
+                key={currentImageIndex}
+                variants={imageVariants}
+                initial="enter"
+                animate="center"
+                className="absolute inset-0"
               >
-                {card.image.endsWith('.webp') ? (
-                  <Image
-                    src={card.image}
-                    alt={card.title}
+                {mediaItems[currentImageIndex].type === 'image' ? (
+                  <OptimizedImage
+                    src={mediaItems[currentImageIndex].url}
+                    alt="Middle Section Background"
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="object-cover"
+                    priority
+                    sizes="100vw"
                   />
                 ) : (
                   <video
-                    src={card.image}
+                    src={mediaItems[currentImageIndex].url}
                     autoPlay
                     loop
                     muted
                     playsInline
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover"
+                    preload="metadata"
                   />
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
-                  <p className="text-[10px] md:text-xs text-white/80 mb-1 md:mb-2 line-clamp-2">{card.description}</p>
-                  <h3 className="text-2xl md:text-4xl font-light tracking-tight mb-1 md:mb-2">{card.title}</h3>
-                  <motion.button 
-                    onClick={() => setIsContactOpen(true)}
-                    className="group text-xs md:text-sm text-white/80 hover:text-white inline-flex items-center gap-1 md:gap-2 transition-all duration-300"
-                    whileHover="hover"
-                  >
-                    <motion.span 
-                      className="relative"
-                      initial={{ backgroundSize: "0% 2px" }}
-                      animate={{ backgroundSize: "0% 2px" }}
-                      variants={{
-                        hover: {
-                          backgroundSize: "100% 2px"
-                        }
-                      }}
-                      style={{
-                        background: "linear-gradient(currentColor, currentColor) no-repeat 0 100%",
-                        backgroundSize: "0% 2px",
-                        transition: "background-size 0.3s"
-                      }}
-                    >
-                      Learn More
-                    </motion.span>
-                    <motion.div
-                      variants={{
-                        hover: {
-                          x: 5,
-                          y: -5,
-                          transition: { type: "spring", stiffness: 300, damping: 10 }
-                        }
-                      }}
-                    >
-                      <ArrowUpRight className="w-3 h-3 md:w-4 md:h-4 transition-transform" />
-                    </motion.div>
-                  </motion.button>
-                </div>
               </motion.div>
+            </AnimatePresence>
+            <div className="absolute inset-0 bg-black/30" />
+          </div>
+          
+          {/* Progress Bars */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+            {mediaItems.map((_, index) => (
+              <div 
+                key={index}
+                onClick={() => handleProgressClick(index)}
+                className="w-16 md:w-24 h-[2px] bg-white/20 rounded-full overflow-hidden cursor-pointer hover:bg-white/30 transition-colors relative"
+              >
+                <div className="absolute inset-0 bg-white/20" />
+                <motion.div 
+                  className="absolute left-0 top-0 h-full bg-white"
+                  initial={{ width: 0 }}
+                  animate={{ 
+                    width: `${index === 0 ? bar1Progress : index === 1 ? bar2Progress : bar3Progress}%`,
+                    transition: {
+                      duration: 0.1,
+                      ease: "linear"
+                    }
+                  }}
+                />
+              </div>
             ))}
           </div>
-        </div>
-      </motion.section>
+
+          <div className="relative w-[90%] mx-auto h-full flex items-end pb-12 md:pb-20">
+            <div className="space-y-1 w-full">
+              <AnimatePresence mode="wait">
+                <motion.p 
+                  key={`top-${currentImageIndex}`}
+                  initial={{ opacity: 0, y: 50, filter: "blur(5px)" }}
+                  animate={{ 
+                    opacity: 1,
+                    y: 0,
+                    filter: "blur(0px)",
+                    transition: { 
+                      duration: 0.8,
+                      ease: [0.16, 1, 0.3, 1]
+                    }
+                  }}
+                  className="text-xs md:text-sm text-white/80"
+                >
+                  {mediaItems[currentImageIndex].top}
+                </motion.p>
+              </AnimatePresence>
+              <AnimatePresence mode="wait">
+                <motion.h3 
+                  key={`title-${currentImageIndex}`}
+                  initial={{ opacity: 0, y: 70, filter: "blur(5px)" }}
+                  animate={{ 
+                    opacity: 1,
+                    y: 0,
+                    filter: "blur(0px)",
+                    transition: { 
+                      duration: 0.8,
+                      delay: 0.1,
+                      ease: [0.16, 1, 0.3, 1]
+                    }
+                  }}
+                  className="text-2xl md:text-5xl font-light tracking-tight leading-[0.9] text-white uppercase"
+                >
+                  {mediaItems[currentImageIndex].title}
+                </motion.h3>
+              </AnimatePresence>
+              <AnimatePresence mode="wait">
+                <motion.button 
+                  key={`cta-${currentImageIndex}`}
+                  onClick={() => setIsContactOpen(true)}
+                  initial={{ opacity: 0, y: 50, filter: "blur(5px)" }}
+                  animate={{ 
+                    opacity: 1,
+                    y: 0,
+                    filter: "blur(0px)",
+                    transition: { 
+                      duration: 0.8,
+                      delay: 0.2,
+                      ease: [0.16, 1, 0.3, 1]
+                    }
+                  }}
+                  className="group text-sm md:text-base text-white/80 hover:text-white inline-flex items-center gap-2 transition-all duration-300"
+                  whileHover="hover"
+                >
+                  <motion.span 
+                    className="relative"
+                    initial={{ backgroundSize: "0% 2px" }}
+                    animate={{ backgroundSize: "0% 2px" }}
+                    variants={{
+                      hover: {
+                        backgroundSize: "100% 2px"
+                      }
+                    }}
+                    style={{
+                      background: "linear-gradient(currentColor, currentColor) no-repeat 0 100%",
+                      backgroundSize: "0% 2px",
+                      transition: "background-size 0.3s"
+                    }}
+                  >
+                    {mediaItems[currentImageIndex].cta}
+                  </motion.span>
+                  <motion.div
+                    variants={{
+                      hover: {
+                        x: 5,
+                        y: -5,
+                        transition: { type: "spring", stiffness: 300, damping: 10 }
+                      }
+                    }}
+                  >
+                    <ArrowUpRight className="w-3 h-3 md:w-4 md:h-4 transition-transform" />
+                  </motion.div>
+                </motion.button>
+              </AnimatePresence>
+            </div>
+          </div>
+        </motion.section>
+      </AnimatedSection>
+
+      {/* Three Cards Section */}
+      <AnimatedSection>
+        <motion.section 
+          ref={threeCardsRef}
+          className="w-full h-screen relative overflow-hidden bg-black text-white"
+          initial={{ opacity: 0, y: 100, scale: 0.95 }}
+          animate={{ 
+            opacity: threeCardsInView ? 1 : 0,
+            y: threeCardsInView ? 0 : 100,
+            scale: threeCardsInView ? 1 : 0.95,
+            transition: { 
+              duration: 1.2,
+              ease: [0.16, 1, 0.3, 1],
+              opacity: { duration: 1 },
+              y: { duration: 1.2 },
+              scale: { duration: 1.4 }
+            }
+          }}
+        >
+          <div className="w-full h-full px-4 md:px-6 flex items-center">
+            <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+              {[
+                {
+                  title: "Card 1",
+                  image: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/scroll1.webm",
+                  description: "Description for card 1"
+                },
+                {
+                  title: "Card 2",
+                  image: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/scroll2.webm",
+                  description: "Description for card 2"
+                },
+                {
+                  title: "Secret Spells",
+                  image: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/secretspell6.webp",
+                  description: "Branding, Design, Packaging"
+                }
+              ].map((card, index) => (
+                <motion.div
+                  key={index}
+                  className="relative h-[50vh] md:h-[80vh] rounded-lg overflow-hidden group"
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ 
+                    opacity: threeCardsInView ? 1 : 0,
+                    y: threeCardsInView ? 0 : 50,
+                    transition: { 
+                      duration: 0.8,
+                      delay: 0.2 * index,
+                      ease: [0.16, 1, 0.3, 1]
+                    }
+                  }}
+                >
+                  {card.image.endsWith('.webp') ? (
+                    <OptimizedImage
+                      src={card.image}
+                      alt={card.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  ) : (
+                    <video
+                      src={card.image}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      preload="metadata"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+                  <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
+                    <p className="text-[10px] md:text-xs text-white/80 mb-1 md:mb-2 line-clamp-2">{card.description}</p>
+                    <h3 className="text-2xl md:text-4xl font-light tracking-tight mb-1 md:mb-2">{card.title}</h3>
+                    <motion.button 
+                      onClick={() => setIsContactOpen(true)}
+                      className="group text-xs md:text-sm text-white/80 hover:text-white inline-flex items-center gap-1 md:gap-2 transition-all duration-300"
+                      whileHover="hover"
+                    >
+                      <motion.span 
+                        className="relative"
+                        initial={{ backgroundSize: "0% 2px" }}
+                        animate={{ backgroundSize: "0% 2px" }}
+                        variants={{
+                          hover: {
+                            backgroundSize: "100% 2px"
+                          }
+                        }}
+                        style={{
+                          background: "linear-gradient(currentColor, currentColor) no-repeat 0 100%",
+                          backgroundSize: "0% 2px",
+                          transition: "background-size 0.3s"
+                        }}
+                      >
+                        Learn More
+                      </motion.span>
+                      <motion.div
+                        variants={{
+                          hover: {
+                            x: 5,
+                            y: -5,
+                            transition: { type: "spring", stiffness: 300, damping: 10 }
+                          }
+                        }}
+                      >
+                        <ArrowUpRight className="w-3 h-3 md:w-4 md:h-4 transition-transform" />
+                      </motion.div>
+                    </motion.button>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.section>
+      </AnimatedSection>
 
       {/* Content Container */}
       <div className="w-full px-4 md:px-6">
         <div className="space-y-16 md:space-y-32">
           {/* Featured Projects Section */}
-          <section className="w-full py-8 md:py-20 bg-black text-white">
-            <motion.div 
-              className="w-full" 
-              ref={featuredProjectsRef}
-              initial={{ opacity: 0, y: 100, scale: 0.95 }}
-              animate={{ 
-                opacity: featuredProjectsInView ? 1 : 0,
-                y: featuredProjectsInView ? 0 : 100,
-                scale: featuredProjectsInView ? 1 : 0.95,
-                transition: { 
-                  duration: 1.2,
-                  ease: [0.16, 1, 0.3, 1],
-                  opacity: { duration: 1 },
-                  y: { duration: 1.2 },
-                  scale: { duration: 1.4 }
-                }
-              }}
-            >
-              <motion.div
-                initial={{ opacity: 0, y: 30 }}
+          <AnimatedSection>
+            <section className="w-full py-8 md:py-20 bg-black text-white">
+              <motion.div 
+                className="w-full" 
+                ref={featuredProjectsRef}
+                initial={{ opacity: 0, y: 100, scale: 0.95 }}
                 animate={{ 
                   opacity: featuredProjectsInView ? 1 : 0,
-                  y: featuredProjectsInView ? 0 : 30,
+                  y: featuredProjectsInView ? 0 : 100,
+                  scale: featuredProjectsInView ? 1 : 0.95,
                   transition: { 
-                    duration: 0.8,
-                    delay: 0.4,
-                    ease: [0.16, 1, 0.3, 1]
+                    duration: 1.2,
+                    ease: [0.16, 1, 0.3, 1],
+                    opacity: { duration: 1 },
+                    y: { duration: 1.2 },
+                    scale: { duration: 1.4 }
                   }
                 }}
               >
-                {featuredProjectsInView && isVisible && <LayoutGridDemo />}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ 
+                    opacity: featuredProjectsInView ? 1 : 0,
+                    y: featuredProjectsInView ? 0 : 30,
+                    transition: { 
+                      duration: 0.8,
+                      delay: 0.4,
+                      ease: [0.16, 1, 0.3, 1]
+                    }
+                  }}
+                >
+                  {featuredProjectsInView && isVisible && <LayoutGridDemo />}
+                </motion.div>
               </motion.div>
-            </motion.div>
-          </section>
+            </section>
+          </AnimatedSection>
         </div>
       </div>
 

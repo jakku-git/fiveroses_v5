@@ -4,61 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { useInView } from "react-intersection-observer";
-
-// Client Component for animated sections
-const AnimatedSection = ({ children, className }: { children: React.ReactNode; className?: string }) => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-    rootMargin: "-50px",
-  });
-
-  return (
-    <div ref={ref} className="w-full">
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        animate={{
-          opacity: inView ? 1 : 0,
-          y: inView ? 0 : 60,
-        }}
-        transition={{
-          duration: 1.2,
-          ease: [0.21, 0.47, 0.32, 0.98],
-        }}
-        className={className}
-      >
-        {children}
-      </motion.div>
-    </div>
-  );
-};
-
-const AnimatedImage = ({ children }: { children: React.ReactNode }) => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-    rootMargin: "-50px",
-  });
-
-  return (
-    <div ref={ref} className="w-full overflow-hidden">
-      <motion.div
-        initial={{ opacity: 0, scale: 1.1 }}
-        animate={{
-          opacity: inView ? 1 : 0,
-          scale: inView ? 1 : 1.1,
-        }}
-        transition={{
-          duration: 1.8,
-          ease: [0.21, 0.47, 0.32, 0.98],
-        }}
-      >
-        {children}
-      </motion.div>
-    </div>
-  );
-};
+import { AnimatedSection } from "@/components/ui/animated-section";
+import { AnimatedImage, OptimizedImage } from "@/components/ui/animated-image";
 
 export default function MossAndMineralBrandPage() {
   const { scrollY } = useScroll();
@@ -78,7 +25,7 @@ export default function MossAndMineralBrandPage() {
               muted
               playsInline
               className="h-full w-full object-cover"
-              preload="none"
+              preload="metadata"
             />
             <motion.div 
               style={{ opacity: gradientOpacity }}
@@ -172,13 +119,10 @@ export default function MossAndMineralBrandPage() {
             <div className="space-y-8">
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
-                  <Image
+                  <OptimizedImage
                     src="https://pub-89ed998cc2bc412db543bb4b8c57e662.r2.dev/soapstory%20(1).webp"
                     alt="Full product line packaging"
-                    fill
-                    className="object-cover"
                     sizes="100vw"
-                    quality={90}
                   />
                 </div>
                 <p className="text-[13px] text-black/50 mt-1.5 font-light">Full product line packaging</p>
@@ -186,13 +130,10 @@ export default function MossAndMineralBrandPage() {
 
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
-                  <Image
+                  <OptimizedImage
                     src="https://pub-89ed998cc2bc412db543bb4b8c57e662.r2.dev/soapstory%20(4).webp"
                     alt="On-shelf display mockups"
-                    fill
-                    className="object-cover"
                     sizes="100vw"
-                    quality={90}
                   />
                 </div>
                 <p className="text-[13px] text-black/50 mt-1.5 font-light">On-shelf display mockups</p>
@@ -201,42 +142,33 @@ export default function MossAndMineralBrandPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                 <AnimatedImage>
                   <div className="aspect-[8/9] relative w-full">
-                    <Image
+                    <OptimizedImage
                       src="https://pub-89ed998cc2bc412db543bb4b8c57e662.r2.dev/soapstory%20(6).webp"
                       alt="Logo and texture design"
-                      fill
-                      className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      quality={90}
                     />
-                    <p className="text-[13px] text-black/50 mt-1.5 font-light">Logo and texture design</p>
                   </div>
+                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Logo and texture design</p>
                 </AnimatedImage>
 
                 <AnimatedImage>
                   <div className="aspect-[8/9] relative w-full">
-                    <Image
+                    <OptimizedImage
                       src="https://pub-89ed998cc2bc412db543bb4b8c57e662.r2.dev/soapstory%20(7).webp"
                       alt="Social launch grid"
-                      fill
-                      className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      quality={90}
                     />
-                    <p className="text-[13px] text-black/50 mt-1.5 font-light">Social launch grid</p>
                   </div>
+                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Social launch grid</p>
                 </AnimatedImage>
               </div>
 
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
-                  <Image
+                  <OptimizedImage
                     src="https://pub-89ed998cc2bc412db543bb4b8c57e662.r2.dev/soapstory%20(2).webp"
                     alt="Ingredient illustrations"
-                    fill
-                    className="object-cover"
                     sizes="100vw"
-                    quality={90}
                   />
                 </div>
                 <p className="text-[13px] text-black/50 mt-1.5 font-light">Ingredient illustrations</p>
@@ -251,6 +183,7 @@ export default function MossAndMineralBrandPage() {
                     muted
                     playsInline
                     className="h-full w-full object-cover"
+                    preload="metadata"
                   />
                   <p className="text-[13px] text-black/50 mt-1.5 font-light">Responsive eCommerce page</p>
                 </div>
@@ -274,11 +207,9 @@ export default function MossAndMineralBrandPage() {
               <Link href="/work/aerovant-aviation-brand" className="group">
                 <AnimatedImage>
                   <div className="relative aspect-[4/5] overflow-hidden">
-                    <Image
+                    <OptimizedImage
                       src="https://pub-31835f4925254f16ad9ce47bfe082f11.r2.dev/btstourists%20(5).webp"
                       alt="AEROVANT"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
@@ -293,11 +224,9 @@ export default function MossAndMineralBrandPage() {
               <Link href="/work/syntech-industries-brand" className="group">
                 <AnimatedImage>
                   <div className="relative aspect-[4/5] overflow-hidden">
-                    <Image
+                    <OptimizedImage
                       src="https://pub-c9720308467542c7bced018c5417e470.r2.dev/cyborg%20(1).webp"
                       alt="Syntech Industries"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
@@ -312,11 +241,9 @@ export default function MossAndMineralBrandPage() {
               <Link href="/work/verdella-farms-brand" className="group">
                 <AnimatedImage>
                   <div className="relative aspect-[4/5] overflow-hidden">
-                    <Image
+                    <OptimizedImage
                       src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/farm%20(5).webp"
                       alt="Verdella Farms"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
