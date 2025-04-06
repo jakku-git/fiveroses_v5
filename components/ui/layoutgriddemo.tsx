@@ -2,6 +2,20 @@
 import React from "react";
 import { LayoutGrid } from "../ui/layout-grid";
 
+type CardContent = {
+  title: string;
+  subtitle: string;
+  description: string;
+};
+
+type Card = {
+  id: number;
+  content: React.ReactNode | CardContent;
+  className: string;
+  thumbnail: string;
+  href?: string;
+};
+
 // LayoutGridDemo Component – now using a full-width container so that the grid stretches fully
 export function LayoutGridDemo() {
   console.log("LayoutGridDemo mounted");
@@ -39,7 +53,7 @@ const SkeletonTwo = () => (
       Summer, Styled
     </p>
     <p className="font-normal text-sm mt-3 max-w-lg text-white/60">
-      From lookbook design to digital strategy, we helped Solstice Bloom launch their debut summerwear collection with style and soul.
+      A sun-soaked launch campaign for a fresh fashion label, blending spontaneous visuals with Gen Z appeal.
     </p>
   </div>
 );
@@ -67,7 +81,7 @@ const SkeletonFour = () => (
       Craft in Every Cut
     </p>
     <p className="font-normal text-sm mt-3 max-w-lg text-white/60">
-      We documented the artisanal process and created a brand story for Forge & Hide, a heritage leather goods manufacturer with timeless character.
+      We documented the artisanal process and created a brand story for Forge & Hide, a heritage leather workshop blending timeless craftsmanship with modern storytelling.
     </p>
   </div>
 );
@@ -193,71 +207,87 @@ const cards = [
     content: <SkeletonOne />,
     className: "md:col-span-2",
     thumbnail: "https://pub-af52e145b46f4643840668ef5bf23952.r2.dev/ceramics%20(4).webp",
+    href: "/work/terra-and-tone-ceramics"
   },
   {
     id: 2,
     content: <SkeletonTwo />,
     className: "col-span-1",
     thumbnail: "https://pub-2634c5482cbc49329e9902214d332db6.r2.dev/heat%20(4).webp",
+    href: "/work/solstice-bloom-fashion"
   },
   {
     id: 3,
     content: <SkeletonThree />,
     className: "col-span-1",
     thumbnail: "https://pub-e08ddc6efc2944bb84b7982b6e8825b4.r2.dev/cyberpunkvr%20(1).webp",
+    href: "/work/neon-dusk-vr-branding"
   },
   {
     id: 4,
     content: <SkeletonFour />,
     className: "md:col-span-2",
     thumbnail: "https://pub-bef823910dc44973941ddebcc9ec07c8.r2.dev/leather%20(1).webp",
+    href: "/work/forge-and-hide-leather"
   },
   {
     id: 5,
     content: <SkeletonFive />,
     className: "col-span-1",
     thumbnail: "https://pub-5d7c3f192a6844559ecb0366466f8b3e.r2.dev/glass%20(4).webp",
+    href: "/work/luma-glassworks-visuals"
   },
   {
     id: 6,
     content: <SkeletonSix />,
     className: "col-span-1",
     thumbnail: "https://pub-a74269ab9d1140f4b9b01e4b98c35bc7.r2.dev/drinks%20(6).webp",
+    href: "/work/zesteo-drink-brand"
   },
   {
     id: 7,
-    content: <SkeletonSeven />,
+    content: {
+      title: "Little Mess Makers",
+      subtitle: "Identity / Strategy",
+      description: "Brand Identity & Experience Design",
+    },
     className: "md:col-span-2",
-    thumbnail: "https://pub-762008b27cff430289f9cb812010d371.r2.dev/artscraft%20(1).webp",
+    thumbnail: "https://pub-762008b27cff430289f9cb812010d371.r2.dev/artscraft%20(2).webp",
+    href: "/work/little-mess-makers-brand"
   },
   {
     id: 8,
     content: <SkeletonEight />,
     className: "col-span-1",
     thumbnail: "https://pub-ad061bfadf884f598139510ae71023ba.r2.dev/nails%20(4).webp",
+    href: "/work/nailpop-brand-campaign"
   },
   {
     id: 9,
     content: <SkeletonNine />,
     className: "col-span-1",
-    thumbnail: "https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/farm%20(4).webp",
+    thumbnail: "https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/farm%20(5).webp",
+    href: "/work/verdella-farms-brand"
   },
   {
     id: 10,
     content: <SkeletonTen />,
     className: "col-span-1",
     thumbnail: "https://pub-c9720308467542c7bced018c5417e470.r2.dev/cyborg%20(1).webp",
+    href: "/work/syntech-industries-brand"
   },
   {
     id: 11,
     content: <SkeletonEleven />,
     className: "col-span-1",
     thumbnail: "https://pub-31835f4925254f16ad9ce47bfe082f11.r2.dev/btstourists%20(5).webp",
+    href: "/work/aerovant-aviation-brand"
   },
   {
     id: 12,
     content: <SkeletonTwelve />,
     className: "md:col-span-2",
     thumbnail: "https://pub-89ed998cc2bc412db543bb4b8c57e662.r2.dev/soapstory%20(6).webp",
+    href: "/work/moss-and-mineral-brand"
   }
 ];

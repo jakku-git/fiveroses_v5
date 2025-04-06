@@ -60,7 +60,7 @@ const AnimatedImage = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default function SocialDistancePage() {
+export default function AerovantAviationBrandPage() {
   const { scrollY } = useScroll();
   const titleY = useTransform(scrollY, [0, 800], [0, -100]);
   const gradientOpacity = useTransform(scrollY, [0, 800], [1, 0.5]);
@@ -71,12 +71,14 @@ export default function SocialDistancePage() {
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         <section className="relative h-full w-full">
           <div className="absolute inset-0">
-            <Image
-              src="/socialdistance.webp"
-              alt="Social Distance Project"
-              fill
-              className="object-cover"
-              priority
+            <video
+              src="https://pub-31835f4925254f16ad9ce47bfe082f11.r2.dev/btstourists%20(2).webm"
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="h-full w-full object-cover"
+              preload="none"
             />
             <motion.div 
               style={{ opacity: gradientOpacity }}
@@ -94,7 +96,7 @@ export default function SocialDistancePage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1, delay: 0.2 }}
               >
-                <p className="text-[13px] uppercase tracking-wider text-white/70 mb-2">Identity</p>
+                <p className="text-[13px] uppercase tracking-wider text-white/70 mb-2">Identity / Strategy</p>
               </motion.div>
               <motion.h1
                 initial={{ opacity: 0, y: 40 }}
@@ -102,7 +104,7 @@ export default function SocialDistancePage() {
                 transition={{ duration: 1, delay: 0.4 }}
                 className="text-[48px] sm:text-[64px] md:text-[82px] font-extralight tracking-tight leading-[0.9] mb-4 text-white"
               >
-                Social Distance
+                AEROVANT – Flight, Reimagined
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 40 }}
@@ -110,7 +112,7 @@ export default function SocialDistancePage() {
                 transition={{ duration: 1, delay: 0.6 }}
                 className="text-base sm:text-lg md:text-xl text-white/80 mb-8 max-w-2xl font-light leading-tight"
               >
-                Exploring the impact of digital communication on human connection and social dynamics in the modern age.
+                A high-altitude brand strategy for next-gen aviation.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 40 }}
@@ -120,15 +122,15 @@ export default function SocialDistancePage() {
               >
                 <div className="bg-white/5 backdrop-blur-sm rounded-lg px-4 py-2">
                   <span className="text-[13px] text-white/60 block mb-0.5">Industry</span>
-                  <p className="text-[15px] text-white font-light">Digital Art</p>
+                  <p className="text-[15px] text-white font-light">Aviation / Tech</p>
                 </div>
                 <div className="bg-white/5 backdrop-blur-sm rounded-lg px-4 py-2">
                   <span className="text-[13px] text-white/60 block mb-0.5">Year</span>
-                  <p className="text-[15px] text-white font-light">2024</p>
+                  <p className="text-[15px] text-white font-light">2025</p>
                 </div>
                 <div className="bg-white/5 backdrop-blur-sm rounded-lg px-4 py-2">
                   <span className="text-[13px] text-white/60 block mb-0.5">Type</span>
-                  <p className="text-[15px] text-white font-light">Video Production</p>
+                  <p className="text-[15px] text-white font-light">Naming, Branding & Web Design</p>
                 </div>
               </motion.div>
             </div>
@@ -143,23 +145,23 @@ export default function SocialDistancePage() {
             <div>
               <h2 className="text-2xl md:text-3xl font-extralight mb-2 text-black tracking-tight leading-none">Project Overview</h2>
               <p className="text-base text-black/80 max-w-3xl font-light leading-tight">
-                Social Distance is an immersive digital experience that examines how technology has reshaped our social interactions. Through a series of interactive installations and digital artworks, we explore the paradox of being more connected than ever while feeling increasingly isolated.
+                AEROVANT is an aviation startup pushing the boundaries of modern flight. They needed a bold name and visuals to soar with them.
               </p>
             </div>
           </AnimatedSection>
             
           <AnimatedSection className="w-full px-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">The Challenge</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  In an era where digital communication dominates, we face the challenge of maintaining genuine human connections. This project seeks to highlight both the benefits and drawbacks of our digital-first approach to social interaction.
+                  To create a premium, global-facing identity that feels innovative and trustworthy.
                 </p>
               </div>
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">Our Approach</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  We created a series of interactive installations that blend physical and digital spaces, encouraging participants to reflect on their own social media habits and digital communication patterns.
+                  We named the brand, designed a logomark inspired by lift and momentum, and developed a clean, spacious web experience.
                 </p>
               </div>
             </div>
@@ -171,75 +173,87 @@ export default function SocialDistancePage() {
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
                   <Image
-                    src="/pexels-thisisengineering-3913025.jpg"
-                    alt="Interactive Installation"
+                    src="https://pub-31835f4925254f16ad9ce47bfe082f11.r2.dev/btstourists%20(5).webp"
+                    alt="Jet prototype in motion"
                     fill
                     className="object-cover"
+                    sizes="100vw"
+                    quality={90}
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Interactive installation exploring digital connection</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Jet prototype in motion</p>
               </AnimatedImage>
 
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
                   <Image
-                    src="/socialdistance.webp"
-                    alt="Project Installation"
+                    src="https://pub-31835f4925254f16ad9ce47bfe082f11.r2.dev/btstourists%20(6).webp"
+                    alt="Branded cockpit dashboard"
                     fill
                     className="object-cover"
+                    sizes="100vw"
+                    quality={90}
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Project installation view</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Branded cockpit dashboard</p>
               </AnimatedImage>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                 <AnimatedImage>
                   <div className="aspect-[8/9] relative w-full">
                     <Image
-                      src="/pexels-eva-bronzini-7661330.jpg"
-                      alt="Digital Artwork"
+                      src="https://pub-31835f4925254f16ad9ce47bfe082f11.r2.dev/btstourists%20(4).webp"
+                      alt="Typography + motion studies"
                       fill
                       className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      quality={90}
                     />
+                    <p className="text-[13px] text-black/50 mt-1.5 font-light">Typography + motion studies</p>
                   </div>
-                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Digital artwork representing social media networks</p>
                 </AnimatedImage>
 
                 <AnimatedImage>
                   <div className="aspect-[8/9] relative w-full">
-                    <Image
-                      src="/ceramics.webp"
-                      alt="Digital Interface"
-                      fill
-                      className="object-cover"
+                    <video
+                      src="https://pub-31835f4925254f16ad9ce47bfe082f11.r2.dev/btstourists%20(3).webm"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="h-full w-full object-cover"
                     />
+                    <p className="text-[13px] text-black/50 mt-1.5 font-light">Onboarding web experience</p>
                   </div>
-                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Interface design exploration</p>
                 </AnimatedImage>
               </div>
 
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
                   <Image
-                    src="/heat.webp"
-                    alt="Digital Interface"
+                    src="https://pub-31835f4925254f16ad9ce47bfe082f11.r2.dev/btstourists%20(2).webp"
+                    alt="Launch presentation decks"
                     fill
                     className="object-cover"
+                    sizes="100vw"
+                    quality={90}
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Digital interface and user interaction</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Launch presentation decks</p>
               </AnimatedImage>
 
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
-                  <Image
-                    src="/socialdistance.webp"
-                    alt="Final Project View"
-                    fill
-                    className="object-cover"
+                  <video
+                    src="https://pub-31835f4925254f16ad9ce47bfe082f11.r2.dev/btstourists%20(1).webm"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="h-full w-full object-cover"
                   />
+                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Hangar wall signage</p>
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Final project implementation and user engagement</p>
               </AnimatedImage>
             </div>
           </AnimatedSection>
@@ -248,7 +262,7 @@ export default function SocialDistancePage() {
             <div>
               <h2 className="text-2xl md:text-3xl font-extralight mb-2 text-black tracking-tight leading-none">Results & Impact</h2>
               <p className="text-base text-black/80 max-w-3xl font-light leading-tight">
-                The project successfully engaged over 10,000 participants across multiple exhibitions, sparking meaningful conversations about digital communication and social connection. Many participants reported increased awareness of their digital habits and a renewed appreciation for face-to-face interactions.
+                AEROVANT launched their Series A funding round with investor praise for their clarity and brand polish.
               </p>
             </div>
           </AnimatedSection>
@@ -256,57 +270,60 @@ export default function SocialDistancePage() {
           {/* More Projects Section */}
           <AnimatedSection className="w-full pt-2 px-6">
             <h2 className="text-2xl md:text-3xl font-extralight mb-4 text-black tracking-tight leading-none">More Projects</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-              <Link href="/work/project-1" className="group">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+              <Link href="/work/syntech-industries-brand" className="group">
                 <AnimatedImage>
                   <div className="relative aspect-[4/5] overflow-hidden">
                     <Image
-                      src="/heat.webp"
-                      alt="Project 1"
+                      src="https://pub-c9720308467542c7bced018c5417e470.r2.dev/cyborg%20(1).webp"
+                      alt="Syntech Industries"
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
                     <div className="absolute bottom-0 p-5">
-                      <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Identity</p>
-                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Project 1</h3>
-                      <p className="text-[15px] text-white/80 font-light">Digital Experience</p>
-                    </div>
-                  </div>
-                </AnimatedImage>
-              </Link>
-              <Link href="/work/project-2" className="group">
-                <AnimatedImage>
-                  <div className="relative aspect-[4/5] overflow-hidden">
-                    <Image
-                      src="/ceramics.webp"
-                      alt="Project 2"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
-                    <div className="absolute bottom-0 p-5">
-                      <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Campaign</p>
-                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Project 2</h3>
+                      <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Strategy</p>
+                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Syntech Industries</h3>
                       <p className="text-[15px] text-white/80 font-light">Brand Identity</p>
                     </div>
                   </div>
                 </AnimatedImage>
               </Link>
-              <Link href="/work/project-3" className="group">
+              <Link href="/work/verdella-farms-brand" className="group">
                 <AnimatedImage>
                   <div className="relative aspect-[4/5] overflow-hidden">
                     <Image
-                      src="/podcast.webp"
-                      alt="Project 3"
+                      src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/farm%20(5).webp"
+                      alt="Verdella Farms"
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
                     <div className="absolute bottom-0 p-5">
-                      <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Strategy</p>
-                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Project 3</h3>
-                      <p className="text-[15px] text-white/80 font-light">Campaign</p>
+                      <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Identity</p>
+                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Verdella Farms</h3>
+                      <p className="text-[15px] text-white/80 font-light">Brand Identity</p>
+                    </div>
+                  </div>
+                </AnimatedImage>
+              </Link>
+              <Link href="/work/nailpop-brand-campaign" className="group">
+                <AnimatedImage>
+                  <div className="relative aspect-[4/5] overflow-hidden">
+                    <Image
+                      src="https://pub-ad061bfadf884f598139510ae71023ba.r2.dev/nails%20(4).webp"
+                      alt="NAILPOP"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
+                    <div className="absolute bottom-0 p-5">
+                      <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Campaign</p>
+                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">NAILPOP</h3>
+                      <p className="text-[15px] text-white/80 font-light">Brand Identity</p>
                     </div>
                   </div>
                 </AnimatedImage>

@@ -4,12 +4,20 @@ import { AnimatePresence, motion } from "framer-motion";
 import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import Link from "next/link";
+
+type CardContent = {
+  title: string;
+  subtitle: string;
+  description: string;
+};
 
 type Card = {
   id: number;
-  content: React.ReactNode;
+  content: React.ReactNode | CardContent;
   className: string;
   thumbnail: string;
+  href?: string;
 };
 
 export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
@@ -93,16 +101,10 @@ const ImageComponent = ({ card, mounted, selected }: { card: Card; mounted: bool
     <motion.div className="relative w-full h-full group">
       <Image
         src={card.thumbnail}
-        alt={`Project ${card.id}`}
+        alt={card.content && typeof card.content === 'object' && 'title' in card.content ? card.content.title : 'Project thumbnail'}
         layout="fill"
         objectFit="cover"
-        className="transition duration-200"
-        loading="eager"
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        quality={75}
-        priority={true}
-        placeholder="blur"
-        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSAkLCAgLCAwLDAwLDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/2wBDARISEg4NDhQODhQUDg4OFBQODg4OFBEMDAwMDBERDAwMDAwMEQwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+        className="transition-transform duration-700 hover:scale-105"
       />
       <div className={cn(
         "absolute inset-0 bg-black/20 transition-all duration-200",
@@ -148,15 +150,22 @@ const SelectedCardPortal = ({ selected, onClose }: SelectedCardPortalProps) => {
             className="absolute bottom-0 left-0 w-full p-4 md:p-6 z-20 text-white"
           >
             <div className="flex flex-col">
-              {selected.content}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 }}
-                className="text-white/80 hover:text-white transition-colors cursor-pointer mt-2"
-              >
-                Read More →
-              </motion.div>
+              {selected.content && (
+                typeof selected.content === 'object' && 'title' in selected.content ? (
+                  <>
+                    <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">{selected.content.subtitle}</p>
+                    <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">{selected.content.title}</h3>
+                    <p className="text-[15px] text-white/80 font-light">{selected.content.description}</p>
+                  </>
+                ) : (
+                  selected.content
+                )
+              )}
+              {selected.href && (
+                <Link href={selected.href}>
+                  <span>View Project</span>
+                </Link>
+              )}
             </div>
           </motion.div>
 
