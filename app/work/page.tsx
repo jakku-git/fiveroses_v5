@@ -209,7 +209,6 @@ export default function WorkPage() {
     threshold: 0.1,
   });
   const [threeCardsRef, threeCardsInView] = useInView({
-    triggerOnce: true,
     threshold: 0.1,
   });
   const [currentImageIndex, setCurrentImageIndex] = React.useState(0);
@@ -646,21 +645,6 @@ export default function WorkPage() {
                 }
               }}
             >
-              <motion.h3 
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ 
-                  opacity: featuredProjectsInView ? 1 : 0,
-                  y: featuredProjectsInView ? 0 : 50,
-                  transition: { 
-                    duration: 0.8,
-                    delay: 0.2,
-                    ease: [0.16, 1, 0.3, 1]
-                  }
-                }}
-                className="text-2xl md:text-6xl font-light tracking-tight leading-tight mb-6 md:mb-12 px-4 md:px-0"
-              >
-                Featured Projects
-              </motion.h3>
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ 

@@ -6,7 +6,7 @@ import { LayoutGrid } from "../ui/layout-grid";
 export function LayoutGridDemo() {
   console.log("LayoutGridDemo mounted");
   return (
-    <div className="w-full py-1 bg-black">
+    <div className="w-full py-12 bg-black">
       {/* Removed max-w-7xl and mx-auto to allow full width */}
       <LayoutGrid cards={cards} />
     </div>
@@ -17,159 +17,247 @@ export function LayoutGridDemo() {
 // Skeleton Components – sample content for each card
 // ----------------------------------------------------------------------------
 const SkeletonOne = () => (
-  <div>
-    <p className="font-bold md:text-4xl text-xl text-white">
-      Ceramics
+  <div className="space-y-2">
+    <p className="font-medium text-lg tracking-tight text-white/90">
+      terra&tone
     </p>
-    <p className="font-normal text-base text-white"></p>
-    <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-    This campaign centers on the unique artistry of handcrafted ceramics, highlighting sustainable production methods and timeless design.
+    <p className="font-light text-sm text-white/70">
+      Handmade Harmony
+    </p>
+    <p className="font-normal text-sm mt-3 max-w-lg text-white/60">
+      We crafted a serene brand identity and eCommerce experience for terra&tone, a modern ceramics studio blending tradition with minimalism.
     </p>
   </div>
 );
 
 const SkeletonTwo = () => (
-  <div>
-    <p className="font-bold md:text-4xl text-xl text-white">
-      Heat
+  <div className="space-y-2">
+    <p className="font-medium text-lg tracking-tight text-white/90">
+      Solstice Bloom
     </p>
-    <p className="font-normal text-base text-white"></p>
-    <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-    The campaign spotlights the vibrant essence of summer with a fresh clothing brand featuring lightweight fabrics and bold, breezy designs.
+    <p className="font-light text-sm text-white/70">
+      Summer, Styled
+    </p>
+    <p className="font-normal text-sm mt-3 max-w-lg text-white/60">
+      From lookbook design to digital strategy, we helped Solstice Bloom launch their debut summerwear collection with style and soul.
     </p>
   </div>
 );
 
 const SkeletonThree = () => (
-  <div>
-    <p className="font-bold md:text-4xl text-xl text-white">
-      Social Distance
+  <div className="space-y-2">
+    <p className="font-medium text-lg tracking-tight text-white/90">
+      NEON DUSK
     </p>
-    <p className="font-normal text-base text-white"></p>
-    <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-    This campaign emphasizes the importance of social distancing through clear, relatable messaging.
+    <p className="font-light text-sm text-white/70">
+      Future Vision
+    </p>
+    <p className="font-normal text-sm mt-3 max-w-lg text-white/60">
+      We built the visual identity and landing experience for NEON DUSK, an indie VR brand merging cyberpunk aesthetics with immersive tech.
     </p>
   </div>
 );
 
 const SkeletonFour = () => (
-  <div>
-    <p className="font-bold md:text-4xl text-xl text-white">
-      Rivers Are Serene
+  <div className="space-y-2">
+    <p className="font-medium text-lg tracking-tight text-white/90">
+      Forge & Hide
     </p>
-    <p className="font-normal text-base text-white"></p>
-    <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-      A tranquil abode by the river, where gentle waters create a soothing vibe.
+    <p className="font-light text-sm text-white/70">
+      Craft in Every Cut
+    </p>
+    <p className="font-normal text-sm mt-3 max-w-lg text-white/60">
+      We documented the artisanal process and created a brand story for Forge & Hide, a heritage leather goods manufacturer with timeless character.
     </p>
   </div>
 );
 
 const SkeletonFive = () => (
-  <div>
-    <p className="font-bold md:text-4xl text-xl text-white">
-      Deep Dive
+  <div className="space-y-2">
+    <p className="font-medium text-lg tracking-tight text-white/90">
+      Lūma Glassworks
     </p>
-    <p className="font-normal text-base text-white"></p>
-    <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-    Using compelling narratives through engaging storytelling and expert interviews.
+    <p className="font-light text-sm text-white/70">
+      Clarity in Motion
+    </p>
+    <p className="font-normal text-sm mt-3 max-w-lg text-white/60">
+      From product photography to digital presence, we helped Lūma Glassworks showcase the delicate art of modern glass craftsmanship.
     </p>
   </div>
 );
 
 const SkeletonSix = () => (
-  <div>
-    <p className="font-bold md:text-4xl text-xl text-white">
-      Image
+  <div className="space-y-2">
+    <p className="font-medium text-lg tracking-tight text-white/90">
+      Zesteo
     </p>
-    <p className="font-normal text-base text-white"></p>
-    <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-    This campaign invites a deeper reflection on the gap between self-representation and public perception.
+    <p className="font-light text-sm text-white/70">
+      Citrus-Forward Refreshment
+    </p>
+    <p className="font-normal text-sm mt-3 max-w-lg text-white/60">
+      We created a bold, juicy brand identity for Zesteo, a sparkling lime & lemon drinks company with a punchy presence.
     </p>
   </div>
 );
 
 const SkeletonSeven = () => (
-  <div>
-    <p className="font-bold md:text-4xl text-xl text-white">
-      Mountain Escape
+  <div className="space-y-2">
+    <p className="font-medium text-lg tracking-tight text-white/90">
+      Little Mess Makers
     </p>
-    <p className="font-normal text-base text-white"></p>
-    <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-      A rugged mountain cabin offering a retreat into nature’s raw beauty.
+    <p className="font-light text-sm text-white/70">
+      Where Creativity Begins
+    </p>
+    <p className="font-normal text-sm mt-3 max-w-lg text-white/60">
+      We developed playful branding and visuals for Little Mess Makers, a kids' art class program designed to spark imagination.
     </p>
   </div>
 );
 
 const SkeletonEight = () => (
-  <div>
-    <p className="font-bold md:text-4xl text-xl text-white">
-      Desert Mirage
+  <div className="space-y-2">
+    <p className="font-medium text-lg tracking-tight text-white/90">
+      NAILPOP
     </p>
-    <p className="font-normal text-base text-white"></p>
-    <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
-      A striking home set in the desert, where minimalism meets breathtaking horizons.
+    <p className="font-light text-sm text-white/70">
+      Color Outside the Lines
+    </p>
+    <p className="font-normal text-sm mt-3 max-w-lg text-white/60">
+      We helped NAILPOP launch a vibrant digital campaign celebrating bold self-expression through nail art and playful design.
+    </p>
+  </div>
+);
+
+const SkeletonNine = () => (
+  <div className="space-y-2">
+    <p className="font-medium text-lg tracking-tight text-white/90">
+      Verdella Farms
+    </p>
+    <p className="font-light text-sm text-white/70">
+      Rooted in Realness
+    </p>
+    <p className="font-normal text-sm mt-3 max-w-lg text-white/60">
+      We told the story of Verdella Farms through authentic imagery and brand storytelling that connects earth, women, and growth.
+    </p>
+  </div>
+);
+
+const SkeletonTen = () => (
+  <div className="space-y-2">
+    <p className="font-medium text-lg tracking-tight text-white/90">
+      Syntech Industries
+    </p>
+    <p className="font-light text-sm text-white/70">
+      Precision at Scale
+    </p>
+    <p className="font-normal text-sm mt-3 max-w-lg text-white/60">
+      We designed a futuristic visual identity and microsite for Syntech Industries, showcasing innovation in automation and robotics.
+    </p>
+  </div>
+);
+
+const SkeletonEleven = () => (
+  <div className="space-y-2">
+    <p className="font-medium text-lg tracking-tight text-white/90">
+      AEROVANT
+    </p>
+    <p className="font-light text-sm text-white/70">
+      Flight, Reimagined
+    </p>
+    <p className="font-normal text-sm mt-3 max-w-lg text-white/60">
+      From naming to narrative, we helped AEROVANT present their next-gen aviation concept with sleek visuals and brand positioning.
+    </p>
+  </div>
+);
+
+const SkeletonTwelve = () => (
+  <div className="space-y-2">
+    <p className="font-medium text-lg tracking-tight text-white/90">
+      Moss & Mineral
+    </p>
+    <p className="font-light text-sm text-white/70">
+      Clean Beauty, Naturally
+    </p>
+    <p className="font-normal text-sm mt-3 max-w-lg text-white/60">
+      We created the brand identity and packaging concept for Moss & Mineral, a gentle care line for skin, hair, and earth.
     </p>
   </div>
 );
 
 // ----------------------------------------------------------------------------
-// Cards Array – eight cards to fill the grid nicely
+// Cards Array – twelve cards to fill the grid
 // ----------------------------------------------------------------------------
 const cards = [
   {
     id: 1,
     content: <SkeletonOne />,
     className: "md:col-span-2",
-    thumbnail:
-      "ceramics.webp",
+    thumbnail: "https://pub-af52e145b46f4643840668ef5bf23952.r2.dev/ceramics%20(4).webp",
   },
   {
     id: 2,
     content: <SkeletonTwo />,
     className: "col-span-1",
-    thumbnail:
-      "heat.webp",
+    thumbnail: "https://pub-2634c5482cbc49329e9902214d332db6.r2.dev/heat%20(4).webp",
   },
   {
     id: 3,
     content: <SkeletonThree />,
     className: "col-span-1",
-    thumbnail:
-      "socialdistance.webp",
+    thumbnail: "https://pub-e08ddc6efc2944bb84b7982b6e8825b4.r2.dev/cyberpunkvr%20(1).webp",
   },
   {
     id: 4,
     content: <SkeletonFour />,
     className: "md:col-span-2",
-    thumbnail:
-      "river.webp",
+    thumbnail: "https://pub-bef823910dc44973941ddebcc9ec07c8.r2.dev/leather%20(1).webp",
   },
   {
     id: 5,
     content: <SkeletonFive />,
     className: "col-span-1",
-    thumbnail:
-      "podcast.webp",
+    thumbnail: "https://pub-5d7c3f192a6844559ecb0366466f8b3e.r2.dev/glass%20(4).webp",
   },
   {
     id: 6,
     content: <SkeletonSix />,
     className: "col-span-1",
-    thumbnail:
-      "power.webp",
+    thumbnail: "https://pub-a74269ab9d1140f4b9b01e4b98c35bc7.r2.dev/drinks%20(6).webp",
   },
   {
     id: 7,
     content: <SkeletonSeven />,
-    className: "col-span-1",
-    thumbnail:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=3540&auto=format&fit=crop",
+    className: "md:col-span-2",
+    thumbnail: "https://pub-762008b27cff430289f9cb812010d371.r2.dev/artscraft%20(1).webp",
   },
   {
     id: 8,
     content: <SkeletonEight />,
     className: "col-span-1",
-    thumbnail:
-      "https://images.unsplash.com/photo-1519608487953-e999c86e7455?q=80&w=3540&auto=format&fit=crop",
+    thumbnail: "https://pub-ad061bfadf884f598139510ae71023ba.r2.dev/nails%20(4).webp",
   },
+  {
+    id: 9,
+    content: <SkeletonNine />,
+    className: "col-span-1",
+    thumbnail: "https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/farm%20(4).webp",
+  },
+  {
+    id: 10,
+    content: <SkeletonTen />,
+    className: "col-span-1",
+    thumbnail: "https://pub-c9720308467542c7bced018c5417e470.r2.dev/cyborg%20(1).webp",
+  },
+  {
+    id: 11,
+    content: <SkeletonEleven />,
+    className: "col-span-1",
+    thumbnail: "https://pub-31835f4925254f16ad9ce47bfe082f11.r2.dev/btstourists%20(5).webp",
+  },
+  {
+    id: 12,
+    content: <SkeletonTwelve />,
+    className: "md:col-span-2",
+    thumbnail: "https://pub-89ed998cc2bc412db543bb4b8c57e662.r2.dev/soapstory%20(6).webp",
+  }
 ];
