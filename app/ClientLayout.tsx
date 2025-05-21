@@ -1,7 +1,7 @@
 "use client"
 
 import React, { memo, useEffect } from "react"
-import { Inter } from "next/font/google"
+import { Inter, Crimson_Text } from "next/font/google"
 import "./globals.css"
 import Link from "next/link"
 import { Menu, X, Instagram, Twitter, Linkedin } from "lucide-react"
@@ -9,6 +9,11 @@ import { motion } from "framer-motion"
 import styles from "./components/navbar-bubble.module.css"
 
 const inter = Inter({ subsets: ["latin"], weight: ["200", "400", "500", "700"] })
+const crimsonText = Crimson_Text({ 
+    subsets: ["latin"],
+    weight: ["400", "600"],
+    variable: '--font-crimson'
+})
 
 const NavLink = ({ href, text }: { href: string; text: string }) => {
   return (
@@ -234,7 +239,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   return (
     <>
       <Header />
-      <main className="min-h-screen">
+      <main className={`min-h-screen ${crimsonText.variable}`}>
         {children}
       </main>
       <Footer />
