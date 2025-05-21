@@ -1,0 +1,302 @@
+.cardContainer {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: sticky;
+    top: 0px;
+    perspective: 1000px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 900px;
+    width: 2500px;
+    border-radius: 35px;
+    padding: 50px 200px;
+    transform-origin: top;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,0,0,0.08);
+    background: var(--card-color);
+    position: relative;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.1) 0%,
+        rgba(255,255,255,0.05) 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at 50% 0%,
+        rgba(255,255,255,0.1) 0%,
+        transparent 70%
+    );
+    z-index: 1;
+    pointer-events: none;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.01);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+    border-color: rgba(0,0,0,0.12);
+}
+
+.card h2 {
+    text-align: center;
+    margin: 0px;
+    font-size: 42px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 30px;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.2;
+    text-transform: none;
+    background: linear-gradient(
+        to right,
+        rgba(0,0,0,0.9) 0%,
+        rgba(0,0,0,0.8) 50%,
+        rgba(0,0,0,0.7) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+    transform: translateZ(0);
+    will-change: transform;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 2;
+}
+
+.card:hover h2 {
+    transform: scale(1.01) translateZ(0);
+    letter-spacing: -0.01em;
+}
+
+.body {
+    display: flex;
+    height: 100%;
+    margin-top: 30px;
+    gap: 40px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    max-width: 1800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.description {
+    width: 45%;
+    position: relative;
+    top: 10%;
+}
+
+.description p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: rgba(0,0,0,0.7);
+    font-weight: 350;
+    letter-spacing: 0.01em;
+    margin-bottom: 40px;
+    opacity: 0.95;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.description p:hover {
+    opacity: 1;
+}
+
+.description p::first-letter {
+    font-size: 52px;
+    font-family: 'Inter', serif;
+    font-weight: 600;
+    line-height: 1;
+    margin-right: 10px;
+    float: left;
+    background: linear-gradient(
+        45deg,
+        rgba(0,0,0,0.9) 0%,
+        rgba(0,0,0,0.8) 50%,
+        rgba(0,0,0,0.7) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-top: 6px;
+}
+
+.description span {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.description span a {
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    color: rgba(0,0,0,0.75);
+    font-weight: 450;
+    letter-spacing: 0.02em;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-bottom: 4px;
+    z-index: 2;
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+}
+
+.description span a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        rgba(0,0,0,0.7) 0%,
+        rgba(0,0,0,0.5) 100%
+    );
+    transition: width 0.3s ease;
+}
+
+.description span a:hover {
+    opacity: 1;
+    transform: translateX(5px);
+}
+
+.description span a:hover::after {
+    width: 100%;
+}
+
+.description span svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+    opacity: 0.8;
+}
+
+.description span:hover svg {
+    transform: translateX(5px);
+}
+
+.description span svg path {
+    fill: rgba(0,0,0,0.7);
+}
+
+.imageContainer {
+    position: relative;
+    width: 55%;
+    height: 80%;
+    border-radius: 25px;
+    overflow: hidden;
+    isolation: isolate;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto 0;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+}
+
+.card:hover .imageContainer {
+    transform: scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.inner {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.inner::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0) 0%,
+        rgba(0,0,0,0.05) 50%,
+        rgba(0,0,0,0.1) 100%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.card:hover .inner::after {
+    opacity: 1;
+}
+
+.inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        circle at 50% 50%,
+        rgba(255,255,255,0.2) 0%,
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.card:hover .inner::before {
+    opacity: 1;
+}
+
+.inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform-origin: center;
+    will-change: transform;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover .inner img {
+    transform: scale(1.05);
+} 
