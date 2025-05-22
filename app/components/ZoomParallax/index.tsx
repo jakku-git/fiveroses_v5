@@ -6,7 +6,7 @@ import { useRef } from 'react'
 
 const pictures = [
     {
-        src: "/ceramics.webp",
+        src: "https://pub-172cf25c478a4ad6ab218ee60b1a4b4f.r2.dev/home%20(4).webp",
         scale: 4,
         position: {
             top: "0",
@@ -16,7 +16,7 @@ const pictures = [
         }
     },
     {
-        src: "/heat.webp",
+        src: "https://pub-172cf25c478a4ad6ab218ee60b1a4b4f.r2.dev/home%20(6).webp",
         scale: 5,
         position: {
             top: "-30vh",
@@ -26,7 +26,7 @@ const pictures = [
         }
     },
     {
-        src: "/power.webp",
+        src: "https://pub-172cf25c478a4ad6ab218ee60b1a4b4f.r2.dev/home%20(1).webp",
         scale: 6,
         position: {
             top: "-10vh",
@@ -36,7 +36,7 @@ const pictures = [
         }
     },
     {
-        src: "/river.webp",
+        src: "https://pub-172cf25c478a4ad6ab218ee60b1a4b4f.r2.dev/home%20(5).webp",
         scale: 8,
         position: {
             left: "27.5vw",
@@ -45,7 +45,7 @@ const pictures = [
         }
     },
     {
-        src: "/podcast.webp",
+        src: "https://pub-172cf25c478a4ad6ab218ee60b1a4b4f.r2.dev/home%20(7).webp",
         scale: 9,
         position: {
             top: "27.5vh",

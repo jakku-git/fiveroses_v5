@@ -53,10 +53,11 @@ export default function BackgroundParallax() {
                             opacity: useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0])
                         }}
                     >
-                        We turn bold ideas
+                        Bold ideas
                     </motion.span>
                     <motion.span 
                         className={styles.line2}
+                        data-text="into beautiful realities."
                         style={{ 
                             x: springLine2X,
                             scale: useTransform(scrollYProgress, [0.1, 0.4, 0.8, 1], [0.8, 1.05, 1.05, 1]),
@@ -102,7 +103,7 @@ export default function BackgroundParallax() {
                     }}
                 >
                     <Image 
-                        src="/ceramics.webp" 
+                        src="https://pub-172cf25c478a4ad6ab218ee60b1a4b4f.r2.dev/morehome%20(3)_compressed.webp" 
                         alt="background" 
                         fill
                         style={{objectFit: "cover"}}

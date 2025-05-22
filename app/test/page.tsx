@@ -47,32 +47,32 @@ const originalProjects = [
 
 const galleryProjects = [
     {
-        name: "MAVEN 11",
-        client: "analogueagency",
-        description: "New web design for the blockchain investment fund Maven 11.",
-        src: "ceramics.webp",
-        year: 2022,
+        name: "CTRL Collective",
+        client: "Bitwave Studio",
+        description: "An immersive visual identity and event microsite for a retro tech convention celebrating 90s gaming culture, youth creativity, and analog nostalgia—brought to life with CRT-era aesthetics and rebellious motion design.",
+        src: "https://pub-172cf25c478a4ad6ab218ee60b1a4b4f.r2.dev/morehome%20(1)_compressed.webp",
+        year: 2024,
     },
     {
-        name: "Wix Playground",
-        client: "Wix Playground",
-        description: "Wix Playground is powered by the Wix.com design team.",
-        src: "heat.webp",
-        year: 2022,
+        name: "Wild & Woven",
+        client: "Storytree Kids",
+        description: "Brand identity, packaging, and eCommerce design for a sustainable children's toy brand. Playful earth-tones, hand-illustrated textures, and tactile storytelling bring the magic of nature-inspired learning to life.",
+        src: "https://pub-172cf25c478a4ad6ab218ee60b1a4b4f.r2.dev/morehome%20(2)_compressed.webp",
+        year: 2024,
     },
     {
-        name: "POWELL—STUDIO",
-        client: "POWELL—STUDIO",
-        description: "The online presence for Powell—Studio.",
-        src: "power.webp",
-        year: 2023,
+        name: "Stacks & Stories",
+        client: "Luma Library Co.",
+        description: "Creative direction and visual content series for a modern urban library chain. This campaign focused on reimagining libraries as cultural sanctuaries—with an emphasis on light, curiosity, and the quiet poetry of public space.",
+        src: "https://pub-172cf25c478a4ad6ab218ee60b1a4b4f.r2.dev/morehome%20(4)_compressed.webp",
+        year: 2024,
     },
     {
-        name: "Nothing Design",
-        client: "Nothing",
-        description: "Where creativity meets functionality.",
-        src: "river.webp",
-        year: 2023,
+        name: "Circuit Bloom",
+        client: "Brightbyte Labs",
+        description: "Art direction and campaign visuals for a youth innovation initiative merging art and engineering. We captured the poetic tension between glowing ambition and gritty experimentation in the quiet moments of making.",
+        src: "https://pub-172cf25c478a4ad6ab218ee60b1a4b4f.r2.dev/morehome%20(5)_compressed.webp",
+        year: 2024,
     }
 ]
 
@@ -159,18 +159,21 @@ export default function TestPage() {
                     <PerspectiveSection
                         scrollYProgress={scrollYProgress}
                         isFirstSection={true}
-                        imageSrc="https://images.unsplash.com/photo-1682687220063-4742bd7fd538?q=80&w=1000&auto=format&fit=crop"
+                        imageSrc="https://pub-172cf25c478a4ad6ab218ee60b1a4b4f.r2.dev/home%20(3).webp"
+                        title="What are you waiting for?"
                     />
                     <PerspectiveSection
                         scrollYProgress={scrollYProgress}
-                        isFirstSection={false}
-                        imageSrc="https://images.unsplash.com/photo-1682687220063-4742bd7fd538?q=80&w=1000&auto=format&fit=crop"
+                        imageSrc="https://pub-172cf25c478a4ad6ab218ee60b1a4b4f.r2.dev/home%20(2).webp"
+                        title="Let's create something."
+                        ctaText="Let's Talk."
+                        ctaLink="/contact"
                     />
                 </div>
 
                 {/* 4. Gallery Section */}
                 <section className={styles.gallerySection}>
-                    <h1>Gallery</h1>
+                    <h1 className="text-3xl md:text-5xl font-light tracking-tighter mb-8">Previous Works</h1>
                     <div className={styles.gallery}>
                         <Double projects={[galleryProjects[0], galleryProjects[1]]} />
                         <Double projects={[galleryProjects[2], galleryProjects[3]]} reversed={true} />
@@ -179,7 +182,7 @@ export default function TestPage() {
 
                 {/* 8. Original Projects Section */}
                 <section className={styles.originalSection}>
-                    <h1>Featured Work</h1>
+                    <h1 className="text-3xl md:text-5xl font-light tracking-tighter mb-8">Recent Works</h1>
                     <div className={styles.projectList}>
                         {originalProjects.map((project, index) => (
                             <Project key={index} project={project} />
