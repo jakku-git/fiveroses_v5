@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description:
     "Full-service marketing agency offering comprehensive marketing services, innovative web development, and a startup incubator.",
   generator: "v0.dev",
-  viewport: "width=device-width, initial-scale=1",
+  viewport: "width=device-width, initial-scale=0.5, maximum-scale=0.5, user-scalable=no",
   themeColor: "#000000",
 }
 
