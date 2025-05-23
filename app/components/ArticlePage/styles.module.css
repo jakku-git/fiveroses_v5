@@ -1,0 +1,58 @@
+/* Custom styles for article content */
+.prose {
+  @apply text-white/80;
+}
+
+.prose h3 {
+  @apply text-2xl font-light tracking-tight mt-8 mb-4;
+}
+
+.prose p {
+  @apply mb-6 leading-relaxed;
+}
+
+.prose ul {
+  @apply list-disc list-inside mb-6 space-y-2;
+}
+
+.prose li {
+  @apply text-white/70;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-black;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-white/20;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Image hover effects */
+.group:hover .group-hover\:scale-105 {
+  transform: scale(1.05);
+}
+
+/* Transition durations */
+.transition-transform {
+  transition-duration: 500ms;
+}
+
+/* Backdrop blur for category badge */
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+} 

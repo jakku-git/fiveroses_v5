@@ -14,7 +14,15 @@ interface ArticlePageProps {
 }
 
 export default function ArticlePage({ params }: ArticlePageProps) {
-  const article = allArticles.find((a: Article) => a.id === params.id);
+  // Convert the URL slug back to the article ID format
+  const articleId = params.id.split('-').map(word => 
+    word.charAt(0).toUpperCase() + word.slice(1)
+  ).join(' ')
+  
+  const article = allArticles.find((a: Article) => 
+    a.id.toLowerCase().replace(/\s+/g, '-') === params.id
+  )
+
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -27,7 +35,16 @@ export default function ArticlePage({ params }: ArticlePageProps) {
   if (!article) {
     return (
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
-        <h1 className="text-4xl font-bold">Article not found</h1>
+        <div className="text-center space-y-4">
+          <h1 className="text-4xl font-light tracking-tighter">Article not found</h1>
+          <Link 
+            href="/news" 
+            className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to News
+          </Link>
+        </div>
       </div>
     );
   }

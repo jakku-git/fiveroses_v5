@@ -1,0 +1,315 @@
+.articleCard {
+  @apply relative bg-white/5 rounded-xl overflow-hidden transition-all duration-300;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.articleCard:hover {
+  @apply bg-white/10 transform -translate-y-1;
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.articleCard::after {
+  content: '';
+  @apply absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 transition-opacity duration-300 pointer-events-none;
+  z-index: 1;
+}
+
+.articleCard:hover::after {
+  @apply opacity-100;
+}
+
+/* Add smooth transitions for all interactive elements */
+.articleCard * {
+  @apply transition-colors duration-300;
+}
+
+/* Add a subtle scale effect on hover for images */
+.articleCard img {
+  @apply transition-transform duration-500;
+}
+
+.articleCard:hover img {
+  @apply scale-105;
+}
+
+/* Add a subtle glow effect on hover */
+.articleCard::before {
+  content: '';
+  @apply absolute inset-0 bg-white/5 opacity-0 transition-opacity duration-300 pointer-events-none;
+  filter: blur(20px);
+  z-index: 0;
+}
+
+.articleCard:hover::before {
+  @apply opacity-100;
+}
+
+/* Ensure the link is clickable */
+.articleCard a {
+  @apply relative z-10;
+  position: relative;
+}
+
+/* Base typography styles */
+.articleContent {
+  @apply max-w-none;
+}
+
+.articleContent h1 {
+  @apply text-4xl md:text-5xl font-light tracking-tight mb-8;
+}
+
+.articleContent h2 {
+  @apply text-3xl md:text-4xl font-light tracking-tight mt-12 mb-6;
+}
+
+.articleContent h3 {
+  @apply text-2xl md:text-3xl font-light tracking-tight mt-8 mb-4;
+}
+
+.articleContent h4 {
+  @apply text-xl md:text-2xl font-light tracking-tight mt-6 mb-3;
+}
+
+.articleContent p {
+  @apply text-base md:text-lg text-neutral-300 font-light leading-relaxed mb-6;
+}
+
+.articleContent ul {
+  @apply list-disc list-inside space-y-2 mb-6;
+}
+
+.articleContent li {
+  @apply text-neutral-300 font-light;
+}
+
+.articleContent blockquote {
+  @apply border-l-2 border-rose-400/20 pl-6 py-4 my-8 italic text-neutral-300;
+}
+
+.articleContent a {
+  @apply text-rose-400 hover:text-rose-300 transition-colors;
+}
+
+.articleContent img {
+  @apply rounded-lg my-8;
+}
+
+/* Hero section typography */
+.heroTitle {
+  @apply text-5xl md:text-7xl font-light tracking-tighter leading-[1.1] mb-6;
+  font-feature-settings: "ss01" on, "ss02" on, "ss03" on;
+  letter-spacing: -0.02em;
+}
+
+.heroDescription {
+  @apply text-xl md:text-2xl text-neutral-300 font-light leading-relaxed;
+  font-feature-settings: "kern" on, "liga" on;
+  letter-spacing: -0.01em;
+}
+
+/* Section typography */
+.sectionTitle {
+  @apply text-4xl md:text-5xl font-light tracking-tighter mt-16 mb-8;
+  font-feature-settings: "ss01" on, "ss02" on;
+  letter-spacing: -0.02em;
+}
+
+.sectionDescription {
+  @apply text-lg md:text-xl text-neutral-300 font-light mb-12;
+  font-feature-settings: "kern" on, "liga" on;
+  letter-spacing: -0.01em;
+}
+
+/* Content typography */
+.contentHeading {
+  @apply text-2xl md:text-3xl font-light tracking-tight mt-12 mb-6;
+  font-feature-settings: "ss01" on;
+  letter-spacing: -0.01em;
+}
+
+.contentSubheading {
+  @apply text-xl md:text-2xl font-light tracking-tight mt-8 mb-4;
+  font-feature-settings: "ss01" on;
+  letter-spacing: -0.01em;
+}
+
+.contentParagraph {
+  @apply text-base md:text-lg text-neutral-300 font-light leading-relaxed mb-8;
+  font-feature-settings: "kern" on, "liga" on;
+  letter-spacing: -0.01em;
+}
+
+/* List typography */
+.contentList {
+  @apply space-y-4 my-8;
+}
+
+.contentListItem {
+  @apply text-base md:text-lg text-neutral-300 font-light leading-relaxed pl-6 relative;
+  font-feature-settings: "kern" on, "liga" on;
+}
+
+.contentListItem::before {
+  content: "•";
+  @apply absolute left-0 text-rose-400/50;
+}
+
+/* Blockquote typography */
+.contentBlockquote {
+  @apply border-l-2 border-rose-400/20 pl-8 py-4 my-12 italic text-neutral-300;
+  font-feature-settings: "kern" on, "liga" on;
+}
+
+.contentBlockquote cite {
+  @apply block mt-4 text-sm text-neutral-400 not-italic font-light;
+}
+
+/* Related articles typography */
+.relatedTitle {
+  @apply text-3xl md:text-4xl font-light tracking-tighter mb-12;
+  font-feature-settings: "ss01" on, "ss02" on;
+  letter-spacing: -0.02em;
+}
+
+.relatedArticleTitle {
+  @apply text-xl font-light tracking-tight mb-2 group-hover:text-rose-400 transition-colors;
+  font-feature-settings: "ss01" on;
+  letter-spacing: -0.01em;
+}
+
+.relatedArticleExcerpt {
+  @apply text-sm text-neutral-400 font-light mb-2;
+  font-feature-settings: "kern" on, "liga" on;
+}
+
+.relatedArticleDate {
+  @apply text-sm text-neutral-500 font-light;
+  font-feature-settings: "kern" on, "liga" on;
+}
+
+/* Tag typography */
+.tagLabel {
+  @apply text-lg font-light tracking-tight;
+  font-feature-settings: "ss01" on;
+  letter-spacing: -0.01em;
+}
+
+.tagItem {
+  @apply px-4 py-2 bg-neutral-900/50 text-neutral-300 rounded-full text-sm font-light;
+  font-feature-settings: "kern" on, "liga" on;
+}
+
+/* Category badge typography */
+.categoryBadge {
+  @apply px-4 py-1.5 bg-rose-500/20 text-rose-400 rounded-full text-sm font-light tracking-wider;
+  font-feature-settings: "ss01" on;
+  letter-spacing: 0.05em;
+}
+
+/* Author typography */
+.authorName {
+  @apply text-sm font-light;
+  font-feature-settings: "ss01" on;
+  letter-spacing: -0.01em;
+}
+
+.authorDate {
+  @apply text-xs text-neutral-400 font-light;
+  font-feature-settings: "kern" on, "liga" on;
+}
+
+/* Article card typography */
+.articleCardTitle {
+  @apply text-xl font-light tracking-tight group-hover:text-white/80 transition-colors;
+  font-feature-settings: "ss01" on;
+  letter-spacing: -0.01em;
+}
+
+.articleCardExcerpt {
+  @apply text-white/60 text-sm font-light;
+  font-feature-settings: "kern" on, "liga" on;
+}
+
+.articleCardMeta {
+  @apply pt-2 text-sm text-white/40 font-light;
+  font-feature-settings: "kern" on, "liga" on;
+}
+
+/* Card content container */
+.cardContent {
+  @apply p-6 space-y-4;
+}
+
+/* Card meta information */
+.cardMeta {
+  @apply flex items-center gap-3 text-sm text-white/60 font-light;
+}
+
+.cardCategory {
+  @apply px-3 py-1 bg-white/10 rounded-full text-xs font-medium tracking-wider text-white/80;
+  backdrop-filter: blur(4px);
+}
+
+.cardReadTime {
+  @apply flex items-center gap-1.5;
+}
+
+/* Card title */
+.cardTitle {
+  @apply text-xl font-light tracking-tight leading-snug mt-4 mb-3;
+  font-feature-settings: "ss01" on;
+  letter-spacing: -0.01em;
+}
+
+/* Card excerpt */
+.cardExcerpt {
+  @apply text-sm text-white/60 font-light leading-relaxed;
+  font-feature-settings: "kern" on, "liga" on;
+  letter-spacing: 0.01em;
+}
+
+/* Card footer */
+.cardFooter {
+  @apply flex items-center gap-3 pt-4 mt-4 border-t border-white/5;
+}
+
+.cardAuthor {
+  @apply flex items-center gap-2;
+}
+
+.cardAuthorImage {
+  @apply w-6 h-6 rounded-full overflow-hidden;
+}
+
+.cardAuthorName {
+  @apply text-sm font-light text-white/80;
+}
+
+.cardDate {
+  @apply text-xs text-white/40 font-light;
+}
+
+/* Card image container */
+.cardImageContainer {
+  @apply relative aspect-[4/3] overflow-hidden;
+}
+
+.cardImage {
+  @apply object-cover transition-transform duration-700;
+}
+
+.articleCard:hover .cardImage {
+  @apply scale-105;
+}
+
+/* Card hover effects */
+.cardHoverEffect {
+  @apply absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 transition-opacity duration-300;
+}
+
+.articleCard:hover .cardHoverEffect {
+  @apply opacity-100;
+} 

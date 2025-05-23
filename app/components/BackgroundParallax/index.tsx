@@ -57,14 +57,14 @@ export default function BackgroundParallax() {
                     </motion.span>
                     <motion.span 
                         className={styles.line2}
-                        data-text="into beautiful realities."
+                        data-text="to beautiful realities."
                         style={{ 
                             x: springLine2X,
                             scale: useTransform(scrollYProgress, [0.1, 0.4, 0.8, 1], [0.8, 1.05, 1.05, 1]),
                             opacity: useTransform(scrollYProgress, [0.1, 0.3, 0.8, 1], [0, 1, 1, 0])
                         }}
                     >
-                        into beautiful realities.
+                        to beautiful realities.
                     </motion.span>
                     <motion.span 
                         className={styles.line3}

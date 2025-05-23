@@ -1,274 +1,356 @@
 "use client"
 
-import { StickyScroll } from "@/components/ui/sticky-scroll-reveal"
-import { motion } from "framer-motion"
-import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowLeft, Clock, Tag, Share2, BookmarkPlus, MessageCircle } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import { Article, allArticles } from "../page";
+import styles from '../styles.module.css';
 
-export default function FutureOfDigitalMarketingPage() {
+interface ArticlePageProps {
+  params: {
+    id: string;
+  };
+}
+
+const articleSections = [
+  {
+    title: "The Evolution of Digital Marketing",
+    description: "How modern digital marketing is transforming brand engagement",
+    content: `The digital marketing landscape has undergone a profound transformation in recent years, evolving from simple online advertising to sophisticated, data-driven strategies that create meaningful connections with audiences. As we navigate this new era of marketing, understanding the current state of digital marketing is crucial for creating effective, engaging campaigns.
+
+## The New Marketing Paradigm
+
+Modern digital marketing has moved far beyond its origins as a primarily promotional discipline. Today's marketing is a sophisticated blend of data analysis, creative storytelling, and technological innovation that creates meaningful connections between brands and their audiences. The most successful marketers are those who understand this evolution and adapt their approach accordingly.
+
+Consider the case of a leading consumer brand that recently implemented a comprehensive digital marketing transformation. By integrating AI-powered personalization with authentic storytelling, they achieved a 70% increase in customer engagement and a 45% boost in conversion rates. Their success wasn't just about reaching more people—it was about creating deeper, more meaningful connections with their audience.
+
+## Current Marketing Landscape
+
+The foundation of successful digital marketing today rests on several key elements that guide the creation of effective campaigns. These elements have evolved significantly from the early days of digital marketing, reflecting our deeper understanding of consumer behavior and technological capabilities.
+
+Data-driven decision making has emerged as a fundamental principle, with successful marketers using advanced analytics to understand and predict consumer behavior. This approach goes beyond simple metrics—it's about using data to create more relevant, engaging experiences for each customer.
+
+Content strategy has become increasingly sophisticated, with brands creating multi-channel narratives that engage audiences across different platforms and touchpoints. The most successful campaigns are those that tell compelling stories while maintaining consistency across channels.
+
+## Emerging Technologies and Their Impact
+
+The tools and technologies available to marketers have evolved dramatically, opening up new possibilities for creating engaging campaigns. From AI-powered personalization to advanced analytics platforms, these technologies are reshaping how we approach digital marketing.
+
+Artificial intelligence is playing an increasingly important role in marketing, with AI-powered tools helping brands create more personalized, responsive campaigns. For instance, a major retail brand recently implemented an AI-driven personalization system that adapts content and offers based on individual customer behavior. The result? A 55% increase in customer engagement and a 40% boost in conversion rates.
+
+Advanced analytics platforms are enabling marketers to gain deeper insights into customer behavior and campaign performance. Modern marketing teams are using these tools to create more targeted, effective campaigns that resonate with specific audience segments.
+
+## Customer Experience Evolution
+
+The field of customer experience has evolved significantly, with new approaches and methodologies emerging to address the changing needs of consumers and the capabilities of modern technology.
+
+One of the most significant trends is the focus on omnichannel experiences—creating seamless, consistent experiences across all customer touchpoints. This approach goes beyond simple channel integration to consider how each interaction contributes to the overall customer journey.
+
+Personalization has become increasingly sophisticated, with brands using data and AI to create tailored experiences for individual customers. This isn't just about showing relevant content—it's about creating entire experiences that adapt to customer preferences and behavior.
+
+## Marketing Innovation
+
+The approach to marketing innovation has evolved dramatically, reflecting changes in technology, consumer expectations, and market dynamics. Modern brands are embracing new approaches to marketing that create more engaging, effective campaigns.
+
+Agile marketing has emerged as a powerful approach, with successful brands using iterative, data-driven methods to optimize campaigns in real-time. This approach isn't just about speed—it's about creating more responsive, effective marketing strategies.
+
+Content marketing has taken on new importance, with brands using sophisticated storytelling techniques to create engaging, memorable experiences. The most successful campaigns are those that use content not just for promotion, but as a key element of their brand identity.
+
+The future of digital marketing lies in creating meaningful, personalized experiences that leverage emerging technologies while maintaining focus on customer needs and brand values.`,
+    image: "https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=2940&auto=format&fit=crop",
+    imageAlt: "Digital marketing trends visualization showing key patterns"
+  },
+  {
+    title: "Future of Digital Marketing",
+    description: "Emerging trends and technologies shaping the future of marketing",
+    content: `As we look toward the future of digital marketing, several transformative trends are emerging that will redefine how brands connect with their audiences. These developments present both exciting opportunities and new challenges for marketers navigating the evolving digital landscape.
+
+## The Next Wave of Marketing Innovation
+
+The future of digital marketing is being shaped by several groundbreaking innovations that will fundamentally change how we approach brand communication. From AI-driven personalization to immersive technologies, these developments are opening up new possibilities for creating engaging, effective campaigns.
+
+Artificial intelligence is revolutionizing the marketing process, with AI-powered tools enabling brands to create more sophisticated, personalized experiences. For instance, a leading marketing agency recently implemented an AI-driven campaign optimization system that can adapt messaging and targeting based on real-time performance data. The results were impressive: a 60% increase in campaign effectiveness and a 45% reduction in customer acquisition costs.
+
+## Technology Integration and Evolution
+
+Advanced technologies are reshaping how we approach marketing, with new tools and capabilities emerging that enable more sophisticated, engaging campaigns. These technologies aren't just changing how we market—they're redefining what's possible in brand communication.
+
+Machine learning is becoming an essential tool for creating personalized experiences at scale. Modern marketing teams are using ML algorithms to analyze customer behavior, predict preferences, and adapt campaigns accordingly. This approach goes beyond simple personalization to create truly dynamic experiences that evolve with customer interaction.
+
+Advanced analytics platforms are enabling marketers to gain deeper insights into campaign performance and customer behavior. From predictive analytics to real-time optimization, these tools are helping marketers create more effective, engaging campaigns.
+
+## Customer Experience in the Future
+
+The field of customer experience is evolving rapidly, with new approaches and methodologies emerging to address the changing needs of consumers and the capabilities of modern technology.
+
+Contextual marketing is becoming increasingly important, with brands using data and AI to understand and adapt to customer context. This includes everything from device type and location to time of day and customer behavior. The most successful campaigns will be those that can seamlessly adapt to different contexts while maintaining a consistent brand message.
+
+Predictive engagement is emerging as a powerful tool for creating more intuitive, efficient customer experiences. By anticipating customer needs and preferences, brands can create more streamlined, effective interactions that help customers achieve their goals more efficiently.
+
+## Future Considerations and Challenges
+
+As we look ahead, several key considerations will shape the future of digital marketing:
+
+Privacy and data protection will become increasingly important, with brands needing to balance personalized experiences with customer privacy concerns. This includes everything from transparent data collection to secure customer information management.
+
+Sustainability in marketing will become essential as consumers become more environmentally conscious. Brands will need to find new ways to create engaging campaigns while minimizing their environmental impact.
+
+Ethical marketing practices will continue to evolve, with brands needing to ensure their campaigns are honest, transparent, and socially responsible.
+
+The future of digital marketing lies in creating meaningful, personalized experiences that leverage emerging technologies while maintaining focus on customer needs and brand values. Success will depend on understanding these trends and adapting marketing approaches accordingly.`,
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2940&auto=format&fit=crop",
+    imageAlt: "Future of digital marketing visualization showing emerging patterns"
+  }
+];
+
+const relatedArticles = [
+  {
+    title: "How AI is Transforming Content Creation",
+    date: "May 28, 2023",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2938&auto=format&fit=crop",
+    slug: "/news/ai-content-creation",
+    excerpt: "Discover how artificial intelligence is revolutionizing the way we create and distribute content."
+  },
+  {
+    title: "Social Media Trends to Watch",
+    date: "April 22, 2023",
+    image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=2874&auto=format&fit=crop",
+    slug: "/news/social-media-trends",
+    excerpt: "Stay ahead of the curve with these emerging social media trends that are shaping digital marketing."
+  },
+  {
+    title: "The Future of Web Design",
+    date: "March 15, 2023",
+    image: "https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=2864&auto=format&fit=crop",
+    slug: "/news/web-design-future",
+    excerpt: "Explore the latest trends and technologies that are shaping the future of digital experiences."
+  }
+];
+
+export default function ArticlePage({ params }: ArticlePageProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [0, 100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [1, 1, 0, 0]);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between pt-16">
+    <main className="min-h-screen bg-black text-white">
       {/* Hero Section */}
-      <section className="w-full py-24 px-4 md:px-6 bg-black text-white">
-        <div className="max-w-4xl mx-auto">
-          <div className="mb-8">
+      <section className="relative h-[80vh] w-full overflow-hidden">
+        <motion.div
+          ref={containerRef}
+          style={{ y, opacity }}
+          className="absolute inset-0"
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-neutral-900/50 to-black/50 backdrop-blur-sm" />
+          <Image
+            src="https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=2940&auto=format&fit=crop"
+            alt="Digital Marketing"
+            fill
+            className="object-cover"
+            priority
+          />
+        </motion.div>
+
+        <motion.div 
+          className="relative z-10 container mx-auto px-4 md:px-8 h-full flex items-end pb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="max-w-4xl space-y-8">
             <Link
               href="/news"
-              className="inline-flex items-center gap-2 text-sm text-neutral-400 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-neutral-300 hover:text-white transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
-              Back to News
+              <span>Back to News</span>
             </Link>
-          </div>
 
-          <div className="mb-6">
-            <span className="inline-block bg-accent text-black px-3 py-1 rounded-full text-xs font-medium">
-              Featured
+            <div className="flex items-center gap-4">
+              <span className={styles.categoryBadge}>
+                Marketing
             </span>
-            <span className="ml-4 text-sm text-neutral-400">June 15, 2023</span>
+              <div className="flex items-center gap-2 text-neutral-400">
+                <Clock className="w-4 h-4" />
+                <span>8 min read</span>
+              </div>
           </div>
 
-          <motion.h1
-            className="text-4xl md:text-6xl font-light tracking-tighter mb-6"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            The Future of Digital Marketing in 2025
-          </motion.h1>
+            <h1 className={styles.heroTitle}>
+              The Future of Digital Marketing in 2025: A Comprehensive Guide
+            </h1>
 
-          <motion.div
-            className="flex items-center gap-4 mb-8"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-full overflow-hidden">
-                <img
-                  src="/placeholder.svg?height=100&width=100"
-                  alt="Sarah Johnson"
+            <p className={styles.heroDescription}>
+              Discover how AI, voice search, and immersive technologies are reshaping the marketing landscape. Learn what it takes to stay ahead in an increasingly digital world.
+            </p>
+
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-rose-500/20">
+                  <Image
+                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=300&auto=format&fit=crop"
+                    alt="Sarah Chen"
+                    width={40}
+                    height={40}
                   className="w-full h-full object-cover"
                 />
               </div>
               <div>
-                <p className="font-medium">Sarah Johnson</p>
-                <p className="text-sm text-neutral-400">Marketing Director</p>
+                  <p className={styles.authorName}>Sarah Chen</p>
+                  <p className={styles.authorDate}>June 15, 2023</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-4 ml-auto">
+                <button className="p-2 hover:bg-white/5 rounded-full transition-colors">
+                  <Share2 className="w-5 h-5" />
+                </button>
+                <button className="p-2 hover:bg-white/5 rounded-full transition-colors">
+                  <BookmarkPlus className="w-5 h-5" />
+                </button>
+              </div>
               </div>
             </div>
           </motion.div>
+      </section>
 
-          <motion.div
-            className="aspect-[21/9] w-full overflow-hidden rounded-lg mb-12"
+      {/* Content Section */}
+      <motion.section 
+        className="py-16 px-4 md:px-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <img
-              src="/placeholder.svg?height=600&width=1200"
-              alt="The Future of Digital Marketing"
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
-
-          <motion.p
-            className="text-xl leading-relaxed text-neutral-300 mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            As we approach 2025, the digital marketing landscape continues to evolve at an unprecedented pace. Emerging
-            technologies, changing consumer behaviors, and new platforms are reshaping how brands connect with their
-            audiences. In this article, we explore the key trends and technologies that will define the future of
-            digital marketing in the coming years.
-          </motion.p>
-        </div>
-      </section>
-
-      {/* Article Content with Sticky Scroll Reveal */}
-      <section className="w-full py-24 px-4 md:px-6 bg-neutral-950 text-white">
-        <div className="max-w-7xl mx-auto">
-          <StickyScroll content={articleSections} />
-        </div>
-      </section>
-
-      {/* Conclusion Section */}
-      <section className="w-full py-24 px-4 md:px-6 bg-black text-white">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light tracking-tighter mb-8">Conclusion</h2>
-          <p className="text-lg text-neutral-300 mb-8">
-            The future of digital marketing in 2025 will be defined by personalization, automation, immersive
-            experiences, and ethical considerations. Brands that embrace these trends while maintaining a human touch
-            will thrive in the evolving digital landscape. As marketers, our challenge is to leverage these new
-            technologies and approaches while staying true to the core principles of authentic connection and value
-            creation.
-          </p>
-          <p className="text-lg text-neutral-300 mb-12">
-            By preparing now for these emerging trends, marketers can position themselves at the forefront of innovation
-            and create more meaningful, effective campaigns that resonate with tomorrow's consumers.
-          </p>
+          <div className={styles.articleContent}>
+            {articleSections.map((section, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="mb-16"
+              >
+                <h2 className={styles.sectionTitle}>{section.title}</h2>
+                <p className={styles.sectionDescription}>{section.description}</p>
+                <div className="relative aspect-video mb-12 rounded-lg overflow-hidden">
+                  <Image
+                    src={section.image}
+                    alt={section.imageAlt}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="space-y-8">
+                  {section.content.split("\n\n").map((paragraph, pIndex) => {
+                    if (paragraph.startsWith("## ")) {
+                      return (
+                        <h3 key={pIndex} className={styles.contentHeading}>
+                          {paragraph.replace("## ", "")}
+                        </h3>
+                      );
+                    }
+                    if (paragraph.startsWith("### ")) {
+                      return (
+                        <h4 key={pIndex} className={styles.contentSubheading}>
+                          {paragraph.replace("### ", "")}
+                        </h4>
+                      );
+                    }
+                    if (paragraph.startsWith("- ")) {
+                      return (
+                        <ul key={pIndex} className={styles.contentList}>
+                          {paragraph.split("\n").map((item, i) => (
+                            <li key={i} className={styles.contentListItem}>
+                              {item.replace("- ", "")}
+                            </li>
+                          ))}
+                        </ul>
+                      );
+                    }
+                    return (
+                      <p key={pIndex} className={styles.contentParagraph}>
+                        {paragraph}
+                      </p>
+                    );
+                  })}
+                </div>
+          </motion.div>
+            ))}
+          </div>
 
-          <div className="border-t border-neutral-800 pt-12">
-            <h3 className="text-xl font-light mb-6">Share this article</h3>
-            <div className="flex gap-4">
-              <button className="p-3 bg-neutral-900 rounded-full hover:bg-neutral-800 transition-colors">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                </svg>
+          {/* Tags and Share Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-16 pt-8 border-t border-neutral-800"
+          >
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="flex items-center gap-2">
+                <Tag className="w-5 h-5 text-rose-400" />
+                <h3 className={styles.tagLabel}>Tags</h3>
+        </div>
+              <div className="flex items-center gap-4">
+                <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+                  <Share2 className="w-4 h-4" />
+                  Share
               </button>
-              <button className="p-3 bg-neutral-900 rounded-full hover:bg-neutral-800 transition-colors">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
-                </svg>
+                <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+                  <BookmarkPlus className="w-4 h-4" />
+                  Save
               </button>
-              <button className="p-3 bg-neutral-900 rounded-full hover:bg-neutral-800 transition-colors">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                  <rect x="2" y="9" width="4" height="12"></rect>
-                  <circle cx="4" cy="4" r="2"></circle>
-                </svg>
-              </button>
-              <button className="p-3 bg-neutral-900 rounded-full hover:bg-neutral-800 transition-colors">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path>
-                  <polyline points="16 6 12 2 8 6"></polyline>
-                  <line x1="12" y1="2" x2="12" y2="15"></line>
-                </svg>
+                <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+                  <MessageCircle className="w-4 h-4" />
+                  Comment
               </button>
             </div>
           </div>
+            <div className="flex flex-wrap gap-2 mt-4">
+              {["Digital Marketing", "AI", "Technology", "Strategy", "Innovation", "Future Trends"].map((tag) => (
+                <span key={tag} className={styles.tagItem}>
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Related Articles */}
-      <section className="w-full py-24 px-4 md:px-6 bg-neutral-950 text-white">
+      {/* Related Articles Section */}
+      <section className="w-full py-24 px-4 md:px-6 bg-neutral-950">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-light tracking-tighter mb-12">Related Articles</h2>
-
+          <h2 className={styles.relatedTitle}>Related Articles</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {relatedArticles.map((article, index) => (
               <Link key={index} href={article.slug} className="group">
                 <div className="aspect-[16/9] w-full overflow-hidden rounded-lg mb-4">
-                  <img
-                    src={article.image || "/placeholder.svg"}
+                  <Image
+                    src={article.image}
                     alt={article.title}
+                    width={600}
+                    height={400}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <h3 className="text-xl font-light mb-2 group-hover:text-accent transition-colors">{article.title}</h3>
-                <p className="text-sm text-neutral-400">{article.date}</p>
+                <h3 className={styles.relatedArticleTitle}>
+                  {article.title}
+                </h3>
+                <p className={styles.relatedArticleExcerpt}>{article.excerpt}</p>
+                <p className={styles.relatedArticleDate}>{article.date}</p>
               </Link>
             ))}
           </div>
         </div>
       </section>
     </main>
-  )
+  );
 }
-
-const articleSections = [
-  {
-    title: "AI-Powered Personalization",
-    description: "How artificial intelligence will transform personalized marketing",
-    content:
-      "By 2025, AI will enable hyper-personalization at a scale previously unimaginable. Marketers will leverage advanced machine learning algorithms to analyze vast amounts of data and create truly individualized experiences. From dynamic website content that adapts in real-time to a visitor's behavior, to predictive email campaigns that anticipate customer needs before they arise, AI will make generic marketing obsolete. The most successful brands will be those that can balance personalization with privacy, using AI ethically to create value while respecting consumer boundaries.",
-    image: "/placeholder.svg?height=600&width=800",
-  },
-  {
-    title: "Voice and Visual Search Dominance",
-    description: "The shift from text-based to voice and image-based search",
-    content:
-      "As voice assistants and visual search technologies mature, optimizing for these modalities will become essential. By 2025, experts predict that over 50% of all searches will be either voice or image-based. This shift requires marketers to rethink SEO strategies, focusing on conversational keywords, question-based queries, and visual content optimization. Brands will need to ensure their digital assets are discoverable through voice commands and image recognition, creating new challenges and opportunities for visibility in a post-text search world.",
-    image: "/placeholder.svg?height=600&width=800",
-  },
-  {
-    title: "Immersive Marketing Experiences",
-    description: "How AR, VR, and mixed reality will reshape customer engagement",
-    content:
-      "Augmented reality (AR) and virtual reality (VR) will move from novelty to necessity in the marketing toolkit. By 2025, consumers will expect immersive experiences that blend digital and physical worlds. From virtual product try-ons and AR-enhanced packaging to fully immersive brand environments, these technologies will create deeper emotional connections with consumers. The metaverse will emerge as a significant marketing channel, with brands creating persistent virtual spaces where customers can interact with products and each other in entirely new ways.",
-    image: "/placeholder.svg?height=600&width=800",
-  },
-  {
-    title: "Privacy-First Marketing",
-    description: "Navigating a cookieless future with ethical data practices",
-    content:
-      "The deprecation of third-party cookies and stricter privacy regulations will completely transform data collection and targeting by 2025. Marketers will shift to first-party and zero-party data strategies, building direct relationships with consumers based on trust and transparency. Contextual advertising will see a renaissance, with advanced AI making it nearly as effective as behavioral targeting. Brands that develop ethical data practices and clearly communicate their value exchange with consumers will gain a significant competitive advantage in this privacy-first landscape.",
-    image: "/placeholder.svg?height=600&width=800",
-  },
-  {
-    title: "Automated Content Creation",
-    description: "The rise of AI-generated content and its impact on marketing",
-    content:
-      "AI-powered content generation will reach new levels of sophistication by 2025. From writing compelling copy to creating custom images and videos, automation will handle an increasing share of content production. This will free marketers to focus on strategy and creative direction rather than execution. However, the most successful brands will find the right balance between automation and human creativity, using AI to scale content while maintaining authentic voice and emotional resonance. The ability to effectively direct and edit AI-generated content will become a crucial skill for marketers.",
-    image: "/placeholder.svg?height=600&width=800",
-  },
-  {
-    title: "Decentralized Marketing Platforms",
-    description: "How blockchain and Web3 will disrupt traditional marketing channels",
-    content:
-      "Blockchain technology and Web3 concepts will begin to disrupt traditional marketing platforms by 2025. Decentralized social networks, content platforms, and marketplaces will emerge as alternatives to today's tech giants, changing how brands reach and engage audiences. Token-based loyalty programs will create new ways to reward customers and build communities. Smart contracts will enable more transparent influencer marketing and affiliate programs. Forward-thinking brands will experiment with these technologies early, positioning themselves for success as the internet continues its evolution toward greater decentralization.",
-    image: "/placeholder.svg?height=600&width=800",
-  },
-]
-
-const relatedArticles = [
-  {
-    title: "How AI is Transforming Content Creation",
-    date: "May 28, 2023",
-    image: "/placeholder.svg?height=400&width=600",
-    slug: "/news/ai-transforming-content-creation",
-  },
-  {
-    title: "Social Media Trends to Watch",
-    date: "April 22, 2023",
-    image: "/placeholder.svg?height=400&width=600",
-    slug: "/news/social-media-trends",
-  },
-  {
-    title: "Measuring Marketing ROI",
-    date: "March 22, 2023",
-    image: "/placeholder.svg?height=400&width=600",
-    slug: "/news/measuring-marketing-roi",
-  },
-]
 

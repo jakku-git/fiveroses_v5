@@ -1,0 +1,107 @@
+.articleContent {
+  @apply prose prose-invert prose-lg max-w-none;
+}
+
+.articleContent h2 {
+  @apply text-2xl md:text-3xl font-light tracking-tighter mt-12 mb-6;
+}
+
+.articleContent p {
+  @apply text-white/80 font-light leading-relaxed mb-6;
+}
+
+.articleContent blockquote {
+  @apply border-l-2 border-white/20 pl-6 py-2 my-8 italic text-white/70;
+}
+
+.articleContent blockquote cite {
+  @apply block mt-2 text-sm text-white/50 not-italic;
+}
+
+.articleContent a {
+  @apply text-white underline decoration-white/30 hover:decoration-white/60 transition-colors;
+}
+
+.articleContent ul,
+.articleContent ol {
+  @apply my-6 space-y-2;
+}
+
+.articleContent li {
+  @apply text-white/80 font-light;
+}
+
+.articleContent img {
+  @apply rounded-lg my-8;
+}
+
+.articleContent pre {
+  @apply bg-white/5 p-4 rounded-lg overflow-x-auto my-8;
+}
+
+.articleContent code {
+  @apply bg-white/5 px-1.5 py-0.5 rounded text-sm;
+}
+
+/* Add smooth transitions for all interactive elements */
+.articleContent * {
+  @apply transition-colors duration-300;
+}
+
+/* Add a subtle hover effect for blockquotes */
+.articleContent blockquote:hover {
+  @apply border-white/40;
+}
+
+/* Style inline code blocks */
+.articleContent p code {
+  @apply text-sm bg-white/5 px-1.5 py-0.5 rounded;
+}
+
+/* Add a subtle hover effect for links */
+.articleContent a:hover {
+  @apply text-white;
+}
+
+/* Style lists with custom bullets */
+.articleContent ul {
+  @apply list-disc list-inside;
+}
+
+.articleContent ol {
+  @apply list-decimal list-inside;
+}
+
+/* Add spacing between list items */
+.articleContent li + li {
+  @apply mt-2;
+}
+
+/* Style nested lists */
+.articleContent ul ul,
+.articleContent ol ol {
+  @apply ml-4 mt-2;
+}
+
+/* Add a subtle hover effect for images */
+.articleContent img:hover {
+  @apply opacity-90;
+}
+
+/* Style tables */
+.articleContent table {
+  @apply w-full my-8 border-collapse;
+}
+
+.articleContent th,
+.articleContent td {
+  @apply border border-white/10 p-4 text-left;
+}
+
+.articleContent th {
+  @apply bg-white/5 font-medium;
+}
+
+.articleContent tr:hover {
+  @apply bg-white/5;
+} 
