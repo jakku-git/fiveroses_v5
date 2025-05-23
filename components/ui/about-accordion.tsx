@@ -37,7 +37,7 @@ const aboutData: AboutSection[] = [
         text: "We're not afraid to go first. We experiment with emerging technologies, challenge creative norms, and push the boundaries of what's possible—so your brand can stand out in a sea of sameness."
       },
       {
-        subtitle: "Craftsmanship",
+        subtitle: "Pixel Perfect",
         text: "Details matter. From the micro-interactions on your website to the tone of a single sentence, we obsess over the small things because they shape how people feel about the big picture."
       },
       {
