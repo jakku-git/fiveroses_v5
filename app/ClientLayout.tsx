@@ -127,7 +127,7 @@ const Footer = memo(function Footer() {
               <span className="font-black">fiveroses</span>
             </Link>
             <p className="text-sm md:text-base text-white/60 font-light tracking-wide leading-relaxed">
-            Where ideas become reality. Petal by petal. Pixel by pixel.
+            We bring your ideas into reality. Petal by petal. Pixel by pixel.
             </p>
           </div>
 
