@@ -1,8 +1,9 @@
 import type React from "react"
-import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import ClientLayout from "./ClientLayout"
+import { metadata } from "./metadata"
+import ViewportHandler from "./components/ViewportHandler"
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -12,14 +13,7 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
-export const metadata: Metadata = {
-  title: "fiveroses | Creative Agency",
-  description:
-    "Full-service marketing agency offering comprehensive marketing services, innovative web development, and a startup incubator.",
-  generator: "v0.dev",
-  viewport: "width=device-width, initial-scale=0.5, maximum-scale=0.5, user-scalable=no",
-  themeColor: "#000000",
-}
+export { metadata }
 
 export default function RootLayout({
   children,
@@ -27,6 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${inter.className}`}>
       <body className="bg-black text-white">
+        <ViewportHandler />
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

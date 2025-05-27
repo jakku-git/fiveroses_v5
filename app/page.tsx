@@ -126,38 +126,30 @@ const MobileMessage = () => (
                 <p>In the meantime, follow us on social media to stay updated with our latest work and announcements.</p>
             </div>
             <div className="flex items-center justify-center gap-6">
-                <a 
-                    href="https://instagram.com/fiveroses" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
+                <button 
                     className="text-white/80 hover:text-white transition-colors"
+                    aria-label="Instagram"
                 >
                     <IconBrandInstagram className="w-8 h-8" />
-                </a>
-                <a 
-                    href="https://twitter.com/fiveroses" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
+                </button>
+                <button 
                     className="text-white/80 hover:text-white transition-colors"
+                    aria-label="Twitter"
                 >
                     <IconBrandTwitter className="w-8 h-8" />
-                </a>
-                <a 
-                    href="https://linkedin.com/company/fiveroses" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
+                </button>
+                <button 
                     className="text-white/80 hover:text-white transition-colors"
+                    aria-label="LinkedIn"
                 >
                     <IconBrandLinkedin className="w-8 h-8" />
-                </a>
-                <a 
-                    href="https://youtube.com/@fiveroses" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
+                </button>
+                <button 
                     className="text-white/80 hover:text-white transition-colors"
+                    aria-label="YouTube"
                 >
                     <IconBrandYoutube className="w-8 h-8" />
-                </a>
+                </button>
             </div>
         </div>
     </div>

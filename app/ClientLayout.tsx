@@ -1,6 +1,6 @@
 "use client"
 
-import React, { memo, useEffect } from "react"
+import React, { memo, useEffect, useState } from "react"
 import { Inter, Crimson_Text } from "next/font/google"
 import "./globals.css"
 import Link from "next/link"
@@ -114,6 +114,18 @@ const MobileNav = memo(function MobileNav() {
 })
 
 const Footer = memo(function Footer() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <footer className="w-full bg-black text-white py-16 md:py-32 border-t border-white/10">
       <div className="max-w-[90rem] mx-auto px-4 sm:px-8 lg:px-16">
@@ -196,19 +208,29 @@ const Footer = memo(function Footer() {
             <h3 className="text-sm font-bold tracking-wider text-white uppercase mb-6">Connect</h3>
             <div className="flex space-x-6">
               {[
-                { icon: Instagram, href: "https://instagram.com" },
-                { icon: Twitter, href: "https://twitter.com" },
-                { icon: Linkedin, href: "https://linkedin.com" },
+                { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
+                { icon: Twitter, href: "https://twitter.com", label: "Twitter" },
+                { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
               ].map((social) => (
-                <a
-                  key={social.href}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white/60 hover:text-white transition-colors duration-300"
-                >
-                  <social.icon className="w-6 h-6" />
-                </a>
+                isMobile ? (
+                  <button
+                    key={social.label}
+                    className="text-white/60 hover:text-white transition-colors duration-300"
+                    aria-label={social.label}
+                  >
+                    <social.icon className="w-6 h-6" />
+                  </button>
+                ) : (
+                  <a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/60 hover:text-white transition-colors duration-300"
+                  >
+                    <social.icon className="w-6 h-6" />
+                  </a>
+                )
               ))}
             </div>
           </div>

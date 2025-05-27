@@ -1,20 +1,24 @@
+"use client";
+
+import { useEffect, useState } from 'react';
 import { Mail, Phone, MapPin } from "lucide-react"
 import { FaqAccordion } from "@/components/ui/faq-accordion"
-import { Metadata } from "next"
 import Image from "next/image"
 import { GlobeWrapper } from "@/components/ui/globe-wrapper"
 
-export const metadata: Metadata = {
-  title: "Contact Us | fiveroses",
-  description: "Get in touch with fiveroses. We're here to help with your marketing, development, and creative needs.",
-  openGraph: {
-    title: "Contact Us | fiveroses",
-    description: "Get in touch with fiveroses. We're here to help with your marketing, development, and creative needs.",
-    type: "website",
-  }
-}
-
 export default function ContactPage() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
       {/* Hero Section */}
@@ -77,62 +81,100 @@ export default function ContactPage() {
               <div className="mt-12">
                 <h3 className="text-lg font-bold mb-4">Follow Us</h3>
                 <div className="flex gap-4">
-                  <a
-                    href="#"
-                    className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center hover:bg-neutral-800 transition-colors"
-                    aria-label="Facebook"
-                  >
-                    <Image
-                      src="/icons/facebook.svg"
-                      alt="Facebook"
-                      width={20}
-                      height={20}
-                      className="text-white"
-                      priority
-                    />
-                  </a>
-                  <a
-                    href="#"
-                    className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center hover:bg-neutral-800 transition-colors"
-                    aria-label="Twitter"
-                  >
-                    <Image
-                      src="/icons/twitter.svg"
-                      alt="Twitter"
-                      width={20}
-                      height={20}
-                      className="text-white"
-                      priority
-                    />
-                  </a>
-                  <a
-                    href="#"
-                    className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center hover:bg-neutral-800 transition-colors"
-                    aria-label="Instagram"
-                  >
-                    <Image
-                      src="/icons/instagram.svg"
-                      alt="Instagram"
-                      width={20}
-                      height={20}
-                      className="text-white"
-                      priority
-                    />
-                  </a>
-                  <a
-                    href="#"
-                    className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center hover:bg-neutral-800 transition-colors"
-                    aria-label="LinkedIn"
-                  >
-                    <Image
-                      src="/icons/linkedin.svg"
-                      alt="LinkedIn"
-                      width={20}
-                      height={20}
-                      className="text-white"
-                      priority
-                    />
-                  </a>
+                  {isMobile ? (
+                    <>
+                      <button
+                        className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center hover:bg-neutral-800 transition-colors"
+                        aria-label="Facebook"
+                      >
+                        <Image
+                          src="/icons/facebook.svg"
+                          alt="Facebook"
+                          width={20}
+                          height={20}
+                          className="text-white"
+                          priority
+                        />
+                      </button>
+                      <button
+                        className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center hover:bg-neutral-800 transition-colors"
+                        aria-label="Twitter"
+                      >
+                        <Image
+                          src="/icons/twitter.svg"
+                          alt="Twitter"
+                          width={20}
+                          height={20}
+                          className="text-white"
+                          priority
+                        />
+                      </button>
+                      <button
+                        className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center hover:bg-neutral-800 transition-colors"
+                        aria-label="Instagram"
+                      >
+                        <Image
+                          src="/icons/instagram.svg"
+                          alt="Instagram"
+                          width={20}
+                          height={20}
+                          className="text-white"
+                          priority
+                        />
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <a
+                        href="https://facebook.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center hover:bg-neutral-800 transition-colors"
+                        aria-label="Facebook"
+                      >
+                        <Image
+                          src="/icons/facebook.svg"
+                          alt="Facebook"
+                          width={20}
+                          height={20}
+                          className="text-white"
+                          priority
+                        />
+                      </a>
+                      <a
+                        href="https://twitter.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center hover:bg-neutral-800 transition-colors"
+                        aria-label="Twitter"
+                      >
+                        <Image
+                          src="/icons/twitter.svg"
+                          alt="Twitter"
+                          width={20}
+                          height={20}
+                          className="text-white"
+                          priority
+                        />
+                      </a>
+                      <a
+                        href="https://instagram.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center hover:bg-neutral-800 transition-colors"
+                        aria-label="Instagram"
+                      >
+                        <Image
+                          src="/icons/instagram.svg"
+                          alt="Instagram"
+                          width={20}
+                          height={20}
+                          className="text-white"
+                          priority
+                        />
+                      </a>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
