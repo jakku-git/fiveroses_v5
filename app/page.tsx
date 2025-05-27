@@ -10,6 +10,8 @@ import { Suspense } from 'react'
 import { Inter } from "next/font/google"
 import Card from './components/Card'
 import { VelocityText } from './components/VelocityText'
+import { useIsMobile } from '@/components/ui/use-mobile'
+import { IconBrandInstagram, IconBrandTwitter, IconBrandLinkedin, IconBrandYoutube } from '@tabler/icons-react'
 
 const originalProjects = [
     {
@@ -113,41 +115,96 @@ const inter = Inter({
     preload: true
 })
 
+const MobileMessage = () => (
+    <div className="fixed inset-0 bg-black/95 backdrop-blur-lg z-50 flex items-center justify-center p-6 text-center">
+        <div className="max-w-md">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Desktop Experience Required</h2>
+            <p className="text-white/80 text-lg mb-6">
+                For the best experience, please view this website on a desktop device. The interactive elements and animations are optimized for larger screens.
+            </p>
+            <div className="text-white/60 text-sm mb-8">
+                <p>In the meantime, follow us on social media to stay updated with our latest work and announcements.</p>
+            </div>
+            <div className="flex items-center justify-center gap-6">
+                <a 
+                    href="https://instagram.com/fiveroses" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-white/80 hover:text-white transition-colors"
+                >
+                    <IconBrandInstagram className="w-8 h-8" />
+                </a>
+                <a 
+                    href="https://twitter.com/fiveroses" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-white/80 hover:text-white transition-colors"
+                >
+                    <IconBrandTwitter className="w-8 h-8" />
+                </a>
+                <a 
+                    href="https://linkedin.com/company/fiveroses" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-white/80 hover:text-white transition-colors"
+                >
+                    <IconBrandLinkedin className="w-8 h-8" />
+                </a>
+                <a 
+                    href="https://youtube.com/@fiveroses" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-white/80 hover:text-white transition-colors"
+                >
+                    <IconBrandYoutube className="w-8 h-8" />
+                </a>
+            </div>
+        </div>
+    </div>
+);
+
 export default function Home() {
     const container = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: container,
         offset: ["start start", "end end"]
     });
+    const isMobile = useIsMobile();
 
     // Optimize Lenis scroll
     useEffect(() => {
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            orientation: 'vertical',
-            gestureOrientation: 'vertical',
-            smoothWheel: true,
-            touchMultiplier: 2,
-        });
+        if (!isMobile) {  // Only initialize Lenis on desktop
+            const lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                orientation: 'vertical',
+                gestureOrientation: 'vertical',
+                smoothWheel: true,
+                touchMultiplier: 2,
+            });
 
-        function raf(time: number) {
-            lenis.raf(time);
+            function raf(time: number) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+
             requestAnimationFrame(raf);
+
+            return () => {
+                lenis.destroy();
+            };
         }
-
-        requestAnimationFrame(raf);
-
-        return () => {
-            lenis.destroy();
-        };
-    }, []);
+    }, [isMobile]);
 
     // Memoize expensive computations
     const cardScales = useMemo(() => 
         cards.map((_, i) => 1 - ((cards.length - i) * 0.05)),
         [cards.length]
     );
+
+    if (isMobile) {
+        return <MobileMessage />;
+    }
 
     return (
         <>
