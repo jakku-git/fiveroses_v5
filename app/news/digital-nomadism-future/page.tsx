@@ -9,205 +9,92 @@ import styles from '../styles.module.css';
 
 const articleSections = [
   {
-    title: "The Evolution of Digital Nomadism",
-    description: "How remote work is reshaping work-life integration in 2025",
-    content: `The concept of digital nomadism has evolved far beyond its initial definition of location-independent work. In 2025, we're witnessing a profound transformation in how people work, live, and integrate their professional and personal lives across global communities.
+    title: "The Future of Digital Nomadism",
+    description: "How technology is reshaping work-life integration in 2024",
+    content: `In a co-working space overlooking the beaches of Bali, Sarah Chen adjusts her dual monitors while her team in New York prepares for their morning standup. "Five years ago, this would have been impossible," she says, gesturing to her setup. "Now, I'm running a global team while maintaining the work-life balance I've always wanted."
 
-## The New Digital Nomad Landscape
+This scene represents just one example of how digital nomadism is evolving beyond simple location independence. As we move through 2024, professionals are discovering new ways to integrate work and life, enabled by cutting-edge technology and changing workplace cultures.
 
-The digital nomad movement has matured into a sophisticated ecosystem that supports diverse lifestyles and work patterns:
+The New Digital Nomad
 
-- Global work hubs and co-living spaces
-- Digital nomad visas and residency programs
-- Remote work infrastructure and support systems
-- Community-driven work environments
+The transformation of remote work is being led by professionals who understand both the opportunities and challenges of location-independent work. "We're seeing a fundamental shift in how people approach their careers," explains Dr. James Wilson, director of the Future of Work Institute. "It's not just about working from anywhere—it's about creating a lifestyle that integrates work and personal fulfillment."
 
-## The Impact on Work Culture
+Take the case of NomadOS, a platform that's helping digital nomads manage their global work-life. "We're seeing professionals create truly integrated lives," says platform founder Dr. Elena Santos. "They're not just working remotely—they're building careers that adapt to their desired lifestyle."
 
-The rise of digital nomadism is fundamentally changing how we think about work:
+The Technology Enabling Global Work
 
-Work-Life Integration
-- Flexible work schedules and asynchronous collaboration
-- Global team dynamics and cross-cultural communication
-- New approaches to productivity and work-life balance
-- Digital tools for remote collaboration and management
+The evolution of digital nomadism is being driven by several key technological advances. "We've moved beyond basic video conferencing," explains remote work expert Dr. Sarah Kim. "New technologies are enabling truly seamless global collaboration."
 
-Professional Development
-- Global networking opportunities
-- Cross-cultural skill development
-- Remote learning and certification programs
-- International career paths
+These technologies include advanced virtual reality workspaces, AI-powered productivity tools, and sophisticated digital nomad management platforms. "In the past, remote work was often seen as a compromise," says Dr. Wilson. "Now, we have tools that make distributed work more effective than traditional office environments."
 
-## The Social Impact
+The Impact on Work-Life Integration
 
-Digital nomadism is creating new social dynamics:
+The implications of this evolution extend far beyond the tools themselves. In corporate culture, for example, companies are pioneering new approaches to remote work. "We're seeing organizations develop truly global-first strategies," says workplace innovation expert Dr. Lisa Wong. "They're creating cultures that support both productivity and personal well-being."
 
-Community Building
-- Digital nomad communities and networks
-- Co-living and co-working spaces
-- Cultural exchange and global friendships
-- Support systems for remote workers
+In the professional landscape, digital tools are enabling new forms of career development. "We can now build careers that transcend geographical boundaries," explains career development expert Dr. Michael Chang. "This is transforming how people think about work and life."
 
-Cultural Integration
-- Local community engagement
-- Cross-cultural understanding
-- Sustainable tourism practices
-- Global citizenship
+The Future of Work
 
-## The Future of Work Spaces
+Looking ahead, the potential of this digital nomadism evolution is vast. "We're just beginning to understand what's possible," says Dr. Kim. "As these tools become more sophisticated, we'll see entirely new forms of work-life integration emerge."
 
-The evolution of work spaces reflects the changing nature of work:
-
-Hybrid Environments
-- Smart co-working spaces
-- Digital nomad villages
-- Mobile office solutions
-- Virtual collaboration tools
-
-Technology Integration
-- Advanced remote work tools
-- Virtual reality workspaces
-- AI-powered productivity systems
-- Global connectivity solutions
-
-## The Economic Impact
-
-Digital nomadism is reshaping local and global economies:
-
-Local Economies
-- Digital nomad spending patterns
-- Community development initiatives
-- Sustainable tourism practices
-- Local business adaptation
-
-Global Economy
-- Remote work marketplaces
-- International service providers
-- Digital nomad support services
-- Global talent networks
-
-## The Future of Digital Nomadism
-
-Looking ahead, several trends are shaping the future of digital nomadism:
-
-1. Sustainable Nomadism
-- Environmental consciousness
-- Community-focused living
-- Long-term location strategies
-- Cultural preservation
-
-2. Technology Evolution
-- Advanced remote work tools
-- Virtual reality integration
-- AI-powered productivity
-- Global connectivity solutions
-
-3. Policy and Infrastructure
-- Digital nomad visas
-- Remote work regulations
-- Global healthcare solutions
-- International tax systems
-
-The future of digital nomadism lies in creating sustainable, integrated lifestyles that balance work, personal growth, and community engagement. As this movement continues to evolve, it's reshaping not just how we work, but how we live and connect in an increasingly globalized world.`,
+For professionals like Sarah Chen, this evolution represents a fundamental shift in how we think about work. "It's not about choosing between career and lifestyle," she says. "It's about creating a life that integrates both seamlessly." As digital nomadism continues to evolve, it's clear that the future of work will be increasingly flexible, global, and personally fulfilling.`,
     image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2940&auto=format&fit=crop",
-    imageAlt: "Modern co-working space with digital nomads collaborating"
+    imageAlt: "Digital nomad working in a modern co-working space"
   },
   {
     title: "The Digital Nomad Ecosystem",
-    description: "How technology and community are shaping the future of remote work",
-    content: `The digital nomad ecosystem has evolved into a sophisticated network of tools, communities, and support systems that enable location-independent work and living.
+    description: "How communities and technology are supporting the future of remote work",
+    content: `The transformation of digital nomadism isn't just about individual professionals—it's about how communities and technology are coming together to support a new way of working and living.
 
-## Digital Nomad Technology
+The Rise of Nomad Communities
 
-The tools and platforms supporting digital nomads have become increasingly sophisticated:
+When NomadOS first launched its community platform, it brought together an unlikely mix of users: remote workers, entrepreneurs, and digital creators. "We had to think deeply about how to build meaningful connections in a distributed world," recalls Dr. Santos. "It's not just about finding a place to work—it's about creating a sense of belonging."
 
-Remote Work Tools
-- Advanced collaboration platforms
-- Virtual reality meeting spaces
-- AI-powered productivity systems
-- Global project management tools
+This community-focused approach has led to innovative features. "We're seeing nomads form deep connections across borders," says Dr. Kim. "They might collaborate on projects, share resources, or simply provide support to each other, creating a global network of like-minded professionals."
 
-Connectivity Solutions
-- Global internet access
-- Mobile office setups
-- Cloud computing services
-- Digital security systems
+The Professional Landscape
 
-## Community and Support
+The evolution of digital nomadism is transforming how professionals work and collaborate. "We're moving beyond the traditional office model," explains Dr. Wilson. "Professionals can now build careers that span multiple countries and cultures."
 
-Digital nomad communities have become vital support networks:
+Take the case of GlobalWork, a professional platform that connects digital nomads with opportunities worldwide. "Our users are creating careers that would be impossible without this technology," says platform director Dr. James Chen. "But the human element—the community and support—remains central to the process."
 
-Global Networks
-- Digital nomad communities
-- Professional networks
-- Cultural exchange programs
-- Support groups
+The Cultural Shift
 
-Local Integration
-- Co-living spaces
-- Co-working hubs
-- Local community engagement
-- Cultural immersion programs
+This evolution is also changing how we think about work and life. "We're seeing a cultural shift in how people view professional success," says Dr. Wong. "It's no longer just about climbing the corporate ladder—it's about creating a fulfilling life that includes meaningful work."
 
-## The Business of Digital Nomadism
+Educational institutions are adapting to this shift. The Global Digital Academy, for example, offers programs that prepare students for location-independent careers. "Our students learn to think globally while maintaining local connections," says school director Dr. Maria Rodriguez. "They understand how to build careers that transcend geographical boundaries."
 
-The digital nomad lifestyle has spawned new business opportunities:
+The Future of Work-Life Integration
 
-Support Services
-- Digital nomad consulting
-- Remote work training
-- Travel and accommodation services
-- Health and wellness programs
+Looking ahead, the possibilities for digital nomadism are expanding. "We're just beginning to explore what's possible," says Dr. Santos. "As these tools and communities become more sophisticated, we'll see new forms of work-life integration that we can't even imagine today."
 
-Technology Solutions
-- Remote work tools
-- Global connectivity services
-- Digital nomad apps
-- Virtual office solutions
-
-## The Future of Remote Work
-
-Looking ahead, several trends are shaping the future of remote work:
-
-Technology Integration
-- Advanced remote collaboration tools
-- Virtual reality workspaces
-- AI-powered productivity
-- Global connectivity solutions
-
-Community Development
-- Digital nomad villages
-- Global work hubs
-- Cultural exchange programs
-- Sustainable living initiatives
-
-As the digital nomad ecosystem continues to evolve, it's creating new opportunities for work-life integration and global community building. The future of work lies in the creative possibilities that emerge from the intersection of technology, community, and location independence.`,
-    image: "https://images.unsplash.com/photo-1497215842964-222b430dc094?q=80&w=2940&auto=format&fit=crop",
-    imageAlt: "Digital nomad working in a modern co-working space"
+For the global professional community, this represents an exciting frontier. "We're not just adopting new tools," says Dr. Wilson. "We're participating in the evolution of work itself." As this transformation continues, it's clear that the future of work will be increasingly global, flexible, and personally fulfilling.`,
+    image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2940&auto=format&fit=crop",
+    imageAlt: "Digital nomads collaborating in a modern workspace"
   }
 ];
 
 const relatedArticles = [
   {
-    title: "The Psychology of Digital Wellness",
-    date: "January 20, 2024",
-    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2999&auto=format&fit=crop",
-    slug: "/news/digital-wellness-psychology",
-    excerpt: "Explore how digital platforms are adapting to promote mental wellness in 2024."
+    title: "The Evolution of Digital Identity: Beyond Social Media in 2025",
+    date: "January 15, 2024",
+    image: "https://images.unsplash.com/photo-1633613286991-611fe299c4be?q=80&w=2940&auto=format&fit=crop",
+    slug: "/news/digital-identity-evolution",
+    excerpt: "Discover how digital identity is evolving beyond social media profiles."
   },
   {
-    title: "The Renaissance of Digital Art",
-    date: "January 25, 2024",
-    image: "https://images.unsplash.com/photo-1634986666676-ec9b7c1d526f?q=80&w=2938&auto=format&fit=crop",
-    slug: "/news/digital-art-renaissance",
-    excerpt: "Discover how traditional artists are embracing digital tools and AI in 2024."
-  },
-  {
-    title: "Quantum Computing and Creative Industries",
-    date: "February 1, 2024",
+    title: "Quantum Computing and Creative Industries: The Next Frontier",
+    date: "February 10, 2024",
     image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2940&auto=format&fit=crop",
     slug: "/news/quantum-computing-creative",
-    excerpt: "Explore how quantum computing will transform creative fields in 2025."
+    excerpt: "Discover how quantum computing is revolutionizing creative industries."
+  },
+  {
+    title: "The Renaissance of Digital Art: From AI to Traditional Techniques",
+    date: "January 25, 2024",
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2864&auto=format&fit=crop",
+    slug: "/news/digital-art-renaissance",
+    excerpt: "Discover how traditional artists are embracing digital tools and AI."
   }
 ];
 
@@ -233,7 +120,7 @@ export default function ArticlePage() {
           <div className="absolute inset-0 bg-gradient-to-br from-neutral-900/50 to-black/50 backdrop-blur-sm" />
           <Image
             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2940&auto=format&fit=crop"
-            alt="Modern digital nomad workspace with global connectivity"
+            alt="Digital nomad working in a modern co-working space"
             fill
             className="object-cover"
             priority
@@ -249,162 +136,153 @@ export default function ArticlePage() {
           <div className="max-w-4xl space-y-8">
             <Link
               href="/news"
-              className="inline-flex items-center gap-2 text-neutral-300 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to News</span>
             </Link>
 
-            <div className="flex items-center gap-4">
-              <span className={styles.categoryBadge}>
-                Future of Work
-              </span>
-              <div className="flex items-center gap-2 text-neutral-400">
-                <Clock className="w-4 h-4" />
-                <span>12 min read</span>
+            <div className="space-y-4">
+              <div className="flex items-center gap-4 text-sm text-white/60">
+                <span className="px-3 py-1 bg-white/10 rounded-full backdrop-blur-sm">
+                  Future of Work
+                </span>
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4" />
+                  <span>12 min read</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span>February 5, 2024</span>
+                </div>
               </div>
-            </div>
 
-            <h1 className={styles.heroTitle}>
-              The Future of Digital Nomadism: Work-Life Integration in 2025
-            </h1>
+              <h1 className="text-4xl md:text-6xl font-light tracking-tighter">
+                The Future of Digital Nomadism: Work-Life Integration in 2025
+              </h1>
 
-            <p className={styles.heroDescription}>
-              Explore how digital nomadism is evolving beyond location independence to reshape work-life integration in 2025. From global work hubs to sustainable living practices, discover the new frontier of remote work and community building.
-            </p>
+              <p className="text-lg md:text-xl text-white/80 max-w-2xl">
+                Discover how digital nomadism is evolving beyond location independence. From global collaboration to work-life integration, explore the new frontier of professional life.
+              </p>
 
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-rose-500/20">
+              <div className="flex items-center gap-6 pt-4">
+                <div className="flex items-center gap-3">
                   <Image
                     src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300&auto=format&fit=crop"
-                    alt="Marcus Chen"
+                    alt="Dr. James Wilson"
                     width={40}
                     height={40}
-                    className="w-full h-full object-cover"
+                    className="rounded-full"
                   />
+                  <div>
+                    <div className="font-medium">Dr. James Wilson</div>
+                    <div className="text-sm text-white/60">Future of Work Researcher</div>
+                  </div>
                 </div>
-                <div>
-                  <p className={styles.authorName}>Marcus Chen</p>
-                  <p className={styles.authorDate}>February 5, 2024</p>
+
+                <div className="flex items-center gap-4">
+                  <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                    <Share2 className="w-5 h-5" />
+                  </button>
+                  <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                    <BookmarkPlus className="w-5 h-5" />
+                  </button>
+                  <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                    <MessageCircle className="w-5 h-5" />
+                  </button>
                 </div>
-              </div>
-              <div className="flex items-center gap-4 ml-auto">
-                <button className="p-2 hover:bg-white/5 rounded-full transition-colors">
-                  <Share2 className="w-5 h-5" />
-                </button>
-                <button className="p-2 hover:bg-white/5 rounded-full transition-colors">
-                  <BookmarkPlus className="w-5 h-5" />
-                </button>
               </div>
             </div>
           </div>
         </motion.div>
       </section>
 
-      {/* Content Section */}
-      <motion.section 
-        className="py-16 px-4 md:px-8"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <div className="max-w-4xl mx-auto">
-          <div className={styles.articleContent}>
-            {articleSections.map((section, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="mb-16"
-              >
-                <h2 className={styles.sectionTitle}>{section.title}</h2>
-                <p className={styles.sectionDescription}>{section.description}</p>
-                <div className="relative aspect-video mb-12 rounded-lg overflow-hidden">
-                  <Image
-                    src={section.image}
-                    alt={section.imageAlt}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="space-y-8">
-                  {section.content.split("\n\n").map((paragraph, pIndex) => {
-                    if (paragraph.startsWith("## ")) {
-                      return (
-                        <h3 key={pIndex} className={styles.contentHeading}>
-                          {paragraph.replace("## ", "")}
-                        </h3>
-                      );
-                    }
-                    if (paragraph.startsWith("### ")) {
-                      return (
-                        <h4 key={pIndex} className={styles.contentSubheading}>
-                          {paragraph.replace("### ", "")}
-                        </h4>
-                      );
-                    }
-                    if (paragraph.startsWith("- ")) {
-                      return (
-                        <ul key={pIndex} className={styles.contentList}>
-                          {paragraph.split("\n").map((item, i) => (
-                            <li key={i} className={styles.contentListItem}>
-                              {item.replace("- ", "")}
-                            </li>
-                          ))}
-                        </ul>
-                      );
-                    }
-                    return (
-                      <p key={pIndex} className={styles.contentParagraph}>
-                        {paragraph}
-                      </p>
-                    );
-                  })}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+      {/* Content Sections */}
+      <section className="py-24 px-4 md:px-8">
+        <div className="container mx-auto max-w-4xl space-y-24">
+          {articleSections.map((section, index) => (
+            <motion.article
+              key={index}
+              className="space-y-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              <div className="space-y-4">
+                <h2 className={styles.sectionTitle}>
+                  {section.title}
+                </h2>
+                <p className={styles.sectionDescription}>
+                  {section.description}
+                </p>
+              </div>
 
-          {/* Tags and Share Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16 pt-8 border-t border-neutral-800"
-          >
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div className="flex items-center gap-2">
-                <Tag className="w-5 h-5 text-rose-400" />
-                <h3 className={styles.tagLabel}>Tags</h3>
+              <div className="relative aspect-video overflow-hidden rounded-lg">
+                <Image
+                  src={section.image}
+                  alt={section.imageAlt}
+                  fill
+                  className="object-cover"
+                />
               </div>
-              <div className="flex items-center gap-4">
-                <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
-                  <Share2 className="w-4 h-4" />
-                  Share
-                </button>
-                <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
-                  <BookmarkPlus className="w-4 h-4" />
-                  Save
-                </button>
-                <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
-                  <MessageCircle className="w-4 h-4" />
-                  Comment
-                </button>
+
+              <div className="space-y-8">
+                {section.content.split("\n\n").map((paragraph, pIndex) => {
+                  // Check if the paragraph is a heading (single line and relatively short)
+                  if (paragraph.split("\n").length === 1 && paragraph.length < 100) {
+                    return (
+                      <h3 key={pIndex} className={styles.contentHeading}>
+                        {paragraph}
+                      </h3>
+                    );
+                  }
+                  return (
+                    <p key={pIndex} className={styles.contentParagraph}>
+                      {paragraph}
+                    </p>
+                  );
+                })}
               </div>
-            </div>
-            <div className="flex flex-wrap gap-2 mt-4">
-              {["Digital Nomadism", "Remote Work", "Future of Work", "Technology", "Community", "Innovation"].map((tag) => (
-                <span key={tag} className={styles.tagItem}>
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </motion.div>
+            </motion.article>
+          ))}
         </div>
-      </motion.section>
+      </section>
+
+      {/* Tags and Share Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mt-16 pt-8 border-t border-neutral-800"
+      >
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <Tag className="w-5 h-5 text-rose-400" />
+            <h3 className={styles.tagLabel}>Tags</h3>
+          </div>
+          <div className="flex items-center gap-4">
+            <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+              <Share2 className="w-4 h-4" />
+              Share
+            </button>
+            <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+              <BookmarkPlus className="w-4 h-4" />
+              Save
+            </button>
+            <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+              <MessageCircle className="w-4 h-4" />
+              Comment
+            </button>
+          </div>
+        </div>
+        <div className="flex flex-wrap gap-2 mt-4">
+          {["Digital Nomadism", "Future of Work", "Remote Work", "Work-Life Balance", "Global Collaboration", "Professional Development"].map((tag) => (
+            <span key={tag} className={styles.tagItem}>
+              {tag}
+            </span>
+          ))}
+        </div>
+      </motion.div>
 
       {/* Related Articles Section */}
       <section className="w-full py-24 px-4 md:px-6 bg-neutral-950">

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, memo } from 'react';
 import { useTransform, useScroll, motion, useSpring, useMotionValueEvent } from 'framer-motion';
 import Image from 'next/image';
 import Lenis from '@studio-freight/lenis';
@@ -92,9 +92,10 @@ export default function ParallaxGallery() {
             orientation: 'vertical',
             gestureOrientation: 'vertical',
             smoothWheel: true,
-            wheelMultiplier: 1,
-            touchMultiplier: 2,
+            wheelMultiplier: 0.8,
+            touchMultiplier: 1.5,
             infinite: false,
+            lerp: 0.1,
         });
 
         return () => {
@@ -205,19 +206,16 @@ export default function ParallaxGallery() {
     );
 }
 
-const Column = ({images, y, index}: ColumnProps) => {
+const Column = memo(({images, y, index}: ColumnProps) => {
     const columnRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: columnRef,
         offset: ['start end', 'end start']
     });
 
-    const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.05, 1]);
+    const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.02, 1]);
     const imageOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.5, 1, 1, 0.5]);
-    const imageRotate = useTransform(scrollYProgress, [0, 1], [index % 2 === 0 ? -2 : 2, index % 2 === 0 ? 2 : -2]);
-
-    const springImageScale = useSpring(imageScale, { stiffness: 100, damping: 30 });
-    const springImageRotate = useSpring(imageRotate, { stiffness: 100, damping: 30 });
+    const imageRotate = useTransform(scrollYProgress, [0, 1], [index % 2 === 0 ? -1 : 1, index % 2 === 0 ? 1 : -1]);
 
     return (
         <motion.div 
@@ -225,8 +223,9 @@ const Column = ({images, y, index}: ColumnProps) => {
             className={styles.column}
             style={{
                 y,
-                rotate: springImageRotate,
-                scale: useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 0.95])
+                rotate: imageRotate,
+                scale: useTransform(scrollYProgress, [0, 0.5, 1], [0.98, 1, 0.98]),
+                willChange: 'transform'
             }}
         >
             {images.map((src: string, i: number) => (
@@ -234,13 +233,14 @@ const Column = ({images, y, index}: ColumnProps) => {
                     key={i} 
                     className={styles.imageContainer}
                     style={{
-                        scale: springImageScale,
+                        scale: imageScale,
                         opacity: imageOpacity,
-                        rotate: useTransform(scrollYProgress, [0, 1], [i * 2, -i * 2])
+                        rotate: useTransform(scrollYProgress, [0, 1], [i, -i]),
+                        willChange: 'transform, opacity'
                     }}
                     whileHover={{
-                        scale: 1.05,
-                        transition: { duration: 0.3 }
+                        scale: 1.02,
+                        transition: { duration: 0.2 }
                     }}
                 >
                     <Image 
@@ -248,12 +248,16 @@ const Column = ({images, y, index}: ColumnProps) => {
                         alt='image'
                         fill
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        priority={i === 0}
-                        quality={75}
+                        quality={i === 0 ? 75 : 60}
                         loading={i === 0 ? 'eager' : 'lazy'}
+                        priority={i === 0}
+                        placeholder="blur"
+                        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSEkMjU1LS0yMi4qLjgyPj4+Oj4+Oj4+Oj4+Oj4+Oj4+Oj4+Oj7/2wBDAR4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
                     />
                 </motion.div>
             ))}
         </motion.div>
     );
-}; 
+});
+
+Column.displayName = 'Column'; 

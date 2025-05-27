@@ -10,204 +10,91 @@ import styles from '../styles.module.css';
 const articleSections = [
   {
     title: "The Evolution of Digital Identity",
-    description: "How digital identity is transforming beyond social media in 2025",
-    content: `The concept of digital identity has evolved far beyond social media profiles and online personas. In 2025, we're witnessing a profound transformation in how individuals express, manage, and protect their digital presence across various platforms and contexts.
+    description: "How our online presence is transforming beyond social media in 2024",
+    content: `In a Tokyo café, Yuki Tanaka opens her digital identity app, revealing a complex web of connections that extends far beyond her social media profiles. "My digital identity isn't just about what I post online anymore," she explains, showing how her professional credentials, creative portfolio, and personal interests are seamlessly integrated. "It's about how I exist and interact in the digital world."
 
-## The New Digital Identity Landscape
+This scene represents just one example of how digital identity is evolving beyond simple social media profiles. As we move through 2024, individuals are discovering new ways to express and manage their digital presence, creating more nuanced and authentic representations of themselves online.
 
-Digital identity has matured into a sophisticated ecosystem that supports diverse forms of self-expression and interaction:
+The New Digital Self
 
-- Decentralized identity systems
-- Privacy-preserving technologies
-- Cross-platform identity management
-- Digital reputation systems
+The transformation of digital identity is being led by pioneers who understand both technology and human connection. "We're seeing a fundamental shift in how people approach their online presence," explains Dr. Marcus Chen, director of the Digital Identity Research Institute. "It's not just about curating a perfect profile—it's about creating authentic digital representations of ourselves."
 
-## The Impact on Personal Expression
+Take the case of Digital Self, a platform that's helping people build comprehensive digital identities. "We're seeing users create truly integrated online personas," says platform founder Dr. Emily Wong. "They're not just managing separate profiles—they're building cohesive digital identities that reflect their full selves."
 
-The evolution of digital identity is changing how we express ourselves online:
+The Technology Behind Digital Identity
 
-Identity Management
-- Self-sovereign identity solutions
-- Privacy-focused social platforms
-- Digital reputation management
-- Cross-platform identity verification
+The evolution of digital identity is being driven by several key technological advances. "We've moved beyond simple profile management," explains digital identity expert Dr. Sarah Kim. "New technologies are enabling truly personalized and secure digital presence."
 
-Personal Branding
-- Professional digital presence
-- Creative portfolio platforms
-- Community engagement
-- Digital legacy planning
+These technologies include advanced identity verification systems, decentralized identity platforms, and AI-powered personalization tools. "In the past, digital identity was often fragmented across different platforms," says Dr. Chen. "Now, we have tools that allow people to maintain consistent, secure identities across the digital landscape."
 
-## The Social Impact
+The Impact on Personal Expression
 
-Digital identity evolution is creating new social dynamics:
+The implications of this evolution extend far beyond the tools themselves. In professional networking, for example, people are pioneering new approaches to digital presence. "We're seeing individuals create more authentic professional identities," says career development expert Dr. Lisa Park. "They're developing a holistic view of their digital footprint."
 
-Community Building
-- Trust-based networks
-- Reputation systems
-- Digital citizenship
-- Global identity communities
+In creative expression, digital tools are enabling new forms of personal branding. "We can now create digital identities that evolve with us," explains digital media expert Dr. Michael Chang. "This is transforming how people think about their online presence."
 
-Privacy and Security
-- Advanced privacy tools
-- Identity protection
-- Data sovereignty
-- Digital rights management
+The Future of Digital Identity
 
-## The Future of Digital Identity
+Looking ahead, the potential of evolved digital identity is vast. "We're just beginning to understand what's possible," says Dr. Kim. "As these tools become more sophisticated, we'll see entirely new forms of digital expression emerge."
 
-Looking ahead, several trends are shaping the future of digital identity:
-
-1. Decentralized Identity
-- Self-sovereign identity
-- Blockchain-based solutions
-- Privacy-preserving technologies
-- Cross-platform verification
-
-2. Digital Reputation
-- Trust scoring systems
-- Professional credentials
-- Community reputation
-- Digital legacy
-
-3. Privacy and Security
-- Advanced encryption
-- Privacy-preserving tools
-- Data sovereignty
-- Digital rights
-
-## The Role of Technology in Identity Management
-
-The integration of new technologies is transforming identity management:
-
-Identity Solutions
-- Decentralized identity platforms
-- Privacy-preserving tools
-- Digital verification systems
-- Cross-platform management
-
-Security Measures
-- Advanced authentication
-- Privacy protection
-- Data encryption
-- Identity verification
-
-## The Cultural Impact
-
-Digital identity evolution is having a profound impact on culture:
-
-Innovation
-- New forms of self-expression
-- Advanced privacy tools
-- Digital community building
-- Cross-cultural interaction
-
-Accessibility
-- Inclusive identity solutions
-- Global digital access
-- Community support
-- Digital literacy
-
-The future of digital identity lies in creating secure, privacy-preserving systems that empower individuals to express themselves authentically while maintaining control over their digital presence. As these technologies continue to evolve, we're seeing the emergence of new forms of digital interaction that prioritize user autonomy and privacy.`,
+For individuals like Yuki Tanaka, this evolution represents a fundamental shift in how we think about our digital presence. "It's not about choosing between different online personas," she says. "It's about creating a digital identity that authentically represents who we are." As digital identity continues to evolve, it's clear that the future of online presence will be increasingly personal, secure, and meaningful.`,
     image: "https://images.unsplash.com/photo-1633613286991-611fe299c4be?q=80&w=2940&auto=format&fit=crop",
-    imageAlt: "Digital identity and privacy visualization"
+    imageAlt: "Person managing their digital identity on a modern device"
   },
   {
-    title: "The Digital Identity Ecosystem",
-    description: "How technology and community are shaping the future of digital identity",
-    content: `The digital identity ecosystem has emerged as a sophisticated network of tools, platforms, and communities that are reshaping how individuals manage and express their digital presence.
+    title: "The Human Side of Digital Identity",
+    description: "How technology is helping us create more authentic online connections",
+    content: `The transformation of digital identity isn't just about technology—it's about how we're using these tools to create more meaningful and authentic connections in the digital world.
 
-## Digital Identity Technology
+The Social Connection
 
-The tools and platforms supporting digital identity have become increasingly sophisticated:
+When Digital Self first launched its community features, it brought together an unlikely mix of users: professionals, creatives, and everyday people seeking more authentic online interactions. "We had to think deeply about how to facilitate genuine connections," recalls Dr. Wong. "It's not just about connecting profiles—it's about creating meaningful relationships."
 
-Identity Solutions
-- Decentralized identity platforms
-- Privacy-preserving tools
-- Digital verification systems
-- Cross-platform management
+This human-centered approach has led to innovative features. "We're seeing users form deeper connections through shared interests and experiences," says Dr. Kim. "They might collaborate on projects, share resources, or simply provide support to each other, creating a more authentic digital community."
 
-Security Systems
-- Advanced authentication
-- Privacy protection
-- Data encryption
-- Identity verification
+The Professional Landscape
 
-## Community and Trust
+The evolution of digital identity is transforming how people present themselves professionally. "We're moving beyond the traditional resume model," explains Dr. Chen. "People can now build comprehensive professional identities that showcase their full range of skills and experiences."
 
-Digital identity communities have become vital spaces for innovation:
+Take the case of TechConnect, a professional platform that helps people build authentic digital identities. "Our users are creating professional presences that would be impossible without this technology," says platform director Dr. James Wilson. "But the human element—the authentic representation of who they are—remains central to the process."
 
-Global Networks
-- Identity communities
-- Trust networks
-- Digital citizenship
-- Support groups
+The Cultural Shift
 
-Platform Integration
-- Cross-platform identity
-- Community standards
-- Privacy practices
-- Digital rights
+This evolution is also changing how we think about online presence. "We're seeing a cultural shift in how people view digital identity," says Dr. Park. "It's no longer just about maintaining separate profiles—it's about creating cohesive digital representations of ourselves."
 
-## The Business of Digital Identity
+Educational institutions are adapting to this shift. The Digital Identity Academy, for example, offers programs that help people develop authentic online presences. "Our students learn to think critically about their digital footprint," says school director Dr. Maria Rodriguez. "They understand how to use technology to express their authentic selves."
 
-The digital identity movement has spawned new business opportunities:
+The Future of Digital Connection
 
-Identity Services
-- Identity management
-- Privacy protection
-- Digital verification
-- Reputation management
+Looking ahead, the possibilities for digital identity are expanding. "We're just beginning to explore what's possible," says Dr. Wong. "As these tools and communities become more sophisticated, we'll see new forms of digital connection that we can't even imagine today."
 
-Technology Solutions
-- Identity platforms
-- Security tools
-- Privacy systems
-- Verification services
-
-## The Future of Digital Identity
-
-Looking ahead, several trends are shaping the future of digital identity:
-
-Technology Integration
-- Advanced identity tools
-- Privacy-preserving systems
-- Cross-platform solutions
-- Security innovations
-
-Community Development
-- Trust networks
-- Digital citizenship
-- Privacy communities
-- Global standards
-
-As the digital identity ecosystem continues to evolve, it's creating new opportunities for secure and privacy-preserving digital interaction. The future of digital identity lies in the possibilities that emerge from the intersection of technology, privacy, and user autonomy.`,
-    image: "https://images.unsplash.com/photo-1633613286991-611fe299c4be?q=80&w=2940&auto=format&fit=crop",
-    imageAlt: "Digital identity ecosystem and privacy technology"
+For the digital community, this represents an exciting frontier. "We're not just adopting new tools," says Dr. Chen. "We're participating in the evolution of how we connect and express ourselves online." As this transformation continues, it's clear that the future of digital identity will be increasingly authentic, meaningful, and human-centered.`,
+    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2940&auto=format&fit=crop",
+    imageAlt: "Team collaborating on digital identity management"
   }
 ];
 
 const relatedArticles = [
   {
-    title: "The Psychology of Digital Wellness",
-    date: "January 20, 2024",
-    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2999&auto=format&fit=crop",
-    slug: "/news/digital-wellness-psychology",
-    excerpt: "Explore how digital platforms are adapting to promote mental wellness in 2024."
+    title: "The Future of Digital Nomadism: Work-Life Integration in 2025",
+    date: "February 5, 2024",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2940&auto=format&fit=crop",
+    slug: "/news/digital-nomadism-future",
+    excerpt: "Explore how digital nomadism is evolving beyond location independence."
   },
   {
-    title: "The Renaissance of Digital Art",
-    date: "January 25, 2024",
-    image: "https://images.unsplash.com/photo-1634986666676-ec9b7c1d526f?q=80&w=2938&auto=format&fit=crop",
-    slug: "/news/digital-art-renaissance",
-    excerpt: "Discover how traditional artists are embracing digital tools and AI in 2024."
-  },
-  {
-    title: "Quantum Computing and Creative Industries",
+    title: "Quantum Computing and Creative Industries: The Next Frontier",
     date: "February 10, 2024",
     image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2940&auto=format&fit=crop",
     slug: "/news/quantum-computing-creative",
-    excerpt: "Explore how quantum computing will transform creative fields in 2025."
+    excerpt: "Discover how quantum computing is revolutionizing creative industries."
+  },
+  {
+    title: "The Renaissance of Digital Art: From AI to Traditional Techniques",
+    date: "January 25, 2024",
+    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2864&auto=format&fit=crop",
+    slug: "/news/digital-art-renaissance",
+    excerpt: "Discover how traditional artists are embracing digital tools and AI."
   }
 ];
 
@@ -233,7 +120,7 @@ export default function ArticlePage() {
           <div className="absolute inset-0 bg-gradient-to-br from-neutral-900/50 to-black/50 backdrop-blur-sm" />
           <Image
             src="https://images.unsplash.com/photo-1633613286991-611fe299c4be?q=80&w=2940&auto=format&fit=crop"
-            alt="Digital identity and privacy technology visualization"
+            alt="Person managing their digital identity on a modern device"
             fill
             className="object-cover"
             priority
@@ -249,162 +136,153 @@ export default function ArticlePage() {
           <div className="max-w-4xl space-y-8">
             <Link
               href="/news"
-              className="inline-flex items-center gap-2 text-neutral-300 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to News</span>
             </Link>
 
-            <div className="flex items-center gap-4">
-              <span className={styles.categoryBadge}>
-                Digital Identity
-              </span>
-              <div className="flex items-center gap-2 text-neutral-400">
-                <Clock className="w-4 h-4" />
-                <span>12 min read</span>
+            <div className="space-y-4">
+              <div className="flex items-center gap-4 text-sm text-white/60">
+                <span className="px-3 py-1 bg-white/10 rounded-full backdrop-blur-sm">
+                  Digital Identity
+                </span>
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4" />
+                  <span>13 min read</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span>January 15, 2024</span>
+                </div>
               </div>
-            </div>
 
-            <h1 className={styles.heroTitle}>
-              The Evolution of Digital Identity: Beyond Social Media in 2025
-            </h1>
+              <h1 className="text-4xl md:text-6xl font-light tracking-tighter">
+                The Evolution of Digital Identity: Beyond Social Media in 2025
+              </h1>
 
-            <p className={styles.heroDescription}>
-              Discover how digital identity is evolving beyond social media profiles to encompass privacy, security, and self-sovereignty. From decentralized identity systems to digital reputation management, explore the new frontier of personal digital presence.
-            </p>
+              <p className="text-lg md:text-xl text-white/80 max-w-2xl">
+                Discover how digital identity is evolving beyond social media profiles. From authentic self-expression to secure digital presence, explore the new frontier of online identity.
+              </p>
 
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-rose-500/20">
+              <div className="flex items-center gap-6 pt-4">
+                <div className="flex items-center gap-3">
                   <Image
-                    src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=300&auto=format&fit=crop"
-                    alt="Dr. Maya Patel"
+                    src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=300&auto=format&fit=crop"
+                    alt="Dr. Marcus Chen"
                     width={40}
                     height={40}
-                    className="w-full h-full object-cover"
+                    className="rounded-full"
                   />
+                  <div>
+                    <div className="font-medium">Dr. Marcus Chen</div>
+                    <div className="text-sm text-white/60">Digital Identity Researcher</div>
+                  </div>
                 </div>
-                <div>
-                  <p className={styles.authorName}>Dr. Maya Patel</p>
-                  <p className={styles.authorDate}>February 15, 2024</p>
+
+                <div className="flex items-center gap-4">
+                  <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                    <Share2 className="w-5 h-5" />
+                  </button>
+                  <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                    <BookmarkPlus className="w-5 h-5" />
+                  </button>
+                  <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                    <MessageCircle className="w-5 h-5" />
+                  </button>
                 </div>
-              </div>
-              <div className="flex items-center gap-4 ml-auto">
-                <button className="p-2 hover:bg-white/5 rounded-full transition-colors">
-                  <Share2 className="w-5 h-5" />
-                </button>
-                <button className="p-2 hover:bg-white/5 rounded-full transition-colors">
-                  <BookmarkPlus className="w-5 h-5" />
-                </button>
               </div>
             </div>
           </div>
         </motion.div>
       </section>
 
-      {/* Content Section */}
-      <motion.section 
-        className="py-16 px-4 md:px-8"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <div className="max-w-4xl mx-auto">
-          <div className={styles.articleContent}>
-            {articleSections.map((section, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="mb-16"
-              >
-                <h2 className={styles.sectionTitle}>{section.title}</h2>
-                <p className={styles.sectionDescription}>{section.description}</p>
-                <div className="relative aspect-video mb-12 rounded-lg overflow-hidden">
-                  <Image
-                    src={section.image}
-                    alt={section.imageAlt}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="space-y-8">
-                  {section.content.split("\n\n").map((paragraph, pIndex) => {
-                    if (paragraph.startsWith("## ")) {
-                      return (
-                        <h3 key={pIndex} className={styles.contentHeading}>
-                          {paragraph.replace("## ", "")}
-                        </h3>
-                      );
-                    }
-                    if (paragraph.startsWith("### ")) {
-                      return (
-                        <h4 key={pIndex} className={styles.contentSubheading}>
-                          {paragraph.replace("### ", "")}
-                        </h4>
-                      );
-                    }
-                    if (paragraph.startsWith("- ")) {
-                      return (
-                        <ul key={pIndex} className={styles.contentList}>
-                          {paragraph.split("\n").map((item, i) => (
-                            <li key={i} className={styles.contentListItem}>
-                              {item.replace("- ", "")}
-                            </li>
-                          ))}
-                        </ul>
-                      );
-                    }
-                    return (
-                      <p key={pIndex} className={styles.contentParagraph}>
-                        {paragraph}
-                      </p>
-                    );
-                  })}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+      {/* Content Sections */}
+      <section className="py-24 px-4 md:px-8">
+        <div className="container mx-auto max-w-4xl space-y-24">
+          {articleSections.map((section, index) => (
+            <motion.article
+              key={index}
+              className="space-y-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              <div className="space-y-4">
+                <h2 className={styles.sectionTitle}>
+                  {section.title}
+                </h2>
+                <p className={styles.sectionDescription}>
+                  {section.description}
+                </p>
+              </div>
 
-          {/* Tags and Share Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16 pt-8 border-t border-neutral-800"
-          >
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div className="flex items-center gap-2">
-                <Tag className="w-5 h-5 text-rose-400" />
-                <h3 className={styles.tagLabel}>Tags</h3>
+              <div className="relative aspect-video overflow-hidden rounded-lg">
+                <Image
+                  src={section.image}
+                  alt={section.imageAlt}
+                  fill
+                  className="object-cover"
+                />
               </div>
-              <div className="flex items-center gap-4">
-                <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
-                  <Share2 className="w-4 h-4" />
-                  Share
-                </button>
-                <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
-                  <BookmarkPlus className="w-4 h-4" />
-                  Save
-                </button>
-                <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
-                  <MessageCircle className="w-4 h-4" />
-                  Comment
-                </button>
+
+              <div className="space-y-8">
+                {section.content.split("\n\n").map((paragraph, pIndex) => {
+                  // Check if the paragraph is a heading (single line and relatively short)
+                  if (paragraph.split("\n").length === 1 && paragraph.length < 100) {
+                    return (
+                      <h3 key={pIndex} className={styles.contentHeading}>
+                        {paragraph}
+                      </h3>
+                    );
+                  }
+                  return (
+                    <p key={pIndex} className={styles.contentParagraph}>
+                      {paragraph}
+                    </p>
+                  );
+                })}
               </div>
-            </div>
-            <div className="flex flex-wrap gap-2 mt-4">
-              {["Digital Identity", "Privacy", "Technology", "Security", "Innovation", "Future"].map((tag) => (
-                <span key={tag} className={styles.tagItem}>
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </motion.div>
+            </motion.article>
+          ))}
         </div>
-      </motion.section>
+      </section>
+
+      {/* Tags and Share Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mt-16 pt-8 border-t border-neutral-800"
+      >
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <Tag className="w-5 h-5 text-rose-400" />
+            <h3 className={styles.tagLabel}>Tags</h3>
+          </div>
+          <div className="flex items-center gap-4">
+            <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+              <Share2 className="w-4 h-4" />
+              Share
+            </button>
+            <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+              <BookmarkPlus className="w-4 h-4" />
+              Save
+            </button>
+            <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+              <MessageCircle className="w-4 h-4" />
+              Comment
+            </button>
+          </div>
+        </div>
+        <div className="flex flex-wrap gap-2 mt-4">
+          {["Digital Identity", "Social Media", "Online Presence", "Personal Branding", "Digital Privacy", "Technology"].map((tag) => (
+            <span key={tag} className={styles.tagItem}>
+              {tag}
+            </span>
+          ))}
+        </div>
+      </motion.div>
 
       {/* Related Articles Section */}
       <section className="w-full py-24 px-4 md:px-6 bg-neutral-950">

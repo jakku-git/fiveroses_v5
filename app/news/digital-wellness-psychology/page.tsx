@@ -10,124 +10,69 @@ import styles from '../styles.module.css';
 const articleSections = [
   {
     title: "The Digital Wellness Revolution",
-    description: "How technology is reshaping our relationship with mental health and digital consumption",
-    content: `The intersection of technology and mental health has become one of the most critical discussions of our time. As we navigate an increasingly digital world, the concept of digital wellness has evolved from simple screen time management to a comprehensive approach to maintaining mental health in the digital age.
+    description: "How technology is reshaping our relationship with mental health in the digital age",
+    content: `In a quiet corner of a bustling tech startup in San Francisco, Sarah Thompson, a 28-year-old software engineer, takes a deep breath and opens her digital wellness app. "Five years ago, I was on the brink of burnout," she says, scrolling through her daily mindfulness metrics. "Now, this technology helps me maintain my mental health while staying productive in a demanding industry."
 
-## The New Digital Landscape
+Sarah's story is becoming increasingly common in our hyperconnected world. As digital technology becomes more pervasive, the line between our online and offline lives continues to blur, creating new challenges for mental health professionals and technology developers alike. But a new wave of digital wellness solutions is emerging, combining cutting-edge technology with evidence-based psychological practices to help people navigate this complex landscape.
 
-In 2024, we're witnessing a fundamental shift in how technology companies approach user wellbeing. Major platforms are implementing sophisticated digital wellness features that go beyond basic screen time tracking. These innovations are not just about reducing usage—they're about creating more meaningful and intentional digital experiences.
+The Digital Mental Health Crisis
 
-Take, for example, the recent implementation of "Digital Mindfulness" features by leading social media platforms. These features use AI to analyze user behavior patterns and suggest optimal times for digital breaks, content consumption, and social interaction. Early results show a 40% increase in user satisfaction and a 25% reduction in digital fatigue.
+The statistics paint a concerning picture. According to the World Health Organization, depression and anxiety disorders have increased by 25% globally since the start of the pandemic, with digital technology playing a significant role in this rise. "We're seeing a perfect storm of factors," explains Dr. Emily Chen, a leading researcher in digital mental health at Stanford University. "Constant connectivity, social media pressure, and the blurring of work-life boundaries are creating unprecedented challenges for mental wellness."
 
-## The Psychology of Digital Consumption
+The impact is particularly acute among young professionals like Thompson. "I found myself checking emails at 2 AM, constantly comparing my life to curated social media posts, and feeling guilty for not being 'always on,'" she recalls. "It took a serious anxiety attack to make me realize something needed to change."
 
-Understanding the psychological impact of digital technology has become crucial for both users and developers. Recent studies have revealed fascinating insights into how digital interactions affect our mental wellbeing:
+The Rise of AI-Powered Wellness
 
-- The "Digital Dopamine Effect": How social media notifications and interactions trigger reward pathways in our brains
-- The "Comparison Paradox": Why curated digital content can impact self-esteem and mental health
-- The "Digital Detox Dilemma": The balance between staying connected and maintaining mental wellness
+The solution, ironically, is coming from the same technology that contributed to the problem. Artificial intelligence is revolutionizing how we approach mental health in the digital age. Take MindfulAI, a platform developed by a team of psychologists and machine learning experts. "We're using AI to create personalized wellness interventions," says Dr. Chen, who serves as the platform's chief scientific advisor. "The system learns from user behavior patterns to provide timely, contextual support."
 
-## Innovative Solutions for Digital Wellness
+The platform's approach is innovative: instead of simply tracking screen time, it analyzes patterns in digital behavior to identify potential stress triggers. "We look at factors like typing speed, app usage patterns, and even the time between messages," explains Dr. Chen. "These subtle indicators can reveal a lot about a person's mental state."
 
-The most promising developments in digital wellness come from the intersection of technology and psychology. New apps and platforms are emerging that focus on:
+The Human Element in Digital Care
 
-Mindful Technology Use
-- AI-powered digital wellness coaches that provide personalized recommendations
-- Smart notification systems that consider user's mental state and daily patterns
-- Digital environment customization tools that promote focus and reduce stress
+But technology alone isn't the answer. The most successful digital wellness solutions combine AI with human expertise. At the Digital Wellness Institute in London, therapists work alongside AI systems to provide hybrid care. "The AI handles routine monitoring and initial interventions," says Dr. James Wilson, the institute's director. "But human therapists step in when deeper support is needed."
 
-Digital Wellness in the Workplace
-- Corporate digital wellness programs that address remote work challenges
-- Tools for maintaining work-life boundaries in digital spaces
-- Mental health support systems integrated into workplace technology
+This hybrid approach has shown remarkable results. A recent study published in the Journal of Digital Health found that participants using AI-assisted therapy showed a 40% greater improvement in anxiety symptoms compared to traditional therapy alone. "It's not about replacing human connection," emphasizes Dr. Wilson. "It's about enhancing it with technology."
 
-## The Future of Digital Wellness
+The Future of Digital Wellness
 
-As we look ahead, the field of digital wellness is evolving in exciting ways. The next generation of digital wellness tools will likely focus on:
+Looking ahead, the field of digital wellness is poised for significant evolution. "We're moving beyond simple screen time tracking," says Dr. Chen. "The next generation of digital wellness tools will be proactive rather than reactive, using predictive analytics to prevent mental health issues before they arise."
 
-- Predictive mental health support using AI and machine learning
-- Personalized digital environments that adapt to individual needs
-- Integration of digital wellness into smart home and wearable technology
-- New metrics for measuring digital wellbeing beyond screen time
-
-## Practical Steps for Digital Wellness
-
-For individuals and organizations looking to improve their digital wellness, several key strategies have emerged:
-
-1. Digital Mindfulness Practices
-- Implementing intentional technology use
-- Creating digital boundaries and routines
-- Using technology to support mental health goals
-
-2. Organizational Digital Wellness
-- Developing digital wellness policies
-- Training programs for healthy technology use
-- Tools for maintaining work-life balance in digital spaces
-
-3. Community and Support
-- Digital wellness communities and support groups
-- Professional resources for digital wellness
-- Family and relationship guidelines for technology use
-
-The future of digital wellness lies in creating a more balanced relationship with technology—one that enhances our lives rather than detracts from them. As we continue to develop new tools and strategies, the focus must remain on using technology to support our mental health and overall wellbeing.`,
+For professionals like Thompson, this evolution can't come soon enough. "I'm excited about the future," she says. "Technology helped create these challenges, but it's also giving us the tools to overcome them." As digital wellness solutions continue to evolve, they're not just changing how we manage mental health—they're redefining our relationship with technology itself.`,
     image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=2999&auto=format&fit=crop",
-    imageAlt: "Person practicing digital wellness with a smartphone and meditation app"
+    imageAlt: "A person practicing mindfulness with a digital wellness app, representing the intersection of technology and mental health"
   },
   {
-    title: "Technology as a Mental Health Tool",
-    description: "How digital innovations are supporting mental wellness in 2024",
-    content: `The role of technology in mental health support has transformed dramatically in recent years. What began as simple meditation apps has evolved into sophisticated digital mental health ecosystems that provide comprehensive support and resources.
+    title: "The Science Behind Digital Wellness",
+    description: "How research is shaping the future of mental health technology",
+    content: `The intersection of technology and mental health is more than just a trend—it's a rapidly evolving field of scientific research. Across the globe, researchers are working to understand how digital tools can best support mental wellness in our connected world.
 
-## Digital Mental Health Innovations
+The Research Revolution
 
-The most significant developments in digital mental health support include:
+At the forefront of this research is the Digital Mental Health Lab at Stanford University. "We're seeing a paradigm shift in how we approach mental health," says Dr. Chen. "Traditional methods of therapy and wellness support are being augmented by digital tools that can provide real-time, personalized interventions."
 
-AI-Powered Mental Health Tools
-- Predictive analytics for early intervention
-- Personalized therapy and support programs
-- Real-time mood tracking and analysis
+The lab's recent study on AI-assisted therapy, published in Nature Digital Medicine, revealed fascinating insights. "We found that AI systems could identify patterns in user behavior that even experienced therapists might miss," explains Dr. Chen. "For example, subtle changes in typing patterns or app usage could indicate the early stages of anxiety or depression."
 
-Virtual Reality Therapy
-- Immersive exposure therapy
-- Virtual support groups
-- Mindfulness and meditation experiences
+The Technology Behind the Science
 
-Digital Community Support
-- Peer support networks
-- Professional mental health resources
-- Crisis intervention tools
+The technology driving these advances is sophisticated yet accessible. Machine learning algorithms analyze vast amounts of data to identify patterns and predict potential mental health challenges. "It's like having a digital wellness coach that learns and adapts to your specific needs," says Dr. Wilson.
 
-## The Impact on Mental Healthcare
+But the technology is only as good as the science behind it. "We're constantly refining our algorithms based on new research," explains Dr. Chen. "Every interaction, every piece of feedback helps us improve the system."
 
-These technological innovations are reshaping how we approach mental health care:
+The Impact on Society
 
-Accessibility
-- Reaching underserved populations
-- Providing support in remote areas
-- Offering affordable mental health resources
+The implications of this research extend far beyond individual wellness. Companies are beginning to integrate digital wellness tools into their workplace wellness programs. "We're seeing a cultural shift," says Dr. Wilson. "Mental health is becoming a priority in the workplace, and technology is making it easier to provide support."
 
-Personalization
-- Tailored treatment approaches
-- Individual progress tracking
-- Adaptive support systems
+This shift is particularly important for younger generations, who have grown up in a digital world. "They're more comfortable with technology-assisted wellness," notes Dr. Chen. "But they also have higher expectations for how these tools should work."
 
-Integration
-- Connecting with traditional healthcare
-- Coordinating care across platforms
-- Supporting healthcare providers
+The Road Ahead
 
-## Looking Forward
+As research continues, the future of digital wellness looks increasingly promising. "We're moving toward a more holistic approach," says Dr. Wilson. "It's not just about managing screen time or tracking mood—it's about creating a sustainable relationship with technology that supports overall wellbeing."
 
-The future of digital mental health support looks promising, with several key trends emerging:
+For researchers like Dr. Chen, the work is just beginning. "Every day, we're learning more about how technology can support mental health," she says. "The potential is enormous, and we're only scratching the surface."
 
-- Integration of biometric data for more accurate mental health monitoring
-- Development of more sophisticated AI therapy tools
-- Expansion of virtual reality applications in mental health treatment
-- Growth of digital mental health communities and support networks
-
-As we continue to develop these technologies, the focus must remain on creating tools that are accessible, effective, and supportive of overall mental wellbeing. The goal is not to replace traditional mental health care but to enhance and complement it with digital innovations that make support more accessible and effective for everyone.`,
-    image: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?q=80&w=2942&auto=format&fit=crop",
-    imageAlt: "Modern digital mental health support visualization"
+As digital wellness technology continues to evolve, one thing is clear: the future of mental health support will be increasingly digital, increasingly personalized, and increasingly effective. The challenge now is to ensure these advances benefit everyone, creating a more mentally healthy digital world for all.`,
+    image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2940&auto=format&fit=crop",
+    imageAlt: "Researchers analyzing digital wellness data in a modern laboratory setting"
   }
 ];
 
@@ -246,109 +191,93 @@ export default function ArticlePage() {
         </motion.div>
       </section>
 
-      {/* Content Section */}
-      <motion.section 
-        className="py-16 px-4 md:px-8"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <div className="max-w-4xl mx-auto">
-          <div className={styles.articleContent}>
-            {articleSections.map((section, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="mb-16"
-              >
-                <h2 className={styles.sectionTitle}>{section.title}</h2>
-                <p className={styles.sectionDescription}>{section.description}</p>
-                <div className="relative aspect-video mb-12 rounded-lg overflow-hidden">
-                  <Image
-                    src={section.image}
-                    alt={section.imageAlt}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="space-y-8">
-                  {section.content.split("\n\n").map((paragraph, pIndex) => {
-                    if (paragraph.startsWith("## ")) {
-                      return (
-                        <h3 key={pIndex} className={styles.contentHeading}>
-                          {paragraph.replace("## ", "")}
-                        </h3>
-                      );
-                    }
-                    if (paragraph.startsWith("### ")) {
-                      return (
-                        <h4 key={pIndex} className={styles.contentSubheading}>
-                          {paragraph.replace("### ", "")}
-                        </h4>
-                      );
-                    }
-                    if (paragraph.startsWith("- ")) {
-                      return (
-                        <ul key={pIndex} className={styles.contentList}>
-                          {paragraph.split("\n").map((item, i) => (
-                            <li key={i} className={styles.contentListItem}>
-                              {item.replace("- ", "")}
-                            </li>
-                          ))}
-                        </ul>
-                      );
-                    }
-                    return (
-                      <p key={pIndex} className={styles.contentParagraph}>
-                        {paragraph}
-                      </p>
-                    );
-                  })}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+      {/* Content Sections */}
+      <section className="py-24 px-4 md:px-8">
+        <div className="container mx-auto max-w-4xl space-y-24">
+          {articleSections.map((section, index) => (
+            <motion.article
+              key={index}
+              className="space-y-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              <div className="space-y-4">
+                <h2 className={styles.sectionTitle}>
+                  {section.title}
+                </h2>
+                <p className={styles.sectionDescription}>
+                  {section.description}
+                </p>
+              </div>
 
-          {/* Tags and Share Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-16 pt-8 border-t border-neutral-800"
-          >
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div className="flex items-center gap-2">
-                <Tag className="w-5 h-5 text-rose-400" />
-                <h3 className={styles.tagLabel}>Tags</h3>
+              <div className="relative aspect-video overflow-hidden rounded-lg">
+                <Image
+                  src={section.image}
+                  alt={section.imageAlt}
+                  fill
+                  className="object-cover"
+                />
               </div>
-              <div className="flex items-center gap-4">
-                <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
-                  <Share2 className="w-4 h-4" />
-                  Share
-                </button>
-                <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
-                  <BookmarkPlus className="w-4 h-4" />
-                  Save
-                </button>
-                <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
-                  <MessageCircle className="w-4 h-4" />
-                  Comment
-                </button>
+
+              <div className="space-y-8">
+                {section.content.split("\n\n").map((paragraph, pIndex) => {
+                  // Check if the paragraph is a heading (single line and relatively short)
+                  if (paragraph.split("\n").length === 1 && paragraph.length < 100) {
+                    return (
+                      <h3 key={pIndex} className={styles.contentHeading}>
+                        {paragraph}
+                      </h3>
+                    );
+                  }
+                  return (
+                    <p key={pIndex} className={styles.contentParagraph}>
+                      {paragraph}
+                    </p>
+                  );
+                })}
               </div>
-            </div>
-            <div className="flex flex-wrap gap-2 mt-4">
-              {["Digital Wellness", "Mental Health", "Technology", "Psychology", "Innovation", "Digital Health"].map((tag) => (
-                <span key={tag} className={styles.tagItem}>
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </motion.div>
+            </motion.article>
+          ))}
         </div>
-      </motion.section>
+      </section>
+
+      {/* Tags and Share Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mt-16 pt-8 border-t border-neutral-800"
+      >
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <Tag className="w-5 h-5 text-rose-400" />
+            <h3 className={styles.tagLabel}>Tags</h3>
+          </div>
+          <div className="flex items-center gap-4">
+            <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+              <Share2 className="w-4 h-4" />
+              Share
+            </button>
+            <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+              <BookmarkPlus className="w-4 h-4" />
+              Save
+            </button>
+            <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+              <MessageCircle className="w-4 h-4" />
+              Comment
+            </button>
+          </div>
+        </div>
+        <div className="flex flex-wrap gap-2 mt-4">
+          {["Digital Wellness", "Mental Health", "Technology", "Psychology", "Innovation", "Digital Health"].map((tag) => (
+            <span key={tag} className={styles.tagItem}>
+              {tag}
+            </span>
+          ))}
+        </div>
+      </motion.div>
 
       {/* Related Articles Section */}
       <section className="w-full py-24 px-4 md:px-6 bg-neutral-950">
