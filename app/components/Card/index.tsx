@@ -55,7 +55,7 @@ export default function Card({ title, description, src, link, color, i, progress
                             style={{scale: imageScale}}
                         >
                             <img
-                                src={`/${src}`}
+                                src={src}
                                 alt={title}
                             />
                         </motion.div>

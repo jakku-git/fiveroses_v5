@@ -169,7 +169,7 @@ const Footer = memo(function Footer() {
                 { title: "Marketing / Strategy", href: "/work/marketing" },
                 { title: "Development / Solutions", href: "/work/web-solutions" },
                 { title: "Creation / Production", href: "/work/creative-production" },
-                { title: "Incubator / Consulting", href: "/work/incubator" },
+                { title: "Consulting", href: "/work/incubator" },
               ].map((service) => (
                 <li key={service.href}>
                   <Link 

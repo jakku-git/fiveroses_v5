@@ -1,47 +1,41 @@
 "use client"
 
 import styles from './page.module.css'
-import Double from './components/Double'
-import Project from './components/project'
-import ZoomParallax from './components/ZoomParallax'
-import Card from './components/Card'
 import { cards } from './data/cards'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useMemo } from 'react'
 import Lenis from '@studio-freight/lenis'
-import ParallaxGallery from './components/ParallaxGallery'
-import BackgroundParallax from './components/BackgroundParallax'
-import { Inter } from "next/font/google"
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
-import PerspectiveSection from './components/PerspectiveSection'
+import { Inter } from "next/font/google"
+import Card from './components/Card'
 import { VelocityText } from './components/VelocityText'
 
 const originalProjects = [
     {
-        title1: "Jomor",
-        title2: "Design",
-        src: "ceramics.webp"
+        title1: "Human",
+        title2: "Rights",
+        src: "https://pub-172cf25c478a4ad6ab218ee60b1a4b4f.r2.dev/partners%20(3).webp"
     },
     {
         title1: "La",
         title2: "Grange",
-        src: "heat.webp"
+        src: "https://pub-172cf25c478a4ad6ab218ee60b1a4b4f.r2.dev/partners%20(2).webp"
     },
     {
-        title1: "Deux Huit",
-        title2: "Huit",
-        src: "power.webp"
+        title1: "Dix Sept",
+        title2: "Sept",
+        src: "https://pub-172cf25c478a4ad6ab218ee60b1a4b4f.r2.dev/partners%20(1).webp"
     },
     {
         title1: "Nothing",
-        title2: "Design Studio",
-        src: "river.webp"
+        title2: "Studio",
+        src: "https://pub-172cf25c478a4ad6ab218ee60b1a4b4f.r2.dev/partners%20(5).webp"
     },
     {
-        title1: "Mambo",
-        title2: "Mambo",
-        src: "podcast.webp"
+        title1: "Tiki",
+        title2: "Miki",
+        src: "https://pub-172cf25c478a4ad6ab218ee60b1a4b4f.r2.dev/partners%20(4).webp"
     }
 ]
 
@@ -76,11 +70,41 @@ const galleryProjects = [
     }
 ]
 
-// Dynamically import heavy components
+// Dynamically import all heavy components
+const Double = dynamic(() => import('./components/Double'), {
+  ssr: false,
+  loading: () => <div className="h-screen w-full bg-black/50" />
+});
+
+const Project = dynamic(() => import('./components/project'), {
+  ssr: false,
+  loading: () => <div className="h-screen w-full bg-black/50" />
+});
+
+const ZoomParallax = dynamic(() => import('./components/ZoomParallax'), {
+  ssr: false,
+  loading: () => <div className="h-screen w-full bg-black/50" />
+});
+
+const ParallaxGallery = dynamic(() => import('./components/ParallaxGallery'), {
+  ssr: false,
+  loading: () => <div className="h-screen w-full bg-black/50" />
+});
+
+const BackgroundParallax = dynamic(() => import('./components/BackgroundParallax'), {
+  ssr: false,
+  loading: () => <div className="h-screen w-full bg-black/50" />
+});
+
+const PerspectiveSection = dynamic(() => import('./components/PerspectiveSection'), {
+  ssr: false,
+  loading: () => <div className="h-screen w-full bg-black/50" />
+});
+
 const CanvasRevealEffect = dynamic(() => import("@/components/ui/canvas-reveal-effect").then(mod => mod.CanvasRevealEffect), {
-    ssr: false,
-    loading: () => <div className="h-screen w-full relative z-10" />
-})
+  ssr: false,
+  loading: () => <div className="h-screen w-full relative z-10" />
+});
 
 const inter = Inter({ 
     subsets: ["latin"], 
@@ -96,8 +120,16 @@ export default function Home() {
         offset: ["start start", "end end"]
     });
 
+    // Optimize Lenis scroll
     useEffect(() => {
-        const lenis = new Lenis();
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            orientation: 'vertical',
+            gestureOrientation: 'vertical',
+            smoothWheel: true,
+            touchMultiplier: 2,
+        });
 
         function raf(time: number) {
             lenis.raf(time);
@@ -105,17 +137,27 @@ export default function Home() {
         }
 
         requestAnimationFrame(raf);
+
+        return () => {
+            lenis.destroy();
+        };
     }, []);
+
+    // Memoize expensive computations
+    const cardScales = useMemo(() => 
+        cards.map((_, i) => 1 - ((cards.length - i) * 0.05)),
+        [cards.length]
+    );
 
     return (
         <>
             {/* 1. Hero Section */}
-            <section className="w-full min-h-screen flex flex-col items-center justify-center relative bg-gradient-to-b from-black via-black/95 to-black/90 text-white overflow-hidden">
+            <section className="w-full min-h-screen flex flex-col items-center justify-center relative bg-gradient-to-b from-black via-black/95 to-black/90 text-white overflow-hidden transform-gpu">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent" />
                 <Suspense fallback={<div className="h-screen w-full relative z-10" />}>
                     <CanvasRevealEffect
                         animationSpeed={0.5}
-                        containerClassName="h-screen w-full relative z-10"
+                        containerClassName="h-screen w-full relative z-10 transform-gpu"
                         revealText="fiveroses"
                         textClassName="text-[8vw] tracking-tighter font-black text-white"
                         videoUrls={{
@@ -127,7 +169,7 @@ export default function Home() {
                 </Suspense>
             </section>
 
-            <main className={`${inter.className} ${styles.main}`}>
+            <main className={`${inter.className} ${styles.main} transform-gpu`}>
                 {/* 6. Background Parallax Section */}
                 <BackgroundParallax />
 
@@ -137,21 +179,18 @@ export default function Home() {
                 {/* 2. Zoom Parallax Section */}
                 <ZoomParallax />
 
-                {/* 5. Cards Section */}
+                {/* 5. Cards Section - Optimized with memoized scales */}
                 <section className={styles.cardsSection}>
-                    {cards.map((card, i) => {
-                        const targetScale = 1 - ((cards.length - i) * 0.05);
-                        return (
-                            <Card 
-                                key={i} 
-                                i={i} 
-                                progress={scrollYProgress} 
-                                range={[i * 0.16, 1]} 
-                                targetScale={targetScale}
-                                {...card}
-                            />
-                        )
-                    })}
+                    {cards.map((card, i) => (
+                        <Card 
+                            key={i} 
+                            i={i} 
+                            progress={scrollYProgress} 
+                            range={[i * 0.16, 1]} 
+                            targetScale={cardScales[i]}
+                            {...card}
+                        />
+                    ))}
                 </section>
 
                 {/* 3. Perspective Section */}
@@ -182,7 +221,7 @@ export default function Home() {
 
                 {/* 8. Original Projects Section */}
                 <section className={styles.originalSection}>
-                    <h1 className="text-3xl md:text-5xl font-light tracking-tighter mb-8">Recent Works</h1>
+                    <h1 className="text-3xl md:text-5xl font-light tracking-tighter mb-8">Partnerships</h1>
                     <div className={styles.projectList}>
                         {originalProjects.map((project, index) => (
                             <Project key={index} project={project} />
