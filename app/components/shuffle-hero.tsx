@@ -18,82 +18,181 @@ interface ShuffleHeroProps {
 
 const ShuffleHero = ({ isContactOpen, setIsContactOpen }: ShuffleHeroProps) => {
   return (
-    <section className="w-full h-screen relative bg-black text-white overflow-hidden">
-      <div className="absolute inset-0 px-6">
+    <section 
+      className="w-full h-screen relative bg-black text-white overflow-hidden"
+      style={{ pointerEvents: 'auto' }}
+    >
+      {/* Image grid container */}
+      <div 
+        className="absolute inset-0 px-6"
+        style={{ 
+          pointerEvents: 'auto',
+          zIndex: 1
+        }}
+      >
         <ShuffleGrid />
+        <div 
+          className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/70 to-black/90"
+          style={{ 
+            pointerEvents: 'none',
+            zIndex: 2
+          }}
+        />
       </div>
-      <div className="relative h-full flex items-center justify-center">
-        <div className="w-full max-w-[90%] px-6">
-          <div className="relative z-10">
-            <div className="w-full md:w-[30vw] backdrop-blur-2xl bg-gradient-to-r from-black/40 via-black/30 to-black/40 border border-white/20 rounded-2xl p-6 md:p-8 shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.1)]">
-              <motion.span 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="block mb-4 text-[11px] md:text-sm text-white/80 font-medium tracking-wider uppercase"
-              >
-                A Creative Agency Reimagined For Creative People
-              </motion.span>
-              <motion.h3 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="text-2xl md:text-6xl font-light tracking-tight leading-[1.1] text-white mb-4"
-              >
-                We work with ambitious<br />
-                brands and people.
-              </motion.h3>
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="text-sm md:text-lg text-white/80 leading-relaxed mb-6"
-              >
-                Together, we craft ideas into identities, and ambition into lasting impact.<br />
-                Because ambition deserves more than execution. It deserves elevation.
-              </motion.p>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-              >
-                <motion.button 
-                  onClick={() => setIsContactOpen(true)}
-                  className="group text-base md:text-2xl text-white/80 hover:text-white inline-flex items-center gap-2 transition-all duration-300 font-light"
-                  whileHover="hover"
-                >
-                  <motion.span 
-                    className="relative"
-                    initial={{ backgroundSize: "0% 2px" }}
-                    animate={{ backgroundSize: "0% 2px" }}
-                    variants={{
-                      hover: {
-                        backgroundSize: "100% 2px"
-                      }
-                    }}
-                    style={{
-                      background: "linear-gradient(currentColor, currentColor) no-repeat 0 100%",
-                      backgroundSize: "0% 2px",
-                      transition: "background-size 0.3s"
-                    }}
-                  >
-                    Let's Talk
-                  </motion.span>
-                  <motion.div
-                    variants={{
-                      hover: {
-                        x: 5,
-                        y: -5,
-                        transition: { type: "spring", stiffness: 300, damping: 10 }
-                      }
-                    }}
-                  >
-                    <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 transition-transform" />
-                  </motion.div>
-                </motion.button>
-              </motion.div>
+
+      {/* Text content container */}
+      <div 
+        className="relative h-full flex items-center justify-center"
+        style={{ 
+          zIndex: 3,
+          pointerEvents: 'none'
+        }}
+      >
+        <div 
+          className="w-full max-w-5xl px-6"
+          style={{ 
+            pointerEvents: 'auto',
+            textAlign: 'center'
+          }}
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-16"
+          >
+            <span 
+              className="inline-block text-[11px] md:text-[13px] text-white font-bold tracking-[0.3em] uppercase"
+              style={{
+                letterSpacing: '0.3em',
+                fontFamily: 'var(--font-sans)',
+                opacity: 0.7
+              }}
+            >
+              A Creative Agency Reimagined
+            </span>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mb-16"
+          >
+            <div style={{
+              fontSize: 'clamp(3rem, 8vw, 7.5rem)',
+              lineHeight: 1,
+              fontFamily: 'var(--font-sans)',
+              fontWeight: 700,
+              letterSpacing: '-0.02em',
+              color: 'white',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: '0.1em'
+            }}>
+              <div style={{ whiteSpace: 'nowrap' }}>We work with ambitious</div>
+              <div style={{ whiteSpace: 'nowrap', opacity: 0.9 }}>brands and people.</div>
             </div>
-          </div>
+          </motion.div>
+
+          {/* Body text */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="mb-6"
+          >
+            <div style={{
+              maxWidth: '48rem',
+              margin: '0 auto',
+              fontFamily: 'var(--font-sans)',
+              fontSize: 'clamp(1.125rem, 2vw, 1.5rem)',
+              lineHeight: 1.5,
+              letterSpacing: '-0.01em',
+              color: 'white',
+              opacity: 0.85,
+              textAlign: 'center'
+            }}>
+              <p style={{ 
+                marginBottom: '1.5em', 
+                fontWeight: 300,
+                letterSpacing: '-0.01em',
+                whiteSpace: 'nowrap'
+              }}>
+                Together, we craft ideas into identities, and ambition into lasting impact.
+              </p>
+              <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                width: '100%'
+              }}>
+                <p style={{ 
+                  fontSize: 'clamp(1.25rem, 2.5vw, 1.75rem)',
+                  fontWeight: 400,
+                  opacity: 0.9,
+                  letterSpacing: '-0.015em',
+                  lineHeight: 1.4,
+                  whiteSpace: 'nowrap',
+                  textAlign: 'center',
+                  margin: 0
+                }}>
+                  Because ambition deserves more than execution. It deserves elevation.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="flex justify-center"
+          >
+            <motion.button 
+              onClick={() => setIsContactOpen(true)}
+              className="group inline-flex items-center gap-6 transition-all duration-300"
+              style={{
+                fontFamily: 'var(--font-sans)',
+                fontSize: 'clamp(1.75rem, 3vw, 2.5rem)',
+                fontWeight: 500,
+                letterSpacing: '-0.02em',
+                color: 'white',
+                padding: '1em 0'
+              }}
+              whileHover="hover"
+            >
+              <motion.span 
+                className="relative"
+                initial={{ backgroundSize: "0% 2px" }}
+                animate={{ backgroundSize: "0% 2px" }}
+                variants={{
+                  hover: {
+                    backgroundSize: "100% 2px"
+                  }
+                }}
+                style={{
+                  background: "linear-gradient(currentColor, currentColor) no-repeat 0 100%",
+                  backgroundSize: "0% 2px",
+                  transition: "background-size 0.3s ease-out"
+                }}
+              >
+                Let's Talk
+              </motion.span>
+              <motion.div
+                variants={{
+                  hover: {
+                    x: 8,
+                    y: -8,
+                    transition: { type: "spring", stiffness: 400, damping: 10 }
+                  }
+                }}
+              >
+                <ArrowUpRight className="w-8 h-8 md:w-10 md:h-10 transition-transform" />
+              </motion.div>
+            </motion.button>
+          </motion.div>
         </div>
       </div>
       <ContactModal open={isContactOpen} setOpen={setIsContactOpen} />
@@ -185,43 +284,84 @@ const squareData: SquareData[] = [
   },
 ];
 
-const generateSquares = () => {
-  return shuffle([...squareData]).map((sq) => (
-    <motion.div
-      key={sq.id}
-      layout
-      transition={{ 
-        duration: 1.5, 
-        type: "spring",
-        layout: {
-          duration: 0.8,
-          ease: [0.16, 1, 0.3, 1]
-        }
+const ImageSquare = ({ src, id }: { src: string; id: number }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div 
+      className="relative w-full h-full"
+      style={{ 
+        cursor: 'pointer',
+        zIndex: 1,
+        position: 'relative',
+        pointerEvents: 'auto',
+        aspectRatio: '1/1',
+        overflow: 'hidden'
       }}
-      className="w-full h-full overflow-hidden relative aspect-square"
+      onClick={() => console.log('Click on image', id)}
+      onMouseEnter={() => {
+        console.log('Mouse enter on image', id);
+        setIsHovered(true);
+      }}
+      onMouseLeave={() => {
+        console.log('Mouse leave on image', id);
+        setIsHovered(false);
+      }}
     >
-      <div className="absolute inset-0 bg-black/20" />
-      <Image
-        src={sq.src}
-        alt={`Grid image ${sq.id}`}
-        fill
-        className="object-cover transition-transform duration-500"
-        sizes="(max-width: 768px) 50vw, 25vw"
-        priority={sq.id <= 4}
-        loading={sq.id <= 4 ? "eager" : "lazy"}
-        quality={75}
-        placeholder="blur"
-        blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSEkLzYvLy0vLzYvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLz/2wBDAR0dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dLz/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+      {/* Image container */}
+      <div 
+        className="absolute inset-0"
+        style={{
+          filter: isHovered 
+            ? 'grayscale(0%) brightness(1.05)' 
+            : 'grayscale(100%)',
+          transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+          pointerEvents: 'none',
+          zIndex: 1
+        }}
+      >
+        <Image
+          src={src}
+          alt={`Grid image ${id}`}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 50vw, 25vw"
+          priority={id <= 4}
+          loading={id <= 4 ? "eager" : "lazy"}
+          quality={90}
+          placeholder="blur"
+          blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDABQODxIPDRQSEBIXFRQdHx4eHRoaHSQtJSEkLzYvLy0vLzYvLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLy8vLz/2wBDAR0dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dHR4dLz/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k="
+        />
+      </div>
+      
+      {/* Dark overlay */}
+      <div 
+        className="absolute inset-0 bg-black/20"
+        style={{ 
+          pointerEvents: 'none', 
+          zIndex: 1,
+          opacity: isHovered ? 0 : 0.2, // Remove overlay completely on hover
+          transition: 'opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1)'
+        }}
       />
-    </motion.div>
-  ));
+    </div>
+  );
+};
+
+const generateSquares = (): SquareData[] => {
+  return shuffle([...squareData]);
 };
 
 const ShuffleGrid = () => {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const [squares, setSquares] = useState(generateSquares());
+  const [squares, setSquares] = useState<SquareData[]>(() => generateSquares());
 
   useEffect(() => {
+    const shuffleSquares = () => {
+      setSquares(generateSquares());
+      timeoutRef.current = setTimeout(shuffleSquares, 5000);
+    };
+
     shuffleSquares();
 
     return () => {
@@ -231,14 +371,43 @@ const ShuffleGrid = () => {
     };
   }, []);
 
-  const shuffleSquares = () => {
-    setSquares(generateSquares());
-    timeoutRef.current = setTimeout(shuffleSquares, 5000);
-  };
-
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 grid-rows-4 h-full w-full gap-1 will-change-transform [transform:translateZ(0)] [backface-visibility:hidden] overflow-hidden">
-      {squares.map((sq) => sq)}
+    <div 
+      className="absolute inset-0"
+      style={{ 
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 1,
+        pointerEvents: 'auto',
+        overflow: 'hidden'
+      }}
+    >
+      <div 
+        className="grid grid-cols-2 md:grid-cols-4 grid-rows-4 h-full w-full gap-1"
+        style={{ 
+          position: 'relative',
+          height: '100%',
+          width: '100%'
+        }}
+      >
+        {squares.map((square) => (
+          <motion.div
+            key={square.id}
+            layout
+            style={{
+              position: 'relative',
+              width: '100%',
+              height: '100%',
+              aspectRatio: '1/1'
+            }}
+          >
+            <ImageSquare src={square.src} id={square.id} />
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 };
