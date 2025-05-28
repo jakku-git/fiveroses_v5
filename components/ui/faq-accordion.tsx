@@ -6,30 +6,40 @@ import { ChevronDown } from "lucide-react";
 
 const faqData = [
   {
-    question: "What services does fiveroses offer?",
-    answer:
-      "fiveroses offers a comprehensive range of marketing services, including digital marketing, brand strategy, web development, creative production, and startup incubation.",
+    question: "What makes <span class='font-bold text-white'>fiveroses</span> different from other creative agencies?",
+    answer: [
+      "At <span class='font-bold text-white'>fiveroses</span>, we blend artistic vision with strategic thinking to create memorable brand experiences. Our unique approach combines data-driven insights with creative excellence, ensuring every project delivers both aesthetic impact and measurable results.",
+      "We're not just designers or strategists—we're storytellers who understand the power of emotional connection in brand building. Our team brings together diverse expertise in creative direction, digital innovation, and strategic planning to craft solutions that resonate with your audience."
+    ]
   },
   {
-    question: "How do I get started with fiveroses?",
-    answer:
-      "Simply fill out the contact form on this page or give us a call. We'll schedule an initial consultation to discuss your needs and how we can help.",
+    question: "How does <span class='font-bold text-white'>fiveroses</span> approach brand strategy and creative development?",
+    answer: [
+      "Our brand strategy process begins with deep research and discovery. We analyze market trends, competitor positioning, and audience insights to develop a comprehensive understanding of your brand's unique value proposition.",
+      "From there, we craft a strategic framework that guides all creative decisions—from visual identity to messaging and digital presence. This ensures consistency across all touchpoints while maintaining the flexibility to adapt to evolving market conditions."
+    ]
   },
   {
-    question: "What is your typical project timeline?",
-    answer:
-      "Project timelines vary depending on the scope and complexity of the work. During our initial consultation, we'll provide you with a detailed timeline for your specific project.",
+    question: "What types of digital solutions does <span class='font-bold text-white'>fiveroses</span> offer?",
+    answer: [
+      "We specialize in creating immersive digital experiences that combine cutting-edge technology with intuitive design. Our digital solutions include custom web development, interactive applications, e-commerce platforms, and digital marketing campaigns.",
+      "Our development team stays ahead of emerging technologies, allowing us to implement innovative features like AI integration, real-time data visualization, and immersive 3D experiences that set your brand apart."
+    ]
   },
   {
-    question: "Do you work with clients internationally?",
-    answer:
-      "Yes, we work with clients from around the world. Our digital capabilities allow us to collaborate effectively regardless of location.",
+    question: "How does <span class='font-bold text-white'>fiveroses</span> measure the success of creative projects?",
+    answer: [
+      "We believe in a balanced approach to measuring success, combining quantitative metrics with qualitative impact. For each project, we establish clear KPIs aligned with your business objectives, tracking metrics such as engagement rates, conversion rates, and brand sentiment.",
+      "Beyond the numbers, we evaluate the emotional resonance of our work through user feedback, brand perception studies, and market response. This comprehensive approach ensures we're delivering both measurable results and meaningful brand experiences."
+    ]
   },
   {
-    question: "How do you measure the success of your marketing campaigns?",
-    answer:
-      "We use a data-driven approach to measure the success of our campaigns, tracking key performance indicators (KPIs) that align with your business goals.",
-  },
+    question: "What is <span class='font-bold text-white'>fiveroses</span>' process for creative collaboration?",
+    answer: [
+      "Our collaborative process is built on transparency, communication, and partnership. We begin with an in-depth discovery phase, where we work closely with you to understand your vision, goals, and challenges.",
+      "Throughout the project, we maintain regular check-ins and feedback sessions, ensuring alignment at every stage. Our agile methodology allows for iterative refinement while keeping projects on track and within scope. We believe the best results come from true partnership between agency and client."
+    ]
+  }
 ];
 
 const FaqAccordion = () => {
@@ -37,10 +47,11 @@ const FaqAccordion = () => {
 
   return (
     <div className="w-full bg-black text-white">
-      <div className="w-[80%] mx-auto pt-0 pb-20">
+      <div className="w-[80%] mx-auto pt-24 pb-20">
         <h2 className="text-3xl md:text-5xl font-light tracking-tighter mb-8">Frequently Asked Questions</h2>
         <p className="text-xl font-light text-white/70 max-w-3xl mb-16 leading-relaxed">
-          Find answers to common questions about our services and how we can help your business grow.
+          Discover how <span className="font-bold text-white">fiveroses</span> combines creative excellence with strategic thinking to deliver exceptional brand experiences. 
+          Learn about our approach, services, and what makes us different in the creative industry.
         </p>
         
         <div>
@@ -55,9 +66,8 @@ const FaqAccordion = () => {
                   animate={{
                     opacity: expandedIndex === index ? 1 : 0.7
                   }}
-                >
-                  {faq.question}
-                </motion.span>
+                  dangerouslySetInnerHTML={{ __html: faq.question }}
+                />
                 <motion.div
                   animate={{ 
                     rotate: expandedIndex === index ? 180 : 0,
@@ -79,10 +89,21 @@ const FaqAccordion = () => {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <div className="pb-8">
-                      <p className="text-base md:text-lg font-light text-white/70 leading-relaxed">
-                        {faq.answer}
-                      </p>
+                    <div className="pb-8 space-y-4">
+                      {Array.isArray(faq.answer) ? (
+                        faq.answer.map((paragraph, i) => (
+                          <p 
+                            key={i} 
+                            className="text-base md:text-lg font-light text-white/70 leading-relaxed"
+                            dangerouslySetInnerHTML={{ __html: paragraph }}
+                          />
+                        ))
+                      ) : (
+                        <p 
+                          className="text-base md:text-lg font-light text-white/70 leading-relaxed"
+                          dangerouslySetInnerHTML={{ __html: faq.answer }}
+                        />
+                      )}
                     </div>
                   </motion.div>
                 )}

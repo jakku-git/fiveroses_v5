@@ -176,7 +176,7 @@ const Spacer = memo(({ ref, type, progress, className }: SpacerProps) => {
             >
                 <motion.h2 
                     className={`${styles.text} transform-gpu`}
-                    data-text={type === 'before' ? "this is fiveroses" : "a place of endless possibilities"}
+                    data-text={type === 'before' ? "this is fiveroses" : "creativity without limits"}
                     style={{
                         rotateX: textRotate,
                         backgroundPosition: bgPosition,
@@ -184,8 +184,8 @@ const Spacer = memo(({ ref, type, progress, className }: SpacerProps) => {
                     }}
                     whileHover={hoverAnimationConfig}
                 >
-                    <span className="block">{type === 'before' ? 'this is' : 'a place of'}</span>
-                    <span className="block">{type === 'before' ? 'fiveroses' : 'endless possibilities'}</span>
+                    <span className="block">{type === 'before' ? 'this is' : 'creativity'}</span>
+                    <span className="block">{type === 'before' ? 'fiveroses' : 'without limits'}</span>
                 </motion.h2>
             </motion.div>
         </div>

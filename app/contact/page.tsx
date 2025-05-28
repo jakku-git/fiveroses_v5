@@ -1,13 +1,26 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { Mail, Phone, MapPin } from "lucide-react"
+import { Mail, Phone, MapPin, Send, Loader2, Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react"
 import { FaqAccordion } from "@/components/ui/faq-accordion"
 import Image from "next/image"
 import { GlobeWrapper } from "@/components/ui/globe-wrapper"
+import { motion } from "framer-motion"
 
 export default function ContactPage() {
   const [isMobile, setIsMobile] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    jobTitle: '',
+    company: '',
+    email: '',
+    location: '',
+    market: '',
+    comment: '',
+    privacy: false
+  });
 
   useEffect(() => {
     const checkMobile = () => {
@@ -19,241 +32,334 @@ export default function ContactPage() {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    setIsSubmitting(false);
+    // Reset form
+    setFormData({
+      firstName: '',
+      lastName: '',
+      jobTitle: '',
+      company: '',
+      email: '',
+      location: '',
+      market: '',
+      comment: '',
+      privacy: false
+    });
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value, type } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? (e.target as HTMLInputElement).checked : value
+    }));
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between">
+    <main className="flex min-h-screen flex-col items-center justify-between bg-black text-white">
       {/* Hero Section */}
-      <section className="w-full h-screen flex flex-col items-center justify-center relative bg-black text-white">
+      <section className="w-full h-screen flex flex-col items-center justify-center relative">
         <div className="absolute inset-0 z-0">
           <GlobeWrapper />
         </div>
         <div className="relative z-10 text-center px-4 md:px-6 max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-7xl font-bold tracking-tighter mb-6">fiveroses</h1>
-          <p className="text-xl md:text-2xl text-white/80 mb-8"></p>
         </div>
       </section>
 
       {/* Contact Form Section */}
-      <section className="w-full py-16 px-4 md:px-6 bg-black text-white">
+      <section className="w-full py-24 px-4 md:px-6">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tighter mb-6">Contact Us</h2>
-              <p className="text-lg text-neutral-300 mb-8">
-                Fill out the form and our team will get back to you within 24 hours.
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-6 text-white">
+                Get in Touch
+              </h2>
+              <p className="text-lg text-neutral-400 mb-12 font-light leading-relaxed">
+                Whether you have a question about our services, pricing, or anything else, our team is ready to answer all your questions.
               </p>
 
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center">
-                    <Mail className="w-5 h-5 text-rose-200" />
+              <div className="space-y-8">
+                <motion.div 
+                  className="flex items-start gap-4 group"
+                  whileHover={{ x: 5 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white flex items-center justify-center group-hover:bg-neutral-100 transition-colors">
+                    <Mail className="w-6 h-6 text-black" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-bold mb-1">Email</h3>
-                    <p className="text-neutral-300">hello@fiveroses.com</p>
+                    <h3 className="text-xl font-bold mb-1 text-white">Email</h3>
+                    <p className="text-neutral-400">hello@fiveroses.com</p>
                   </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center">
-                    <Phone className="w-5 h-5 text-rose-200" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold mb-1">Phone</h3>
-                    <p className="text-neutral-300">+1 (555) 123-4567</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center">
-                    <MapPin className="w-5 h-5 text-rose-200" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold mb-1">Office</h3>
-                    <p className="text-neutral-300">
-                      123 Innovation Way
-                      <br />
-                      San Francisco, CA 94107
-                    </p>
-                  </div>
-                </div>
+                </motion.div>
               </div>
 
-              <div className="mt-12">
-                <h3 className="text-lg font-bold mb-4">Follow Us</h3>
+              <div className="mt-16">
+                <h3 className="text-xl font-bold mb-6 text-white">Follow Us</h3>
                 <div className="flex gap-4">
-                  {isMobile ? (
-                    <>
-                      <button
-                        className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center hover:bg-neutral-800 transition-colors"
-                        aria-label="Facebook"
-                      >
-                        <Image
-                          src="/icons/facebook.svg"
-                          alt="Facebook"
-                          width={20}
-                          height={20}
-                          className="text-white"
-                          priority
-                        />
-                      </button>
-                      <button
-                        className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center hover:bg-neutral-800 transition-colors"
-                        aria-label="Twitter"
-                      >
-                        <Image
-                          src="/icons/twitter.svg"
-                          alt="Twitter"
-                          width={20}
-                          height={20}
-                          className="text-white"
-                          priority
-                        />
-                      </button>
-                      <button
-                        className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center hover:bg-neutral-800 transition-colors"
-                        aria-label="Instagram"
-                      >
-                        <Image
-                          src="/icons/instagram.svg"
-                          alt="Instagram"
-                          width={20}
-                          height={20}
-                          className="text-white"
-                          priority
-                        />
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <a
-                        href="https://facebook.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center hover:bg-neutral-800 transition-colors"
-                        aria-label="Facebook"
-                      >
-                        <Image
-                          src="/icons/facebook.svg"
-                          alt="Facebook"
-                          width={20}
-                          height={20}
-                          className="text-white"
-                          priority
-                        />
-                      </a>
-                      <a
-                        href="https://twitter.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center hover:bg-neutral-800 transition-colors"
-                        aria-label="Twitter"
-                      >
-                        <Image
-                          src="/icons/twitter.svg"
-                          alt="Twitter"
-                          width={20}
-                          height={20}
-                          className="text-white"
-                          priority
-                        />
-                      </a>
-                      <a
-                        href="https://instagram.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="w-10 h-10 rounded-full bg-neutral-900 flex items-center justify-center hover:bg-neutral-800 transition-colors"
-                        aria-label="Instagram"
-                      >
-                        <Image
-                          src="/icons/instagram.svg"
-                          alt="Instagram"
-                          width={20}
-                          height={20}
-                          className="text-white"
-                          priority
-                        />
-                      </a>
-                    </>
-                  )}
+                  {[
+                    { icon: Facebook, label: 'Facebook' },
+                    { icon: Twitter, label: 'Twitter' },
+                    { icon: Instagram, label: 'Instagram' },
+                    { icon: Linkedin, label: 'LinkedIn' },
+                    { icon: Youtube, label: 'YouTube' }
+                  ].map(({ icon: Icon, label }) => (
+                    <motion.button
+                      key={label}
+                      type="button"
+                      className="w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-neutral-100 transition-colors"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      aria-label={label}
+                    >
+                      <Icon className="w-6 h-6 text-black" />
+                    </motion.button>
+                  ))}
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="bg-neutral-900 rounded-lg p-8">
-              <form className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-2">
-                      Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-md focus:outline-none focus:border-rose-200"
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="relative"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/10 rounded-2xl blur-3xl" />
+              <div className="relative bg-black/50 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="relative">
+                      <input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        className="w-full px-4 py-4 bg-white/5 border border-white rounded-lg focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-colors peer text-white"
+                        required
+                      />
+                      <label
+                        htmlFor="firstName"
+                        className={`absolute left-4 transition-all duration-200 pointer-events-none ${
+                          formData.firstName
+                            ? '-top-2 text-xs text-white bg-black px-2'
+                            : 'top-4 text-neutral-400 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-white peer-focus:bg-black peer-focus:px-2'
+                        }`}
+                      >
+                        First Name*
+                      </label>
+                    </div>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        className="w-full px-4 py-4 bg-white/5 border border-white rounded-lg focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-colors peer text-white"
+                        required
+                      />
+                      <label
+                        htmlFor="lastName"
+                        className={`absolute left-4 transition-all duration-200 pointer-events-none ${
+                          formData.lastName
+                            ? '-top-2 text-xs text-white bg-black px-2'
+                            : 'top-4 text-neutral-400 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-white peer-focus:bg-black peer-focus:px-2'
+                        }`}
+                      >
+                        Last Name*
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="relative">
+                      <input
+                        type="text"
+                        id="jobTitle"
+                        name="jobTitle"
+                        value={formData.jobTitle}
+                        onChange={handleChange}
+                        className="w-full px-4 py-4 bg-white/5 border border-white rounded-lg focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-colors peer text-white"
+                        required
+                      />
+                      <label
+                        htmlFor="jobTitle"
+                        className={`absolute left-4 transition-all duration-200 pointer-events-none ${
+                          formData.jobTitle
+                            ? '-top-2 text-xs text-white bg-black px-2'
+                            : 'top-4 text-neutral-400 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-white peer-focus:bg-black peer-focus:px-2'
+                        }`}
+                      >
+                        Job Title*
+                      </label>
+                    </div>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        id="company"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        className="w-full px-4 py-4 bg-white/5 border border-white rounded-lg focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-colors peer text-white"
+                        required
+                      />
+                      <label
+                        htmlFor="company"
+                        className={`absolute left-4 transition-all duration-200 pointer-events-none ${
+                          formData.company
+                            ? '-top-2 text-xs text-white bg-black px-2'
+                            : 'top-4 text-neutral-400 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-white peer-focus:bg-black peer-focus:px-2'
+                        }`}
+                      >
+                        Company*
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="relative">
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        className="w-full px-4 py-4 bg-white/5 border border-white rounded-lg focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-colors peer text-white"
+                        required
+                      />
+                      <label
+                        htmlFor="email"
+                        className={`absolute left-4 transition-all duration-200 pointer-events-none ${
+                          formData.email
+                            ? '-top-2 text-xs text-white bg-black px-2'
+                            : 'top-4 text-neutral-400 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-white peer-focus:bg-black peer-focus:px-2'
+                        }`}
+                      >
+                        Email Address*
+                      </label>
+                    </div>
+                    <div className="relative">
+                      <input
+                        type="text"
+                        id="location"
+                        name="location"
+                        value={formData.location}
+                        onChange={handleChange}
+                        className="w-full px-4 py-4 bg-white/5 border border-white rounded-lg focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-colors peer text-white"
+                        required
+                      />
+                      <label
+                        htmlFor="location"
+                        className={`absolute left-4 transition-all duration-200 pointer-events-none ${
+                          formData.location
+                            ? '-top-2 text-xs text-white bg-black px-2'
+                            : 'top-4 text-neutral-400 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-white peer-focus:bg-black peer-focus:px-2'
+                        }`}
+                      >
+                        Location*
+                      </label>
+                    </div>
+                  </div>
+
+                  <div className="relative">
+                    <select
+                      id="market"
+                      name="market"
+                      value={formData.market}
+                      onChange={handleChange}
+                      className="w-full px-4 py-4 bg-white/5 border border-white rounded-lg focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-colors peer appearance-none text-white"
+                      required
+                    >
+                      <option value="" className="bg-black">Select Market</option>
+                      <option value="north-america" className="bg-black">North America</option>
+                      <option value="europe" className="bg-black">Europe</option>
+                      <option value="asia" className="bg-black">Asia</option>
+                      <option value="australia" className="bg-black">Australia</option>
+                      <option value="other" className="bg-black">Other</option>
+                    </select>
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none">
+                      <svg className="w-4 h-4 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
+
+                  <div className="relative">
+                    <textarea
+                      id="comment"
+                      name="comment"
+                      value={formData.comment}
+                      onChange={handleChange}
+                      rows={6}
+                      className="w-full px-4 py-4 bg-white/5 border border-white rounded-lg focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-colors peer resize-none text-white"
                       required
                     />
-                  </div>
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">
-                      Email
+                    <label
+                      htmlFor="comment"
+                      className={`absolute left-4 transition-all duration-200 pointer-events-none ${
+                        formData.comment
+                          ? '-top-2 text-xs text-white bg-black px-2'
+                          : 'top-4 text-neutral-400 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-white peer-focus:bg-black peer-focus:px-2'
+                      }`}
+                    >
+                      Comment*
                     </label>
-                    <input
-                      type="email"
-                      id="email"
-                      className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-md focus:outline-none focus:border-rose-200"
-                      required
-                    />
                   </div>
-                </div>
 
-                <div>
-                  <label htmlFor="subject" className="block text-sm font-medium mb-2">
-                    Subject
-                  </label>
-                  <input
-                    type="text"
-                    id="subject"
-                    className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-md focus:outline-none focus:border-rose-200"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    rows={6}
-                    className="w-full px-4 py-3 bg-neutral-800 border border-neutral-700 rounded-md focus:outline-none focus:border-rose-200"
-                    required
-                  ></textarea>
-                </div>
-
-                <div>
-                  <label className="flex items-center gap-2">
+                  <div className="flex items-start gap-3">
                     <input
                       type="checkbox"
-                      className="w-4 h-4 bg-neutral-800 border border-neutral-700 rounded"
+                      id="privacy"
+                      name="privacy"
+                      checked={formData.privacy}
+                      onChange={handleChange}
+                      className="mt-1 w-5 h-5 bg-white/5 border border-white rounded focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
                       required
                     />
-                    <span className="text-sm text-neutral-300">
+                    <label htmlFor="privacy" className="text-sm text-neutral-400">
                       I agree to the{" "}
-                      <a href="#" className="text-rose-200 hover:underline">
+                      <a href="#" className="text-white hover:underline">
                         Privacy Policy
                       </a>
-                    </span>
-                  </label>
-                </div>
+                    </label>
+                  </div>
 
-                <button
-                  type="submit"
-                  className="w-full py-3 px-4 bg-white text-black rounded-md hover:bg-rose-200 transition-colors"
-                >
-                  Send Message
-                </button>
-              </form>
-            </div>
+                  <motion.button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full py-4 px-6 bg-white text-black rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-neutral-100 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        Send Message
+                        <Send className="w-5 h-5" />
+                      </>
+                    )}
+                  </motion.button>
+                </form>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -263,7 +369,7 @@ export default function ContactPage() {
         <FaqAccordion />
       </section>
     </main>
-  )
+  );
 }
 
 const faqs = [
