@@ -7,6 +7,7 @@ import Link from "next/link"
 import { Menu, X, Instagram, Twitter, Linkedin } from "lucide-react"
 import { motion } from "framer-motion"
 import styles from "./components/navbar-bubble.module.css"
+import { useIsMobile } from "@/components/ui/use-mobile"
 
 const inter = Inter({ subsets: ["latin"], weight: ["200", "400", "500", "700"] })
 const crimsonText = Crimson_Text({ 
@@ -258,13 +259,15 @@ const Footer = memo(function Footer() {
 })
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
+  const isMobile = useIsMobile();
+
   return (
     <>
-      <Header />
+      {!isMobile && <Header />}
       <main className={`min-h-screen ${crimsonText.variable}`}>
         {children}
       </main>
-      <Footer />
+      {!isMobile && <Footer />}
     </>
   )
 }

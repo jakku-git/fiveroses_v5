@@ -116,7 +116,7 @@ const inter = Inter({
 })
 
 const MobileMessage = () => (
-    <div className="fixed inset-0 bg-black/95 backdrop-blur-lg z-50 flex items-center justify-center p-6 text-center">
+    <div className="fixed inset-0 bg-black z-[9999] flex items-center justify-center p-6 text-center">
         <div className="max-w-md">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Desktop Experience Required</h2>
             <p className="text-white/80 text-lg mb-6">
@@ -195,7 +195,11 @@ export default function Home() {
     );
 
     if (isMobile) {
-        return <MobileMessage />;
+        return (
+            <div className="fixed inset-0 bg-black">
+                <MobileMessage />
+            </div>
+        );
     }
 
     return (
