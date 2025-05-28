@@ -3,19 +3,8 @@
 import { useEffect, useState } from 'react';
 import { Mail, Phone, MapPin } from "lucide-react"
 import { FaqAccordion } from "@/components/ui/faq-accordion"
-import { Metadata } from "next"
 import Image from "next/image"
 import { GlobeWrapper } from "@/components/ui/globe-wrapper"
-
-export const metadata: Metadata = {
-  title: "Contact Us | fiveroses",
-  description: "Get in touch with fiveroses. We're here to help with your marketing, development, and creative needs.",
-  openGraph: {
-    title: "Contact Us | fiveroses",
-    description: "Get in touch with fiveroses. We're here to help with your marketing, development, and creative needs.",
-    type: "website",
-  }
-}
 
 export default function ContactPage() {
   const [isMobile, setIsMobile] = useState(false);
