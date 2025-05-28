@@ -92,7 +92,7 @@ export default function LittleMessMakersBrandPage() {
             <div>
               <h2 className="text-2xl md:text-3xl font-extralight mb-2 text-black tracking-tight leading-none">Project Overview</h2>
               <p className="text-base text-black/80 max-w-3xl font-light leading-tight">
-                We partnered with Little Mess Makers to design a brand that's as messy, imaginative, and joyful as the kids they work with.
+                Little Mess Makers is an innovative educational platform that celebrates creativity and learning through hands-on art experiences. We developed a playful, engaging brand identity that captures the joy of creative exploration while maintaining a professional presence in the educational space. The visual system combines vibrant colors, whimsical illustrations, and dynamic photography to create an inviting environment for young learners and their families.
               </p>
             </div>
           </AnimatedSection>
@@ -102,13 +102,13 @@ export default function LittleMessMakersBrandPage() {
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">The Challenge</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  To balance fun with trustworthiness for both children and parents.
+                  To create a brand identity that appeals to both children and their parents while maintaining educational credibility. The challenge was to develop a visual system that feels both fun and trustworthy, with content that engages young learners while reassuring parents about the educational value.
                 </p>
               </div>
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">Our Approach</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  We used hand-drawn shapes, a bouncy typeface, and tactile textures to bring the messy energy of the classroom into the digital world.
+                  We crafted a dynamic brand system featuring a playful logomark that embodies creative exploration, a custom typeface that combines child-friendly forms with educational clarity, and a comprehensive visual language that includes custom illustrations, engaging photography, and interactive elements that bring the learning experience to life.
                 </p>
               </div>
             </div>
@@ -119,74 +119,88 @@ export default function LittleMessMakersBrandPage() {
             <div className="space-y-8">
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
-                  <OptimizedImage
-                    src="https://pub-762008b27cff430289f9cb812010d371.r2.dev/artscraft%20(2).webp"
-                    alt="Website homepage with illustrated elements"
+                  <Image
+                    src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/little%20mess%20(5).webp"
+                    alt="Educational activity kits and materials display"
+                    fill
+                    className="object-cover"
                     sizes="100vw"
+                    quality={90}
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Website homepage with illustrated elements</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Educational activity kits and materials display</p>
               </AnimatedImage>
 
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
-                  <OptimizedImage
-                    src="https://pub-762008b27cff430289f9cb812010d371.r2.dev/artscraft%20(5).webp"
-                    alt="In-class photography and promo posters"
+                  <Image
+                    src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/little%20mess%20(2).webp"
+                    alt="Children engaging with creative activities"
+                    fill
+                    className="object-cover"
                     sizes="100vw"
+                    quality={90}
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">In-class photography and promo posters</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Children engaging with creative activities</p>
               </AnimatedImage>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                 <AnimatedImage>
                   <div className="aspect-[8/9] relative w-full">
-                    <OptimizedImage
-                      src="https://pub-762008b27cff430289f9cb812010d371.r2.dev/artscraft%20(1).webp"
-                      alt="Custom illustrated stickers"
+                    <Image
+                      src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/little%20mess%20(6).webp"
+                      alt="Brand identity and educational materials"
+                      fill
+                      className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
+                      quality={90}
                     />
                   </div>
-                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Custom illustrated stickers</p>
+                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Brand identity and educational materials</p>
                 </AnimatedImage>
 
                 <AnimatedImage>
                   <div className="aspect-[8/9] relative w-full">
-                    <OptimizedImage
-                      src="https://pub-762008b27cff430289f9cb812010d371.r2.dev/artscraft%20(3).webp"
-                      alt="Welcome kit packaging"
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                    <video
+                      src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/little%20mess%20(3).webm"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="h-full w-full object-cover"
                     />
                   </div>
-                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Welcome kit packaging</p>
+                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Creative activity demonstration</p>
                 </AnimatedImage>
               </div>
 
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
-                  <OptimizedImage
-                    src="https://pub-762008b27cff430289f9cb812010d371.r2.dev/artscraft%20(4).webp"
-                    alt="Animated splash screen for app"
+                  <Image
+                    src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/little%20mess%20(4).webp"
+                    alt="Product photography and educational content"
+                    fill
+                    className="object-cover"
                     sizes="100vw"
+                    quality={90}
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Animated splash screen for app</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Product photography and educational content</p>
               </AnimatedImage>
 
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
                   <video
-                    src="https://pub-762008b27cff430289f9cb812010d371.r2.dev/artscraft%20(2).webm"
+                    src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/little%20mess%20(2).webm"
                     autoPlay
                     loop
                     muted
                     playsInline
                     className="h-full w-full object-cover"
-                    preload="metadata"
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">App onboarding flow</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Educational activity in action</p>
               </AnimatedImage>
             </div>
           </AnimatedSection>

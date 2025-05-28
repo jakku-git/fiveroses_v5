@@ -92,7 +92,7 @@ export default function NeonDuskVRBrandingPage() {
             <div>
               <h2 className="text-2xl md:text-3xl font-extralight mb-2 text-black tracking-tight leading-none">Project Overview</h2>
               <p className="text-base text-black/80 max-w-3xl font-light leading-tight">
-                NEON DUSK is a boutique VR brand inspired by futuristic aesthetics. We were tasked with creating a striking, immersive brand experience.
+                Neon Dusk VR is crafting immersive virtual reality experiences that blur the line between digital and physical worlds. We developed a striking cyberpunk-inspired brand identity that captures the essence of their boundary-pushing VR adventures. The visual system combines neon aesthetics with cutting-edge design to create a distinctive presence in the emerging VR entertainment space.
               </p>
             </div>
           </AnimatedSection>
@@ -102,13 +102,13 @@ export default function NeonDuskVRBrandingPage() {
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">The Challenge</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  To translate high-concept sci-fi visuals into a brand identity that still feels accessible and cool.
+                  To create a brand identity that captures the immersive, otherworldly nature of VR experiences while maintaining a cohesive visual language across both digital and physical touchpoints. The challenge was to develop a system that feels both futuristic and accessible to a broad audience of VR enthusiasts.
                 </p>
               </div>
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">Our Approach</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  We built a neon-fueled digital palette, created motion elements for the UI, and developed a scroll-driven website experience with 3D elements.
+                  We crafted a dynamic brand system featuring a glowing logomark that embodies the fusion of digital and physical worlds, a custom typeface that combines cyberpunk aesthetics with modern clarity, and an immersive website that showcases their VR experiences through interactive 360° previews and atmospheric motion design.
                 </p>
               </div>
             </div>

@@ -92,7 +92,7 @@ export default function ForgeAndHideLeatherPage() {
             <div>
               <h2 className="text-2xl md:text-3xl font-extralight mb-2 text-black tracking-tight leading-none">Project Overview</h2>
               <p className="text-base text-black/80 max-w-3xl font-light leading-tight">
-                Forge & Hide represents craftsmanship at its finest. Our task was to reflect this in their brand identity and visual storytelling.
+                Forge & Hide is a master leathercraft studio creating heirloom-quality pieces through traditional techniques. We developed a rich, tactile brand identity that celebrates their commitment to craftsmanship and heritage. The visual system combines timeless design elements with contemporary photography to showcase the beauty of handcrafted leather goods.
               </p>
             </div>
           </AnimatedSection>
@@ -102,13 +102,13 @@ export default function ForgeAndHideLeatherPage() {
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">The Challenge</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  To tell a tactile, rugged story through design, while modernizing the brand for a new audience.
+                  To create a brand identity that authentically communicates the value of handcrafted luxury while appealing to a modern, discerning audience. The challenge was to develop a visual system that honors traditional craftsmanship while establishing a distinctive presence in the contemporary luxury market.
                 </p>
               </div>
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">Our Approach</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  We developed a monogram logo, warm color palette, and a story-rich documentary photo series highlighting each step of their process.
+                  We crafted a sophisticated brand system featuring a custom logomark inspired by traditional leatherworking tools, a serif typeface that balances heritage with modern elegance, and a photography style that captures the rich textures and meticulous details of their handcrafted pieces.
                 </p>
               </div>
             </div>
@@ -121,28 +121,28 @@ export default function ForgeAndHideLeatherPage() {
                 <div className="aspect-[16/9] relative w-full">
                   <Image
                     src="https://pub-bef823910dc44973941ddebcc9ec07c8.r2.dev/leather%20(1).webp"
-                    alt="Master artisan working on leather tooling"
+                    alt="Close-up of leather crafting process and tooling"
                     fill
                     className="object-cover"
                     sizes="100vw"
                     quality={90}
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Master artisan working on leather tooling</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Close-up of leather crafting process and tooling</p>
               </AnimatedImage>
 
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
                   <Image
                     src="https://pub-bef823910dc44973941ddebcc9ec07c8.r2.dev/leather%20(2).webp"
-                    alt="Finished product line flat-lay"
+                    alt="Collection of finished leather goods in natural setting"
                     fill
                     className="object-cover"
                     sizes="100vw"
                     quality={90}
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Finished product line flat-lay</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Collection of finished leather goods in natural setting</p>
               </AnimatedImage>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
@@ -150,28 +150,28 @@ export default function ForgeAndHideLeatherPage() {
                   <div className="aspect-[8/9] relative w-full">
                     <Image
                       src="https://pub-bef823910dc44973941ddebcc9ec07c8.r2.dev/leather%20(3).webp"
-                      alt="Logo stamped into rawhide"
+                      alt="Detail view of leather grain and stitching"
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
                       quality={90}
                     />
                   </div>
-                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Logo stamped into rawhide</p>
+                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Detail view of leather grain and stitching</p>
                 </AnimatedImage>
 
                 <AnimatedImage>
                   <div className="aspect-[8/9] relative w-full">
                     <Image
                       src="https://pub-bef823910dc44973941ddebcc9ec07c8.r2.dev/leather%20(4).webp"
-                      alt="Mobile site design"
+                      alt="Product photography for leather accessories"
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
                       quality={90}
                     />
                   </div>
-                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Mobile site design</p>
+                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Product photography for leather accessories</p>
                 </AnimatedImage>
               </div>
 
@@ -187,21 +187,21 @@ export default function ForgeAndHideLeatherPage() {
                     preload="none"
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Storyboard from mini-documentary</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Process video of leather crafting techniques</p>
               </AnimatedImage>
 
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
                   <Image
                     src="https://pub-bef823910dc44973941ddebcc9ec07c8.r2.dev/leather%20(7).webp"
-                    alt="Brand style guide"
+                    alt="Brand identity elements and packaging design"
                     fill
                     className="object-cover"
                     sizes="100vw"
                     quality={90}
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Brand style guide</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Brand identity elements and packaging design</p>
               </AnimatedImage>
             </div>
           </AnimatedSection>
@@ -223,8 +223,8 @@ export default function ForgeAndHideLeatherPage() {
                 <AnimatedImage>
                   <div className="relative aspect-[4/5] overflow-hidden">
                     <Image
-                      src="https://pub-af52e145b46f4643840668ef5bf23952.r2.dev/ceramics%20(4).webp"
-                      alt="terra&tone"
+                      src="https://pub-5d7c3f192a6844559ecb0366466f8b3e.r2.dev/ceramics%20(4).webp"
+                      alt="Terra & Tone"
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 33vw"
@@ -232,37 +232,18 @@ export default function ForgeAndHideLeatherPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
                     <div className="absolute bottom-0 p-5">
                       <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Identity</p>
-                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">terra&tone</h3>
+                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Terra & Tone</h3>
                       <p className="text-[15px] text-white/80 font-light">Brand Identity</p>
                     </div>
                   </div>
                 </AnimatedImage>
               </Link>
-              <Link href="/work/solstice-bloom-fashion" className="group">
+              <Link href="/work/luma-glassworks-visuals" className="group">
                 <AnimatedImage>
                   <div className="relative aspect-[4/5] overflow-hidden">
                     <Image
-                      src="https://pub-2634c5482cbc49329e9902214d332db6.r2.dev/heat%20(4).webp"
-                      alt="Solstice Bloom"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
-                    <div className="absolute bottom-0 p-5">
-                      <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Campaign</p>
-                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Solstice Bloom</h3>
-                      <p className="text-[15px] text-white/80 font-light">Fashion Launch</p>
-                    </div>
-                  </div>
-                </AnimatedImage>
-              </Link>
-              <Link href="/work/neon-dusk-vr-branding" className="group">
-                <AnimatedImage>
-                  <div className="relative aspect-[4/5] overflow-hidden">
-                    <Image
-                      src="https://pub-e08ddc6efc2944bb84b7982b6e8825b4.r2.dev/cyberpunkvr%20(1).webp"
-                      alt="NEON DUSK"
+                      src="https://pub-5d7c3f192a6844559ecb0366466f8b3e.r2.dev/glass%20(4).webp"
+                      alt="Lūma Glassworks"
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 33vw"
@@ -270,8 +251,27 @@ export default function ForgeAndHideLeatherPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
                     <div className="absolute bottom-0 p-5">
                       <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Identity</p>
-                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">NEON DUSK</h3>
-                      <p className="text-[15px] text-white/80 font-light">VR Brand Identity</p>
+                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Lūma Glassworks</h3>
+                      <p className="text-[15px] text-white/80 font-light">Visual Identity</p>
+                    </div>
+                  </div>
+                </AnimatedImage>
+              </Link>
+              <Link href="/work/verdella-farms-brand" className="group">
+                <AnimatedImage>
+                  <div className="relative aspect-[4/5] overflow-hidden">
+                    <Image
+                      src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/farm%20(5).webp"
+                      alt="Verdella Farms"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
+                    <div className="absolute bottom-0 p-5">
+                      <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Identity</p>
+                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Verdella Farms</h3>
+                      <p className="text-[15px] text-white/80 font-light">Brand Identity</p>
                     </div>
                   </div>
                 </AnimatedImage>

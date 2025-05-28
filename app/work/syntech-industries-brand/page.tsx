@@ -92,7 +92,7 @@ export default function SyntechIndustriesBrandPage() {
             <div>
               <h2 className="text-2xl md:text-3xl font-extralight mb-2 text-black tracking-tight leading-none">Project Overview</h2>
               <p className="text-base text-black/80 max-w-3xl font-light leading-tight">
-                Syntech Industries is a robotics company building smart manufacturing systems. They needed a sleek, future-ready brand identity.
+                Syntech Industries is pioneering the future of industrial automation with their advanced robotics and AI systems. We created a striking visual identity that embodies their position at the intersection of industrial strength and technological innovation. The brand system combines bold industrial elements with sleek digital aesthetics to create a distinctive presence in the tech manufacturing space.
               </p>
             </div>
           </AnimatedSection>
@@ -102,13 +102,13 @@ export default function SyntechIndustriesBrandPage() {
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">The Challenge</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  To blend industrial authority with a sharp digital-first visual language.
+                  To develop a brand identity that bridges the gap between industrial manufacturing and cutting-edge technology. The challenge was to create a visual system that feels both powerful and innovative, appealing to both traditional industrial clients and tech-forward partners.
                 </p>
               </div>
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">Our Approach</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  We leaned into brutalist layouts, monochrome tones with bright accents, and minimalist iconography. The result: a strong, scalable tech brand.
+                  We crafted a bold brand system featuring a modular logomark that represents both industrial precision and technological advancement, a custom typeface that balances industrial strength with digital sophistication, and a dynamic website that showcases their technology through immersive 3D visualizations and interactive demonstrations.
                 </p>
               </div>
             </div>

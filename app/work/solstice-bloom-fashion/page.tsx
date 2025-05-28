@@ -92,7 +92,7 @@ export default function SolsticeBloomFashionPage() {
             <div>
               <h2 className="text-2xl md:text-3xl font-extralight mb-2 text-black tracking-tight leading-none">Project Overview</h2>
               <p className="text-base text-black/80 max-w-3xl font-light leading-tight">
-                Solstice Bloom came to us ahead of their first seasonal launch. Our role was to bring their brand to life across digital and visual platforms.
+                Solstice Bloom is a sustainable fashion brand redefining luxury through eco-conscious design. We created a sophisticated brand campaign that celebrates their commitment to ethical fashion while showcasing their innovative approach to sustainable materials. The visual system combines editorial photography, cinematic video content, and immersive digital experiences to tell their story of conscious luxury.
               </p>
             </div>
           </AnimatedSection>
@@ -102,13 +102,13 @@ export default function SolsticeBloomFashionPage() {
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">The Challenge</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  To create a campaign that felt spontaneous, carefree, and visually magnetic for Gen Z and millennial audiences.
+                  To develop a campaign that positions sustainable fashion as aspirational while authentically communicating their environmental values. The challenge was to create content that resonates with both luxury consumers and eco-conscious audiences across multiple platforms.
                 </p>
               </div>
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">Our Approach</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  We designed an image-driven landing page, shot and edited a playful campaign film, and created branded social templates for multi-channel rollout.
+                  We crafted a multi-channel campaign featuring editorial photography that highlights the beauty of sustainable materials, cinematic video content that tells the story of their production process, and an immersive digital experience that educates while inspiring. The campaign's visual language combines natural elements with high-fashion aesthetics to create a distinctive presence in the sustainable luxury market.
                 </p>
               </div>
             </div>
@@ -120,89 +120,87 @@ export default function SolsticeBloomFashionPage() {
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
                   <Image
-                    src="https://pub-2634c5482cbc49329e9902214d332db6.r2.dev/heat%20(4).webp"
-                    alt="Website landing page with hero video"
+                    src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/solstice%20(5).webp"
+                    alt="Sustainable fashion collection photography"
                     fill
                     className="object-cover"
                     sizes="100vw"
                     quality={90}
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Website landing page with hero video</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Sustainable fashion collection photography</p>
               </AnimatedImage>
 
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
                   <Image
-                    src="https://pub-2634c5482cbc49329e9902214d332db6.r2.dev/heat%20(1).webp"
-                    alt="Lifestyle shoot on location"
+                    src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/solstice%20(2).webp"
+                    alt="Brand campaign visuals and styling"
                     fill
                     className="object-cover"
                     sizes="100vw"
                     quality={90}
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Lifestyle shoot on location</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Brand campaign visuals and styling</p>
               </AnimatedImage>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                 <AnimatedImage>
                   <div className="aspect-[8/9] relative w-full">
-                    <video
-                      src="https://pub-2634c5482cbc49329e9902214d332db6.r2.dev/heat%20(2).webm"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="w-full h-full object-cover"
-                      preload="none"
+                    <Image
+                      src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/solstice%20(6).webp"
+                      alt="Fashion photography highlighting sustainable materials"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      quality={90}
                     />
                   </div>
-                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Product stills with branded patterns</p>
+                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Fashion photography highlighting sustainable materials</p>
                 </AnimatedImage>
 
                 <AnimatedImage>
                   <div className="aspect-[8/9] relative w-full">
                     <video
-                      src="https://pub-2634c5482cbc49329e9902214d332db6.r2.dev/heat%20(3).webm"
+                      src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/solstice%20(3).webm"
                       autoPlay
                       loop
                       muted
                       playsInline
-                      className="w-full h-full object-cover"
-                      preload="none"
+                      className="h-full w-full object-cover"
                     />
                   </div>
-                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Instagram post templates</p>
+                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Fashion collection movement and flow</p>
                 </AnimatedImage>
               </div>
 
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
                   <Image
-                    src="https://pub-2634c5482cbc49329e9902214d332db6.r2.dev/heat%20(3).webp"
-                    alt="Summer lookbook design"
+                    src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/solstice%20(4).webp"
+                    alt="E-commerce product presentation"
                     fill
                     className="object-cover"
                     sizes="100vw"
                     quality={90}
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Summer lookbook design</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">E-commerce product presentation</p>
               </AnimatedImage>
 
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
-                  <Image
-                    src="https://pub-2634c5482cbc49329e9902214d332db6.r2.dev/heat%20(5).webp"
-                    alt="Packaging unboxing shots"
-                    fill
-                    className="object-cover"
-                    sizes="100vw"
-                    quality={90}
+                  <video
+                    src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/solstice%20(2).webm"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="h-full w-full object-cover"
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Packaging unboxing shots</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Sustainable fashion production process</p>
               </AnimatedImage>
             </div>
           </AnimatedSection>

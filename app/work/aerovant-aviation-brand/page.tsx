@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { AnimatedSection } from "@/components/ui/animated-section";
-import { AnimatedImage, OptimizedImage } from "@/components/ui/animated-image";
+import { AnimatedImage } from "@/components/ui/animated-image";
 
 export default function AerovantAviationBrandPage() {
   const { scrollY } = useScroll();
@@ -92,7 +92,7 @@ export default function AerovantAviationBrandPage() {
             <div>
               <h2 className="text-2xl md:text-3xl font-extralight mb-2 text-black tracking-tight leading-none">Project Overview</h2>
               <p className="text-base text-black/80 max-w-3xl font-light leading-tight">
-                AEROVANT is an aviation startup pushing the boundaries of modern flight. They needed a bold name and visuals to soar with them.
+                AEROVANT is revolutionizing the future of flight with cutting-edge aviation technology. We crafted a bold, forward-thinking brand identity that captures their innovative spirit while maintaining the precision and reliability expected in aviation. The result is a visual language that speaks to both industry experts and forward-looking investors.
               </p>
             </div>
           </AnimatedSection>
@@ -102,13 +102,13 @@ export default function AerovantAviationBrandPage() {
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">The Challenge</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  To create a premium, global-facing identity that feels innovative and trustworthy.
+                  To create a brand identity that balances technical sophistication with innovative energy, appealing to both traditional aviation stakeholders and tech-forward investors. The challenge was to develop a visual system that feels both cutting-edge and trustworthy in a highly regulated industry.
                 </p>
               </div>
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">Our Approach</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  We named the brand, designed a logomark inspired by lift and momentum, and developed a clean, spacious web experience.
+                  We developed a dynamic brand system featuring a geometric logomark inspired by aerodynamics, a custom typeface that combines technical precision with modern flair, and a digital-first website that showcases their technology through interactive 3D models and immersive storytelling.
                 </p>
               </div>
             </div>
@@ -119,10 +119,13 @@ export default function AerovantAviationBrandPage() {
             <div className="space-y-8">
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
-                  <OptimizedImage
+                  <Image
                     src="https://pub-31835f4925254f16ad9ce47bfe082f11.r2.dev/btstourists%20(5).webp"
                     alt="Jet prototype in motion"
+                    fill
+                    className="object-cover"
                     sizes="100vw"
+                    quality={90}
                   />
                 </div>
                 <p className="text-[13px] text-black/50 mt-1.5 font-light">Jet prototype in motion</p>
@@ -130,10 +133,13 @@ export default function AerovantAviationBrandPage() {
 
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
-                  <OptimizedImage
+                  <Image
                     src="https://pub-31835f4925254f16ad9ce47bfe082f11.r2.dev/btstourists%20(6).webp"
                     alt="Branded cockpit dashboard"
+                    fill
+                    className="object-cover"
                     sizes="100vw"
+                    quality={90}
                   />
                 </div>
                 <p className="text-[13px] text-black/50 mt-1.5 font-light">Branded cockpit dashboard</p>
@@ -142,10 +148,13 @@ export default function AerovantAviationBrandPage() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                 <AnimatedImage>
                   <div className="aspect-[8/9] relative w-full">
-                    <OptimizedImage
+                    <Image
                       src="https://pub-31835f4925254f16ad9ce47bfe082f11.r2.dev/btstourists%20(4).webp"
                       alt="Typography + motion studies"
+                      fill
+                      className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
+                      quality={90}
                     />
                     <p className="text-[13px] text-black/50 mt-1.5 font-light">Typography + motion studies</p>
                   </div>
@@ -168,10 +177,13 @@ export default function AerovantAviationBrandPage() {
 
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
-                  <OptimizedImage
+                  <Image
                     src="https://pub-31835f4925254f16ad9ce47bfe082f11.r2.dev/btstourists%20(2).webp"
                     alt="Launch presentation decks"
+                    fill
+                    className="object-cover"
                     sizes="100vw"
+                    quality={90}
                   />
                 </div>
                 <p className="text-[13px] text-black/50 mt-1.5 font-light">Launch presentation decks</p>
@@ -209,10 +221,13 @@ export default function AerovantAviationBrandPage() {
               <Link href="/work/syntech-industries-brand" className="group">
                 <AnimatedImage>
                   <div className="relative aspect-[4/5] overflow-hidden">
-                    <OptimizedImage
+                    <Image
                       src="https://pub-c9720308467542c7bced018c5417e470.r2.dev/cyborg%20(1).webp"
                       alt="Syntech Industries"
+                      fill
+                      className="object-cover"
                       sizes="(max-width: 768px) 100vw, 33vw"
+                      quality={90}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
                     <div className="absolute bottom-0 p-5">
@@ -226,10 +241,13 @@ export default function AerovantAviationBrandPage() {
               <Link href="/work/verdella-farms-brand" className="group">
                 <AnimatedImage>
                   <div className="relative aspect-[4/5] overflow-hidden">
-                    <OptimizedImage
+                    <Image
                       src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/farm%20(5).webp"
                       alt="Verdella Farms"
+                      fill
+                      className="object-cover"
                       sizes="(max-width: 768px) 100vw, 33vw"
+                      quality={90}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
                     <div className="absolute bottom-0 p-5">
@@ -243,10 +261,13 @@ export default function AerovantAviationBrandPage() {
               <Link href="/work/nailpop-brand-campaign" className="group">
                 <AnimatedImage>
                   <div className="relative aspect-[4/5] overflow-hidden">
-                    <OptimizedImage
+                    <Image
                       src="https://pub-ad061bfadf884f598139510ae71023ba.r2.dev/nails%20(4).webp"
                       alt="NAILPOP"
+                      fill
+                      className="object-cover"
                       sizes="(max-width: 768px) 100vw, 33vw"
+                      quality={90}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
                     <div className="absolute bottom-0 p-5">

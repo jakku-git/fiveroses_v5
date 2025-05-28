@@ -90,7 +90,7 @@ export default function SocialDistancePage() {
             <div>
               <h2 className="text-2xl md:text-3xl font-extralight mb-2 text-black tracking-tight leading-none">Project Overview</h2>
               <p className="text-base text-black/80 max-w-3xl font-light leading-tight">
-                Social Distance is an immersive digital experience that examines how technology has reshaped our social interactions. Through a series of interactive installations and digital artworks, we explore the paradox of being more connected than ever while feeling increasingly isolated.
+                Social Distance is a cinematic exploration of digital connection in the modern age. Through a series of visually striking video installations and interactive digital artworks, we examine the paradox of our hyper-connected yet increasingly isolated world. The project combines motion design, generative art, and immersive soundscapes to create a thought-provoking experience.
               </p>
             </div>
           </AnimatedSection>
@@ -100,13 +100,13 @@ export default function SocialDistancePage() {
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">The Challenge</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  In an era where digital communication dominates, we face the challenge of maintaining genuine human connections. This project seeks to highlight both the benefits and drawbacks of our digital-first approach to social interaction.
+                  To create a visually compelling narrative that captures the emotional complexity of digital relationships while maintaining artistic integrity. The challenge was to balance abstract concepts with concrete visual storytelling that resonates with viewers.
                 </p>
               </div>
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">Our Approach</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  We created a series of interactive installations that blend physical and digital spaces, encouraging participants to reflect on their own social media habits and digital communication patterns.
+                  We developed a series of interconnected video pieces that blend cinematic storytelling with digital art. Each installation features custom motion graphics, dynamic typography, and carefully curated sound design, creating an immersive experience that encourages reflection on our digital habits.
                 </p>
               </div>
             </div>

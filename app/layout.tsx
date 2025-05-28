@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import ClientLayout from "./ClientLayout"
@@ -12,13 +12,19 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 0.5,
+  maximumScale: 0.5,
+  userScalable: false,
+  themeColor: "#000000",
+}
+
 export const metadata: Metadata = {
   title: "fiveroses | Creative Agency",
   description:
     "Full-service marketing agency offering comprehensive marketing services, innovative web development, and a startup incubator.",
   generator: "v0.dev",
-  viewport: "width=device-width, initial-scale=0.5, maximum-scale=0.5, user-scalable=no",
-  themeColor: "#000000",
 }
 
 export default function RootLayout({

@@ -92,7 +92,7 @@ export default function VerdellaFarmsBrandPage() {
             <div>
               <h2 className="text-2xl md:text-3xl font-extralight mb-2 text-black tracking-tight leading-none">Project Overview</h2>
               <p className="text-base text-black/80 max-w-3xl font-light leading-tight">
-                Verdella Farms is a female-led farm collective focused on sustainability and organic produce. We helped tell their story through an authentic brand and online experience.
+                Verdella Farms is a sustainable agriculture enterprise bringing organic produce to local communities. We created a warm, authentic brand identity that celebrates their connection to the land and commitment to sustainable farming practices. The visual system combines natural textures, earthy tones, and documentary-style photography to tell the story of their farm-to-table journey.
               </p>
             </div>
           </AnimatedSection>
@@ -102,13 +102,13 @@ export default function VerdellaFarmsBrandPage() {
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">The Challenge</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  To communicate warmth, realness, and eco-conscious values through visuals and words.
+                  To develop a brand identity that authentically represents their sustainable farming practices while creating an emotional connection with consumers. The challenge was to balance the rustic charm of farm life with a professional presence that appeals to both retail partners and direct consumers.
                 </p>
               </div>
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">Our Approach</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  We used soft photography, human-centered copywriting, and neutral, natural tones in both print and digital.
+                  We crafted an organic brand system featuring a hand-drawn logomark inspired by seasonal growth patterns, a custom typeface that combines rustic charm with modern clarity, and a photography style that captures the beauty of sustainable farming through intimate portraits of the land and its caretakers.
                 </p>
               </div>
             </div>
@@ -121,28 +121,28 @@ export default function VerdellaFarmsBrandPage() {
                 <div className="aspect-[16/9] relative w-full">
                   <Image
                     src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/farm%20(5).webp"
-                    alt="Homepage layout with storytelling focus"
+                    alt="Aerial view of farm fields and sustainable agriculture"
                     fill
                     className="object-cover"
                     sizes="100vw"
                     quality={90}
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Homepage layout with storytelling focus</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Aerial view of farm fields and sustainable agriculture</p>
               </AnimatedImage>
 
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
                   <Image
                     src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/farm%20(2).webp"
-                    alt="Brand photos from the farm"
+                    alt="Farm workers harvesting fresh produce"
                     fill
                     className="object-cover"
                     sizes="100vw"
                     quality={90}
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Brand photos from the farm</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Farm workers harvesting fresh produce</p>
               </AnimatedImage>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
@@ -150,14 +150,14 @@ export default function VerdellaFarmsBrandPage() {
                   <div className="aspect-[8/9] relative w-full">
                     <Image
                       src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/farm%20(6).webp"
-                      alt="Packaging labels and produce tags"
+                      alt="Farm stand display with fresh produce"
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
                       quality={90}
                     />
                   </div>
-                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Packaging labels and produce tags</p>
+                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Farm stand display with fresh produce</p>
                 </AnimatedImage>
 
                 <AnimatedImage>
@@ -170,8 +170,8 @@ export default function VerdellaFarmsBrandPage() {
                       playsInline
                       className="h-full w-full object-cover"
                     />
-                    <p className="text-[13px] text-black/50 mt-1.5 font-light">Farmer spotlight portraits</p>
                   </div>
+                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Farm team working in the fields</p>
                 </AnimatedImage>
               </div>
 
@@ -179,14 +179,14 @@ export default function VerdellaFarmsBrandPage() {
                 <div className="aspect-[16/9] relative w-full">
                   <Image
                     src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/farm%20(4).webp"
-                    alt="Story-driven Instagram carousels"
+                    alt="Farm-to-table storytelling through photography"
                     fill
                     className="object-cover"
                     sizes="100vw"
                     quality={90}
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Story-driven Instagram carousels</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Farm-to-table storytelling through photography</p>
               </AnimatedImage>
 
               <AnimatedImage>
@@ -199,8 +199,8 @@ export default function VerdellaFarmsBrandPage() {
                     playsInline
                     className="h-full w-full object-cover"
                   />
-                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Reusable tote bag design</p>
                 </div>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Daily farm operations and sustainable practices</p>
               </AnimatedImage>
             </div>
           </AnimatedSection>
@@ -218,31 +218,12 @@ export default function VerdellaFarmsBrandPage() {
           <AnimatedSection className="w-full pt-2 px-6">
             <h2 className="text-2xl md:text-3xl font-extralight mb-4 text-black tracking-tight leading-none">More Projects</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-              <Link href="/work/nailpop-brand-campaign" className="group">
+              <Link href="/work/terra-and-tone-ceramics" className="group">
                 <AnimatedImage>
                   <div className="relative aspect-[4/5] overflow-hidden">
                     <Image
-                      src="https://pub-ad061bfadf884f598139510ae71023ba.r2.dev/nails%20(4).webp"
-                      alt="NAILPOP"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
-                    <div className="absolute bottom-0 p-5">
-                      <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Campaign</p>
-                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">NAILPOP</h3>
-                      <p className="text-[15px] text-white/80 font-light">Brand Identity</p>
-                    </div>
-                  </div>
-                </AnimatedImage>
-              </Link>
-              <Link href="/work/little-mess-makers-brand" className="group">
-                <AnimatedImage>
-                  <div className="relative aspect-[4/5] overflow-hidden">
-                    <Image
-                      src="https://pub-762008b27cff430289f9cb812010d371.r2.dev/artscraft%20(2).webp"
-                      alt="Little Mess Makers"
+                      src="https://pub-5d7c3f192a6844559ecb0366466f8b3e.r2.dev/ceramics%20(4).webp"
+                      alt="Terra & Tone"
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 33vw"
@@ -250,27 +231,46 @@ export default function VerdellaFarmsBrandPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
                     <div className="absolute bottom-0 p-5">
                       <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Identity</p>
-                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Little Mess Makers</h3>
+                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Terra & Tone</h3>
                       <p className="text-[15px] text-white/80 font-light">Brand Identity</p>
                     </div>
                   </div>
                 </AnimatedImage>
               </Link>
-              <Link href="/work/zesteo-drink-brand" className="group">
+              <Link href="/work/forge-and-hide-leather" className="group">
                 <AnimatedImage>
                   <div className="relative aspect-[4/5] overflow-hidden">
                     <Image
-                      src="https://pub-a74269ab9d1140f4b9b01e4b98c35bc7.r2.dev/drinks%20(6).webp"
-                      alt="Zesteo"
+                      src="https://pub-bef823910dc44973941ddebcc9ec07c8.r2.dev/leather%20(4).webp"
+                      alt="Forge & Hide"
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
                     <div className="absolute bottom-0 p-5">
-                      <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Campaign</p>
-                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Zesteo</h3>
+                      <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Identity</p>
+                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Forge & Hide</h3>
                       <p className="text-[15px] text-white/80 font-light">Brand Identity</p>
+                    </div>
+                  </div>
+                </AnimatedImage>
+              </Link>
+              <Link href="/work/luma-glassworks-visuals" className="group">
+                <AnimatedImage>
+                  <div className="relative aspect-[4/5] overflow-hidden">
+                    <Image
+                      src="https://pub-5d7c3f192a6844559ecb0366466f8b3e.r2.dev/glass%20(4).webp"
+                      alt="Lūma Glassworks"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
+                    <div className="absolute bottom-0 p-5">
+                      <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Identity</p>
+                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Lūma Glassworks</h3>
+                      <p className="text-[15px] text-white/80 font-light">Visual Identity</p>
                     </div>
                   </div>
                 </AnimatedImage>

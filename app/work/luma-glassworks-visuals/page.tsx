@@ -92,7 +92,7 @@ export default function LumaGlassworksVisualsPage() {
             <div>
               <h2 className="text-2xl md:text-3xl font-extralight mb-2 text-black tracking-tight leading-none">Project Overview</h2>
               <p className="text-base text-black/80 max-w-3xl font-light leading-tight">
-                Lūma Glassworks needed a fresh digital presence to highlight the precision and beauty of their work.
+                Lūma Glassworks crafts exquisite hand-blown glass pieces that capture light in extraordinary ways. We developed a sophisticated visual identity and photography system that celebrates the interplay of light, form, and craftsmanship in their work. The result is a brand presence that feels as refined and intentional as the pieces themselves.
               </p>
             </div>
           </AnimatedSection>
@@ -102,13 +102,13 @@ export default function LumaGlassworksVisualsPage() {
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">The Challenge</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  To highlight the fragility and beauty of glassmaking without overwhelming the work itself.
+                  To capture the ephemeral beauty of glass art through photography and design, while maintaining the delicate balance between showcasing the work and creating a distinctive brand presence. The challenge was to develop a visual language that honors the craft while appealing to a contemporary, design-savvy audience.
                 </p>
               </div>
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">Our Approach</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  We used soft gradients, intentional whitespace, and high-resolution photography to highlight the clarity and forms of each product.
+                  We created a minimalist brand identity with a custom typeface inspired by glass forms, developed a signature lighting setup for product photography that highlights transparency and texture, and designed a gallery-style website that puts the focus on the pieces while maintaining an elegant user experience.
                 </p>
               </div>
             </div>

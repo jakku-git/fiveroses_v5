@@ -92,7 +92,7 @@ export default function NailpopBrandCampaignPage() {
             <div>
               <h2 className="text-2xl md:text-3xl font-extralight mb-2 text-black tracking-tight leading-none">Project Overview</h2>
               <p className="text-base text-black/80 max-w-3xl font-light leading-tight">
-                NAILPOP celebrates self-expression through nail art. They needed a loud, unapologetic brand identity to match their community's energy.
+                Nailpop is revolutionizing the nail art industry with their innovative, peel-and-stick designs. We created a vibrant, trend-forward brand identity that captures their playful spirit while establishing them as a leader in accessible nail fashion. The visual system combines bold typography, dynamic color palettes, and engaging social content to create a distinctive presence in the beauty space.
               </p>
             </div>
           </AnimatedSection>
@@ -102,13 +102,13 @@ export default function NailpopBrandCampaignPage() {
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">The Challenge</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  To create a fun, shareable visual style that works across digital content and in-studio experience.
+                  To develop a brand identity that appeals to both beauty enthusiasts and casual consumers while standing out in a crowded market. The challenge was to create a visual system that feels both trendy and timeless, with content that performs across social media platforms.
                 </p>
               </div>
               <div>
                 <h3 className="text-lg font-extralight mb-1.5 text-black tracking-tight leading-none">Our Approach</h3>
                 <p className="text-base text-black/80 font-light leading-tight">
-                  We designed a playful logotype, built a retro-meets-modern color system, and created an animated sticker set for social campaigns.
+                  We crafted a dynamic brand system featuring a playful logomark that embodies their innovative approach, a custom typeface that combines fashion-forward style with readability, and a comprehensive social media strategy with engaging video content and interactive campaigns that showcase their products in action.
                 </p>
               </div>
             </div>
@@ -120,87 +120,87 @@ export default function NailpopBrandCampaignPage() {
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
                   <Image
-                    src="https://pub-ad061bfadf884f598139510ae71023ba.r2.dev/nails%20(7).webp"
-                    alt="Neon-lit studio brand launch"
+                    src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/nailpop%20(5).webp"
+                    alt="Nail art designs and product packaging display"
                     fill
                     className="object-cover"
                     sizes="100vw"
                     quality={90}
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Neon-lit studio brand launch</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Nail art designs and product packaging display</p>
               </AnimatedImage>
 
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
                   <Image
-                    src="https://pub-ad061bfadf884f598139510ae71023ba.r2.dev/nails%20(1).webp"
-                    alt="Packaging with attitude"
+                    src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/nailpop%20(2).webp"
+                    alt="Social media campaign featuring nail art trends"
                     fill
                     className="object-cover"
                     sizes="100vw"
                     quality={90}
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Packaging with attitude</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Social media campaign featuring nail art trends</p>
               </AnimatedImage>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
                 <AnimatedImage>
                   <div className="aspect-[8/9] relative w-full">
                     <Image
-                      src="https://pub-ad061bfadf884f598139510ae71023ba.r2.dev/nails%20(3).webp"
-                      alt="Custom sticker GIFs"
+                      src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/nailpop%20(6).webp"
+                      alt="Brand identity elements and visual system"
                       fill
                       className="object-cover"
                       sizes="(max-width: 768px) 100vw, 50vw"
                       quality={90}
                     />
                   </div>
-                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Custom sticker GIFs</p>
+                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Brand identity elements and visual system</p>
                 </AnimatedImage>
 
                 <AnimatedImage>
                   <div className="aspect-[8/9] relative w-full">
-                    <Image
-                      src="https://pub-ad061bfadf884f598139510ae71023ba.r2.dev/nails%20(4).webp"
-                      alt="Branded nail polish color cards"
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      quality={90}
+                    <video
+                      src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/nailpop%20(3).webm"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="h-full w-full object-cover"
                     />
                   </div>
-                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Branded nail polish color cards</p>
+                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Nail art application and styling tutorial</p>
                 </AnimatedImage>
               </div>
 
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
                   <Image
-                    src="https://pub-ad061bfadf884f598139510ae71023ba.r2.dev/nails%20(6).webp"
-                    alt="Social campaign with real customers"
+                    src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/nailpop%20(4).webp"
+                    alt="Product photography and e-commerce layout"
                     fill
                     className="object-cover"
                     sizes="100vw"
                     quality={90}
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Social campaign with real customers</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Product photography and e-commerce layout</p>
               </AnimatedImage>
 
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
                   <video
-                    src="https://pub-ad061bfadf884f598139510ae71023ba.r2.dev/nails%20(2).webm"
+                    src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/nailpop%20(2).webm"
                     autoPlay
                     loop
                     muted
                     playsInline
                     className="h-full w-full object-cover"
                   />
-                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Animated typography snippets</p>
                 </div>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Nail art creation process and techniques</p>
               </AnimatedImage>
             </div>
           </AnimatedSection>
@@ -218,12 +218,12 @@ export default function NailpopBrandCampaignPage() {
           <AnimatedSection className="w-full pt-2 px-6">
             <h2 className="text-2xl md:text-3xl font-extralight mb-4 text-black tracking-tight leading-none">More Projects</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
-              <Link href="/work/little-mess-makers-brand" className="group">
+              <Link href="/work/terra-and-tone-ceramics" className="group">
                 <AnimatedImage>
                   <div className="relative aspect-[4/5] overflow-hidden">
                     <Image
-                      src="https://pub-762008b27cff430289f9cb812010d371.r2.dev/artscraft%20(2).webp"
-                      alt="Little Mess Makers"
+                      src="https://pub-5d7c3f192a6844559ecb0366466f8b3e.r2.dev/ceramics%20(4).webp"
+                      alt="Terra & Tone"
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 33vw"
@@ -231,37 +231,18 @@ export default function NailpopBrandCampaignPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
                     <div className="absolute bottom-0 p-5">
                       <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Identity</p>
-                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Little Mess Makers</h3>
+                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Terra & Tone</h3>
                       <p className="text-[15px] text-white/80 font-light">Brand Identity</p>
                     </div>
                   </div>
                 </AnimatedImage>
               </Link>
-              <Link href="/work/zesteo-drink-brand" className="group">
+              <Link href="/work/forge-and-hide-leather" className="group">
                 <AnimatedImage>
                   <div className="relative aspect-[4/5] overflow-hidden">
                     <Image
-                      src="https://pub-a74269ab9d1140f4b9b01e4b98c35bc7.r2.dev/drinks%20(6).webp"
-                      alt="Zesteo"
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
-                    <div className="absolute bottom-0 p-5">
-                      <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Campaign</p>
-                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Zesteo</h3>
-                      <p className="text-[15px] text-white/80 font-light">Brand Identity</p>
-                    </div>
-                  </div>
-                </AnimatedImage>
-              </Link>
-              <Link href="/work/luma-glassworks-visuals" className="group">
-                <AnimatedImage>
-                  <div className="relative aspect-[4/5] overflow-hidden">
-                    <Image
-                      src="https://pub-5d7c3f192a6844559ecb0366466f8b3e.r2.dev/glass%20(4).webp"
-                      alt="Lūma Glassworks"
+                      src="https://pub-bef823910dc44973941ddebcc9ec07c8.r2.dev/leather%20(4).webp"
+                      alt="Forge & Hide"
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 33vw"
@@ -269,8 +250,27 @@ export default function NailpopBrandCampaignPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
                     <div className="absolute bottom-0 p-5">
                       <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Identity</p>
-                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Lūma Glassworks</h3>
-                      <p className="text-[15px] text-white/80 font-light">Visual Identity</p>
+                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Forge & Hide</h3>
+                      <p className="text-[15px] text-white/80 font-light">Brand Identity</p>
+                    </div>
+                  </div>
+                </AnimatedImage>
+              </Link>
+              <Link href="/work/verdella-farms-brand" className="group">
+                <AnimatedImage>
+                  <div className="relative aspect-[4/5] overflow-hidden">
+                    <Image
+                      src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/farm%20(5).webp"
+                      alt="Verdella Farms"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
+                    <div className="absolute bottom-0 p-5">
+                      <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Identity</p>
+                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Verdella Farms</h3>
+                      <p className="text-[15px] text-white/80 font-light">Brand Identity</p>
                     </div>
                   </div>
                 </AnimatedImage>
