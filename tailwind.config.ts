@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        'cormorant-garamond': ['var(--font-cormorant-garamond)'],
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

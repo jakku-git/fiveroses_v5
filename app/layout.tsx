@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Inter } from "next/font/google"
+import { Inter, Cormorant_Garamond } from "next/font/google"
 import "./globals.css"
 import ClientLayout from "./ClientLayout"
 
@@ -10,6 +10,13 @@ const inter = Inter({
   preload: true,
   adjustFontFallback: true,
   variable: '--font-inter',
+})
+
+const cormorantGaramond = Cormorant_Garamond({
+  weight: ['400', '500', '600'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-cormorant-garamond',
 })
 
 export const viewport: Viewport = {
@@ -31,7 +38,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${inter.className}`}>
+    <html lang="en" className={`${inter.variable} ${inter.className} ${cormorantGaramond.variable}`}>
       <body className="bg-black text-white">
         <ClientLayout>{children}</ClientLayout>
       </body>

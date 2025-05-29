@@ -3,6 +3,7 @@
 import styles from './Style.module.css'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import Image from 'next/image'
 
 const anim = {
     initial: { width: 0 },
@@ -21,12 +22,14 @@ interface ProjectProps {
     title1: string;
     title2: string;
     src: string;
+    width?: number;
+    height?: number;
   }
 }
 
 export default function Project({ project }: ProjectProps) {
     const [isActive, setIsActive] = useState(false);
-    const { title1, title2, src } = project;
+    const { title1, title2, src, width = 800, height = 600 } = project;
     
     console.log('Image path:', src);
     console.log('Is active:', isActive);
@@ -53,7 +56,16 @@ export default function Project({ project }: ProjectProps) {
                     transform: 'translateZ(0)'
                 }}
             >
-                <img src={src} alt={`${title1} ${title2}`} onError={(e) => console.error('Image failed to load:', e)} />
+                <Image 
+                    src={src}
+                    alt={`${title1} ${title2}`}
+                    width={width}
+                    height={height}
+                    quality={85}
+                    loading="lazy"
+                    className="object-cover w-full h-full"
+                    onError={(e) => console.error('Image failed to load:', e)}
+                />
             </motion.div>
             <p>{title2}</p>
         </div>

@@ -11,15 +11,22 @@ interface ArticleSection {
   description: string
   content: string
   image: {
-    url: string
+    src: string
     alt: string
+    width?: number
+    height?: number
   }
 }
 
 interface RelatedArticle {
   title: string
   date: string
-  image: string
+  image: {
+    src: string
+    alt: string
+    width?: number
+    height?: number
+  }
   slug: string
   excerpt: string
 }
@@ -28,11 +35,21 @@ interface ArticlePageProps {
   title: string
   description: string
   author: string
-  authorImage: string
+  authorImage: {
+    src: string
+    alt: string
+    width?: number
+    height?: number
+  }
   date: string
   readTime: string
   category: string
-  heroImage: string
+  heroImage: {
+    src: string
+    alt: string
+    width?: number
+    height?: number
+  }
   sections: ArticleSection[]
   relatedArticles: RelatedArticle[]
   tags: string[]
@@ -78,11 +95,16 @@ export default function ArticlePage({
           style={{ y: heroY, scale: heroScale }}
         >
           <Image
-            src={heroImage}
-            alt={title}
+            src={heroImage.src}
+            alt={heroImage.alt || title}
             fill
+            sizes="100vw"
+            quality={90}
             className="object-cover"
-            priority
+            placeholder="blur"
+            blurDataURL={`data:image/svg+xml;base64,${Buffer.from(
+              '<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#1a1a1a"/></svg>'
+            ).toString('base64')}`}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black" />
         </motion.div>
@@ -106,11 +128,13 @@ export default function ArticlePage({
             <div className="flex items-center justify-center gap-4 text-sm text-white/60">
               <div className="flex items-center gap-2">
                 <Image
-                  src={authorImage}
-                  alt={author}
-                  width={32}
-                  height={32}
+                  src={authorImage.src}
+                  alt={authorImage.alt || author}
+                  width={authorImage.width || 32}
+                  height={authorImage.height || 32}
+                  quality={85}
                   className="rounded-full"
+                  loading="eager"
                 />
                 <span>{author}</span>
               </div>
@@ -169,10 +193,17 @@ export default function ArticlePage({
 
               <div className="relative aspect-video overflow-hidden rounded-lg">
                 <Image
-                  src={section.image.url}
+                  src={section.image.src}
                   alt={section.image.alt}
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  quality={85}
+                  loading="lazy"
                   className="object-cover"
+                  placeholder="blur"
+                  blurDataURL={`data:image/svg+xml;base64,${Buffer.from(
+                    '<svg width="400" height="300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#1a1a1a"/></svg>'
+                  ).toString('base64')}`}
                 />
               </div>
 
@@ -204,10 +235,14 @@ export default function ArticlePage({
                 <Link href={`/news/${article.slug}`} className="block space-y-4">
                   <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
                     <Image
-                      src={article.image}
-                      alt={article.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      src={article.image.src}
+                      alt={article.image.alt || article.title}
+                      width={article.image.width || 400}
+                      height={article.image.height || 300}
+                      quality={80}
+                      loading="lazy"
+                      className="object-cover w-full h-48 rounded-lg transition-transform duration-300 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                   </div>
                   <div className="space-y-2">

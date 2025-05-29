@@ -1,84 +1,113 @@
 "use client"
 
-import { useRef, useState, useEffect } from "react"
-import { motion } from "framer-motion"
+import React, { useRef, useState } from "react"
+import { AnimatePresence, motion } from "framer-motion"
 
-export const Lens = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 })
-  const [isHovered, setIsHovered] = useState(false)
+interface LensProps {
+  children: React.ReactNode
+  zoomFactor?: number
+  lensSize?: number
+  position?: {
+    x: number
+    y: number
+  }
+  isStatic?: boolean
+  isFocusing?: () => void
+  hovering?: boolean
+  setHovering?: (hovering: boolean) => void
+  className?: string
+}
+
+export const Lens: React.FC<LensProps> = ({
+  children,
+  zoomFactor = 1.5,
+  lensSize = 200,
+  isStatic = false,
+  position = { x: 200, y: 150 },
+  hovering,
+  setHovering,
+  className = "",
+}) => {
   const containerRef = useRef<HTMLDivElement>(null)
-  const imageRef = useRef<HTMLImageElement>(null)
+  const [localIsHovering, setLocalIsHovering] = useState(false)
+  const [mousePosition, setMousePosition] = useState({ x: 100, y: 100 })
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (containerRef.current) {
-        const rect = containerRef.current.getBoundingClientRect()
-        const x = e.clientX - rect.left
-        const y = e.clientY - rect.top
-        setPosition({ x, y })
-      }
-    }
+  const isHovering = hovering !== undefined ? hovering : localIsHovering
+  const setIsHovering = setHovering || setLocalIsHovering
 
-    window.addEventListener("mousemove", handleMouseMove)
-    return () => {
-      window.removeEventListener("mousemove", handleMouseMove)
-    }
-  }, [])
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    setMousePosition({ x, y })
+  }
 
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-full overflow-hidden rounded-lg"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className={`relative overflow-hidden rounded-lg ${className}`}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
+      onMouseMove={handleMouseMove}
     >
-      <div className="absolute inset-0 bg-neutral-900 rounded-lg overflow-hidden">
-        <img
-          ref={imageRef}
-          src="/placeholder.svg?height=800&width=600"
-          alt="Marketing Strategy"
-          className="w-full h-full object-cover opacity-50"
-          loading="eager"
-        />
-      </div>
+      {children}
 
-      {isHovered && (
-        <motion.div
-          className="absolute pointer-events-none"
-          animate={{
-            x: position.x - 100,
-            y: position.y - 100,
-          }}
-          transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          style={{
-            width: 200,
-            height: 200,
-            borderRadius: "50%",
-            boxShadow: "0 0 0 2px rgba(255, 255, 255, 0.3)",
-            overflow: "hidden",
-          }}
-        >
-          <div
+      {isStatic ? (
+        <div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.58 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="absolute inset-0 overflow-hidden"
             style={{
-              width: "100%",
-              height: "100%",
-              backgroundImage: `url('/placeholder.svg?height=800&width=600')`,
-              backgroundSize: "cover",
-              backgroundPosition: `${-position.x + 100}px ${-position.y + 100}px`,
-              transform: "scale(1.5)",
+              maskImage: `radial-gradient(circle ${lensSize / 2}px at ${position.x}px ${position.y}px, black 100%, transparent 100%)`,
+              WebkitMaskImage: `radial-gradient(circle ${lensSize / 2}px at ${position.x}px ${position.y}px, black 100%, transparent 100%)`,
+              transformOrigin: `${position.x}px ${position.y}px`,
             }}
-          />
-        </motion.div>
-      )}
-
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="text-center p-8 bg-black/60 rounded-lg max-w-md">
-          <h3 className="text-2xl font-light mb-4">Strategic Marketing</h3>
-          <p className="text-neutral-300">
-            Our data-driven approach ensures your marketing efforts deliver measurable results and ROI.
-          </p>
+          >
+            <div
+              className="absolute inset-0"
+              style={{
+                transform: `scale(${zoomFactor})`,
+                transformOrigin: `${position.x}px ${position.y}px`,
+              }}
+            >
+              {children}
+            </div>
+          </motion.div>
         </div>
-      </div>
+      ) : (
+        <AnimatePresence>
+          {isHovering && (
+            <div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.58 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="absolute inset-0 overflow-hidden"
+                style={{
+                  maskImage: `radial-gradient(circle ${lensSize / 2}px at ${mousePosition.x}px ${mousePosition.y}px, black 100%, transparent 100%)`,
+                  WebkitMaskImage: `radial-gradient(circle ${lensSize / 2}px at ${mousePosition.x}px ${mousePosition.y}px, black 100%, transparent 100%)`,
+                  transformOrigin: `${mousePosition.x}px ${mousePosition.y}px`,
+                  zIndex: 50,
+                }}
+              >
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    transform: `scale(${zoomFactor})`,
+                    transformOrigin: `${mousePosition.x}px ${mousePosition.y}px`,
+                  }}
+                >
+                  {children}
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
+      )}
     </div>
   )
 }
