@@ -117,91 +117,81 @@ export default function LittleMessMakersBrandPage() {
           {/* Gallery Section */}
           <AnimatedSection className="w-full px-6">
             <div className="space-y-8">
-              <AnimatedImage>
-                <div className="aspect-[16/9] relative w-full">
-                  <Image
-                    src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/little%20mess%20(5).webp"
-                    alt="Educational activity kits and materials display"
-                    fill
-                    className="object-cover"
-                    sizes="100vw"
-                    quality={90}
-                  />
-                </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Educational activity kits and materials display</p>
-              </AnimatedImage>
-
-              <AnimatedImage>
-                <div className="aspect-[16/9] relative w-full">
-                  <Image
-                    src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/little%20mess%20(2).webp"
-                    alt="Children engaging with creative activities"
-                    fill
-                    className="object-cover"
-                    sizes="100vw"
-                    quality={90}
-                  />
-                </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Children engaging with creative activities</p>
-              </AnimatedImage>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
-                <AnimatedImage>
-                  <div className="aspect-[8/9] relative w-full">
-                    <Image
-                      src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/little%20mess%20(6).webp"
-                      alt="Brand identity and educational materials"
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      quality={90}
-                    />
-                  </div>
-                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Brand identity and educational materials</p>
-                </AnimatedImage>
-
-                <AnimatedImage>
-                  <div className="aspect-[8/9] relative w-full">
-                    <video
-                      src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/little%20mess%20(3).webm"
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                  <p className="text-[13px] text-black/50 mt-1.5 font-light">Creative activity demonstration</p>
-                </AnimatedImage>
+              {/* First Gallery Item - Full Width */}
+              <div className="relative aspect-[16/9] w-full overflow-hidden">
+                <Image
+                  src="https://pub-518aef848a0fedd5af45166ce269f7cc.r2.dev/artscraft%20(1).webp"
+                  alt="Educational activity kits and materials display"
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                  quality={90}
+                />
               </div>
 
-              <AnimatedImage>
-                <div className="aspect-[16/9] relative w-full">
+              {/* Second Gallery Item - Full Width */}
+              <div className="relative aspect-[16/9] w-full overflow-hidden">
+                <Image
+                  src="https://pub-518aef848a0fedd5af45166ce269f7cc.r2.dev/artscraft%20(2).webp"
+                  alt="Children engaging with creative activities"
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                  quality={90}
+                />
+              </div>
+
+              {/* Third and Fourth Gallery Items - Two Column Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Left Column */}
+                <div className="relative aspect-[8/9] w-full overflow-hidden">
                   <Image
-                    src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/little%20mess%20(4).webp"
-                    alt="Product photography and educational content"
+                    src="https://pub-518aef848a0fedd5af45166ce269f7cc.r2.dev/artscraft%20(6).webp"
+                    alt="Brand identity and educational materials"
                     fill
                     className="object-cover"
-                    sizes="100vw"
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     quality={90}
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Product photography and educational content</p>
-              </AnimatedImage>
-
-              <AnimatedImage>
-                <div className="aspect-[16/9] relative w-full">
+                {/* Right Column */}
+                <div className="relative aspect-[8/9] w-full overflow-hidden">
                   <video
-                    src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/little%20mess%20(2).webm"
+                    src="https://pub-518aef848a0fedd5af45166ce269f7cc.r2.dev/artscraft%20(3).webm"
                     autoPlay
                     loop
                     muted
                     playsInline
-                    className="h-full w-full object-cover"
+                    className="w-full h-full object-cover"
+                    preload="none"
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">Educational activity in action</p>
-              </AnimatedImage>
+              </div>
+
+              {/* Fifth Gallery Item - Full Width */}
+              <div className="relative aspect-[16/9] w-full overflow-hidden">
+                <Image
+                  src="https://pub-518aef848a0fedd5af45166ce269f7cc.r2.dev/artscraft%20(4).webp"
+                  alt="Product photography and educational content"
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                  quality={90}
+                />
+              </div>
+
+              {/* Sixth Gallery Item - Full Width */}
+              <div className="relative aspect-[16/9] w-full overflow-hidden">
+                <video
+                  src="https://pub-518aef848a0fedd5af45166ce269f7cc.r2.dev/artscraft%20(2).webm"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                  preload="none"
+                />
+              </div>
             </div>
           </AnimatedSection>
 
@@ -217,57 +207,38 @@ export default function LittleMessMakersBrandPage() {
           {/* More Projects Section */}
           <AnimatedSection className="w-full pt-2 px-6">
             <h2 className="text-2xl md:text-3xl font-extralight mb-4 text-black tracking-tight leading-none">More Projects</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <Link href="/work/verdella-farms-brand" className="group">
-                <AnimatedImage>
-                  <div className="relative aspect-[4/5] overflow-hidden">
-                    <OptimizedImage
-                      src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/farm%20(5).webp"
-                      alt="Verdella Farms"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
-                    <div className="absolute bottom-0 p-5">
-                      <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Campaign</p>
-                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">Verdella Farms</h3>
-                      <p className="text-[15px] text-white/80 font-light">Brand Identity</p>
-                    </div>
-                  </div>
-                </AnimatedImage>
+                <div className="relative aspect-[4/3] w-full overflow-hidden">
+                  <OptimizedImage
+                    src="https://pub-518aef848a0fedd5af45166ce269f7cc.r2.dev/artscraft%20(farm).webp"
+                    alt="Verdella Farms"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                </div>
+                <h3 className="text-xl font-light mt-4 group-hover:opacity-70 transition-opacity">Verdella Farms</h3>
               </Link>
-              <Link href="/work/nailpop-brand-campaign" className="group">
-                <AnimatedImage>
-                  <div className="relative aspect-[4/5] overflow-hidden">
-                    <OptimizedImage
-                      src="https://pub-ad061bfadf884f598139510ae71023ba.r2.dev/nails%20(4).webp"
-                      alt="NAILPOP"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
-                    <div className="absolute bottom-0 p-5">
-                      <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Campaign</p>
-                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">NAILPOP</h3>
-                      <p className="text-[15px] text-white/80 font-light">Brand Campaign</p>
-                    </div>
-                  </div>
-                </AnimatedImage>
+
+              <Link href="/work/nailpop-brand" className="group">
+                <div className="relative aspect-[4/3] w-full overflow-hidden">
+                  <OptimizedImage
+                    src="https://pub-518aef848a0fedd5af45166ce269f7cc.r2.dev/artscraft%20(nails).webp"
+                    alt="NAILPOP"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                </div>
+                <h3 className="text-xl font-light mt-4 group-hover:opacity-70 transition-opacity">NAILPOP</h3>
               </Link>
-              <Link href="/work/zesteo-drink-brand" className="group">
-                <AnimatedImage>
-                  <div className="relative aspect-[4/5] overflow-hidden">
-                    <OptimizedImage
-                      src="https://pub-1a0c0a0c0c0c0c0c0c0c0c0c0c0c0c0c.r2.dev/zesteo%20(1).webp"
-                      alt="ZESTEO"
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
-                    <div className="absolute bottom-0 p-5">
-                      <p className="text-[13px] uppercase tracking-wider text-white/70 mb-1.5">Identity</p>
-                      <h3 className="text-lg font-extralight mb-0.5 text-white tracking-tight leading-tight">ZESTEO</h3>
-                      <p className="text-[15px] text-white/80 font-light">Drink Brand</p>
-                    </div>
-                  </div>
-                </AnimatedImage>
+
+              <Link href="/work/zesteo-brand" className="group">
+                <div className="relative aspect-[4/3] w-full overflow-hidden">
+                  <OptimizedImage
+                    src="https://pub-518aef848a0fedd5af45166ce269f7cc.r2.dev/artscraft%20(zesteo).webp"
+                    alt="ZESTEO"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                </div>
+                <h3 className="text-xl font-light mt-4 group-hover:opacity-70 transition-opacity">ZESTEO</h3>
               </Link>
             </div>
           </AnimatedSection>

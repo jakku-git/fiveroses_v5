@@ -36,14 +36,17 @@ interface OptimizedImageProps extends Omit<ImageProps, 'src' | 'alt'> {
   src: string;
   alt: string;
   className?: string;
+  width?: number;
+  height?: number;
 }
 
-export const OptimizedImage = ({ src, alt, className = "", ...props }: OptimizedImageProps) => (
+export const OptimizedImage = ({ src, alt, className = "", width, height, ...props }: OptimizedImageProps) => (
   <Image
     src={src}
     alt={alt}
     className={`object-cover ${className}`}
     {...imageConfig}
     {...props}
+    {...(!width && !height ? { fill: true } : { width, height })}
   />
 ); 

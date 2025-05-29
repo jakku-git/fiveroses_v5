@@ -72,40 +72,40 @@ const galleryProjects = [
     }
 ]
 
-// Dynamically import all heavy components
+// Optimize loading states with skeleton loaders
+const LoadingSkeleton = () => (
+  <div className="w-full h-full bg-black/20 animate-pulse" />
+);
+
+// Dynamically import all heavy components with optimized loading states
 const Double = dynamic(() => import('./components/Double'), {
   ssr: false,
-  loading: () => <div className="h-screen w-full bg-black/50" />
+  loading: () => <LoadingSkeleton />
 });
 
 const Project = dynamic(() => import('./components/project'), {
   ssr: false,
-  loading: () => <div className="h-screen w-full bg-black/50" />
+  loading: () => <LoadingSkeleton />
 });
 
 const ZoomParallax = dynamic(() => import('./components/ZoomParallax'), {
   ssr: false,
-  loading: () => <div className="h-screen w-full bg-black/50" />
+  loading: () => <LoadingSkeleton />
 });
 
 const ParallaxGallery = dynamic(() => import('./components/ParallaxGallery'), {
   ssr: false,
-  loading: () => <div className="h-screen w-full bg-black/50" />
-});
-
-const BackgroundParallax = dynamic(() => import('./components/BackgroundParallax'), {
-  ssr: false,
-  loading: () => <div className="h-screen w-full bg-black/50" />
+  loading: () => <LoadingSkeleton />
 });
 
 const PerspectiveSection = dynamic(() => import('./components/PerspectiveSection'), {
   ssr: false,
-  loading: () => <div className="h-screen w-full bg-black/50" />
+  loading: () => <LoadingSkeleton />
 });
 
 const CanvasRevealEffect = dynamic(() => import("@/components/ui/canvas-reveal-effect").then(mod => mod.CanvasRevealEffect), {
   ssr: false,
-  loading: () => <div className="h-screen w-full relative z-10" />
+  loading: () => <LoadingSkeleton />
 });
 
 const inter = Inter({ 
@@ -163,9 +163,9 @@ export default function Home() {
     });
     const isMobile = useIsMobile();
 
-    // Optimize Lenis scroll
+    // Optimize Lenis scroll with better performance settings
     useEffect(() => {
-        if (!isMobile) {  // Only initialize Lenis on desktop
+        if (!isMobile) {
             const lenis = new Lenis({
                 duration: 1.2,
                 easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -173,16 +173,20 @@ export default function Home() {
                 gestureOrientation: 'vertical',
                 smoothWheel: true,
                 touchMultiplier: 2,
+                infinite: false, // Disable infinite scroll
+                lerp: 0.1, // Lower lerp value for better performance
             });
 
-            function raf(time: number) {
+            // Optimize RAF loop
+            let rafId: number;
+            const raf = (time: number) => {
                 lenis.raf(time);
-                requestAnimationFrame(raf);
-            }
-
-            requestAnimationFrame(raf);
+                rafId = requestAnimationFrame(raf);
+            };
+            rafId = requestAnimationFrame(raf);
 
             return () => {
+                cancelAnimationFrame(rafId);
                 lenis.destroy();
             };
         }
@@ -205,12 +209,12 @@ export default function Home() {
     return (
         <>
             {/* 1. Hero Section */}
-            <section className="w-full min-h-screen flex flex-col items-center justify-center relative bg-gradient-to-b from-black via-black/95 to-black/90 text-white overflow-hidden transform-gpu">
+            <section className="w-full min-h-screen flex flex-col items-center justify-center relative bg-gradient-to-b from-black via-black/95 to-black/90 text-white overflow-hidden transform-gpu will-change-transform">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent" />
-                <Suspense fallback={<div className="h-screen w-full relative z-10" />}>
+                <Suspense fallback={<LoadingSkeleton />}>
                     <CanvasRevealEffect
                         animationSpeed={0.5}
-                        containerClassName="h-screen w-full relative z-10 transform-gpu"
+                        containerClassName="h-screen w-full relative z-10 transform-gpu will-change-transform"
                         revealText="fiveroses"
                         textClassName="text-[8vw] tracking-tighter font-black text-white"
                         videoUrls={{
@@ -222,10 +226,7 @@ export default function Home() {
                 </Suspense>
             </section>
 
-            <main className={`${inter.className} ${styles.main} transform-gpu`}>
-                {/* 6. Background Parallax Section */}
-                <BackgroundParallax />
-
+            <main className={`${inter.className} ${styles.main} transform-gpu will-change-transform`}>
                 {/* 7. Parallax Gallery Section */}
                 <ParallaxGallery />
 

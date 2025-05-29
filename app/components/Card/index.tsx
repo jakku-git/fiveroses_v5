@@ -1,7 +1,8 @@
 'use client'
 
 import { useTransform, useScroll, motion } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, memo } from 'react';
+import Image from 'next/image';
 import styles from './styles.module.css';
 
 interface CardProps {
@@ -16,7 +17,22 @@ interface CardProps {
     targetScale: number;
 }
 
-export default function Card({ title, description, src, link, color, i, progress, range, targetScale }: CardProps) {
+// Custom comparison function for memo
+const arePropsEqual = (prevProps: CardProps, nextProps: CardProps) => {
+    return (
+        prevProps.title === nextProps.title &&
+        prevProps.description === nextProps.description &&
+        prevProps.src === nextProps.src &&
+        prevProps.link === nextProps.link &&
+        prevProps.color === nextProps.color &&
+        prevProps.i === nextProps.i &&
+        prevProps.range[0] === nextProps.range[0] &&
+        prevProps.range[1] === nextProps.range[1] &&
+        prevProps.targetScale === nextProps.targetScale
+    );
+};
+
+function Card({ title, description, src, link, color, i, progress, range, targetScale }: CardProps) {
     const container = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: container,
@@ -54,9 +70,19 @@ export default function Card({ title, description, src, link, color, i, progress
                             className={styles.inner}
                             style={{scale: imageScale}}
                         >
-                            <img
+                            <Image
                                 src={src}
                                 alt={title}
+                                fill
+                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                quality={85}
+                                priority={i === 0}
+                                loading={i === 0 ? "eager" : "lazy"}
+                                className="object-cover"
+                                style={{
+                                    transform: 'translateZ(0)',
+                                    willChange: 'transform'
+                                }}
                             />
                         </motion.div>
                     </div>
@@ -64,4 +90,7 @@ export default function Card({ title, description, src, link, color, i, progress
             </motion.div>
         </div>
     )
-} 
+}
+
+// Export memoized version with custom comparison
+export default memo(Card, arePropsEqual); 

@@ -40,12 +40,10 @@
     justify-content: center;
     align-items: center;
     width: 0;
+    height: 8vw;
+    position: relative;
     max-width: 12vw;
-    background-color: red; /* Debug background color */
 }
 
-.project img{
-    height: 8vw;
-    width: 12vw;
-    object-fit: cover;
-} 
+/* Remove the img styles since we're using Next.js Image component */
+/* The Image component will handle the sizing through its fill prop and object-cover class */ 

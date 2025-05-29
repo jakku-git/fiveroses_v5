@@ -26,9 +26,20 @@ export const CanvasRevealEffect = ({
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const textRef = useRef<HTMLDivElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-
+  const [videosLoaded, setVideosLoaded] = useState(false)
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
   const [isInView, setIsInView] = useState(false)
+
+  // Handle video loading
+  const handleVideoLoad = () => {
+    const videos = containerRef.current?.querySelectorAll('video')
+    if (videos) {
+      const allLoaded = Array.from(videos).every(video => video.readyState >= 3)
+      if (allLoaded) {
+        setVideosLoaded(true)
+      }
+    }
+  }
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
@@ -226,38 +237,56 @@ export const CanvasRevealEffect = ({
   return (
     <div className={`relative overflow-hidden ${containerClassName}`} ref={containerRef}>
       <div className="absolute inset-0 z-0 flex">
+        {!videosLoaded && (
+          <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/50">
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-white border-t-transparent" />
+          </div>
+        )}
         <video
           className="hero-video w-1/3 h-full object-cover"
           autoPlay
           loop
           muted
           playsInline
-          preload="auto"
+          preload="none"
+          onLoadedData={handleVideoLoad}
           src={videoUrls.video1}
-        ></video>
+        />
         <video
           className="hero-video w-1/3 h-full object-cover"
           autoPlay
           loop
           muted
           playsInline
-          preload="auto"
+          preload="none"
+          onLoadedData={handleVideoLoad}
           src={videoUrls.video2}
-        ></video>
+        />
         <video
           className="hero-video w-1/3 h-full object-cover"
           autoPlay
           loop
           muted
           playsInline
-          preload="auto"
+          preload="none"
+          onLoadedData={handleVideoLoad}
           src={videoUrls.video3}
-        ></video>
+        />
       </div>
 
-      <div className="absolute inset-0 z-5 pointer-events-none" style={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }} />
+      <div 
+        className={`absolute inset-0 z-5 pointer-events-none transition-opacity duration-500 ${
+          videosLoaded ? 'opacity-100' : 'opacity-0'
+        }`} 
+        style={{ backgroundColor: "rgba(0, 0, 0, 0.3)" }} 
+      />
 
-      <canvas ref={canvasRef} className="absolute inset-0 z-10 w-full h-full" />
+      <canvas 
+        ref={canvasRef} 
+        className={`absolute inset-0 z-10 w-full h-full transition-opacity duration-500 ${
+          videosLoaded ? 'opacity-100' : 'opacity-0'
+        }`} 
+      />
       <div
         ref={textRef}
         className={`opacity-0 absolute inset-0 flex items-center justify-center ${textClassName}`}

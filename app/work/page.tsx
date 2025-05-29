@@ -221,24 +221,27 @@ export default function WorkPage() {
   const mediaItems = [
     {
       type: 'video',
-      url: "https://videos.pexels.com/video-files/10548180/10548180-sd_960_506_25fps.mp4",
-      top: "Longueuil QC",
-      title: "Social Distance",
-      cta: "Learn More"
+      url: "https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/farm%20(2).webm",
+      top: "Verdella Farms",
+      title: "Sustainable Agriculture Brand",
+      cta: "View Project",
+      link: "/work/verdella-farms-brand"
     },
     {
       type: 'video',
-      url: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/scroll3.webm",
-      top: "Google Deepmind",
-      title: "Design Mastery",
-      cta: "Learn More"
+      url: "https://pub-e08ddc6efc2944bb84b7982b6e8825b4.r2.dev/cyberpunkvr%20(3).webm",
+      top: "Neon Dusk",
+      title: "VR Experience Branding",
+      cta: "View Project",
+      link: "/work/neon-dusk-vr-branding"
     },
     {
       type: 'video',
-      url: "https://videos.pexels.com/video-files/8721923/8721923-sd_960_506_25fps.mp4",
-      top: "VR Project",
-      title: "Augmented Cyberpunk",
-      cta: "Learn More"
+      url: "https://pub-a74269ab9d1140f4b9b01e4b98c35bc7.r2.dev/drinks%20(2).webm",
+      top: "Zesteo",
+      title: "Drink Brand Identity",
+      cta: "View Project",
+      link: "/work/zesteo-drink-brand"
     }
   ];
 
@@ -468,7 +471,7 @@ export default function WorkPage() {
               <AnimatePresence mode="wait">
                 <motion.button 
                   key={`cta-${currentImageIndex}`}
-                  onClick={() => setIsContactOpen(true)}
+                  onClick={() => window.location.href = mediaItems[currentImageIndex].link}
                   initial={{ opacity: 0, y: 50, filter: "blur(5px)" }}
                   animate={{ 
                     opacity: 1,
@@ -481,6 +484,12 @@ export default function WorkPage() {
                     }
                   }}
                   className="group text-sm md:text-base text-white/80 hover:text-white inline-flex items-center gap-2 transition-all duration-300"
+                  variants={{
+                    hover: {
+                      scale: 1.02,
+                      transition: { type: "spring", stiffness: 300, damping: 10 }
+                    }
+                  }}
                   whileHover="hover"
                 >
                   <motion.span 
@@ -541,24 +550,27 @@ export default function WorkPage() {
             <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
               {[
                 {
-                  title: "Card 1",
-                  image: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/scroll1.webm",
-                  description: "Description for card 1"
+                  title: "Forge & Hide",
+                  image: "https://pub-bef823910dc44973941ddebcc9ec07c8.r2.dev/leather%20(2).webm",
+                  description: "Leather Craft Brand Identity",
+                  link: "/work/forge-and-hide-leather"
                 },
                 {
-                  title: "Card 2",
-                  image: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/scroll2.webm",
-                  description: "Description for card 2"
+                  title: "Solstice Bloom",
+                  image: "https://pub-2634c5482cbc49329e9902214d332db6.r2.dev/heat%20(1).webm",
+                  description: "Sustainable Fashion Brand",
+                  link: "/work/solstice-bloom-fashion"
                 },
                 {
-                  title: "Secret Spells",
-                  image: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/secretspell6.webp",
-                  description: "Branding, Design, Packaging"
+                  title: "Little Mess Makers",
+                  image: "https://pub-762008b27cff430289f9cb812010d371.r2.dev/artscraft%20(1).webm",
+                  description: "Educational Brand & Content",
+                  link: "/work/little-mess-makers-brand"
                 }
               ].map((card, index) => (
                 <motion.div
                   key={index}
-                  className="relative h-[50vh] md:h-[80vh] rounded-lg overflow-hidden group"
+                  className="relative h-[50vh] md:h-[80vh] rounded-lg overflow-hidden group cursor-pointer"
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ 
                     opacity: threeCardsInView ? 1 : 0,
@@ -569,6 +581,7 @@ export default function WorkPage() {
                       ease: [0.16, 1, 0.3, 1]
                     }
                   }}
+                  onClick={() => window.location.href = card.link}
                 >
                   {card.image.endsWith('.webp') ? (
                     <OptimizedImage
@@ -594,7 +607,6 @@ export default function WorkPage() {
                     <p className="text-[10px] md:text-xs text-white/80 mb-1 md:mb-2 line-clamp-2">{card.description}</p>
                     <h3 className="text-2xl md:text-4xl font-light tracking-tight mb-1 md:mb-2">{card.title}</h3>
                     <motion.button 
-                      onClick={() => setIsContactOpen(true)}
                       className="group text-xs md:text-sm text-white/80 hover:text-white inline-flex items-center gap-1 md:gap-2 transition-all duration-300"
                       whileHover="hover"
                     >
@@ -613,7 +625,7 @@ export default function WorkPage() {
                           transition: "background-size 0.3s"
                         }}
                       >
-                        Learn More
+                        View Project
                       </motion.span>
                       <motion.div
                         variants={{

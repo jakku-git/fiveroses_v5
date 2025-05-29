@@ -2,7 +2,7 @@
 
 import styles from './style.module.css';
 import Image from 'next/image';
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect, memo } from 'react';
 
 interface Project {
     name: string;
@@ -13,11 +13,28 @@ interface Project {
 }
 
 interface DoubleProps {
-    projects: [Project, Project];
+    projects: Project[];
     reversed?: boolean;
 }
 
-export default function Double({ projects, reversed }: DoubleProps) {
+// Custom comparison function for memo
+const arePropsEqual = (prevProps: DoubleProps, nextProps: DoubleProps) => {
+    if (prevProps.reversed !== nextProps.reversed) return false;
+    if (prevProps.projects.length !== nextProps.projects.length) return false;
+    
+    return prevProps.projects.every((project, index) => {
+        const nextProject = nextProps.projects[index];
+        return (
+            project.name === nextProject.name &&
+            project.client === nextProject.client &&
+            project.description === nextProject.description &&
+            project.src === nextProject.src &&
+            project.year === nextProject.year
+        );
+    });
+};
+
+export default memo(function Double({ projects, reversed }: DoubleProps) {
     const firstImage = useRef<HTMLDivElement>(null);
     const secondImage = useRef<HTMLDivElement>(null);
     const [themes, setThemes] = useState<['light' | 'dark', 'light' | 'dark']>(['light', 'light']);
@@ -110,8 +127,17 @@ export default function Double({ projects, reversed }: DoubleProps) {
                 <div className={styles.stretchyWrapper}>
                     <Image
                         src={projects[0].src}
-                        fill={true}
+                        fill
                         alt={projects[0].name}
+                        sizes="(max-width: 768px) 100vw, 66vw"
+                        quality={85}
+                        priority={!reversed}
+                        loading={reversed ? "lazy" : "eager"}
+                        className="object-cover"
+                        style={{
+                            transform: 'translateZ(0)',
+                            willChange: 'transform'
+                        }}
                     />
                     <div className={styles.body} data-theme={themes[0]}>
                         <h3>{projects[0].name}</h3>
@@ -125,8 +151,17 @@ export default function Double({ projects, reversed }: DoubleProps) {
                 <div className={styles.stretchyWrapper}>
                     <Image
                         src={projects[1].src}
-                        fill={true}
+                        fill
                         alt={projects[1].name}
+                        sizes="(max-width: 768px) 100vw, 66vw"
+                        quality={85}
+                        priority={reversed}
+                        loading={reversed ? "eager" : "lazy"}
+                        className="object-cover"
+                        style={{
+                            transform: 'translateZ(0)',
+                            willChange: 'transform'
+                        }}
                     />
                     <div className={styles.body} data-theme={themes[1]}>
                         <h3>{projects[1].name}</h3>
@@ -137,4 +172,4 @@ export default function Double({ projects, reversed }: DoubleProps) {
             </div>
         </div>
     )
-} 
+}, arePropsEqual); 

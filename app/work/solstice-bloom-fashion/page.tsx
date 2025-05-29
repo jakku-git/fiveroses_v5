@@ -120,7 +120,7 @@ export default function SolsticeBloomFashionPage() {
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
                   <Image
-                    src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/solstice%20(5).webp"
+                    src="https://pub-2634c5482cbc49329e9902214d332db6.r2.dev/heat%20(1).webp"
                     alt="Sustainable fashion collection photography"
                     fill
                     className="object-cover"
@@ -134,7 +134,7 @@ export default function SolsticeBloomFashionPage() {
               <AnimatedImage>
                 <div className="aspect-[16/9] relative w-full">
                   <Image
-                    src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/solstice%20(2).webp"
+                    src="https://pub-2634c5482cbc49329e9902214d332db6.r2.dev/heat%20(3).webp"
                     alt="Brand campaign visuals and styling"
                     fill
                     className="object-cover"
@@ -149,7 +149,7 @@ export default function SolsticeBloomFashionPage() {
                 <AnimatedImage>
                   <div className="aspect-[8/9] relative w-full">
                     <Image
-                      src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/solstice%20(6).webp"
+                      src="https://pub-2634c5482cbc49329e9902214d332db6.r2.dev/heat%20(4).webp"
                       alt="Fashion photography highlighting sustainable materials"
                       fill
                       className="object-cover"
@@ -161,14 +161,15 @@ export default function SolsticeBloomFashionPage() {
                 </AnimatedImage>
 
                 <AnimatedImage>
-                  <div className="aspect-[8/9] relative w-full">
+                  <div className="aspect-[8/9] relative w-full overflow-hidden">
                     <video
-                      src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/solstice%20(3).webm"
+                      src="https://pub-2634c5482cbc49329e9902214d332db6.r2.dev/heat%20(3).webm"
                       autoPlay
                       loop
                       muted
                       playsInline
-                      className="h-full w-full object-cover"
+                      className="w-full h-full object-cover"
+                      preload="none"
                     />
                   </div>
                   <p className="text-[13px] text-black/50 mt-1.5 font-light">Fashion collection movement and flow</p>
@@ -176,28 +177,29 @@ export default function SolsticeBloomFashionPage() {
               </div>
 
               <AnimatedImage>
-                <div className="aspect-[16/9] relative w-full">
+                <div className="aspect-[16/9] relative w-full overflow-hidden">
                   <Image
-                    src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/solstice%20(4).webp"
-                    alt="E-commerce product presentation"
+                    src="https://pub-2634c5482cbc49329e9902214d332db6.r2.dev/heat%20(5).webp"
+                    alt="Brand identity elements and packaging design"
                     fill
                     className="object-cover"
                     sizes="100vw"
                     quality={90}
                   />
                 </div>
-                <p className="text-[13px] text-black/50 mt-1.5 font-light">E-commerce product presentation</p>
+                <p className="text-[13px] text-black/50 mt-1.5 font-light">Brand identity elements and packaging design</p>
               </AnimatedImage>
 
               <AnimatedImage>
-                <div className="aspect-[16/9] relative w-full">
+                <div className="aspect-[16/9] relative w-full overflow-hidden">
                   <video
-                    src="https://pub-a9a5f35f84584290a9de003cf86faf37.r2.dev/solstice%20(2).webm"
+                    src="https://pub-2634c5482cbc49329e9902214d332db6.r2.dev/heat%20(2).webm"
                     autoPlay
                     loop
                     muted
                     playsInline
-                    className="h-full w-full object-cover"
+                    className="w-full h-full object-cover"
+                    preload="none"
                   />
                 </div>
                 <p className="text-[13px] text-black/50 mt-1.5 font-light">Sustainable fashion production process</p>
@@ -227,6 +229,7 @@ export default function SolsticeBloomFashionPage() {
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 33vw"
+                      quality={90}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
                     <div className="absolute bottom-0 p-5">
@@ -246,6 +249,7 @@ export default function SolsticeBloomFashionPage() {
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 33vw"
+                      quality={90}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
                     <div className="absolute bottom-0 p-5">
@@ -265,6 +269,7 @@ export default function SolsticeBloomFashionPage() {
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 33vw"
+                      quality={90}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
                     <div className="absolute bottom-0 p-5">
