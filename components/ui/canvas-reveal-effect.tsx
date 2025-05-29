@@ -2,6 +2,18 @@
 
 import { useEffect, useRef, useState } from "react"
 
+// Add throttle utility with proper typing
+const throttle = <T extends (...args: any[]) => any>(func: T, limit: number): T => {
+  let inThrottle: boolean
+  return ((...args: Parameters<T>) => {
+    if (!inThrottle) {
+      func(...args)
+      inThrottle = true
+      setTimeout(() => inThrottle = false, limit)
+    }
+  }) as T
+}
+
 export const CanvasRevealEffect = ({
   revealText,
   textClassName,
@@ -42,7 +54,7 @@ export const CanvasRevealEffect = ({
   }
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = throttle((e: MouseEvent) => {
       if (!containerRef.current) return
 
       const { clientX, clientY } = e
@@ -60,7 +72,7 @@ export const CanvasRevealEffect = ({
           (xPercent - 0.5) * factor
         }px, ${(yPercent - 0.5) * factor}px)`
       })
-    }
+    }, 16) // Throttle to ~60fps
 
     document.addEventListener("mousemove", handleMouseMove)
     return () => document.removeEventListener("mousemove", handleMouseMove)
@@ -104,7 +116,7 @@ export const CanvasRevealEffect = ({
     canvas.height = dimensions.height
 
     let particleArray: Particle[] = []
-    // Increase detail to reduce particle count
+    let animationFrameId: number
     const detail = 3
 
     class Particle {
@@ -211,11 +223,13 @@ export const CanvasRevealEffect = ({
       radius: 100,
     }
 
-    window.addEventListener("mousemove", (e) => {
+    const handleCanvasMouseMove = throttle((e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect()
       mouse.x = e.clientX - rect.left
       mouse.y = e.clientY - rect.top
-    })
+    }, 16) // Throttle to ~60fps
+
+    window.addEventListener("mousemove", handleCanvasMouseMove)
 
     function animate() {
       if (!ctx) return
@@ -223,13 +237,17 @@ export const CanvasRevealEffect = ({
       for (let i = 0; i < particleArray.length; i++) {
         particleArray[i].update()
       }
-      requestAnimationFrame(animate)
+      animationFrameId = requestAnimationFrame(animate)
     }
 
     init()
     animate()
 
     return () => {
+      window.removeEventListener("mousemove", handleCanvasMouseMove)
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId)
+      }
       particleArray = []
     }
   }, [dimensions, isInView, revealText, animationSpeed])

@@ -119,3 +119,10 @@ button {
   width: 100%;
   text-align: center;
 }
+
+/* Password input styling */
+input[type="password"] {
+  -webkit-text-security: disc;
+  text-security: disc;
+  color: black !important;
+}

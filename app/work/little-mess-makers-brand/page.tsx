@@ -212,7 +212,7 @@ export default function LittleMessMakersBrandPage() {
                 <div className="relative aspect-[4/3] w-full overflow-hidden">
                   <OptimizedImage
                     src="https://pub-518aef848a0fedd5af45166ce269f7cc.r2.dev/artscraft%20(farm).webp"
-                    alt="Verdella Farms"
+                    alt="Verdella Farms brand identity and campaign"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
@@ -223,7 +223,7 @@ export default function LittleMessMakersBrandPage() {
                 <div className="relative aspect-[4/3] w-full overflow-hidden">
                   <OptimizedImage
                     src="https://pub-518aef848a0fedd5af45166ce269f7cc.r2.dev/artscraft%20(nails).webp"
-                    alt="NAILPOP"
+                    alt="NAILPOP brand campaign and identity"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
@@ -234,7 +234,7 @@ export default function LittleMessMakersBrandPage() {
                 <div className="relative aspect-[4/3] w-full overflow-hidden">
                   <OptimizedImage
                     src="https://pub-518aef848a0fedd5af45166ce269f7cc.r2.dev/artscraft%20(zesteo).webp"
-                    alt="ZESTEO"
+                    alt="ZESTEO drink brand identity"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
