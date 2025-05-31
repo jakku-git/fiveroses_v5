@@ -1,6 +1,7 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Inter, Cormorant_Garamond } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import ClientLayout from "./ClientLayout"
 
@@ -41,6 +42,7 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${inter.className} ${cormorantGaramond.variable}`}>
       <body className="bg-black text-white">
         <ClientLayout>{children}</ClientLayout>
+        <Analytics />
       </body>
     </html>
   )

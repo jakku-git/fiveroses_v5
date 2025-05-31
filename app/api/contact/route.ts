@@ -6,7 +6,10 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
+    console.log('API Key:', process.env.RESEND_API_KEY); // This will be hidden in logs
     const body = await request.json();
+    console.log('Received form data:', { ...body, email: '***@***.***' }); // Hide email for privacy
+
     const {
       firstName,
       lastName,
@@ -20,15 +23,17 @@ export async function POST(request: Request) {
 
     // Validate the email
     if (!email || !email.includes('@')) {
+      console.log('Invalid email validation failed');
       return NextResponse.json(
         { error: 'Invalid email address' },
         { status: 400 }
       );
     }
 
+    console.log('Attempting to send email...');
     // Send email using Resend
     const data = await resend.emails.send({
-      from: 'Fiveroses Contact Form <contact@fiveroses.com.au>',
+      from: 'Fiveroses Contact Form <onboarding@resend.dev>',
       to: ['hello@fiveroses.com.au'],
       subject: `New Contact Form Submission from ${firstName} ${lastName}`,
       html: `
@@ -83,8 +88,10 @@ export async function POST(request: Request) {
       `,
     });
 
+    console.log('Email sent successfully:', data);
     return NextResponse.json(data);
   } catch (error) {
+    console.error('Error sending email:', error);
     return NextResponse.json(
       { error: 'Error sending email' },
       { status: 500 }

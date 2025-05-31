@@ -11,6 +11,8 @@ import Link from "next/link"
 export default function ContactPage() {
   const [isMobile, setIsMobile] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [cooldown, setCooldown] = useState(0);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -35,6 +37,12 @@ export default function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Check if in cooldown
+    if (cooldown > 0) {
+      return;
+    }
+
     setIsSubmitting(true);
     
     try {
@@ -50,21 +58,35 @@ export default function ContactPage() {
         throw new Error('Failed to send message');
       }
 
-      // Reset form
-      setFormData({
-        firstName: '',
-        lastName: '',
-        jobTitle: '',
-        company: '',
-        email: '',
-        location: '',
-        market: '',
-        comment: '',
-        privacy: false
-      });
+      // Start cooldown timer
+      setCooldown(30);
+      const timer = setInterval(() => {
+        setCooldown((prev) => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
 
-      // You might want to show a success message here
-      alert('Message sent successfully!');
+      // Reset form after a delay to show success state
+      setTimeout(() => {
+        setFormData({
+          firstName: '',
+          lastName: '',
+          jobTitle: '',
+          company: '',
+          email: '',
+          location: '',
+          market: '',
+          comment: '',
+          privacy: false
+        });
+        setIsSuccess(true);
+        setTimeout(() => setIsSuccess(false), 5000); // Reset success state after 5s
+      }, 500);
+
     } catch (error) {
       // Handle error - you might want to show an error message
       alert('Failed to send message. Please try again.');
@@ -361,15 +383,33 @@ export default function ContactPage() {
 
                   <motion.button
                     type="submit"
-                    disabled={isSubmitting}
-                    className="w-full py-4 px-6 bg-white text-black rounded-lg font-medium flex items-center justify-center gap-2 hover:bg-neutral-100 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    disabled={isSubmitting || isSuccess || cooldown > 0}
+                    className={`w-full py-4 px-6 rounded-lg font-medium flex items-center justify-center gap-2 transition-all duration-300 disabled:cursor-not-allowed ${
+                      isSuccess 
+                        ? 'bg-green-500 text-white disabled:opacity-100' 
+                        : cooldown > 0
+                        ? 'bg-neutral-500 text-white disabled:opacity-70'
+                        : 'bg-white text-black hover:bg-neutral-100 disabled:opacity-50'
+                    }`}
+                    whileHover={{ scale: cooldown > 0 ? 1 : 1.02 }}
+                    whileTap={{ scale: cooldown > 0 ? 1 : 0.98 }}
                   >
                     {isSubmitting ? (
                       <>
                         <Loader2 className="w-5 h-5 animate-spin" />
                         Sending...
+                      </>
+                    ) : isSuccess ? (
+                      <>
+                        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        Message Sent!
+                      </>
+                    ) : cooldown > 0 ? (
+                      <>
+                        <Loader2 className="w-5 h-5" />
+                        Wait {cooldown}s
                       </>
                     ) : (
                       <>
