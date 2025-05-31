@@ -8,7 +8,7 @@ import {
   useAnimate,
   motion,
 } from "framer-motion";
-import { ArrowUpRight, Mail, Phone, MessageSquare } from "lucide-react";
+import { ArrowUpRight, Mail, Phone, MessageSquare, Loader2 } from "lucide-react";
 
 interface ContactModalProps {
   open: boolean;
@@ -17,6 +17,77 @@ interface ContactModalProps {
 
 export const ContactModal = ({ open, setOpen }: ContactModalProps) => {
   const [scope, animate] = useAnimate();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    phone: '',
+    company: '',
+    jobTitle: '',
+    projectType: '',
+    message: ''
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          jobTitle: formData.jobTitle,
+          company: formData.company,
+          location: formData.phone, // Using phone as location
+          market: formData.projectType, // Using projectType as market
+          comment: formData.message
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      // Reset form
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        company: '',
+        jobTitle: '',
+        projectType: '',
+        message: ''
+      });
+
+      // Close modal
+      handleClose();
+      
+      // Show success message
+      alert('Message sent successfully!');
+    } catch (error) {
+      alert('Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const handleClose = async () => {
     await animate(scope.current, {
@@ -61,15 +132,19 @@ export const ContactModal = ({ open, setOpen }: ContactModalProps) => {
                   <p className="text-xs md:text-sm text-white/70">Fill out the form below and we'll get back to you within 24 hours.</p>
                 </div>
 
-                <form className="space-y-2 md:space-y-3">
+                <form onSubmit={handleSubmit} className="space-y-2 md:space-y-3">
                   <div className="grid grid-cols-1 gap-2 md:gap-3 sm:grid-cols-2">
                     <div className="space-y-1">
-                      <label htmlFor="name" className="text-xs md:text-sm font-medium text-white/80">Name</label>
+                      <label htmlFor="firstName" className="text-xs md:text-sm font-medium text-white/80">Name</label>
                       <input
                         type="text"
-                        id="name"
+                        id="firstName"
+                        name="firstName"
+                        value={formData.firstName}
+                        onChange={handleChange}
                         className="w-full rounded-lg bg-white/5 px-3 py-1.5 text-xs md:text-sm text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all"
                         placeholder="Your name"
+                        required
                       />
                     </div>
                     <div className="space-y-1">
@@ -77,8 +152,12 @@ export const ContactModal = ({ open, setOpen }: ContactModalProps) => {
                       <input
                         type="email"
                         id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
                         className="w-full rounded-lg bg-white/5 px-3 py-1.5 text-xs md:text-sm text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all"
                         placeholder="your@email.com"
+                        required
                       />
                     </div>
                   </div>
@@ -89,6 +168,9 @@ export const ContactModal = ({ open, setOpen }: ContactModalProps) => {
                       <input
                         type="tel"
                         id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleChange}
                         className="w-full rounded-lg bg-white/5 px-3 py-1.5 text-xs md:text-sm text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all"
                         placeholder="+1 (555) 123-4567"
                       />
@@ -98,6 +180,9 @@ export const ContactModal = ({ open, setOpen }: ContactModalProps) => {
                       <input
                         type="text"
                         id="company"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
                         className="w-full rounded-lg bg-white/5 px-3 py-1.5 text-xs md:text-sm text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all"
                         placeholder="Your company name"
                       />
@@ -105,54 +190,38 @@ export const ContactModal = ({ open, setOpen }: ContactModalProps) => {
                   </div>
 
                   <div className="space-y-1">
-                    <label htmlFor="position" className="text-xs md:text-sm font-medium text-white/80">Company/Business Position</label>
+                    <label htmlFor="jobTitle" className="text-xs md:text-sm font-medium text-white/80">Company/Business Position</label>
                     <input
                       type="text"
-                      id="position"
+                      id="jobTitle"
+                      name="jobTitle"
+                      value={formData.jobTitle}
+                      onChange={handleChange}
                       className="w-full rounded-lg bg-white/5 px-3 py-1.5 text-xs md:text-sm text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all"
                       placeholder="Your position in the company"
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 gap-2 md:gap-3 sm:grid-cols-2">
-                    <div className="space-y-1">
-                      <label htmlFor="project" className="text-xs md:text-sm font-medium text-white/80">Project Type</label>
-                      <div className="relative">
-                        <select
-                          id="project"
-                          className="w-full rounded-lg bg-white/5 px-3 py-1.5 text-xs md:text-sm text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all appearance-none pr-10"
-                        >
-                          <option value="" className="bg-black">Select a project type</option>
-                          <option value="marketing" className="bg-black">Marketing</option>
-                          <option value="development" className="bg-black">Development</option>
-                          <option value="production" className="bg-black">Production</option>
-                          <option value="consulting" className="bg-black">Consulting</option>
-                        </select>
-                        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                          <svg className="w-3 h-3 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="space-y-1">
-                      <label htmlFor="budget" className="text-xs md:text-sm font-medium text-white/80">Project Budget</label>
-                      <div className="relative">
-                        <select
-                          id="budget"
-                          className="w-full rounded-lg bg-white/5 px-3 py-1.5 text-xs md:text-sm text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all appearance-none pr-10"
-                        >
-                          <option value="" className="bg-black">Select a budget range</option>
-                          <option value="5k-10k" className="bg-black">$5,000 - $10,000</option>
-                          <option value="10k-25k" className="bg-black">$10,000 - $25,000</option>
-                          <option value="25k-50k" className="bg-black">$25,000 - $50,000</option>
-                          <option value="50k+" className="bg-black">$50,000+</option>
-                        </select>
-                        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                          <svg className="w-3 h-3 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                          </svg>
-                        </div>
+                  <div className="space-y-1">
+                    <label htmlFor="projectType" className="text-xs md:text-sm font-medium text-white/80">Project Type</label>
+                    <div className="relative">
+                      <select
+                        id="projectType"
+                        name="projectType"
+                        value={formData.projectType}
+                        onChange={handleChange}
+                        className="w-full rounded-lg bg-white/5 px-3 py-1.5 text-xs md:text-sm text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all appearance-none pr-10"
+                      >
+                        <option value="" className="bg-black">Select a project type</option>
+                        <option value="marketing" className="bg-black">Marketing</option>
+                        <option value="development" className="bg-black">Development</option>
+                        <option value="production" className="bg-black">Production</option>
+                        <option value="consulting" className="bg-black">Consulting</option>
+                      </select>
+                      <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+                        <svg className="w-3 h-3 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
                       </div>
                     </div>
                   </div>
@@ -161,20 +230,34 @@ export const ContactModal = ({ open, setOpen }: ContactModalProps) => {
                     <label htmlFor="message" className="text-xs md:text-sm font-medium text-white/80">Message</label>
                     <textarea
                       id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
                       rows={2}
                       className="w-full rounded-lg bg-white/5 px-3 py-1.5 text-xs md:text-sm text-white placeholder-white/50 border border-white/10 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/20 transition-all"
                       placeholder="Tell us about your project..."
+                      required
                     />
                   </div>
 
                   <div className="flex items-center gap-4">
                     <button
                       type="submit"
-                      className="group flex-1 rounded-lg bg-white px-4 py-1.5 text-xs md:text-sm text-black transition-all hover:bg-white/90"
+                      disabled={isSubmitting}
+                      className="group flex-1 rounded-lg bg-white px-4 py-1.5 text-xs md:text-sm text-black transition-all hover:bg-white/90 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <span className="flex items-center justify-center gap-2">
-                        Send Message
-                        <ArrowUpRight className="w-3 h-3 md:w-4 md:h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 className="w-3 h-3 md:w-4 md:h-4 animate-spin" />
+                            Sending...
+                          </>
+                        ) : (
+                          <>
+                            Send Message
+                            <ArrowUpRight className="w-3 h-3 md:w-4 md:h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                          </>
+                        )}
                       </span>
                     </button>
                   </div>

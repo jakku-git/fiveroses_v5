@@ -6,6 +6,7 @@ import { FaqAccordion } from "@/components/ui/faq-accordion"
 import Image from "next/image"
 import { GlobeWrapper } from "@/components/ui/globe-wrapper"
 import { motion } from "framer-motion"
+import Link from "next/link"
 
 export default function ContactPage() {
   const [isMobile, setIsMobile] = useState(false);
@@ -35,21 +36,41 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsSubmitting(false);
-    // Reset form
-    setFormData({
-      firstName: '',
-      lastName: '',
-      jobTitle: '',
-      company: '',
-      email: '',
-      location: '',
-      market: '',
-      comment: '',
-      privacy: false
-    });
+    
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      // Reset form
+      setFormData({
+        firstName: '',
+        lastName: '',
+        jobTitle: '',
+        company: '',
+        email: '',
+        location: '',
+        market: '',
+        comment: '',
+        privacy: false
+      });
+
+      // You might want to show a success message here
+      alert('Message sent successfully!');
+    } catch (error) {
+      // Handle error - you might want to show an error message
+      alert('Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -101,7 +122,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold mb-1 text-white">Email</h3>
-                    <p className="text-neutral-400">hello@fiveroses.com</p>
+                    <p className="text-neutral-400">hello@fiveroses.com.au</p>
                   </div>
                 </motion.div>
               </div>
@@ -316,7 +337,7 @@ export default function ContactPage() {
                           : 'top-4 text-neutral-400 peer-focus:-top-2 peer-focus:text-xs peer-focus:text-white peer-focus:bg-black peer-focus:px-2'
                       }`}
                     >
-                      Comment*
+                      Message*
                     </label>
                   </div>
 
@@ -332,9 +353,9 @@ export default function ContactPage() {
                     />
                     <label htmlFor="privacy" className="text-sm text-neutral-400">
                       I agree to the{" "}
-                      <a href="#" className="text-white hover:underline">
+                      <Link href="/privacy" className="text-white hover:underline">
                         Privacy Policy
-                      </a>
+                      </Link>
                     </label>
                   </div>
 
