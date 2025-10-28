@@ -113,10 +113,10 @@ export default function FomaPage() {
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video
-            autoPlay
-            loop
-            muted
-            playsInline
+            autoPlay={true}
+            loop={true}
+            muted={true}
+            playsInline={true}
             className="absolute inset-0 w-full h-full object-cover"
           >
             <source src="/fomahero.mp4" type="video/mp4" />
@@ -250,10 +250,10 @@ export default function FomaPage() {
                     className="aspect-square bg-zinc-50 rounded-lg overflow-hidden relative border border-zinc-200"
                   >
                     <video
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
+                      autoPlay={true}
+                      loop={true}
+                      muted={true}
+                      playsInline={true}
                       className="w-full h-full object-cover"
                     >
                       <source src="/foma.mp4" type="video/mp4" />
