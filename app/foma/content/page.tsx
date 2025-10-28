@@ -114,12 +114,12 @@ export default function FomaPage() {
         <div className="absolute inset-0 z-0">
           <video
             src="/fomahero.mp4"
-            autoPlay={true}
-            loop={true}
-            muted={true}
-            playsInline={true}
+            autoPlay
+            loop
+            muted
+            playsInline
             preload="auto"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover z-0"
           />
           <div className="absolute inset-0 bg-black/30" />
           <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-white/10 to-white/20" />
@@ -245,20 +245,21 @@ export default function FomaPage() {
                   {/* Product Video */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                     className="aspect-square bg-zinc-50 rounded-lg overflow-hidden relative border border-zinc-200"
                   >
                     <video
                       src="/foma.mp4"
-                      autoPlay={true}
-                      loop={true}
-                      muted={true}
-                      playsInline={true}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
                       preload="auto"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover relative z-0"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/10 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/10 to-transparent pointer-events-none" />
                   </motion.div>
 
                   {/* KPIs */}
