@@ -1,0 +1,78 @@
+@media print {
+  @page {
+    margin: 1cm;
+    size: A4 portrait;
+  }
+
+  /* Hide non-essential elements */
+  button,
+  [class*="hover:"],
+  .no-print {
+    display: none !important;
+  }
+
+  /* Reset backgrounds for print */
+  body,
+  section {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Table styling for print */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    page-break-inside: auto;
+  }
+
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tfoot {
+    display: table-footer-group;
+  }
+
+  /* Budget section specific print styles */
+  section[class*="bg-zinc"] {
+    background: white !important;
+    page-break-inside: avoid;
+  }
+
+  /* Ensure text is readable */
+  * {
+    color: black !important;
+    background: white !important;
+  }
+
+  /* Page breaks */
+  h1, h2, h3 {
+    page-break-after: avoid;
+  }
+
+  /* Grid layouts should stack for print */
+  .grid {
+    display: block !important;
+  }
+
+  /* Maintain essential spacing */
+  section {
+    padding: 1cm 0 !important;
+  }
+
+  /* Adjust font sizes for print */
+  body {
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  h1 { font-size: 18pt; }
+  h2 { font-size: 16pt; }
+  h3 { font-size: 14pt; }
+}
+

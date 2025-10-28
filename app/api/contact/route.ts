@@ -6,7 +6,6 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
-    console.log('API Key:', process.env.RESEND_API_KEY); // This will be hidden in logs
     const body = await request.json();
     console.log('Received form data:', { ...body, email: '***@***.***' }); // Hide email for privacy
 
