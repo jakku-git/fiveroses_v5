@@ -113,14 +113,14 @@ export default function FomaPage() {
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video
+            src="/fomahero.mp4"
             autoPlay={true}
             loop={true}
             muted={true}
             playsInline={true}
+            preload="auto"
             className="absolute inset-0 w-full h-full object-cover"
-          >
-            <source src="/fomahero.mp4" type="video/mp4" />
-          </video>
+          />
           <div className="absolute inset-0 bg-black/30" />
           <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-white/10 to-white/20" />
         </div>
@@ -250,14 +250,14 @@ export default function FomaPage() {
                     className="aspect-square bg-zinc-50 rounded-lg overflow-hidden relative border border-zinc-200"
                   >
                     <video
+                      src="/foma.mp4"
                       autoPlay={true}
                       loop={true}
                       muted={true}
                       playsInline={true}
+                      preload="auto"
                       className="w-full h-full object-cover"
-                    >
-                      <source src="/foma.mp4" type="video/mp4" />
-                    </video>
+                    />
                     <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/10 to-transparent" />
                   </motion.div>
 
