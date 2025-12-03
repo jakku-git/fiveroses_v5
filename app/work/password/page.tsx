@@ -1,31 +1,46 @@
 'use client';
 
 import { useState, useEffect, Suspense } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Cookies from 'js-cookie';
 
 function PasswordForm() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
-  const router = useRouter();
   const searchParams = useSearchParams();
   const from = searchParams.get('from') || '/work';
 
   useEffect(() => {
-    // If already authenticated, redirect to the original page
-    if (Cookies.get('work-auth') === 'xvii' || Cookies.get('site-auth') === 'xvii') {
-      router.push(from);
+    // If already authenticated (cookie exists and is fresh), redirect to the original page
+    const siteAuth = Cookies.get('site-auth') || ''
+    const workAuth = Cookies.get('work-auth') || ''
+    
+    const checkAuth = (authCookie: string) => {
+      if (authCookie.startsWith('xvii-')) {
+        const timestamp = parseInt(authCookie.split('-')[1] || '0')
+        const now = Date.now()
+        // Only redirect if cookie is fresh (within last 2 seconds)
+        return (now - timestamp) < 2000
+      }
+      return false
     }
-  }, [from, router]);
+    
+    if (checkAuth(siteAuth) || checkAuth(workAuth)) {
+      window.location.href = from;
+    }
+  }, [from]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (password === 'xvii') {
-      Cookies.set('work-auth', 'xvii', { expires: 7 }); // Cookie expires in 7 days
-      Cookies.set('site-auth', 'xvii', { expires: 7 }); // Also set site-wide auth cookie
-      router.push(from);
+      // Set cookies with current timestamp - middleware will check if it's fresh
+      const timestamp = Date.now().toString();
+      Cookies.set('work-auth', `xvii-${timestamp}`, { expires: 1 }); // Expires in 1 day as fallback
+      Cookies.set('site-auth', `xvii-${timestamp}`, { expires: 1 }); // Also set site-wide auth cookie
+      // Use window.location for full page reload to ensure cookie is sent
+      window.location.href = from;
     } else {
       setError(true);
       setPassword('');

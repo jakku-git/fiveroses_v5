@@ -1,30 +1,38 @@
 'use client';
 
 import { useState, useEffect, Suspense } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Cookies from 'js-cookie';
 
 function PasswordForm() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
-  const router = useRouter();
   const searchParams = useSearchParams();
   const from = searchParams.get('from') || '/';
 
   useEffect(() => {
-    // If already authenticated, redirect to the original page
-    if (Cookies.get('site-auth') === 'xvii') {
-      router.push(from);
+    // If already authenticated (cookie exists and is fresh), redirect to the original page
+    const siteAuth = Cookies.get('site-auth') || ''
+    if (siteAuth.startsWith('xvii-')) {
+      const timestamp = parseInt(siteAuth.split('-')[1] || '0')
+      const now = Date.now()
+      // Only redirect if cookie is fresh (within last 2 seconds)
+      if ((now - timestamp) < 2000) {
+        window.location.href = from;
+      }
     }
-  }, [from, router]);
+  }, [from]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     if (password === 'xvii') {
-      Cookies.set('site-auth', 'xvii', { expires: 7 }); // Cookie expires in 7 days
-      router.push(from);
+      // Set cookie with current timestamp - middleware will check if it's fresh
+      const timestamp = Date.now().toString();
+      Cookies.set('site-auth', `xvii-${timestamp}`, { expires: 1 }); // Expires in 1 day as fallback
+      // Use window.location for full page reload to ensure cookie is sent
+      window.location.href = from;
     } else {
       setError(true);
       setPassword('');

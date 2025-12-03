@@ -23,13 +23,34 @@ export function middleware(request: NextRequest) {
 
   // Check if the current path is in our protected paths
   if (PROTECTED_PATHS.includes(pathname)) {
-    // Check for site-wide auth cookie
-    const isAuthenticated = request.cookies.get('site-auth')?.value === 'xvii'
+    // Check for site-wide auth cookie with timestamp
+    const siteAuthCookie = request.cookies.get('site-auth')?.value || ''
+    const workAuthCookie = request.cookies.get('work-auth')?.value || ''
     
-    // Also check for work-auth cookie for backward compatibility
-    const isWorkAuthenticated = request.cookies.get('work-auth')?.value === 'xvii'
+    // Check if cookie exists and has valid format (xvii-timestamp)
+    const siteAuthValid = siteAuthCookie.startsWith('xvii-')
+    const workAuthValid = workAuthCookie.startsWith('xvii-')
     
-    if (!isAuthenticated && !isWorkAuthenticated) {
+    // If cookie exists, check if it's from a fresh session (within last 2 seconds)
+    // This ensures password is required on every refresh
+    // The 2-second window only allows the immediate redirect after password entry
+    let isAuthenticated = false
+    
+    if (siteAuthValid) {
+      const timestamp = parseInt(siteAuthCookie.split('-')[1] || '0')
+      const now = Date.now()
+      // Cookie is valid only if set within last 2 seconds (immediate redirect only)
+      // Any refresh or navigation after that will require password again
+      isAuthenticated = (now - timestamp) < 2000
+    }
+    
+    if (!isAuthenticated && workAuthValid) {
+      const timestamp = parseInt(workAuthCookie.split('-')[1] || '0')
+      const now = Date.now()
+      isAuthenticated = (now - timestamp) < 2000
+    }
+    
+    if (!isAuthenticated) {
       // Redirect to password page if not authenticated
       const url = request.nextUrl.clone()
       url.pathname = '/password'
