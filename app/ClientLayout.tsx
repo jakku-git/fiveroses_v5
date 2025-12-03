@@ -36,7 +36,7 @@ const Header = memo(function Header() {
   const [isScrolled, setIsScrolled] = React.useState(false)
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
   return (
@@ -123,7 +123,7 @@ const Footer = memo(function Footer() {
     };
     
     checkMobile();
-    window.addEventListener('resize', checkMobile);
+    window.addEventListener('resize', checkMobile, { passive: true });
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 

@@ -57,10 +57,12 @@ export default memo(function Double({ projects, reversed }: DoubleProps) {
             const ctx = canvas.getContext('2d');
             if (!ctx) return;
 
-            // Draw image to canvas
-            canvas.width = img.width;
-            canvas.height = img.height;
-            ctx.drawImage(img, 0, 0);
+            // Optimize: Use smaller canvas for brightness calculation (max 200px width)
+            const maxWidth = 200;
+            const scale = Math.min(1, maxWidth / img.width);
+            canvas.width = img.width * scale;
+            canvas.height = img.height * scale;
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
             // Get image data from bottom third of the image (where text will be)
             const imageData = ctx.getImageData(0, canvas.height * 0.66, canvas.width, canvas.height * 0.33);

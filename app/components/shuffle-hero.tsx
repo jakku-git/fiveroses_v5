@@ -354,7 +354,8 @@ const generateSquares = (): SquareData[] => {
 
 const ShuffleGrid = () => {
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const [squares, setSquares] = useState<SquareData[]>(() => generateSquares());
+  // Start with consistent order to avoid hydration mismatch
+  const [squares, setSquares] = useState<SquareData[]>(squareData);
 
   useEffect(() => {
     const shuffleSquares = () => {
@@ -362,6 +363,7 @@ const ShuffleGrid = () => {
       timeoutRef.current = setTimeout(shuffleSquares, 5000);
     };
 
+    // Only shuffle after mount to avoid hydration mismatch
     shuffleSquares();
 
     return () => {

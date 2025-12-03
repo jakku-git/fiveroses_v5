@@ -4,6 +4,7 @@ import { motion, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
+import { memo } from 'react';
 
 interface PerspectiveSectionProps {
     scrollYProgress: any;
@@ -14,7 +15,7 @@ interface PerspectiveSectionProps {
     ctaLink?: string;
 }
 
-export default function PerspectiveSection({ 
+const PerspectiveSection = memo(function PerspectiveSection({ 
     scrollYProgress, 
     isFirstSection = false, 
     imageSrc,
@@ -65,7 +66,15 @@ export default function PerspectiveSection({
                     src={imageSrc}
                     alt="Perspective section image"
                     fill
+                    sizes="100vw"
+                    quality={85}
+                    priority={isFirstSection}
+                    loading={isFirstSection ? "eager" : "lazy"}
                     className="object-cover"
+                    style={{
+                        transform: 'translateZ(0)',
+                        willChange: 'transform'
+                    }}
                 />
                 <div className="absolute inset-0 bg-black/30" />
                 
@@ -109,4 +118,8 @@ export default function PerspectiveSection({
             </div>
         </motion.div>
     );
-} 
+});
+
+PerspectiveSection.displayName = 'PerspectiveSection';
+
+export default PerspectiveSection; 

@@ -7,7 +7,6 @@ import { useRef, useEffect, useMemo } from 'react'
 import Lenis from '@studio-freight/lenis'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
-import { Inter } from "next/font/google"
 import Card from './components/Card'
 import { VelocityText } from './components/VelocityText'
 import { useIsMobile } from '@/components/ui/use-mobile'
@@ -107,13 +106,6 @@ const CanvasRevealEffect = dynamic(() => import("@/components/ui/canvas-reveal-e
   ssr: false,
   loading: () => <LoadingSkeleton />
 });
-
-const inter = Inter({ 
-    subsets: ["latin"], 
-    weight: ["100", "300", "400", "700", "900"],
-    display: 'swap',
-    preload: true
-})
 
 const MobileMessage = () => (
     <div className="fixed inset-0 bg-black z-[9999] flex items-center justify-center p-6 text-center">
@@ -226,7 +218,7 @@ export default function Home() {
                 </Suspense>
             </section>
 
-            <main className={`${inter.className} ${styles.main} transform-gpu will-change-transform`}>
+            <main className={`${styles.main} transform-gpu will-change-transform`}>
                 {/* 7. Parallax Gallery Section */}
                 <ParallaxGallery />
 

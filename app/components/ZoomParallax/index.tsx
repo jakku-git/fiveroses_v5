@@ -2,7 +2,8 @@
 
 import styles from './styles.module.css'
 import { useScroll, useTransform, motion } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, memo } from 'react'
+import Image from 'next/image'
 
 const pictures = [
     {
@@ -56,7 +57,7 @@ const pictures = [
     }
 ]
 
-export default function ZoomParallax() {
+const ZoomParallax = memo(function ZoomParallax() {
     const container = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: container,
@@ -86,9 +87,19 @@ export default function ZoomParallax() {
                                     height: position.height
                                 }}
                             >
-                                <img
+                                <Image
                                     src={src}
                                     alt="parallax image"
+                                    fill
+                                    sizes="(max-width: 768px) 100vw, 33vw"
+                                    quality={index === 0 ? 85 : 75}
+                                    loading={index === 0 ? "eager" : "lazy"}
+                                    priority={index === 0}
+                                    className="object-cover"
+                                    style={{
+                                        transform: 'translateZ(0)',
+                                        willChange: 'transform'
+                                    }}
                                 />
                             </div>
                         </motion.div>
@@ -97,4 +108,6 @@ export default function ZoomParallax() {
             </div>
         </div>
     )
-} 
+});
+
+export default ZoomParallax; 
