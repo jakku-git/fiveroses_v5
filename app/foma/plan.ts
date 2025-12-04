@@ -10,46 +10,86 @@ export interface BudgetItem {
 }
 
 export interface PlanData {
-  brand: "Foma";
+  brand: "MOFA";
   currency: "AUD";
   gstRate: number; // 0.10
   items: BudgetItem[];
 }
 
 export const planData: PlanData = {
-  brand: "Foma",
+  brand: "MOFA",
   currency: "AUD",
   gstRate: 0.10, // 10% Australian GST
   items: [
-    // Fixed website cost
-    { category: "Foundations", item: "Website Design & Build", costAudInclGst: 7500, billing: "Upfront", notes: "Design, build, CRO-ready; launch QA", fixed: true },
+    // 1. Discovery & UX Planning – $1,100 (inc GST)
+    { 
+      category: "1. Discovery & UX Planning", 
+      item: "Discovery & UX Planning", 
+      costAudInclGst: 1100, 
+      billing: "Upfront", 
+      notes: "Brand alignment session, target customer profile, site architecture & wireframes, user journey mapping for 1-product funnel. Deliverables: UX plan + wireframes for all key pages",
+      fixed: true 
+    },
 
-    // Hosting / Infra / Tools
-    { category: "Foundations", item: "Hosting & Infrastructure (Domain,Host, CDN, logging)", costAudInclGst: 3500, billing: "Annual (First Payment Up-Front)", notes: "Avg ~$300/mo incl. traffic & overages" },
-    { category: "Foundations", item: "Analytics & CRO Tools", costAudInclGst: 1500, billing: "Annual (First Payment Up-Front)", notes: "Product analytics + heatmaps (Hotjar/Clarity tier)" },
+    // 2. UI/Visual Design – $2,750 (inc GST)
+    { 
+      category: "2. UI/Visual Design", 
+      item: "UI/Visual Design", 
+      costAudInclGst: 2750, 
+      billing: "Upfront", 
+      notes: "Premium, minimal, modern aesthetic. Custom layouts for all core screens (desktop + mobile responsive). 2x refinement rounds. Key screens: Home (hero showcase), Product page, Features/specifications, About/brand story, Reviews/testimonials, Checkout/cart, Contact. Design Output: High-fidelity Figma file, full component system, typography & spacing rules",
+      fixed: true 
+    },
 
-    // Content Engine
-    { category: "Content", item: "Content Production (photography, video, UGC)", costAudInclGst: 1500, billing: "Monthly", notes: "~$1,500/mo for lookbooks, product shots, short videos" },
+    // 3. Front-End Development – $3,520 (inc GST)
+    { 
+      category: "3. Front-End Development", 
+      item: "Front-End Development", 
+      costAudInclGst: 3520, 
+      billing: "Upfront", 
+      notes: "Custom build from scratch (no template/theme). Modern stack: Next.js / React / Tailwind (or Shopify theme dev). Fully responsive. Accessibility best practices. Includes: Hero animations, Image sliders/carousels, Responsive components, Lazy loading",
+      fixed: true 
+    },
 
-    // Paid Media
-    { category: "Paid Media", item: "Meta Ads (Prospecting & Retargeting)", costAudInclGst: 2200, billing: "Monthly", notes: "~$2,200/mo; prospecting + remarketing (scale with ROAS)" },
-    { category: "Paid Media", item: "Google Search & Performance Max", costAudInclGst: 1700, billing: "Monthly", notes: "~$1,700/mo; search + shopping ads" },
-    { category: "Paid Media", item: "Pinterest Ads (Inspiration & Discovery)", costAudInclGst: 500, billing: "Monthly", notes: "~$500/mo; inspiration ads & discovery campaigns" },
+    // 4. Basic Animations & Interactive Effects – $990 (inc GST)
+    { 
+      category: "4. Basic Animations & Interactive Effects", 
+      item: "Basic Animations & Interactive Effects", 
+      costAudInclGst: 990, 
+      billing: "Upfront", 
+      notes: "Smooth scroll + reveal, hover effects, subtle parallax, motion-based transitions. Goal: Premium, elevated brand experience",
+      fixed: true 
+    },
 
-    // SEO
-    { category: "SEO", item: "Technical SEO & Content Strategy", costAudInclGst: 800, billing: "Monthly", notes: "~$800/mo; topic clusters, on-page optimization" },
+    // 5. Ecommerce Implementation – $770 (inc GST)
+    { 
+      category: "5. Ecommerce Implementation", 
+      item: "Ecommerce Implementation", 
+      costAudInclGst: 770, 
+      billing: "Upfront", 
+      notes: "Single product checkout flow, variant options, payment gateway, shipping settings, tax settings. Platform options: Shopify (recommended), WooCommerce, Custom checkout if required",
+      fixed: true 
+    },
 
-    // Lifecycle Marketing
-    { category: "Lifecycle", item: "Email & SMS Platform + Campaigns", costAudInclGst: 300, billing: "Monthly", notes: "~$300/mo platform + sends; flows activated" },
+    // 6. SEO Foundation & Performance – $440 (inc GST)
+    { 
+      category: "6. SEO Foundation & Performance", 
+      item: "SEO Foundation & Performance", 
+      costAudInclGst: 440, 
+      billing: "Upfront", 
+      notes: "Semantic markup, meta tags, titles, OG tags, sitemap + robots, speed optimisation. (Basic technical SEO, not ongoing SEO)",
+      fixed: true 
+    },
 
-    // PR & Partnerships
-    { category: "PR & Partnerships", item: "Micro-creator Partnerships & PR", costAudInclGst: 800, billing: "Monthly", notes: "~$800/mo; seeding, home tours, features" },
-
-    // Retail & Events
-    { category: "Retail & Events", item: "Pop-up Events & Retail Activation (2x)", costAudInclGst: 8000, billing: "One-off", notes: "Display materials, signage, light activations & events" },
-
-    // Contingency
-    { category: "Contingency", item: "Reserve (5% for overruns & experiments)", costAudInclGst: 5500, billing: "One-off", notes: "Buffer for ad hoc opportunities and unexpected costs" }
+    // 7. Testing, QA & Deployment – $330 (inc GST)
+    { 
+      category: "7. Testing, QA & Deployment", 
+      item: "Testing, QA & Deployment", 
+      costAudInclGst: 330, 
+      billing: "Upfront", 
+      notes: "Cross-browser + device testing, performance testing, bug fixes, launch setup",
+      fixed: true 
+    }
   ]
 };
 

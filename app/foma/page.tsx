@@ -2,7 +2,7 @@
 
 import { PasswordProtection } from "@/components/ui/password-protection";
 
-export default function FomaPage() {
+export default function MofaPage() {
   return (
     <PasswordProtection
       correctPassword="michaelzhou"

@@ -27,7 +27,7 @@ const sectionVariants = {
   transition: { duration: 0.8 }
 };
 
-export default function FomaPage() {
+export default function MofaPage() {
   const [gstIncluded, setGstIncluded] = useState(true);
   const [kpiReached, setKpiReached] = useState({
     revenue: false,
@@ -84,7 +84,7 @@ export default function FomaPage() {
       } else if (item.billing === "Upfront" || item.billing === "One-off") {
         annualCost = item.costAudInclGst;
       }
-        const displayCost = gstIncluded ? annualCost : annualCost * (1 - planData.gstRate);
+        const displayCost = gstIncluded ? annualCost : annualCost / (1 + planData.gstRate);
       return [
         item.category,
         item.item,
@@ -99,7 +99,7 @@ export default function FomaPage() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "foma-budget.csv";
+    a.download = "mofa-budget.csv";
     a.click();
   };
 
@@ -108,7 +108,7 @@ export default function FomaPage() {
   };
 
   return (
-    <div className={`min-h-screen bg-white text-zinc-900 ${cormorantGaramond.variable}`}>
+    <div className={`min-h-screen bg-white text-zinc-900 ${cormorantGaramond.variable} overflow-x-hidden`}>
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -124,7 +124,7 @@ export default function FomaPage() {
           <div className="absolute inset-0 bg-black/30" />
           <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-white/10 to-white/20" />
         </div>
-        <div className="relative z-20 w-[95%] sm:w-[90%] md:w-[80%] mx-auto text-center px-4">
+        <div className="relative z-20 w-[95%] sm:w-[90%] md:w-[80%] mx-auto text-center px-2 sm:px-4">
           <motion.h1 
             className="font-light tracking-tighter mb-6"
             initial={{ opacity: 0, y: 30 }}
@@ -137,10 +137,10 @@ export default function FomaPage() {
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <span className="font-cormorant-garamond font-medium text-[8rem] sm:text-[10rem] md:text-[12rem] lg:text-[18rem] leading-none text-zinc-900">FOMA</span>
+              <span className="font-cormorant-garamond font-medium text-[4rem] xs:text-[5rem] sm:text-[7rem] md:text-[9rem] lg:text-[14rem] xl:text-[16rem] leading-none text-zinc-900 break-words">MOFA</span>
             </motion.div>
             <motion.div 
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-6xl text-zinc-800"
+              className="text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl text-zinc-800 px-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
@@ -163,10 +163,10 @@ export default function FomaPage() {
             transition={{ duration: 0.8, delay: 0.8 }}
           >
             <motion.a
-              href="mailto:hello@fiveroses.com.au?subject=FOMA Proposal Approval&body=Hi,%0D%0A%0D%0AI approve this proposal for the FOMA brand launch."
+              href="mailto:hello@fiveroses.com.au?subject=MOFA Proposal Approval&body=Hi,%0D%0A%0D%0AI approve this proposal for the MOFA brand launch."
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="bg-zinc-900 text-white px-6 py-3 md:px-12 md:py-4 rounded-md font-medium hover:bg-zinc-800 transition-all duration-300 text-base md:text-lg relative overflow-hidden group inline-block cursor-pointer w-full sm:w-auto"
+              className="bg-zinc-900 text-white px-6 py-3 md:px-12 md:py-4 rounded-md font-medium hover:bg-zinc-800 transition-all duration-300 text-base md:text-lg relative overflow-hidden group inline-block cursor-pointer w-full sm:w-auto min-h-[44px] flex items-center justify-center"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 Approve Proposal
@@ -174,10 +174,10 @@ export default function FomaPage() {
               </span>
             </motion.a>
             <motion.a
-              href="mailto:hello@fiveroses.com.au?subject=FOMA Proposal - Download PDF&body=Hi,%0D%0A%0D%0APlease send me the PDF version of the FOMA brand launch proposal."
+              href="mailto:hello@fiveroses.com.au?subject=MOFA Proposal - Download PDF&body=Hi,%0D%0A%0D%0APlease send me the PDF version of the MOFA brand launch proposal."
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="bg-white text-zinc-900 px-6 py-3 md:px-12 md:py-4 rounded-md font-medium border-2 border-zinc-900 hover:bg-zinc-50 transition-all duration-300 text-base md:text-lg flex items-center justify-center gap-2 inline-block cursor-pointer w-full sm:w-auto"
+              className="bg-white text-zinc-900 px-6 py-3 md:px-12 md:py-4 rounded-md font-medium border-2 border-zinc-900 hover:bg-zinc-50 transition-all duration-300 text-base md:text-lg flex items-center justify-center gap-2 inline-block cursor-pointer w-full sm:w-auto min-h-[44px]"
             >
               <Download className="w-4 h-4 md:w-5 md:h-5" />
               Download PDF
@@ -190,8 +190,8 @@ export default function FomaPage() {
       <section className="py-12 sm:py-16 md:py-24 bg-zinc-50">
         <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto px-2">
           <motion.div {...fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-light mb-12 text-zinc-900">Executive Summary</h2>
-            <div className="grid md:grid-cols-2 gap-12 items-start">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-8 sm:mb-12 text-zinc-900">Executive Summary</h2>
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
               <div className="flex flex-col space-y-8">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -199,40 +199,40 @@ export default function FomaPage() {
                   transition={{ duration: 0.8 }}
                   className="mb-4"
                 >
-                  <span className="font-cormorant-garamond font-medium text-[6rem] md:text-[8rem] leading-none text-zinc-900">
-                    FOMA
+                  <span className="font-cormorant-garamond font-medium text-[4rem] sm:text-[5rem] md:text-[7rem] lg:text-[8rem] leading-none text-zinc-900 break-words">
+                    MOFA
                   </span>
                 </motion.div>
 
                 <div className="space-y-6">
                   <div className="space-y-3">
-                    <h3 className="text-2xl font-light text-zinc-900">Brand Position</h3>
-                    <p className="text-lg text-zinc-600 leading-relaxed">
+                    <h3 className="text-xl sm:text-2xl font-light text-zinc-900">Brand Position</h3>
+                    <p className="text-base sm:text-lg text-zinc-600 leading-relaxed">
                       Modern Australian furniture brand focused on modular, responsibly-sourced designs. 
                       Positioning: "Thoughtfully designed furniture for modern living spaces."
                     </p>
                   </div>
 
                   <div className="space-y-3">
-                    <h3 className="text-2xl font-light text-zinc-900">Target Audience</h3>
-                    <p className="text-lg text-zinc-600 leading-relaxed">
+                    <h3 className="text-xl sm:text-2xl font-light text-zinc-900">Target Audience</h3>
+                    <p className="text-base sm:text-lg text-zinc-600 leading-relaxed">
                       Design-conscious homeowners and renters, aged 25-45, living in Australian metro areas. 
                       They value quality, sustainability, and aesthetic appeal.
                     </p>
                   </div>
 
                   <div className="space-y-3">
-                    <h3 className="text-2xl font-light text-zinc-900">12-Month Scope</h3>
-                    <p className="text-lg text-zinc-600 leading-relaxed">
+                    <h3 className="text-xl sm:text-2xl font-light text-zinc-900">12-Month Scope</h3>
+                    <p className="text-base sm:text-lg text-zinc-600 leading-relaxed">
                       Comprehensive digital transformation including brand identity, website development, 
                       content engine, paid media, SEO, lifecycle marketing, and retail pop-ups.
                     </p>
                   </div>
 
                   <div className="space-y-3">
-                    <h3 className="text-2xl font-light text-zinc-900">Expected Outcomes</h3>
-                    <p className="text-lg text-zinc-600 leading-relaxed">
-                      Establish <span className="font-cormorant-garamond font-medium text-zinc-900">FOMA</span> as a recognized Australian furniture brand, 
+                    <h3 className="text-xl sm:text-2xl font-light text-zinc-900">Expected Outcomes</h3>
+                    <p className="text-base sm:text-lg text-zinc-600 leading-relaxed">
+                      Establish <span className="font-cormorant-garamond font-medium text-zinc-900">MOFA</span> as a recognized Australian furniture brand, 
                       achieve sustainable growth through multiple acquisition channels, and build a loyal customer base 
                       through exceptional experiences.
                     </p>
@@ -240,8 +240,8 @@ export default function FomaPage() {
                 </div>
               </div>
 
-              <div className="relative">
-                <div className="sticky top-24 space-y-8">
+              <div className="relative mt-8 md:mt-0">
+                <div className="md:sticky md:top-24 space-y-6 md:space-y-8">
                   {/* Product Video */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -305,17 +305,17 @@ export default function FomaPage() {
       <section className="py-12 sm:py-16 md:py-24">
         <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto px-2">
           <motion.div {...fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-light mb-12 text-zinc-900">Brand Identity Transformation</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-8 sm:mb-12 text-zinc-900">Brand Identity Transformation</h2>
             
             {/* Brand Messaging */}
             <div className="mb-20">
-              <h3 className="text-2xl font-light mb-8 text-zinc-900">Brand Evolution</h3>
-              <div className="grid md:grid-cols-2 gap-12">
+              <h3 className="text-xl sm:text-2xl font-light mb-6 sm:mb-8 text-zinc-900">Brand Evolution</h3>
+              <div className="grid md:grid-cols-2 gap-6 md:gap-12">
                 <div className="space-y-6">
                   <h4 className="text-xl text-zinc-600">Before</h4>
                   <div className="p-8 bg-zinc-50 rounded-lg border border-zinc-200 hover:border-zinc-300 transition-colors duration-300">
                     <div className="mb-6 p-4 bg-white rounded-lg border border-zinc-200">
-                      <p className="text-zinc-600 text-lg leading-relaxed">
+                      <p className="text-zinc-600 text-base sm:text-lg leading-relaxed">
                         Generic online furniture presence. Basic product listings with minimal brand story. 
                         Limited visual identity and inconsistent messaging across touchpoints.
                       </p>
@@ -339,8 +339,8 @@ export default function FomaPage() {
                   <h4 className="text-xl text-zinc-600">After</h4>
                   <div className="p-8 bg-zinc-50 rounded-lg border border-zinc-200 hover:border-zinc-300 transition-colors duration-300">
                     <div className="mb-6 p-4 bg-white rounded-lg border border-zinc-200">
-                      <p className="text-zinc-600 text-lg leading-relaxed">
-                        <span className="font-cormorant-garamond font-medium text-zinc-900">FOMA</span>
+                      <p className="text-zinc-600 text-base sm:text-lg leading-relaxed">
+                        <span className="font-cormorant-garamond font-medium text-zinc-900">MOFA</span>
                         <span className="italic">. Thoughtfully designed furniture for modern living. Responsibly sourced materials, 
                         modular designs, and timeless aesthetics that transform spaces.</span>
                       </p>
@@ -365,7 +365,7 @@ export default function FomaPage() {
 
             {/* Brand Values */}
             <div className="mb-20">
-              <h3 className="text-2xl font-light mb-8 text-zinc-900">Our Brand Pillars</h3>
+              <h3 className="text-xl sm:text-2xl font-light mb-6 sm:mb-8 text-zinc-900">Our Brand Pillars</h3>
               <div className="grid md:grid-cols-3 gap-8">
                 {[
                   {
@@ -394,8 +394,8 @@ export default function FomaPage() {
                     <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center mb-6 shadow-sm group-hover:shadow-md transition-shadow duration-300">
                       <value.icon className="w-6 h-6 text-zinc-600" />
                     </div>
-                    <h4 className="text-2xl font-light mb-4 text-zinc-900">{value.title}</h4>
-                    <p className="text-zinc-600 text-lg leading-relaxed">{value.description}</p>
+                    <h4 className="text-xl sm:text-2xl font-light mb-3 sm:mb-4 text-zinc-900">{value.title}</h4>
+                    <p className="text-zinc-600 text-base sm:text-lg leading-relaxed">{value.description}</p>
                   </motion.div>
                 ))}
               </div>
@@ -403,12 +403,12 @@ export default function FomaPage() {
 
             {/* Visual Identity Samples */}
             <div className="mb-20">
-              <h3 className="text-2xl font-light mb-8 text-zinc-900">Visual Identity</h3>
+              <h3 className="text-xl sm:text-2xl font-light mb-6 sm:mb-8 text-zinc-900">Visual Identity</h3>
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="p-8 bg-zinc-50 rounded-lg border border-zinc-200">
                   <h4 className="text-xl font-light mb-4 text-zinc-900">Typography</h4>
                   <div className="space-y-2">
-                    <p className="font-cormorant-garamond text-3xl text-zinc-900">FOMA</p>
+                    <p className="font-cormorant-garamond text-3xl text-zinc-900">MOFA</p>
                     <p className="text-zinc-600">Body text uses system font</p>
                   </div>
                 </div>
@@ -472,8 +472,8 @@ export default function FomaPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                   >
-                    <h4 className="text-xl font-light mb-4 text-zinc-900">{item.title}</h4>
-                    <p className="text-zinc-600 text-lg leading-relaxed">{item.description}</p>
+                    <h4 className="text-lg sm:text-xl font-light mb-3 sm:mb-4 text-zinc-900">{item.title}</h4>
+                    <p className="text-zinc-600 text-base sm:text-lg leading-relaxed">{item.description}</p>
                   </motion.div>
                 ))}
               </div>
@@ -486,7 +486,7 @@ export default function FomaPage() {
       <section className="py-12 sm:py-16 md:py-24">
         <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto px-2">
           <motion.div {...fadeInUp}>
-            <h2 className="text-3xl md:text-4xl font-light mb-12 text-zinc-900">Journey to Launch</h2>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-8 sm:mb-12 text-zinc-900">Journey to Launch</h2>
             <div className="space-y-12">
               {[
                 {
@@ -543,8 +543,8 @@ export default function FomaPage() {
                 >
                   <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-6">
                     <div>
-                      <h3 className="text-2xl font-light mb-2 text-zinc-900">{phase.phase}</h3>
-                      <p className="text-zinc-600 text-lg">{phase.description}</p>
+                      <h3 className="text-xl sm:text-2xl font-light mb-2 text-zinc-900">{phase.phase}</h3>
+                      <p className="text-zinc-600 text-base sm:text-lg">{phase.description}</p>
                     </div>
                     <span className="text-zinc-600 mt-2 md:mt-0">{phase.duration}</span>
                   </div>
@@ -552,7 +552,7 @@ export default function FomaPage() {
                     {phase.tasks.map((task, taskIndex) => (
                       <div key={taskIndex} className="flex items-start space-x-3 text-zinc-600 group">
                         <Check className="text-zinc-400 group-hover:text-zinc-500 transition-colors duration-300 mt-1" />
-                        <span className="text-lg group-hover:text-zinc-700 transition-colors duration-300">{task}</span>
+                        <span className="text-base sm:text-lg group-hover:text-zinc-700 transition-colors duration-300">{task}</span>
                       </div>
                     ))}
                   </div>
@@ -568,21 +568,24 @@ export default function FomaPage() {
         <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto px-2">
           <motion.div {...fadeInUp}>
             <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-              <h2 className="text-3xl md:text-4xl font-light text-zinc-900">Budget & Plan</h2>
-              <div className="flex items-center gap-4">
+              <div>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-zinc-900 mb-2">Website Project Proposal – Furniture Brand</h2>
+                <p className="text-base sm:text-lg md:text-xl text-zinc-600">Total Investment: ${(gstIncluded ? 9900 : 9000).toLocaleString('en-AU', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} {gstIncluded ? 'inc GST' : 'ex GST'}</p>
+              </div>
+              <div className="flex items-center gap-3 sm:gap-4">
                 <button
                   onClick={handleExportCSV}
-                  className="px-6 py-2 border border-zinc-300 rounded-md hover:bg-zinc-50 transition-colors flex items-center gap-2"
+                  className="px-4 sm:px-6 py-2 border border-zinc-300 rounded-md hover:bg-zinc-50 transition-colors flex items-center gap-2 min-h-[44px] text-sm sm:text-base"
                 >
                   <Download className="w-4 h-4" />
-                  CSV
+                  <span className="hidden sm:inline">CSV</span>
                 </button>
                 <button
                   onClick={handlePrint}
-                  className="px-6 py-2 border border-zinc-300 rounded-md hover:bg-zinc-50 transition-colors flex items-center gap-2"
+                  className="px-4 sm:px-6 py-2 border border-zinc-300 rounded-md hover:bg-zinc-50 transition-colors flex items-center gap-2 min-h-[44px] text-sm sm:text-base"
                 >
                   <Printer className="w-4 h-4" />
-                  Print
+                  <span className="hidden sm:inline">Print</span>
                 </button>
               </div>
             </div>
@@ -610,7 +613,7 @@ export default function FomaPage() {
             </div>
 
             {/* Budget Table */}
-            <div className="overflow-x-auto -mx-2 px-2">
+            <div className="overflow-x-auto -mx-2 px-2 scrollbar-thin scrollbar-thumb-zinc-300 scrollbar-track-transparent overscroll-x-contain">
               <table className="w-full border-collapse min-w-[600px]">
                 <thead className="bg-zinc-50 sticky top-0">
                   <tr>
@@ -637,10 +640,10 @@ export default function FomaPage() {
                           annualCost = item.costAudInclGst;
                         }
                         
-                        // Apply GST toggle: if including GST, show the value; if excluding, multiply by 0.9
-                        const displayCost = gstIncluded ? annualCost : annualCost * (1 - planData.gstRate);
+                        // Apply GST toggle: if including GST, show the value; if excluding, divide by 1.1
+                        const displayCost = gstIncluded ? annualCost : annualCost / (1 + planData.gstRate);
                         const totalCategory = categories.find(c => c.category === category)?.total || 0;
-                        const categoryDisplayTotal = gstIncluded ? totalCategory : totalCategory * (1 - planData.gstRate);
+                        const categoryDisplayTotal = gstIncluded ? totalCategory : totalCategory / (1 + planData.gstRate);
                         
                         return (
                           <motion.tr
@@ -650,16 +653,16 @@ export default function FomaPage() {
                             animate={{ opacity: 1 }}
                             transition={{ delay: (catIndex + itemIndex) * 0.05 }}
                           >
-                            <td className="px-3 py-3 md:px-6 md:py-4 border-b border-zinc-100 text-zinc-700 text-xs md:text-sm">{item.category}</td>
+                            <td className="px-3 py-3 md:px-6 md:py-4 border-b border-zinc-100 text-zinc-700 text-xs md:text-sm break-words">{item.category}</td>
                             <td className="px-3 py-3 md:px-6 md:py-4 border-b border-zinc-100 text-xs md:text-sm">
-                              <div className="flex items-center gap-2">
-                                {item.item}
-                                {item.fixed && <Lock className="w-3 h-3 md:w-4 md:h-4 text-zinc-400" />}
+                              <div className="flex items-center gap-2 break-words">
+                                <span className="break-words">{item.item}</span>
+                                {item.fixed && <Lock className="w-3 h-3 md:w-4 md:h-4 text-zinc-400 flex-shrink-0" />}
                               </div>
                             </td>
                             <td className="px-3 py-3 md:px-6 md:py-4 border-b border-zinc-100 text-right font-medium text-sm md:text-base">${displayCost.toLocaleString('en-AU', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}</td>
                             <td className="px-3 py-3 md:px-6 md:py-4 border-b border-zinc-100 text-zinc-600 text-xs md:text-sm hidden sm:table-cell">{item.billing}</td>
-                            <td className="px-3 py-3 md:px-6 md:py-4 border-b border-zinc-100 text-xs md:text-sm text-zinc-600 hidden lg:table-cell">{item.notes}</td>
+                            <td className="px-3 py-3 md:px-6 md:py-4 border-b border-zinc-100 text-xs md:text-sm text-zinc-600 hidden lg:table-cell break-words max-w-xs">{item.notes}</td>
                           </motion.tr>
                         );
                       })}
@@ -669,7 +672,7 @@ export default function FomaPage() {
                           {category} Subtotal
                         </td>
                         <td colSpan={3} className="px-3 py-3 md:px-6 md:py-4 text-right border-t border-zinc-300 text-zinc-900 text-sm md:text-base">
-                          ${(gstIncluded ? categories.find(c => c.category === category)?.total || 0 : ((categories.find(c => c.category === category)?.total || 0) * (1 - planData.gstRate))).toLocaleString('en-AU', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                          ${(gstIncluded ? categories.find(c => c.category === category)?.total || 0 : ((categories.find(c => c.category === category)?.total || 0) / (1 + planData.gstRate))).toLocaleString('en-AU', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
                         </td>
                       </tr>
                     </>
@@ -677,10 +680,10 @@ export default function FomaPage() {
                   {/* Grand Total */}
                   <tr className="bg-zinc-900 text-white">
                     <td colSpan={2} className="px-3 py-3 md:px-6 md:py-4 text-base md:text-xl font-light">
-                      Total (12 months)
+                      TOTAL PROJECT COST
                     </td>
                     <td colSpan={3} className="px-3 py-3 md:px-6 md:py-4 text-right text-base md:text-xl font-medium">
-                      ${(gstIncluded ? grandTotal : grandTotal * (1 - planData.gstRate)).toLocaleString('en-AU', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                      ${(gstIncluded ? grandTotal : grandTotal / (1 + planData.gstRate)).toLocaleString('en-AU', { minimumFractionDigits: 0, maximumFractionDigits: 0 })} {gstIncluded ? 'inc GST' : 'ex GST'}
                     </td>
                   </tr>
                   {!gstIncluded && (
@@ -697,27 +700,37 @@ export default function FomaPage() {
               </table>
             </div>
 
-            {/* Callout Box */}
-            <div className="mt-8 md:mt-12 p-4 md:p-8 bg-white rounded-lg border border-zinc-200">
-              <h4 className="text-lg md:text-xl font-light mb-3 md:mb-4 text-zinc-900">Assumptions & Exclusions</h4>
-              <ul className="space-y-2 text-sm md:text-base text-zinc-600">
-                <li className="flex items-start gap-2">
-                  <span className="text-zinc-400 mt-1">•</span>
-                  <span>All costs shown are in AUD and include GST (where applicable) unless otherwise stated</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-zinc-400 mt-1">•</span>
-                  <span>Website build is a fixed cost at $9,000 AUD upfront</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-zinc-400 mt-1">•</span>
-                  <span>Monthly recurring costs scale with performance and can be adjusted based on ROAS</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-zinc-400 mt-1">•</span>
-                  <span>Contingency reserve of 5% allocated for overruns and experimental initiatives</span>
-                </li>
-              </ul>
+            {/* Timeline & Payment Terms */}
+            <div className="mt-8 md:mt-12 grid md:grid-cols-2 gap-6">
+              <div className="p-4 md:p-8 bg-white rounded-lg border border-zinc-200">
+                <h4 className="text-lg md:text-xl font-light mb-3 md:mb-4 text-zinc-900 flex items-center gap-2">
+                  <Calendar className="w-5 h-5 md:w-6 md:h-6" />
+                  Timeline
+                </h4>
+                <p className="text-base md:text-lg text-zinc-600">
+                  4–6 weeks (depending on feedback turnaround)
+                </p>
+              </div>
+              <div className="p-4 md:p-8 bg-white rounded-lg border border-zinc-200">
+                <h4 className="text-lg md:text-xl font-light mb-3 md:mb-4 text-zinc-900 flex items-center gap-2">
+                  <DollarSign className="w-5 h-5 md:w-6 md:h-6" />
+                  Payment Terms
+                </h4>
+                <ul className="space-y-2 text-sm md:text-base text-zinc-600">
+                  <li className="flex items-start gap-2">
+                    <span className="text-zinc-400 mt-1">•</span>
+                    <span><strong>50%</strong> deposit</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-zinc-400 mt-1">•</span>
+                    <span><strong>30%</strong> after development</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-zinc-400 mt-1">•</span>
+                    <span><strong>20%</strong> before launch</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -727,19 +740,19 @@ export default function FomaPage() {
       <section className="py-12 sm:py-16 md:py-24">
         <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto text-center px-4">
           <motion.div {...fadeInUp}>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-4 md:mb-6 text-zinc-900">
-              Transform <span className="font-cormorant-garamond font-medium text-zinc-900">FOMA</span>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-4 md:mb-6 text-zinc-900 px-2">
+              Transform <span className="font-cormorant-garamond font-medium text-zinc-900">MOFA</span>
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-zinc-600 max-w-2xl mx-auto mb-6 md:mb-12 leading-relaxed">
-              Let's work together to launch and scale <span className="font-cormorant-garamond font-medium text-zinc-900">FOMA</span> as Australia's 
+            <p className="text-base sm:text-lg md:text-xl text-zinc-600 max-w-2xl mx-auto mb-6 md:mb-12 leading-relaxed px-2">
+              Let's work together to launch and scale <span className="font-cormorant-garamond font-medium text-zinc-900">MOFA</span> as Australia's 
               next standout furniture brand. Join us on this journey of design, quality, and growth.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <motion.a
-                href="mailto:hello@fiveroses.com.au?subject=FOMA Proposal Approval&body=Hi,%0D%0A%0D%0AI approve this proposal for the FOMA brand launch."
+                href="mailto:hello@fiveroses.com.au?subject=MOFA Proposal Approval&body=Hi,%0D%0A%0D%0AI approve this proposal for the MOFA brand launch."
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="bg-zinc-900 text-white px-6 py-3 md:px-12 md:py-4 rounded-md font-medium hover:bg-zinc-800 transition-all duration-300 text-base md:text-lg relative overflow-hidden group inline-block cursor-pointer w-full sm:w-auto"
+                className="bg-zinc-900 text-white px-6 py-3 md:px-12 md:py-4 rounded-md font-medium hover:bg-zinc-800 transition-all duration-300 text-base md:text-lg relative overflow-hidden group inline-block cursor-pointer w-full sm:w-auto min-h-[44px] flex items-center justify-center"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   <Mail className="w-4 h-4 md:w-5 md:h-5" />
@@ -747,10 +760,10 @@ export default function FomaPage() {
                 </span>
               </motion.a>
               <motion.a
-                href="mailto:hello@fiveroses.com.au?subject=FOMA Proposal - Request Changes&body=Hi,%0D%0A%0D%0AI'd like to discuss changes to the FOMA proposal."
+                href="mailto:hello@fiveroses.com.au?subject=MOFA Proposal - Request Changes&body=Hi,%0D%0A%0D%0AI'd like to discuss changes to the MOFA proposal."
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="bg-white text-zinc-900 px-6 py-3 md:px-12 md:py-4 rounded-md font-medium border-2 border-zinc-900 hover:bg-zinc-50 transition-all duration-300 text-base md:text-lg flex items-center justify-center inline-block cursor-pointer w-full sm:w-auto"
+                className="bg-white text-zinc-900 px-6 py-3 md:px-12 md:py-4 rounded-md font-medium border-2 border-zinc-900 hover:bg-zinc-50 transition-all duration-300 text-base md:text-lg flex items-center justify-center inline-block cursor-pointer w-full sm:w-auto min-h-[44px]"
               >
                 Request Changes
               </motion.a>

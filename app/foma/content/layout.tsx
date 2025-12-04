@@ -1,8 +1,8 @@
-import { metadata as fomaMetadata } from './metadata';
+import { metadata as mofaMetadata } from './metadata';
 
-export const metadata = fomaMetadata;
+export const metadata = mofaMetadata;
 
-export default function FomaLayout({
+export default function MofaLayout({
   children,
 }: {
   children: React.ReactNode;
