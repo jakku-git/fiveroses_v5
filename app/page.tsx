@@ -149,15 +149,19 @@ const MobileMessage = () => (
 
 export default function Home() {
     const container = useRef<HTMLDivElement>(null);
+    const isMobile = useIsMobile();
+    
+    // Initialize useScroll - it will handle null refs gracefully
     const { scrollYProgress } = useScroll({
         target: container,
         offset: ["start start", "end end"]
     });
-    const isMobile = useIsMobile();
 
     // Optimize Lenis scroll with better performance settings
     useEffect(() => {
-        if (!isMobile) {
+        if (typeof window === 'undefined' || isMobile) return;
+
+        try {
             const lenis = new Lenis({
                 duration: 1.2,
                 easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -178,9 +182,11 @@ export default function Home() {
             rafId = requestAnimationFrame(raf);
 
             return () => {
-                cancelAnimationFrame(rafId);
+                if (rafId) cancelAnimationFrame(rafId);
                 lenis.destroy();
             };
+        } catch (error) {
+            console.error('Error initializing Lenis:', error);
         }
     }, [isMobile]);
 

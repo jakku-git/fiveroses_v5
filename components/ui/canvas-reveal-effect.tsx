@@ -54,6 +54,8 @@ export const CanvasRevealEffect = ({
   }
 
   useEffect(() => {
+    if (typeof document === 'undefined') return;
+    
     const handleMouseMove = throttle((e: MouseEvent) => {
       if (!containerRef.current) return
 
@@ -79,7 +81,7 @@ export const CanvasRevealEffect = ({
   }, [])
 
   useEffect(() => {
-    if (!canvasRef.current || !textRef.current) return
+    if (!canvasRef.current || !textRef.current || typeof window === 'undefined') return
 
     const updateDimensions = () => {
       if (!textRef.current) return
@@ -195,7 +197,7 @@ export const CanvasRevealEffect = ({
     }
 
     function getImageData() {
-      if (!ctx || !textRef.current) return null
+      if (!ctx || !textRef.current || typeof document === 'undefined' || typeof window === 'undefined') return null
 
       const tempCanvas = document.createElement("canvas")
       const tempCtx = tempCanvas.getContext("2d")
@@ -229,6 +231,7 @@ export const CanvasRevealEffect = ({
       mouse.y = e.clientY - rect.top
     }, 16) // Throttle to ~60fps
 
+    if (typeof window === 'undefined') return;
     window.addEventListener("mousemove", handleCanvasMouseMove)
 
     function animate() {
