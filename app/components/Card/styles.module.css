@@ -53,10 +53,21 @@
     pointer-events: none;
 }
 
-.card:hover {
+.card {
+    touch-action: manipulation;
+}
+
+.card:hover,
+.card:active {
     transform: translateY(-10px) scale(1.01);
     box-shadow: 0 30px 60px rgba(0,0,0,0.12);
     border-color: rgba(0,0,0,0.12);
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .card:active {
+        transform: scale(0.98);
+    }
 }
 
 .card h2 {
@@ -86,7 +97,8 @@
     z-index: 2;
 }
 
-.card:hover h2 {
+.card:hover h2,
+.card:active h2 {
     transform: scale(1.01) translateZ(0);
     letter-spacing: -0.01em;
 }
@@ -144,7 +156,8 @@
     z-index: 2;
 }
 
-.description p:hover {
+.description p:hover,
+.description p:active {
     opacity: 1;
 }
 
@@ -229,12 +242,18 @@
     transition: width 0.3s ease;
 }
 
-.description span a:hover {
+.description span a {
+    touch-action: manipulation;
+}
+
+.description span a:hover,
+.description span a:active {
     opacity: 1;
     transform: translateX(5px);
 }
 
-.description span a:hover::after {
+.description span a:hover::after,
+.description span a:active::after {
     width: 100%;
 }
 
@@ -245,7 +264,8 @@
     opacity: 0.8;
 }
 
-.description span:hover svg {
+.description span:hover svg,
+.description span:active svg {
     transform: translateX(5px);
 }
 
@@ -276,7 +296,8 @@
     }
 }
 
-.card:hover .imageContainer {
+.card:hover .imageContainer,
+.card:active .imageContainer {
     transform: scale(1.02);
     box-shadow: 0 20px 40px rgba(0,0,0,0.12);
 }
@@ -307,7 +328,8 @@
     z-index: 1;
 }
 
-.card:hover .inner::after {
+.card:hover .inner::after,
+.card:active .inner::after {
     opacity: 1;
 }
 
@@ -325,7 +347,8 @@
     z-index: 1;
 }
 
-.card:hover .inner::before {
+.card:hover .inner::before,
+.card:active .inner::before {
     opacity: 1;
 }
 
@@ -343,6 +366,7 @@
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.card:hover .inner img {
+.card:hover .inner img,
+.card:active .inner img {
     transform: scale(1.05);
 } 
