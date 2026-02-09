@@ -157,31 +157,31 @@ export default function Home() {
 
     // Optimize Lenis scroll with better performance settings
     useEffect(() => {
-        if (!isMobile) {
-            const lenis = new Lenis({
-                duration: 1.2,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                orientation: 'vertical',
-                gestureOrientation: 'vertical',
-                smoothWheel: true,
-                touchMultiplier: 2,
-                infinite: false, // Disable infinite scroll
-                lerp: 0.1, // Lower lerp value for better performance
-            });
+        if (typeof window === 'undefined' || isMobile) return;
 
-            // Optimize RAF loop
-            let rafId: number;
-            const raf = (time: number) => {
-                lenis.raf(time);
-                rafId = requestAnimationFrame(raf);
-            };
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            orientation: 'vertical',
+            gestureOrientation: 'vertical',
+            smoothWheel: true,
+            touchMultiplier: 2,
+            infinite: false, // Disable infinite scroll
+            lerp: 0.1, // Lower lerp value for better performance
+        });
+
+        // Optimize RAF loop
+        let rafId: number;
+        const raf = (time: number) => {
+            lenis.raf(time);
             rafId = requestAnimationFrame(raf);
+        };
+        rafId = requestAnimationFrame(raf);
 
-            return () => {
-                cancelAnimationFrame(rafId);
-                lenis.destroy();
-            };
-        }
+        return () => {
+            if (rafId) cancelAnimationFrame(rafId);
+            lenis.destroy();
+        };
     }, [isMobile]);
 
     // Memoize expensive computations

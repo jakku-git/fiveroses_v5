@@ -2,7 +2,6 @@
 
 import React, { memo, useEffect, useState } from "react"
 import { Inter, Crimson_Text } from "next/font/google"
-import "./globals.css"
 import Link from "next/link"
 import { Menu, X, Instagram, Twitter, Linkedin } from "lucide-react"
 import { motion } from "framer-motion"
@@ -118,6 +117,8 @@ const Footer = memo(function Footer() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    if (typeof window === 'undefined' || typeof navigator === 'undefined') return;
+    
     const checkMobile = () => {
       setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
     };
