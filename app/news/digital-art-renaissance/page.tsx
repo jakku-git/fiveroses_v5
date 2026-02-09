@@ -174,7 +174,7 @@ export default function ArticlePage() {
                     className="rounded-full"
                   />
                   <div>
-                    <div className="font-medium">editor @ fiveroses</div>
+                    <div className="font-medium">Dr. Marco Bianchi</div>
                     <div className="text-sm text-white/60">Digital Arts Researcher</div>
                   </div>
                 </div>

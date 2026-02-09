@@ -97,8 +97,15 @@ export default function ArticlePage({ params }: ArticlePageProps) {
 
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-rose-500/20">
+                  <img
+                    src={article.authorImage}
+                    alt={article.author}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <div>
-                  <p className="text-sm font-medium">{article.author.name}</p>
+                  <p className="text-sm font-medium">{article.author}</p>
                   <p className="text-xs text-neutral-400">{article.date}</p>
                 </div>
               </div>

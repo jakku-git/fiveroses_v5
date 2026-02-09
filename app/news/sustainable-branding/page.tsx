@@ -185,8 +185,17 @@ export default function ArticlePage() {
 
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-rose-500/20">
+                  <Image
+                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=300&auto=format&fit=crop"
+                    alt="Emma Wilson"
+                    width={40}
+                    height={40}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <div>
-                  <p className="text-sm font-medium">editor @ fiveroses</p>
+                  <p className="text-sm font-medium">Emma Wilson</p>
                   <p className="text-xs text-neutral-400">May 15, 2023</p>
                 </div>
               </div>

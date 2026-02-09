@@ -164,8 +164,17 @@ export default function ArticlePage() {
 
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-rose-500/20">
+                  <Image
+                    src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=300&auto=format&fit=crop"
+                    alt="Dr. Emily Chen"
+                    width={40}
+                    height={40}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
                 <div>
-                  <p className={styles.authorName}>editor @ fiveroses</p>
+                  <p className={styles.authorName}>Dr. Emily Chen</p>
                   <p className={styles.authorDate}>January 20, 2024</p>
                 </div>
               </div>
