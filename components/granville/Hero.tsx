@@ -13,7 +13,7 @@ export default function Hero() {
           loop={true}
           muted={true}
           playsInline={true}
-          preload="metadata"
+          preload="auto"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/60" />

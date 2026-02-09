@@ -118,7 +118,7 @@ export default function MofaPage() {
             loop={true}
             muted={true}
             playsInline={true}
-            preload="metadata"
+            preload="auto"
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/30" />
@@ -255,7 +255,7 @@ export default function MofaPage() {
                       loop={true}
                       muted={true}
                       playsInline={true}
-                      preload="metadata"
+                      preload="auto"
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/10 to-transparent" />

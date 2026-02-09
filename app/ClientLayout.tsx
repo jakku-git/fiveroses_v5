@@ -259,13 +259,15 @@ const Footer = memo(function Footer() {
 })
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
+  const isMobile = useIsMobile();
+
   return (
     <>
-      <Header />
+      {!isMobile && <Header />}
       <main className={`min-h-screen ${crimsonText.variable}`}>
         {children}
       </main>
-      <Footer />
+      {!isMobile && <Footer />}
     </>
   )
 }

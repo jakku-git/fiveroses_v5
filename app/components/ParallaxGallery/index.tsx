@@ -235,26 +235,20 @@ export default function ParallaxGallery() {
         setDimension({width: window.innerWidth, height: window.innerHeight});
     }, []);
 
-    // Optimize Lenis scroll configuration - only on desktop
+    // Optimize Lenis scroll configuration
     useEffect(() => {
-        if (typeof window === 'undefined') return;
-        
-        // Check if desktop (screen width >= 768px)
-        const isDesktop = window.innerWidth >= 768;
-        if (!isDesktop) return;
-
         const lenis = new Lenis({
             wrapper: window,
             content: document.documentElement,
-            duration: 1.0,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -8 * t)),
+            duration: 1.0, // Reduced from 1.2 for snappier scrolling
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -8 * t)), // Simplified easing
             orientation: 'vertical',
             gestureOrientation: 'vertical',
             smoothWheel: true,
-            wheelMultiplier: 1.0,
-            touchMultiplier: 2.0,
+            wheelMultiplier: 1.0, // Increased from 0.8 for more responsive scrolling
+            touchMultiplier: 2.0, // Increased from 1.5 for better touch response
             infinite: false,
-            lerp: 0.08,
+            lerp: 0.08, // Reduced from 0.1 for snappier movement
         });
 
         // Optimize RAF handling
