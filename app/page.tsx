@@ -196,14 +196,6 @@ export default function Home() {
         [cards.length]
     );
 
-    if (isMobile) {
-        return (
-            <div className="fixed inset-0 bg-black">
-                <MobileMessage />
-            </div>
-        );
-    }
-
     return (
         <>
             {/* 1. Hero Section */}
