@@ -126,18 +126,7 @@ export default function ArticlePage({
               {description}
             </p>
             <div className="flex items-center justify-center gap-4 text-sm text-white/60">
-              <div className="flex items-center gap-2">
-                <Image
-                  src={authorImage.src}
-                  alt={authorImage.alt || author}
-                  width={authorImage.width || 32}
-                  height={authorImage.height || 32}
-                  quality={85}
-                  className="rounded-full"
-                  loading="eager"
-                />
-                <span>{author}</span>
-              </div>
+              <span>{author}</span>
               <span>•</span>
               <span>{date}</span>
               <span>•</span>
