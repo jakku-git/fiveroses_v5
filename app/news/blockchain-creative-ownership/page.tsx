@@ -172,15 +172,7 @@ export default function ArticlePage() {
 
               <div className="flex items-center gap-6 pt-4">
                 <div className="flex items-center gap-3">
-                  <Image
-                    src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=300&auto=format&fit=crop"
-                    alt="Dr. Sophia Martinez"
-                    width={40}
-                    height={40}
-                    className="rounded-full"
-                  />
-                  <div>
-                    <div className="font-medium">Dr. Sophia Martinez</div>
+                  <div><div className="font-medium">Editor @ fiveroses</div>
                     <div className="text-sm text-white/60">Technology Analyst</div>
                   </div>
                 </div>

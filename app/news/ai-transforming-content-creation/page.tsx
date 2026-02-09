@@ -43,17 +43,8 @@ export default function AITransformingContentCreationPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-full overflow-hidden">
-                <img
-                  src="/placeholder.svg?height=100&width=100"
-                  alt="Michael Chen"
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                />
-              </div>
-              <div>
-                <p className="font-medium">Michael Chen</p>
+            <div className="flex items-center gap-2"><div>
+                <p className="font-medium">Editor @ fiveroses</p>
                 <p className="text-sm text-neutral-400">Technology Analyst</p>
               </div>
             </div>

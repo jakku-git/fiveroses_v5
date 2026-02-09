@@ -166,15 +166,7 @@ export default function ArticlePage() {
 
               <div className="flex items-center gap-6 pt-4">
                 <div className="flex items-center gap-3">
-                  <Image
-                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300&auto=format&fit=crop"
-                    alt="Dr. James Wilson"
-                    width={40}
-                    height={40}
-                    className="rounded-full"
-                  />
-                  <div>
-                    <div className="font-medium">Dr. James Wilson</div>
+                  <div><div className="font-medium">Editor @ fiveroses</div>
                     <div className="text-sm text-white/60">Future of Work Researcher</div>
                   </div>
                 </div>
