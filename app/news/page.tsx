@@ -32,8 +32,8 @@ const featuredArticle: Article = {
   content: "Explore the key trends and technologies that will define digital marketing in the coming years. From AI-powered personalization to immersive experiences...",
   readTime: 8,
   author: {
-    name: "Editor @ fiveroses",
-    image: "",
+    name: "Sarah Chen",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=300&auto=format&fit=crop",
   },
   date: "June 15, 2023",
   tags: ["Digital Marketing", "AI", "Technology", "Strategy"]
@@ -49,8 +49,8 @@ export const allArticles: Article[] = [
     content: "Explore how blockchain technology is revolutionizing creative ownership and intellectual property rights in the digital age. From NFTs to smart contracts, discover how artists and creators are leveraging blockchain to protect and monetize their work in unprecedented ways.",
     readTime: 11,
     author: {
-      name: "Editor @ fiveroses",
-      image: "",
+      name: "Dr. Sophia Martinez",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=300&auto=format&fit=crop",
     },
     date: "February 20, 2024",
     tags: ["Blockchain", "Digital Rights", "NFTs", "Creative Economy"]
@@ -64,8 +64,8 @@ export const allArticles: Article[] = [
     content: "Explore how digital platforms are adapting to promote mental wellness in 2024. From AI-powered wellness tools to mindful technology use, discover the latest innovations in digital mental health support.",
     readTime: 12,
     author: {
-      name: "Editor @ fiveroses",
-      image: "",
+      name: "Dr. Emily Chen",
+      image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=300&auto=format&fit=crop",
     },
     date: "January 20, 2024",
     tags: ["Digital Wellness", "Mental Health", "Technology", "Psychology"]
@@ -79,8 +79,8 @@ export const allArticles: Article[] = [
     content: "Discover how traditional artists are embracing digital tools and AI in 2024. From the fusion of classical techniques with cutting-edge technology to the evolution of digital art markets, explore the new frontier of artistic expression.",
     readTime: 10,
     author: {
-      name: "Editor @ fiveroses",
-      image: "",
+      name: "Alex Rivera",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop",
     },
     date: "January 25, 2024",
     tags: ["Digital Art", "AI", "Creativity", "Innovation"]
@@ -94,8 +94,8 @@ export const allArticles: Article[] = [
     content: "Explore how digital nomadism is evolving beyond location independence to reshape work-life integration in 2025. From global work hubs to sustainable living practices, discover the new frontier of remote work and community building.",
     readTime: 12,
     author: {
-      name: "Editor @ fiveroses",
-      image: "",
+      name: "Marcus Chen",
+      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300&auto=format&fit=crop",
     },
     date: "February 5, 2024",
     tags: ["Digital Nomadism", "Remote Work", "Future of Work", "Technology"]
@@ -109,8 +109,8 @@ export const allArticles: Article[] = [
     content: "Discover how quantum computing is revolutionizing creative industries in 2025. From quantum-powered generative art to advanced design optimization, explore the new frontier where technology meets creativity.",
     readTime: 15,
     author: {
-      name: "Editor @ fiveroses",
-      image: "",
+      name: "Dr. Sarah Chen",
+      image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=300&auto=format&fit=crop",
     },
     date: "February 10, 2024",
     tags: ["Quantum Computing", "Creative Technology", "Innovation", "Art"]
@@ -124,8 +124,8 @@ export const allArticles: Article[] = [
     content: "Discover how digital identity is evolving beyond social media profiles to encompass privacy, security, and self-sovereignty. From decentralized identity systems to digital reputation management, explore the new frontier of personal digital presence.",
     readTime: 12,
     author: {
-      name: "Editor @ fiveroses",
-      image: "",
+      name: "Dr. Maya Patel",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=300&auto=format&fit=crop",
     },
     date: "February 15, 2024",
     tags: ["Digital Identity", "Privacy", "Technology", "Security"]
@@ -154,8 +154,8 @@ export const allArticles: Article[] = [
     content: "Discover how artificial intelligence is revolutionizing the way we create and distribute content. Learn about the latest tools and techniques that are reshaping content creation across industries.",
     readTime: 6,
     author: {
-      name: "Editor @ fiveroses",
-      image: "",
+      name: "Michael Chen",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300&auto=format&fit=crop",
     },
     date: "May 28, 2023",
     tags: ["AI", "Content Creation", "Technology", "Innovation"]
@@ -169,8 +169,8 @@ export const allArticles: Article[] = [
     content: "Explore the cutting-edge trends and technologies that are revolutionizing web design. From AI-powered tools to immersive experiences, discover what's shaping the future of web design.",
     readTime: 7,
     author: {
-      name: "Editor @ fiveroses",
-      image: "",
+      name: "Sarah Johnson",
+      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=300&auto=format&fit=crop",
     },
     date: "March 15, 2023",
     tags: ["Web Design", "UX", "Technology", "Innovation"]
@@ -184,8 +184,8 @@ export const allArticles: Article[] = [
     content: "As video content continues to dominate digital marketing, brands must adapt to emerging trends and technologies. From AI-powered personalization to immersive experiences, discover how leading companies are leveraging video marketing to drive engagement and ROI.",
     readTime: 10,
     author: {
-      name: "Editor @ fiveroses",
-      image: "",
+      name: "David Lee",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300&auto=format&fit=crop",
     },
     date: "April 22, 2023",
     tags: ["Video Marketing", "Content Strategy", "Digital Marketing", "Innovation"]
@@ -350,6 +350,15 @@ export default function NewsPage() {
 
                       <div className={`${styles.cardFooter} mt-8`}>
                         <div className={styles.cardAuthor}>
+                          <div className={`${styles.cardAuthorImage} w-8 h-8`}>
+                            <Image
+                              src={article.author.image}
+                              alt={article.author.name}
+                              width={32}
+                              height={32}
+                              className="object-cover"
+                            />
+                          </div>
                           <span className={`${styles.cardAuthorName} text-base`}>{article.author.name}</span>
                         </div>
                         <span className={`${styles.cardDate} text-sm`}>
@@ -422,6 +431,15 @@ export default function NewsPage() {
                       </p>
                     </div>
                     <div className="mt-4 flex items-center gap-3 text-sm text-white/40">
+                      <div className="w-6 h-6 rounded-full overflow-hidden">
+                        <Image
+                          src={article.author.image}
+                          alt={article.author.name}
+                          width={24}
+                          height={24}
+                          className="object-cover"
+                        />
+                      </div>
                       <span className="font-medium">{article.author.name}</span>
                       <span className="w-1 h-1 rounded-full bg-white/20" />
                       <time>{new Date(article.date).toLocaleDateString('en-US', { 

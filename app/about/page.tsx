@@ -37,10 +37,10 @@ export default function AboutPage() {
       {/* About Section */}
       <div className="w-full bg-black text-white">
         <div className="w-[80%] mx-auto pt-24">
-          <h1 className="text-3xl md:text-5xl font-light tracking-tighter mb-8">About fiveroses</h1>
+          <h1 className="text-3xl md:text-5xl font-light tracking-tighter mb-8">About Five Roses</h1>
           <div className="space-y-6 max-w-3xl mb-16">
             <p className="text-xl font-light text-white/70 leading-relaxed">
-              At fiveoses, we're more than a creative studio. We're a collective of makers, thinkers, and storytellers driven by one goal: to blur the line between digital innovation and artistic soul. We exist to craft meaningful experiences that don't just look beautiful, but feel unforgettable.
+              At Five Roses, we're more than a creative studio—we're a collective of makers, thinkers, and storytellers driven by one goal: to blur the line between digital innovation and artistic soul. We exist to craft meaningful experiences that don't just look beautiful, but feel unforgettable.
             </p>
             <p className="text-xl font-light text-white/70 leading-relaxed">
               We believe creativity should make you feel something. It should stir curiosity, spark conversation, and leave a lasting imprint. Whether we're building brands, crafting content, or coding immersive digital experiences, our work is rooted in emotion and powered by intention.
