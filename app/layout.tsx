@@ -4,11 +4,11 @@ import { Inter, Cormorant_Garamond } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import ClientLayout from "./ClientLayout"
+import GlobalErrorHandler from "./error-boundary"
 
 const inter = Inter({ 
   subsets: ["latin"],
   display: 'swap',
-  preload: true,
   adjustFontFallback: true,
   variable: '--font-inter',
 })
@@ -41,6 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${inter.className} ${cormorantGaramond.variable}`}>
       <body className="bg-black text-white">
+        <GlobalErrorHandler />
         <ClientLayout>{children}</ClientLayout>
         <Analytics />
       </body>
