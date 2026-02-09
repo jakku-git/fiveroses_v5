@@ -3,10 +3,7 @@ import type { NextRequest } from 'next/server'
 
 // Pages that require password protection
 const PROTECTED_PATHS = [
-  '/',
   '/work',
-  '/news',
-  '/about',
   '/work/marketing',
   '/work/web-solutions',
   '/work/creative-production',
@@ -64,10 +61,7 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/',
     '/work',
-    '/news',
-    '/about',
     '/work/marketing',
     '/work/web-solutions',
     '/work/creative-production',
