@@ -2,10 +2,12 @@
 
 import { motion } from "framer-motion";
 import { Download, MessageCircle } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function Hero() {
+  const isMobile = useIsMobile();
   return (
-    <section className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section className="relative h-[60vh] md:h-screen flex items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <video
           src="/Granville Place.mp4"
@@ -13,7 +15,7 @@ export default function Hero() {
           loop={true}
           muted={true}
           playsInline={true}
-          preload="auto"
+          preload="metadata"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-black/60" />
@@ -27,13 +29,13 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
           className="mb-6"
         >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light mb-4 text-white leading-tight px-2">
+          <h1 className="text-3xl md:text-5xl lg:text-7xl font-light mb-4 text-white leading-tight px-2">
             Granville Place
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-white/90 font-light mb-2 px-2">
+          <p className="text-base md:text-xl lg:text-2xl xl:text-3xl text-white/90 font-light mb-2 px-2">
             12-Month Growth Plan
           </p>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/80 font-light px-2">
+          <p className="text-xs md:text-base lg:text-lg xl:text-xl text-white/80 font-light px-2">
             A$145,000 | Search, Social, OOH, Chinese Media, CRO
           </p>
         </motion.div>
@@ -46,7 +48,7 @@ export default function Hero() {
         >
           <motion.a
             href="#contact"
-            className="bg-white text-slate-900 px-8 py-4 rounded-lg font-medium hover:bg-slate-100 transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto"
+            className="bg-white text-slate-900 px-8 py-4 rounded-lg font-medium hover:bg-slate-100 active:bg-slate-200 transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto min-h-[44px] touch-manipulation"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
@@ -55,7 +57,7 @@ export default function Hero() {
           </motion.a>
           <motion.a
             href="mailto:hello@fiveroses.com.au?subject=Granville Place Proposal - PDF Request&body=Hi,%0D%0A%0D%0APlease send me the PDF version of the Granville Place 12-month growth proposal.%0D%0A%0D%0AThanks!"
-            className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-medium hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto"
+            className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-medium hover:bg-white/10 active:bg-white/20 transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto min-h-[44px] touch-manipulation"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >

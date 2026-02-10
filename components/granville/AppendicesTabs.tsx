@@ -8,7 +8,7 @@ export default function AppendicesTabs() {
   const [activeTab, setActiveTab] = useState<string>("keywords");
 
   return (
-    <section className="py-12 sm:py-16 md:py-24">
+    <section className="py-12 md:py-24">
       <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto px-2">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -31,10 +31,10 @@ export default function AppendicesTabs() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-6 py-3 font-medium transition-colors border-b-2 ${
+                className={`px-6 py-3 font-medium transition-colors border-b-2 min-h-[44px] touch-manipulation ${
                   activeTab === tab.id
                     ? "border-blue-600 text-blue-600"
-                    : "border-transparent text-slate-600 hover:text-slate-900"
+                    : "border-transparent text-slate-600 hover:text-slate-900 active:text-slate-950"
                 }`}
               >
                 {tab.label}

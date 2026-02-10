@@ -9,7 +9,7 @@ export default function ChannelAccordion() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-12 sm:py-16 md:py-24 bg-slate-50">
+    <section className="py-12 md:py-24 bg-slate-50">
       <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto px-2">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -29,7 +29,7 @@ export default function ChannelAccordion() {
               >
                 <button
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                  className="w-full p-6 flex items-center justify-between text-left hover:bg-slate-50 transition-colors"
+                  className="w-full p-6 flex items-center justify-between text-left hover:bg-slate-50 active:bg-slate-100 transition-colors min-h-[44px] touch-manipulation"
                 >
                   <h3 className="text-xl font-light text-slate-900">
                     {channel.title}

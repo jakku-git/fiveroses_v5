@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Cormorant_Garamond } from 'next/font/google';
 import { ArrowRight, Leaf, Award, Sparkles, Globe, Shield, Zap, Users, Target, Lightbulb } from 'lucide-react';
 import { Lens } from "@/components/ui/lens";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const cormorantGaramond = Cormorant_Garamond({
   weight: '500',
@@ -25,16 +26,19 @@ const sectionVariants = {
 };
 
 export default function RifoldPage() {
+  const isMobile = useIsMobile();
+  
   return (
     <div className={`min-h-screen bg-white text-zinc-900 ${cormorantGaramond.variable}`}>
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-[60vh] md:h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
             loop
             muted
             playsInline
+            preload="metadata"
             className="absolute inset-0 w-full h-full object-cover"
           >
             <source src="https://pub-def2005fbb5b4ebc9f95819a9c0fbcb3.r2.dev/rifoldhero.webm" type="video/webm" />
@@ -54,10 +58,10 @@ export default function RifoldPage() {
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <span className="font-cormorant-garamond font-medium text-[15rem] md:text-[21rem] leading-none text-zinc-900">RIFOLD</span>
+              <span className="font-cormorant-garamond font-medium text-3xl md:text-5xl lg:text-7xl xl:text-[10rem] 2xl:text-[21rem] leading-none text-zinc-900">RIFOLD</span>
             </motion.div>
             <motion.div 
-              className="text-5xl md:text-7xl text-zinc-800"
+              className="text-2xl md:text-4xl lg:text-6xl xl:text-7xl text-zinc-800"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
@@ -66,7 +70,7 @@ export default function RifoldPage() {
             </motion.div>
           </motion.h1>
           <motion.p 
-            className="text-xl md:text-2xl font-light text-zinc-600 max-w-3xl mx-auto leading-relaxed"
+            className="text-base md:text-xl lg:text-2xl font-light text-zinc-600 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -77,11 +81,11 @@ export default function RifoldPage() {
       </section>
 
       {/* Executive Summary */}
-      <section className="py-24 bg-zinc-50">
+      <section className="py-12 md:py-24 bg-zinc-50">
         <div className="w-[80%] mx-auto">
           <motion.div {...fadeInUp}>
             <h2 className="text-3xl md:text-4xl font-light mb-12 text-zinc-900">Executive Summary</h2>
-            <div className="grid md:grid-cols-2 gap-12 items-start">
+            <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-start">
               <div className="flex flex-col">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -89,7 +93,7 @@ export default function RifoldPage() {
                   transition={{ duration: 0.8 }}
                   className="mb-12"
                 >
-                  <span className="font-cormorant-garamond font-medium text-[8rem] md:text-[10rem] leading-none text-zinc-900">
+                  <span className="font-cormorant-garamond font-medium text-4xl md:text-6xl lg:text-8xl xl:text-[10rem] leading-none text-zinc-900">
                     RIFOLD
                   </span>
                 </motion.div>
@@ -106,6 +110,7 @@ export default function RifoldPage() {
                     loop
                     muted
                     playsInline
+                    preload="metadata"
                     className="w-full h-full object-cover"
                   >
                     <source src="https://pub-def2005fbb5b4ebc9f95819a9c0fbcb3.r2.dev/0529.webm" type="video/webm" />
@@ -217,7 +222,7 @@ export default function RifoldPage() {
       </section>
 
       {/* Brand Identity Transformation */}
-      <section className="py-24">
+      <section className="py-12 md:py-24">
         <div className="w-[80%] mx-auto">
           <motion.div {...fadeInUp}>
             <h2 className="text-3xl md:text-4xl font-light mb-12 text-zinc-900">Brand Identity Transformation</h2>
@@ -225,7 +230,7 @@ export default function RifoldPage() {
             {/* Brand Messaging */}
             <div className="mb-20">
               <h3 className="text-2xl font-light mb-8 text-zinc-900">Brand Evolution</h3>
-              <div className="grid md:grid-cols-2 gap-12">
+              <div className="grid md:grid-cols-2 gap-6 md:gap-12">
                 <div className="space-y-6">
                   <h4 className="text-xl text-zinc-600">Before</h4>
                   <div className="p-8 bg-zinc-50 rounded-lg border border-zinc-200 hover:border-zinc-300 transition-colors duration-300">
@@ -320,7 +325,7 @@ export default function RifoldPage() {
             {/* Packaging Evolution */}
             <div className="mb-20">
               <h3 className="text-2xl font-light mb-8 text-zinc-900">Packaging Evolution</h3>
-              <div className="grid md:grid-cols-2 gap-12">
+              <div className="grid md:grid-cols-2 gap-6 md:gap-12">
                 <div className="space-y-6">
                   <h4 className="text-xl text-zinc-600">Before</h4>
                   <div className="group">
@@ -385,7 +390,7 @@ export default function RifoldPage() {
             {/* Product Presentation */}
             <div>
               <h3 className="text-2xl font-light mb-8 text-zinc-900">The Evolution of Excellence</h3>
-              <div className="grid md:grid-cols-2 gap-12">
+              <div className="grid md:grid-cols-2 gap-6 md:gap-12">
                 <div className="space-y-6">
                   <h4 className="text-xl text-zinc-600">Before</h4>
                   <div className="p-8 bg-zinc-50 rounded-lg border border-zinc-200 hover:border-zinc-300 transition-colors duration-300">
@@ -432,7 +437,7 @@ export default function RifoldPage() {
       </section>
 
       {/* Digital Transformation */}
-      <section className="py-24 bg-zinc-50">
+      <section className="py-12 md:py-24 bg-zinc-50">
         <div className="w-[80%] mx-auto">
           <motion.div {...fadeInUp}>
             <h2 className="text-3xl md:text-4xl font-light mb-12 text-zinc-900">Digital Transformation</h2>
@@ -440,7 +445,7 @@ export default function RifoldPage() {
             {/* Website Evolution */}
             <div className="mb-20">
               <h3 className="text-2xl font-light mb-8 text-zinc-900">The Digital Revolution</h3>
-              <div className="grid md:grid-cols-2 gap-12">
+              <div className="grid md:grid-cols-2 gap-6 md:gap-12">
                 <div className="space-y-6">
                   <h4 className="text-xl text-zinc-600">Before (2018)</h4>
                   <div className="aspect-video bg-zinc-50 rounded-lg overflow-hidden relative border border-zinc-200 hover:border-zinc-300 transition-colors duration-300">
@@ -554,7 +559,7 @@ export default function RifoldPage() {
       </section>
 
       {/* Implementation Timeline */}
-      <section className="py-24">
+      <section className="py-12 md:py-24">
         <div className="w-[80%] mx-auto">
           <motion.div {...fadeInUp}>
             <h2 className="text-3xl md:text-4xl font-light mb-12 text-zinc-900">Journey to Transformation</h2>
@@ -635,7 +640,7 @@ export default function RifoldPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-24 bg-zinc-50">
+      <section className="py-12 md:py-24 bg-zinc-50">
         <div className="w-[80%] mx-auto text-center">
           <motion.div {...fadeInUp}>
             <h2 className="text-3xl md:text-4xl font-light mb-6 text-zinc-900">
@@ -649,7 +654,7 @@ export default function RifoldPage() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="bg-zinc-900 text-white px-12 py-4 rounded-md font-medium hover:bg-zinc-800 transition-all duration-300 text-lg relative overflow-hidden group"
+              className="bg-zinc-900 text-white px-12 py-4 rounded-md font-medium hover:bg-zinc-800 active:bg-zinc-700 transition-all duration-300 text-lg relative overflow-hidden group min-h-[44px] touch-manipulation"
             >
               <span className="relative z-10">Start the Transformation</span>
               <div className="absolute inset-0 bg-gradient-to-r from-zinc-900 via-zinc-800 to-zinc-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

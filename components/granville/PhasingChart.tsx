@@ -28,7 +28,7 @@ export default function PhasingChart() {
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
   return (
-    <section className="py-12 sm:py-16 md:py-24">
+    <section className="py-12 md:py-24">
       <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto px-2">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -44,20 +44,20 @@ export default function PhasingChart() {
             <div className="flex gap-2 bg-slate-100 p-1 rounded-lg">
               <button
                 onClick={() => setViewMode("channel")}
-                className={`px-4 py-2 rounded-md transition-colors ${
+                className={`px-4 py-2 rounded-md transition-colors min-h-[44px] touch-manipulation ${
                   viewMode === "channel" 
                     ? "bg-white text-slate-900 shadow-sm" 
-                    : "text-slate-600 hover:text-slate-900"
+                    : "text-slate-600 hover:text-slate-900 active:text-slate-950"
                 }`}
               >
                 By Channel
               </button>
               <button
                 onClick={() => setViewMode("month")}
-                className={`px-4 py-2 rounded-md transition-colors ${
+                className={`px-4 py-2 rounded-md transition-colors min-h-[44px] touch-manipulation ${
                   viewMode === "month" 
                     ? "bg-white text-slate-900 shadow-sm" 
-                    : "text-slate-600 hover:text-slate-900"
+                    : "text-slate-600 hover:text-slate-900 active:text-slate-950"
                 }`}
               >
                 By Month

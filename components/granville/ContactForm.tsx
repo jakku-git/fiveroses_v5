@@ -57,7 +57,7 @@ export default function ContactForm() {
   const t = translations[language];
 
   return (
-    <section id="contact" className="py-12 sm:py-16 md:py-24 bg-slate-50">
+    <section id="contact" className="py-12 md:py-24 bg-slate-50">
       <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto px-2">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -74,7 +74,7 @@ export default function ContactForm() {
             </div>
             <button
               onClick={() => setLanguage(language === "en" ? "zh" : "en")}
-              className="px-4 py-2 bg-white border border-slate-200 rounded-lg text-slate-700 hover:bg-slate-50 transition-colors"
+              className="px-4 py-2 bg-white border border-slate-200 rounded-lg text-slate-700 hover:bg-slate-50 active:bg-slate-100 transition-colors min-h-[44px] touch-manipulation"
             >
               {language === "en" ? "中文" : "English"}
             </button>
@@ -165,7 +165,7 @@ export default function ContactForm() {
 
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white px-6 py-4 rounded-lg font-medium hover:bg-blue-700 transition-colors flex items-center justify-center gap-2"
+                className="w-full bg-blue-600 text-white px-6 py-4 rounded-lg font-medium hover:bg-blue-700 active:bg-blue-800 transition-colors flex items-center justify-center gap-2 min-h-[44px] touch-manipulation"
               >
                 <Send className="w-5 h-5" />
                 {t.submit}
@@ -181,7 +181,7 @@ export default function ContactForm() {
               </p>
               <a
                 href="mailto:hello@fiveroses.com.au?subject=Granville Place Proposal - PDF Request&body=Hi,%0D%0A%0D%0APlease send me the PDF version of the Granville Place 12-month growth proposal.%0D%0A%0D%0AThanks!"
-                className="inline-flex items-center justify-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-slate-800 transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-slate-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-slate-800 active:bg-slate-700 transition-colors min-h-[44px] touch-manipulation"
               >
                 <Send className="w-5 h-5" />
                 {t.download}

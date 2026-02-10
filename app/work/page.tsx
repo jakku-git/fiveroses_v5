@@ -10,6 +10,7 @@ import { useInView } from 'react-intersection-observer';
 import { ContactModal } from "@/components/ui/contact-modal";
 import { AnimatedSection } from "@/components/ui/animated-section";
 import { AnimatedImage, OptimizedImage } from "@/components/ui/animated-image";
+import { useIsMobile } from "@/components/ui/use-mobile";
 
 // Dynamically import heavy components
 const CardRevealEffect = dynamic(() => import("@/components/ui/card-reveal-effect").then(mod => mod.CardRevealEffect), {
@@ -94,32 +95,36 @@ const OurServicesHorizontal = () => {
     ],
   };
 
+  const isMobile = useIsMobile();
+
   return (
-    <section className="w-full py-20 relative bg-black text-white">
+    <section className="w-full py-12 md:py-20 relative bg-black text-white">
       <div className="w-full px-4 md:px-6">
-        <h2 className="text-3xl md:text-5xl font-light tracking-tighter mb-12 text-left">
+        <h2 className="text-2xl md:text-3xl lg:text-5xl font-light tracking-tighter mb-8 md:mb-12 text-left">
           Our Services
         </h2>
-        <div className="flex gap-2">
+        <div className="flex flex-col md:flex-row gap-3 md:gap-2">
           {services.map((service, i) => (
             <Card key={i} title={service.title} link={`/work/${service.slug}`}>
               <div className="absolute inset-0">
-                <CardRevealEffect
-                  animationSpeed={4.0}
-                  containerClassName="bg-black"
-                  colors={revealColors}
-                  dotSize={3}
-                  showGradient={false}
-                  loop={true}
-                  loopDelay={2000}
-                />
+                {!isMobile && (
+                  <CardRevealEffect
+                    animationSpeed={4.0}
+                    containerClassName="bg-black"
+                    colors={revealColors}
+                    dotSize={3}
+                    showGradient={false}
+                    loop={true}
+                    loopDelay={2000}
+                  />
+                )}
                 <div className="absolute inset-0 bg-black/30 pointer-events-none" />
-                <div className="absolute inset-0 flex items-center justify-center p-6">
+                <div className="absolute inset-0 flex items-center justify-center p-4 md:p-6">
                   <div className="w-full flex justify-center">
-                    <ul className="space-y-3 text-base font-medium text-white/90 leading-relaxed text-left w-[70%] pl-12">
+                    <ul className="space-y-2 md:space-y-3 text-sm md:text-base font-medium text-white/90 leading-relaxed text-left w-full md:w-[70%] pl-4 md:pl-12">
                       {serviceDetails[service.title].map((item, index) => (
                         <li key={index} className="transition-all duration-300 hover:text-white flex items-center gap-2 overflow-hidden">
-                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white/70 flex-shrink-0">
+                          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-white/70 flex-shrink-0 w-3.5 h-3.5 md:w-4 md:h-4">
                             <path
                               d="M4 4C4 4 13.5 6.5 14 8C14.5 9.5 4 13 4 13"
                               stroke="currentColor"
@@ -127,7 +132,7 @@ const OurServicesHorizontal = () => {
                               strokeLinecap="round"
                             />
                           </svg>
-                          <span className="whitespace-nowrap overflow-hidden text-ellipsis">{item}</span>
+                          <span className="text-sm md:text-base whitespace-normal md:whitespace-nowrap overflow-hidden text-ellipsis">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -143,6 +148,7 @@ const OurServicesHorizontal = () => {
 };
 
 const Card = ({ title, children, link }: CardProps) => {
+  const isMobile = useIsMobile();
   const [hovered, setHovered] = React.useState(false);
   const parts = title.split(" & ");
   const firstPart = parts[0] || title;
@@ -150,25 +156,27 @@ const Card = ({ title, children, link }: CardProps) => {
   return (
     <Link
       href={link}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      className="relative overflow-hidden rounded-lg border border-white/[0.2] group flex flex-col items-center justify-center p-4 h-[25vh] md:h-[35vh] w-full md:w-[24.75%]"
+      onMouseEnter={() => !isMobile && setHovered(true)}
+      onMouseLeave={() => !isMobile && setHovered(false)}
+      onTouchStart={() => isMobile && setHovered(true)}
+      onTouchEnd={() => isMobile && setHovered(false)}
+      className="relative overflow-hidden rounded-lg border border-white/[0.2] group flex flex-col items-center justify-center p-4 md:p-4 min-h-[44px] h-[25vh] md:h-[35vh] w-full md:w-[24.75%] touch-manipulation active:bg-white/5 transition-colors"
     >
       <AnimatePresence>
-        {hovered && (
+        {hovered && !isMobile && (
           <motion.div key="reveal" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0">
             {children}
           </motion.div>
         )}
       </AnimatePresence>
-      <motion.div animate={{ opacity: hovered ? 0 : 1 }} transition={{ duration: 0.2 }} className="relative z-20 flex flex-col items-center justify-center h-full -mt-8">
-        <AceternityIcon className="h-5 w-5 mb-3" />
-        <div className="flex items-center gap-2">
-          <h2 className="text-lg font-bold text-white">{firstPart}</h2>
+      <motion.div animate={{ opacity: hovered ? 0 : 1 }} transition={{ duration: 0.2 }} className="relative z-20 flex flex-col items-center justify-center h-full -mt-4 md:-mt-8">
+        <AceternityIcon className="h-4 w-4 md:h-5 md:w-5 mb-2 md:mb-3" />
+        <div className="flex items-center gap-1 md:gap-2 flex-wrap justify-center px-2">
+          <h2 className="text-base md:text-lg font-bold text-white text-center">{firstPart}</h2>
           {secondPart && (
             <>
-              <span className="text-lg font-bold text-white">&</span>
-              <h2 className="text-lg font-bold text-white">{secondPart}</h2>
+              <span className="text-base md:text-lg font-bold text-white">&</span>
+              <h2 className="text-base md:text-lg font-bold text-white text-center">{secondPart}</h2>
             </>
           )}
         </div>
@@ -197,6 +205,7 @@ const AceternityIcon = ({ className }: AceternityIconProps) => {
 };
 
 export default function WorkPage() {
+  const isMobile = useIsMobile();
   const [isVisible, setIsVisible] = React.useState(false);
   const [isContactOpen, setIsContactOpen] = React.useState(false);
   const [shuffleHeroRef, shuffleHeroInView] = useInView({
@@ -320,43 +329,118 @@ export default function WorkPage() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
-      <SmoothScrollHero 
-        mainVideoUrl="https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/heroscrollvideo.webm"
-        parallaxVideoUrls={{
-          video1: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/scroll3.webm",
-          video2: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/scroll1.webm",
-          video3: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/scroll2.webm",
-          video4: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/scroll4z.webm"
-        }}
-      />
-
-      <AnimatedSection>
-        <motion.div 
-          ref={shuffleHeroRef}
-          className="w-full h-screen flex items-center"
-          initial={{ opacity: 0, y: 100, scale: 0.95 }}
-          animate={{ 
-            opacity: shuffleHeroInView ? 1 : 0,
-            y: shuffleHeroInView ? 0 : 100,
-            scale: shuffleHeroInView ? 1 : 0.95,
-            transition: { 
-              duration: 1,
-              ease: [0.16, 1, 0.3, 1],
-              opacity: { duration: 0.8 },
-              y: { duration: 1 },
-              scale: { duration: 1.2 }
-            }
+      {/* SmoothScrollHero - Desktop only, mobile gets simplified static hero */}
+      {!isMobile ? (
+        <SmoothScrollHero 
+          mainVideoUrl="https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/heroscrollvideo.webm"
+          parallaxVideoUrls={{
+            video1: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/scroll3.webm",
+            video2: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/scroll1.webm",
+            video3: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/scroll2.webm",
+            video4: "https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/scroll4z.webm"
           }}
-        >
-          <ShuffleHero isContactOpen={isContactOpen} setIsContactOpen={setIsContactOpen} />
-        </motion.div>
-      </AnimatedSection>
+        />
+      ) : (
+        <section className="w-full h-screen relative bg-black flex items-center justify-center overflow-hidden">
+          <video
+            src="https://pub-b650344d00a64925b0ac01b33501589d.r2.dev/heroscrollvideo.webm"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+            preload="metadata"
+          />
+          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-b from-black/0 to-black" />
+        </section>
+      )}
+
+      {/* ShuffleHero - Desktop only, mobile gets simplified version */}
+      {!isMobile ? (
+        <AnimatedSection>
+          <motion.div 
+            ref={shuffleHeroRef}
+            className="w-full h-screen flex items-center"
+            initial={{ opacity: 0, y: 100, scale: 0.95 }}
+            animate={{ 
+              opacity: shuffleHeroInView ? 1 : 0,
+              y: shuffleHeroInView ? 0 : 100,
+              scale: shuffleHeroInView ? 1 : 0.95,
+              transition: { 
+                duration: 1,
+                ease: [0.16, 1, 0.3, 1],
+                opacity: { duration: 0.8 },
+                y: { duration: 1 },
+                scale: { duration: 1.2 }
+              }
+            }}
+          >
+            <ShuffleHero isContactOpen={isContactOpen} setIsContactOpen={setIsContactOpen} />
+          </motion.div>
+        </AnimatedSection>
+      ) : (
+        <AnimatedSection>
+          <motion.section 
+            ref={shuffleHeroRef}
+            className="w-full min-h-screen flex items-center justify-center relative bg-black text-white px-4 py-12 md:py-20"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ 
+              opacity: shuffleHeroInView ? 1 : 0,
+              y: shuffleHeroInView ? 0 : 50,
+              transition: { 
+                duration: 0.8,
+                ease: [0.16, 1, 0.3, 1]
+              }
+            }}
+          >
+            <div className="w-full max-w-2xl text-center space-y-6 md:space-y-8">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: shuffleHeroInView ? 1 : 0, y: shuffleHeroInView ? 0 : 20 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <span className="inline-block text-xs md:text-sm text-white/70 font-bold tracking-widest uppercase">
+                  A Creative Agency Reimagined
+                </span>
+              </motion.div>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: shuffleHeroInView ? 1 : 0, y: shuffleHeroInView ? 0 : 20 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-tight"
+              >
+                <div>We work with ambitious</div>
+                <div className="opacity-90">brands and people.</div>
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: shuffleHeroInView ? 1 : 0, y: shuffleHeroInView ? 0 : 20 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="text-base md:text-lg lg:text-xl text-white/85 leading-relaxed max-w-xl mx-auto"
+              >
+                Together, we craft ideas into identities, and ambition into lasting impact.
+              </motion.p>
+              <motion.button
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: shuffleHeroInView ? 1 : 0, y: shuffleHeroInView ? 0 : 20 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                onClick={() => setIsContactOpen(true)}
+                className="min-h-[44px] px-6 py-3 md:px-8 md:py-4 text-base md:text-lg font-medium text-white border border-white/20 rounded-full hover:bg-white/10 active:bg-white/20 transition-colors touch-manipulation inline-flex items-center gap-3 md:gap-4"
+              >
+                <span>Let&apos;s Talk</span>
+                <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" />
+              </motion.button>
+            </div>
+          </motion.section>
+        </AnimatedSection>
+      )}
 
       {/* Middle Section */}
       <AnimatedSection>
         <motion.section 
           ref={middleSectionRef}
-          className="w-full h-screen relative overflow-hidden"
+          className="w-full min-h-screen md:h-screen relative overflow-hidden"
           initial={{ opacity: 0, y: 100, scale: 0.95 }}
           animate={{ 
             opacity: middleSectionInView ? 1 : 0,
@@ -406,12 +490,13 @@ export default function WorkPage() {
           </div>
           
           {/* Progress Bars */}
-          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-10">
+          <div className="absolute bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 flex gap-2 md:gap-3 z-10">
             {mediaItems.map((_, index) => (
-              <div 
+              <button
                 key={index}
                 onClick={() => handleProgressClick(index)}
-                className="w-16 md:w-24 h-[2px] bg-white/20 rounded-full overflow-hidden cursor-pointer hover:bg-white/30 transition-colors relative"
+                className="min-h-[44px] min-w-[44px] md:min-h-0 md:min-w-0 w-16 md:w-24 h-[2px] md:h-[2px] bg-white/20 rounded-full overflow-hidden hover:bg-white/30 active:bg-white/40 transition-colors relative touch-manipulation flex items-center justify-center"
+                aria-label={`Go to slide ${index + 1}`}
               >
                 <div className="absolute inset-0 bg-white/20" />
                 <motion.div 
@@ -425,12 +510,12 @@ export default function WorkPage() {
                     }
                   }}
                 />
-              </div>
+              </button>
             ))}
           </div>
 
-          <div className="relative w-[90%] mx-auto h-full flex items-end pb-12 md:pb-20">
-            <div className="space-y-1 w-full">
+          <div className="relative w-[90%] mx-auto h-full flex items-end pb-8 md:pb-12 lg:pb-20">
+            <div className="space-y-2 md:space-y-1 w-full">
               <AnimatePresence mode="wait">
                 <motion.p 
                   key={`top-${currentImageIndex}`}
@@ -463,7 +548,7 @@ export default function WorkPage() {
                       ease: [0.16, 1, 0.3, 1]
                     }
                   }}
-                  className="text-2xl md:text-5xl font-light tracking-tight leading-[0.9] text-white uppercase"
+                  className="text-xl md:text-2xl lg:text-5xl font-light tracking-tight leading-[1.1] md:leading-[0.9] text-white uppercase"
                 >
                   {mediaItems[currentImageIndex].title}
                 </motion.h3>
@@ -483,7 +568,7 @@ export default function WorkPage() {
                       ease: [0.16, 1, 0.3, 1]
                     }
                   }}
-                  className="group text-sm md:text-base text-white/80 hover:text-white inline-flex items-center gap-2 transition-all duration-300"
+                  className="group min-h-[44px] text-sm md:text-base text-white/80 hover:text-white active:text-white/90 inline-flex items-center gap-2 md:gap-2 transition-all duration-300 touch-manipulation px-2 py-2 -ml-2"
                   variants={{
                     hover: {
                       scale: 1.02,
@@ -518,7 +603,7 @@ export default function WorkPage() {
                       }
                     }}
                   >
-                    <ArrowUpRight className="w-3 h-3 md:w-4 md:h-4 transition-transform" />
+                    <ArrowUpRight className="w-4 h-4 md:w-4 md:h-4 transition-transform" />
                   </motion.div>
                 </motion.button>
               </AnimatePresence>
@@ -531,7 +616,7 @@ export default function WorkPage() {
       <AnimatedSection>
         <motion.section 
           ref={threeCardsRef}
-          className="w-full h-screen relative overflow-hidden bg-black text-white"
+          className="w-full min-h-screen md:h-screen relative overflow-hidden bg-black text-white py-12 md:py-0"
           initial={{ opacity: 0, y: 100, scale: 0.95 }}
           animate={{ 
             opacity: threeCardsInView ? 1 : 0,
@@ -546,8 +631,8 @@ export default function WorkPage() {
             }
           }}
         >
-          <div className="w-full h-full px-4 md:px-6 flex items-center">
-            <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+          <div className="w-full min-h-full px-4 md:px-6 flex items-center py-8 md:py-0">
+            <div className="w-full grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4 lg:gap-6">
               {[
                 {
                   title: "Forge & Hide",
@@ -570,7 +655,7 @@ export default function WorkPage() {
               ].map((card, index) => (
                 <motion.div
                   key={index}
-                  className="relative h-[50vh] md:h-[80vh] rounded-lg overflow-hidden group cursor-pointer"
+                  className="relative h-[50vh] md:h-[80vh] rounded-lg overflow-hidden group cursor-pointer touch-manipulation"
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ 
                     opacity: threeCardsInView ? 1 : 0,
@@ -582,6 +667,8 @@ export default function WorkPage() {
                     }
                   }}
                   onClick={() => window.location.href = card.link}
+                  onTouchStart={(e) => e.currentTarget.classList.add('active')}
+                  onTouchEnd={(e) => e.currentTarget.classList.remove('active')}
                 >
                   {card.image.endsWith('.webp') ? (
                     <OptimizedImage
@@ -604,10 +691,10 @@ export default function WorkPage() {
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
                   <div className="absolute bottom-0 left-0 right-0 p-3 md:p-4">
-                    <p className="text-[10px] md:text-xs text-white/80 mb-1 md:mb-2 line-clamp-2">{card.description}</p>
-                    <h3 className="text-2xl md:text-4xl font-light tracking-tight mb-1 md:mb-2">{card.title}</h3>
+                    <p className="text-xs md:text-xs text-white/80 mb-2 md:mb-2 line-clamp-2">{card.description}</p>
+                    <h3 className="text-xl md:text-2xl lg:text-4xl font-light tracking-tight mb-2 md:mb-2">{card.title}</h3>
                     <motion.button 
-                      className="group text-xs md:text-sm text-white/80 hover:text-white inline-flex items-center gap-1 md:gap-2 transition-all duration-300"
+                      className="group min-h-[44px] text-sm md:text-sm text-white/80 hover:text-white active:text-white/90 inline-flex items-center gap-2 md:gap-2 transition-all duration-300 touch-manipulation px-2 py-2 -ml-2"
                       whileHover="hover"
                     >
                       <motion.span 
@@ -636,7 +723,7 @@ export default function WorkPage() {
                           }
                         }}
                       >
-                        <ArrowUpRight className="w-3 h-3 md:w-4 md:h-4 transition-transform" />
+                        <ArrowUpRight className="w-4 h-4 md:w-4 md:h-4 transition-transform" />
                       </motion.div>
                     </motion.button>
                   </div>
@@ -649,10 +736,10 @@ export default function WorkPage() {
 
       {/* Content Container */}
       <div className="w-full px-4 md:px-6">
-        <div className="space-y-16 md:space-y-32">
+        <div className="space-y-12 md:space-y-16 lg:space-y-32">
           {/* Featured Projects Section */}
           <AnimatedSection>
-            <section className="w-full py-8 md:py-20 bg-black text-white">
+            <section className="w-full py-8 md:py-12 lg:py-20 bg-black text-white">
               <motion.div 
                 className="w-full" 
                 ref={featuredProjectsRef}
@@ -682,7 +769,15 @@ export default function WorkPage() {
                     }
                   }}
                 >
-                  {featuredProjectsInView && isVisible && <LayoutGridDemo />}
+                  {featuredProjectsInView && isVisible && !isMobile && <LayoutGridDemo />}
+                  {featuredProjectsInView && isVisible && isMobile && (
+                    <div className="w-full py-8 md:py-12 px-4">
+                      <h2 className="text-2xl md:text-3xl lg:text-4xl font-light tracking-tight mb-4 md:mb-6 lg:mb-8 text-center">Featured Projects</h2>
+                      <p className="text-sm md:text-base lg:text-lg text-white/70 text-center max-w-2xl mx-auto leading-relaxed">
+                        Explore our portfolio of innovative projects and creative solutions.
+                      </p>
+                    </div>
+                  )}
                 </motion.div>
               </motion.div>
             </section>

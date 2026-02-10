@@ -41,7 +41,7 @@ export default function BudgetTable() {
   };
 
   return (
-    <section className="py-12 sm:py-16 md:py-24 bg-slate-50">
+    <section className="py-12 md:py-24 bg-slate-50">
       <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto px-2">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -59,14 +59,14 @@ export default function BudgetTable() {
               <p className="text-base md:text-lg font-light text-slate-900 mb-1">Display Prices</p>
               <p className="text-xs md:text-sm text-slate-600">Toggle to view prices with or without GST</p>
             </div>
-            <label className="flex items-center cursor-pointer">
+            <label className="flex items-center cursor-pointer min-h-[44px] touch-manipulation">
               <input
                 type="checkbox"
                 checked={gstIncluded}
                 onChange={(e) => setGstIncluded(e.target.checked)}
                 className="sr-only"
               />
-              <div className={`relative w-14 h-8 rounded-full transition-colors ${gstIncluded ? 'bg-slate-900' : 'bg-slate-300'}`}>
+              <div className={`relative w-14 h-8 rounded-full transition-colors ${gstIncluded ? 'bg-slate-900' : 'bg-slate-300'} active:opacity-80`}>
                 <div className={`absolute top-1 left-1 w-6 h-6 bg-white rounded-full transition-transform ${gstIncluded ? 'translate-x-6' : ''}`} />
               </div>
               <span className="ml-3 text-slate-700">
@@ -82,19 +82,19 @@ export default function BudgetTable() {
                 <thead className="bg-slate-50 border-b border-slate-200 sticky top-0 z-10">
                   <tr>
                     <th
-                      className="text-left p-2 sm:p-3 md:p-4 text-xs sm:text-sm font-medium text-slate-700 cursor-pointer hover:text-slate-900 transition-colors whitespace-nowrap"
+                      className="text-left p-2 sm:p-3 md:p-4 text-xs sm:text-sm font-medium text-slate-700 cursor-pointer hover:text-slate-900 active:text-slate-950 transition-colors whitespace-nowrap min-h-[44px] touch-manipulation"
                       onClick={() => handleSort('category')}
                     >
                       Category {sortBy === 'category' && (sortOrder === 'asc' ? '↑' : '↓')}
                     </th>
                     <th
-                      className="text-left p-2 sm:p-3 md:p-4 text-xs sm:text-sm font-medium text-slate-700 cursor-pointer hover:text-slate-900 transition-colors"
+                      className="text-left p-2 sm:p-3 md:p-4 text-xs sm:text-sm font-medium text-slate-700 cursor-pointer hover:text-slate-900 active:text-slate-950 transition-colors min-h-[44px] touch-manipulation"
                       onClick={() => handleSort('inclusions')}
                     >
                       Inclusions {sortBy === 'inclusions' && (sortOrder === 'asc' ? '↑' : '↓')}
                     </th>
                     <th
-                      className="text-right p-2 sm:p-3 md:p-4 text-xs sm:text-sm font-medium text-slate-700 cursor-pointer hover:text-slate-900 transition-colors whitespace-nowrap"
+                      className="text-right p-2 sm:p-3 md:p-4 text-xs sm:text-sm font-medium text-slate-700 cursor-pointer hover:text-slate-900 active:text-slate-950 transition-colors whitespace-nowrap min-h-[44px] touch-manipulation"
                       onClick={() => handleSort('cost')}
                     >
                       Cost {sortBy === 'cost' && (sortOrder === 'asc' ? '↑' : '↓')}

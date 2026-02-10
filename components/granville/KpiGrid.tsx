@@ -5,7 +5,7 @@ import { kpis } from "@/data/granvillePlan";
 
 export default function KpiGrid() {
   return (
-    <section className="py-12 sm:py-16 md:py-24">
+    <section className="py-12 md:py-24">
       <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto px-2">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

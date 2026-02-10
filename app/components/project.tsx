@@ -41,10 +41,14 @@ const arePropsEqual = (prevProps: ProjectProps, nextProps: ProjectProps) => {
 function Project({ project }: ProjectProps) {
     const [isActive, setIsActive] = useState(false);
     const [isVisible, setIsVisible] = useState(true); // Start as visible
+    const [isMobile, setIsMobile] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
     const { title1, title2, src } = project;
 
     useEffect(() => {
+        // Check if mobile
+        setIsMobile(window.innerWidth < 768);
+        
         const observer = new IntersectionObserver(
             ([entry]) => {
                 setIsVisible(entry.isIntersecting);
@@ -70,8 +74,10 @@ function Project({ project }: ProjectProps) {
     return (
         <div 
             ref={containerRef}
-            onMouseEnter={() => setIsActive(true)}
-            onMouseLeave={() => setIsActive(false)}
+            onMouseEnter={() => !isMobile && setIsActive(true)}
+            onMouseLeave={() => !isMobile && setIsActive(false)}
+            onTouchStart={() => isMobile && setIsActive(true)}
+            onTouchEnd={() => isMobile && setIsActive(false)}
             className={styles.project}
         >
             <p>{title1}</p>

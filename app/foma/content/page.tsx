@@ -7,6 +7,7 @@ import { useState } from "react";
 import { Lock, Mail, Download, Printer, Check, Circle, Monitor, Users, TrendingUp, Calendar, DollarSign } from 'lucide-react';
 import { planData } from '../plan';
 import type { BudgetItem } from '../plan';
+import { useIsMobile } from "@/hooks/use-mobile";
 import '../print.css';
 
 const cormorantGaramond = Cormorant_Garamond({
@@ -28,6 +29,7 @@ const sectionVariants = {
 };
 
 export default function MofaPage() {
+  const isMobile = useIsMobile();
   const [gstIncluded, setGstIncluded] = useState(true);
   const [kpiReached, setKpiReached] = useState({
     revenue: false,
@@ -110,7 +112,7 @@ export default function MofaPage() {
   return (
     <div className={`min-h-screen bg-white text-zinc-900 ${cormorantGaramond.variable} overflow-x-hidden`}>
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative h-[60vh] md:h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <video
             src="/fomahero.mp4"
@@ -118,7 +120,7 @@ export default function MofaPage() {
             loop={true}
             muted={true}
             playsInline={true}
-            preload="auto"
+            preload="metadata"
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-black/30" />
@@ -137,10 +139,10 @@ export default function MofaPage() {
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <span className="font-cormorant-garamond font-medium text-[4rem] xs:text-[5rem] sm:text-[7rem] md:text-[9rem] lg:text-[14rem] xl:text-[16rem] leading-none text-zinc-900 break-words">MOFA</span>
+              <span className="font-cormorant-garamond font-medium text-3xl md:text-5xl lg:text-7xl xl:text-[9rem] 2xl:text-[14rem] leading-none text-zinc-900 break-words">MOFA</span>
             </motion.div>
             <motion.div 
-              className="text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl text-zinc-800 px-2"
+              className="text-lg md:text-2xl lg:text-4xl xl:text-5xl text-zinc-800 px-2"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
@@ -149,7 +151,7 @@ export default function MofaPage() {
             </motion.div>
           </motion.h1>
           <motion.p 
-            className="text-base sm:text-lg md:text-xl lg:text-2xl font-light text-white max-w-3xl mx-auto leading-relaxed mb-6 md:mb-8 px-2"
+            className="text-sm md:text-lg lg:text-xl xl:text-2xl font-light text-white max-w-3xl mx-auto leading-relaxed mb-6 md:mb-8 px-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -166,7 +168,7 @@ export default function MofaPage() {
               href="mailto:hello@fiveroses.com.au?subject=MOFA Proposal Approval&body=Hi,%0D%0A%0D%0AI approve this proposal for the MOFA brand launch."
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="bg-zinc-900 text-white px-6 py-3 md:px-12 md:py-4 rounded-md font-medium hover:bg-zinc-800 transition-all duration-300 text-base md:text-lg relative overflow-hidden group inline-block cursor-pointer w-full sm:w-auto min-h-[44px] flex items-center justify-center"
+              className="bg-zinc-900 text-white px-6 py-3 md:px-12 md:py-4 rounded-md font-medium hover:bg-zinc-800 active:bg-zinc-700 transition-all duration-300 text-base md:text-lg relative overflow-hidden group inline-block cursor-pointer w-full sm:w-auto min-h-[44px] flex items-center justify-center touch-manipulation"
             >
               <span className="relative z-10 flex items-center justify-center gap-2">
                 Approve Proposal
@@ -177,7 +179,7 @@ export default function MofaPage() {
               href="mailto:hello@fiveroses.com.au?subject=MOFA Proposal - Download PDF&body=Hi,%0D%0A%0D%0APlease send me the PDF version of the MOFA brand launch proposal."
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="bg-white text-zinc-900 px-6 py-3 md:px-12 md:py-4 rounded-md font-medium border-2 border-zinc-900 hover:bg-zinc-50 transition-all duration-300 text-base md:text-lg flex items-center justify-center gap-2 inline-block cursor-pointer w-full sm:w-auto min-h-[44px]"
+              className="bg-white text-zinc-900 px-6 py-3 md:px-12 md:py-4 rounded-md font-medium border-2 border-zinc-900 hover:bg-zinc-50 active:bg-zinc-100 transition-all duration-300 text-base md:text-lg flex items-center justify-center gap-2 inline-block cursor-pointer w-full sm:w-auto min-h-[44px] touch-manipulation"
             >
               <Download className="w-4 h-4 md:w-5 md:h-5" />
               Download PDF
@@ -187,11 +189,11 @@ export default function MofaPage() {
       </section>
 
       {/* Executive Summary */}
-      <section className="py-12 sm:py-16 md:py-24 bg-zinc-50">
+      <section className="py-12 md:py-24 bg-zinc-50">
         <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto px-2">
           <motion.div {...fadeInUp}>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-8 sm:mb-12 text-zinc-900">Executive Summary</h2>
-            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+            <div className="grid md:grid-cols-2 gap-6 md:gap-12 items-start">
               <div className="flex flex-col space-y-8">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -255,7 +257,7 @@ export default function MofaPage() {
                       loop={true}
                       muted={true}
                       playsInline={true}
-                      preload="auto"
+                      preload="metadata"
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-zinc-900/10 to-transparent" />
@@ -302,7 +304,7 @@ export default function MofaPage() {
       </section>
 
       {/* Brand Identity Transformation */}
-      <section className="py-12 sm:py-16 md:py-24">
+      <section className="py-12 md:py-24">
         <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto px-2">
           <motion.div {...fadeInUp}>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-8 sm:mb-12 text-zinc-900">Brand Identity Transformation</h2>
@@ -430,7 +432,7 @@ export default function MofaPage() {
       </section>
 
       {/* Digital Transformation */}
-      <section className="py-12 sm:py-16 md:py-24 bg-zinc-50">
+      <section className="py-12 md:py-24 bg-zinc-50">
         <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto px-2">
           <motion.div {...fadeInUp}>
             <h2 className="text-3xl md:text-4xl font-light mb-12 text-zinc-900">Digital Transformation</h2>
@@ -483,7 +485,7 @@ export default function MofaPage() {
       </section>
 
       {/* 12-Month Timeline */}
-      <section className="py-12 sm:py-16 md:py-24">
+      <section className="py-12 md:py-24">
         <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto px-2">
           <motion.div {...fadeInUp}>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-8 sm:mb-12 text-zinc-900">Journey to Launch</h2>
@@ -564,7 +566,7 @@ export default function MofaPage() {
       </section>
 
       {/* Budget & Plan Section */}
-      <section className="py-12 sm:py-16 md:py-24 bg-zinc-50">
+      <section className="py-12 md:py-24 bg-zinc-50">
         <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto px-2">
           <motion.div {...fadeInUp}>
             <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -575,14 +577,14 @@ export default function MofaPage() {
               <div className="flex items-center gap-3 sm:gap-4">
                 <button
                   onClick={handleExportCSV}
-                  className="px-4 sm:px-6 py-2 border border-zinc-300 rounded-md hover:bg-zinc-50 transition-colors flex items-center gap-2 min-h-[44px] text-sm sm:text-base"
+                  className="px-4 sm:px-6 py-2 border border-zinc-300 rounded-md hover:bg-zinc-50 active:bg-zinc-100 transition-colors flex items-center gap-2 min-h-[44px] text-sm sm:text-base touch-manipulation"
                 >
                   <Download className="w-4 h-4" />
                   <span className="hidden sm:inline">CSV</span>
                 </button>
                 <button
                   onClick={handlePrint}
-                  className="px-4 sm:px-6 py-2 border border-zinc-300 rounded-md hover:bg-zinc-50 transition-colors flex items-center gap-2 min-h-[44px] text-sm sm:text-base"
+                  className="px-4 sm:px-6 py-2 border border-zinc-300 rounded-md hover:bg-zinc-50 active:bg-zinc-100 transition-colors flex items-center gap-2 min-h-[44px] text-sm sm:text-base touch-manipulation"
                 >
                   <Printer className="w-4 h-4" />
                   <span className="hidden sm:inline">Print</span>
@@ -596,14 +598,14 @@ export default function MofaPage() {
                 <p className="text-base md:text-lg font-light text-zinc-900 mb-1">Display Prices</p>
                 <p className="text-xs md:text-sm text-zinc-600">Toggle to view prices with or without GST</p>
               </div>
-              <label className="flex items-center cursor-pointer">
+              <label className="flex items-center cursor-pointer min-h-[44px] touch-manipulation">
                 <input
                   type="checkbox"
                   checked={gstIncluded}
                   onChange={(e) => setGstIncluded(e.target.checked)}
                   className="sr-only"
                 />
-                <div className={`relative w-14 h-8 rounded-full transition-colors ${gstIncluded ? 'bg-zinc-900' : 'bg-zinc-300'}`}>
+                <div className={`relative w-14 h-8 rounded-full transition-colors ${gstIncluded ? 'bg-zinc-900' : 'bg-zinc-300'} active:opacity-80`}>
                   <div className={`absolute top-1 left-1 w-6 h-6 bg-white rounded-full transition-transform ${gstIncluded ? 'translate-x-6' : ''}`} />
                 </div>
                 <span className="ml-3 text-zinc-700">
@@ -737,7 +739,7 @@ export default function MofaPage() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-12 sm:py-16 md:py-24">
+      <section className="py-12 md:py-24">
         <div className="w-[95%] sm:w-[90%] md:w-[85%] lg:w-[80%] mx-auto text-center px-4">
           <motion.div {...fadeInUp}>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-light mb-4 md:mb-6 text-zinc-900 px-2">
@@ -752,7 +754,7 @@ export default function MofaPage() {
                 href="mailto:hello@fiveroses.com.au?subject=MOFA Proposal Approval&body=Hi,%0D%0A%0D%0AI approve this proposal for the MOFA brand launch."
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="bg-zinc-900 text-white px-6 py-3 md:px-12 md:py-4 rounded-md font-medium hover:bg-zinc-800 transition-all duration-300 text-base md:text-lg relative overflow-hidden group inline-block cursor-pointer w-full sm:w-auto min-h-[44px] flex items-center justify-center"
+                className="bg-zinc-900 text-white px-6 py-3 md:px-12 md:py-4 rounded-md font-medium hover:bg-zinc-800 active:bg-zinc-700 transition-all duration-300 text-base md:text-lg relative overflow-hidden group inline-block cursor-pointer w-full sm:w-auto min-h-[44px] flex items-center justify-center touch-manipulation"
               >
                 <span className="relative z-10 flex items-center gap-2">
                   <Mail className="w-4 h-4 md:w-5 md:h-5" />
@@ -763,7 +765,7 @@ export default function MofaPage() {
                 href="mailto:hello@fiveroses.com.au?subject=MOFA Proposal - Request Changes&body=Hi,%0D%0A%0D%0AI'd like to discuss changes to the MOFA proposal."
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="bg-white text-zinc-900 px-6 py-3 md:px-12 md:py-4 rounded-md font-medium border-2 border-zinc-900 hover:bg-zinc-50 transition-all duration-300 text-base md:text-lg flex items-center justify-center inline-block cursor-pointer w-full sm:w-auto min-h-[44px]"
+                className="bg-white text-zinc-900 px-6 py-3 md:px-12 md:py-4 rounded-md font-medium border-2 border-zinc-900 hover:bg-zinc-50 active:bg-zinc-100 transition-all duration-300 text-base md:text-lg flex items-center justify-center inline-block cursor-pointer w-full sm:w-auto min-h-[44px] touch-manipulation"
               >
                 Request Changes
               </motion.a>
