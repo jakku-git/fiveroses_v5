@@ -170,7 +170,7 @@ function StatBlock({
             <div className={`${stat.valueSize || "text-4xl md:text-5xl"} font-light text-white mb-3 tracking-tight break-words`}>{stat.value}</div>
             <div className="text-sm font-light text-white/90 mb-2 tracking-wide uppercase break-words">{stat.label}</div>
             {stat.description && (
-              <div className="text-xs text-white/60 font-light tracking-wide break-words">{stat.description}</div>
+              <div className="text-xs text-white/80 font-light tracking-wide break-words">{stat.description}</div>
             )}
           </motion.div>
         ))}
@@ -206,15 +206,15 @@ function CapabilitiesGrid() {
             <h4 className="text-2xl font-light text-white mb-6 tracking-wide">{cap.name}</h4>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>
-                <div className="text-xs uppercase tracking-wider text-white/60 mb-2 font-light">Western Markets</div>
+                <div className="text-xs uppercase tracking-wider text-white/80 mb-2 font-light">Western Markets</div>
                 <p className="text-white/80 text-sm font-light leading-relaxed">{cap.western}</p>
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wider text-white/60 mb-2 font-light">Chinese Markets</div>
+                <div className="text-xs uppercase tracking-wider text-white/80 mb-2 font-light">Chinese Markets</div>
                 <p className="text-white/80 text-sm font-light leading-relaxed">{cap.chinese}</p>
               </div>
               <div>
-                <div className="text-xs uppercase tracking-wider text-white/60 mb-2 font-light">Cross-Border</div>
+                <div className="text-xs uppercase tracking-wider text-white/80 mb-2 font-light">Cross-Border</div>
                 <p className="text-white/80 text-sm font-light leading-relaxed">{cap.cross}</p>
               </div>
             </div>
@@ -256,7 +256,7 @@ function TimelineBlock({
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
               <div>
-                <span className="text-white/60 font-light">Team: </span>
+                <span className="text-white/80 font-light">Team: </span>
                 <span className="text-white/90 font-light">{item.team}</span>
               </div>
               <div>
@@ -312,7 +312,7 @@ function MetricCard({
       <div className="relative z-10">
         <div className="text-4xl md:text-5xl font-light text-white mb-3 tracking-tight">{value}</div>
         <div className="text-base font-light text-white/90 mb-2 tracking-wide uppercase">{label}</div>
-        {subtitle && <div className="text-sm text-white/60 font-light tracking-wide">{subtitle}</div>}
+        {subtitle && <div className="text-sm text-white/80 font-light tracking-wide">{subtitle}</div>}
       </div>
     </motion.div>
   )
@@ -420,7 +420,7 @@ function GrowthChart() {
               </motion.div>
               <div className="mt-4 text-center">
                 <div className="text-white/90 font-light tracking-wide">{item.year}</div>
-                <div className="text-white/60 text-sm font-light">{item.label}</div>
+                <div className="text-white/80 text-sm font-light">{item.label}</div>
               </div>
             </div>
           ))}
@@ -452,11 +452,11 @@ function ComparisonTable() {
         </thead>
         <tbody>
           <tr className="border-b border-white/10">
-            <td className="p-4 text-white/60">Traditional (Multi-Vendor)</td>
-            <td className="p-4 text-white/60">4-6 months</td>
-            <td className="p-4 text-white/60">$300K-800K</td>
-            <td className="p-4 text-white/60">5-8 vendors</td>
-            <td className="p-4 text-white/60">Fragmented</td>
+            <td className="p-4 text-white/80">Traditional (Multi-Vendor)</td>
+            <td className="p-4 text-white/80">4-6 months</td>
+            <td className="p-4 text-white/80">$300K-800K</td>
+            <td className="p-4 text-white/80">5-8 vendors</td>
+            <td className="p-4 text-white/80">Fragmented</td>
           </tr>
           <tr className="bg-white/5">
             <td className="p-4 text-white font-bold"><span className="font-semibold">fiveroses</span> (Integrated)</td>
@@ -468,7 +468,7 @@ function ComparisonTable() {
         </tbody>
       </motion.table>
       <div className="mt-4 text-center">
-        <span className="text-white/60 text-sm">50% faster • 40-50% cheaper • 100% accountable</span>
+        <span className="text-white/80 text-sm">50% faster • 40-50% cheaper • 100% accountable</span>
       </div>
     </div>
   )
@@ -1467,7 +1467,7 @@ export default function PartnersPage() {
                 <div className="text-xl font-light text-white mb-3">Creative Agencies</div>
                 <div className="text-sm text-white/60 font-light mb-2">Optimize For:</div>
                 <div className="text-lg font-light text-white/90">Awards & Portfolio Pieces</div>
-                <div className="text-sm text-white/50 font-light mt-2">Not sales or business outcomes</div>
+                <div className="text-sm text-white/70 font-light mt-2">Not sales or business outcomes</div>
               </motion.div>
 
               <motion.div
