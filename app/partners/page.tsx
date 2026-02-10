@@ -646,7 +646,7 @@ export default function PartnersPage() {
 
       {/* Subtle Vignette */}
       <div className="fixed inset-0 z-[1] pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-transparent" />
       </div>
 
       {/* Content */}
