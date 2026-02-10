@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, useMotionValue, useInView } from "fram
 import Lenis from "@studio-freight/lenis"
 import { Canvas, useFrame } from "@react-three/fiber"
 import * as THREE from "three"
+import { PasswordProtect } from "@/components/password-protect"
 
 // Animated Growth Chart Component
 function AnimatedGrowthChart({
@@ -1097,7 +1098,7 @@ function ClosingSection() {
 }
 
 // Main Page Component
-export default function PartnershipsPage() {
+function PartnershipsPage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const scrollProgressValue = useMotionValue(0)
 
@@ -2135,5 +2136,13 @@ export default function PartnershipsPage() {
         <ClosingSection />
       </div>
     </main>
+  )
+}
+
+export default function ProtectedPartnershipsPage() {
+  return (
+    <PasswordProtect password="FR2026" storageKey="partnership-access">
+      <PartnershipsPage />
+    </PasswordProtect>
   )
 }

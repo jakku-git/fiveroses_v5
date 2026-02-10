@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, useMotionValue, useInView } from "fram
 import Lenis from "@studio-freight/lenis"
 import { Canvas, useFrame } from "@react-three/fiber"
 import * as THREE from "three"
+import { PasswordProtect } from "@/components/password-protect"
 
 // Animated Bar Chart Component
 function AnimatedBarChart({ 
@@ -579,7 +580,7 @@ function MorphingBlob() {
   )
 }
 
-export default function PartnersPage() {
+function PartnersPage() {
   const lenisRef = useRef<Lenis | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -3082,5 +3083,13 @@ function ClosingSection() {
         </motion.div>
       )}
     </motion.section>
+  )
+}
+
+export default function ProtectedInvestorsPage() {
+  return (
+    <PasswordProtect password="Pitch2026" storageKey="investors-access">
+      <PartnersPage />
+    </PasswordProtect>
   )
 }

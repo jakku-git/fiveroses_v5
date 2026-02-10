@@ -345,6 +345,9 @@ const Footer = memo(function Footer() {
               © {new Date().getFullYear()} fiveroses. All rights reserved.
             </p>
             <div className="flex space-x-12">
+              <Link href="/opportunities" className={`${styles.navLink} text-[13px] font-normal tracking-[0.02em] text-white/40 hover:text-white/60 uppercase mr-12`}>
+                Opportunities
+              </Link>
               <Link href="/privacy" className={`${styles.navLink} text-[13px] font-normal tracking-[0.02em] text-white/40 hover:text-white/60 uppercase mr-12`}>
                 Privacy Policy
               </Link>
