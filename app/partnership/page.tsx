@@ -682,7 +682,7 @@ function ContentSection({
       <div className="max-w-5xl mx-auto w-full relative z-10">
         <h2 
           ref={headingRef}
-          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-12 tracking-wide text-white"
+          className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-light mb-12 tracking-wide text-white break-words"
           style={{ 
             transformStyle: "preserve-3d",
             perspective: "1000px"
@@ -710,7 +710,15 @@ function ClosingSection() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const ref = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const words = ["Better", "work.", "Better", "opportunity.", "Better", "future."]
   
@@ -734,79 +742,95 @@ function ClosingSection() {
       className="min-h-screen w-full flex items-center justify-center px-6 md:px-12 lg:px-16 py-24 relative mb-32 z-20"
     >
       <div className="max-w-7xl mx-auto w-full relative z-10">
-        <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] tracking-[-0.04em] text-white">
-          {words.map((word, wordIndex) => {
-            let charOffset = 0
-            for (let i = 0; i < wordIndex; i++) {
-              charOffset += words[i].length
-            }
-            
-            return (
-              <React.Fragment key={wordIndex}>
-                <span className="inline-block mr-[0.2em] whitespace-nowrap">
-                  {word.split('').map((char, charIndex) => {
-                    const globalIndex = charOffset + charIndex
-                    const { x, y, rotate } = randomValues[globalIndex]
-                    
-                    return (
-                      <motion.span
-                        key={charIndex}
-                        initial={{ 
-                          x,
-                          y,
-                          rotate,
-                          opacity: 0,
-                          scale: 0
-                        }}
-                        whileInView={{ 
-                          x: 0,
-                          y: 0,
-                          rotate: 0,
-                          opacity: 1,
-                          scale: 1
-                        }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{
-                          duration: 0.8,
-                          delay: globalIndex * 0.008,
-                          ease: [0.16, 1, 0.3, 1]
-                        }}
-                        className="inline-block"
-                      >
-                        {char}
-                      </motion.span>
-                    )
-                  })}
-                </span>
-                {(word === "work." || word === "opportunity.") && <br />}
-              </React.Fragment>
-            )
-          })}
-          {" "}
-          <span className="inline-block whitespace-nowrap relative" style={{ fontSize: "1.5em" }}>
-            {"fiveroses.".split('').map((char, i) => {
-              const isEven = i % 2 === 0
-              return (
-                <motion.span
-                  key={i}
-                  initial={{ 
-                    opacity: 0,
-                    x: isEven ? -100 : 100,
-                    rotateY: isEven ? -90 : 90,
-                  }}
-                  whileInView={{ 
-                    opacity: 1,
-                    x: 0,
-                    rotateY: 0,
-                  }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  transition={{
-                    duration: 1,
-                    delay: words.join('').length * 0.008 + (i * 0.06),
-                    ease: [0.16, 1, 0.3, 1]
-                  }}
-                  style={{ 
-                    transformStyle: "preserve-3d",
+        <h2 className="text-2xl sm:text-3xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[1.2] md:leading-[0.95] tracking-[-0.04em] text-white">
+          {isMobile ? (
+            // Simple fade-in for mobile
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              Better work.<br />
+              Better opportunity.<br />
+              Better future.<br />
+              <span className="inline-block font-black" style={{ fontSize: "1.2em" }}>fiveroses.</span>
+            </motion.div>
+          ) : (
+            // Complex character animation for desktop
+            <>
+              {words.map((word, wordIndex) => {
+                let charOffset = 0
+                for (let i = 0; i < wordIndex; i++) {
+                  charOffset += words[i].length
+                }
+                
+                return (
+                  <React.Fragment key={wordIndex}>
+                    <span className="inline-block mr-[0.2em] whitespace-nowrap">
+                      {word.split('').map((char, charIndex) => {
+                        const globalIndex = charOffset + charIndex
+                        const { x, y, rotate } = randomValues[globalIndex]
+                        
+                        return (
+                          <motion.span
+                            key={charIndex}
+                            initial={{ 
+                              x,
+                              y,
+                              rotate,
+                              opacity: 0,
+                              scale: 0
+                            }}
+                            whileInView={{ 
+                              x: 0,
+                              y: 0,
+                              rotate: 0,
+                              opacity: 1,
+                              scale: 1
+                            }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{
+                              duration: 0.8,
+                              delay: globalIndex * 0.008,
+                              ease: [0.16, 1, 0.3, 1]
+                            }}
+                            className="inline-block"
+                          >
+                            {char}
+                          </motion.span>
+                        )
+                      })}
+                    </span>
+                    {(word === "work." || word === "opportunity.") && <br />}
+                  </React.Fragment>
+                )
+              })}
+              {" "}
+              <span className="inline-block whitespace-nowrap relative" style={{ fontSize: "1.5em" }}>
+                {"fiveroses.".split('').map((char, i) => {
+                  const isEven = i % 2 === 0
+                  return (
+                    <motion.span
+                      key={i}
+                      initial={{ 
+                        opacity: 0,
+                        x: isEven ? -100 : 100,
+                        rotateY: isEven ? -90 : 90,
+                      }}
+                      whileInView={{ 
+                        opacity: 1,
+                        x: 0,
+                        rotateY: 0,
+                      }}
+                      viewport={{ once: true, margin: "-100px" }}
+                      transition={{
+                        duration: 1,
+                        delay: words.join('').length * 0.008 + (i * 0.06),
+                        ease: [0.16, 1, 0.3, 1]
+                      }}
+                      style={{ 
+                        transformStyle: "preserve-3d",
                     display: "inline-block"
                   }}
                 >
@@ -828,7 +852,9 @@ function ClosingSection() {
                 </motion.span>
               )
             })}
-          </span>
+              </span>
+            </>
+          )}
         </h2>
 
         {/* CTA Button */}

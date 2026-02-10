@@ -166,6 +166,7 @@ const MobileNav = memo(function MobileNav({ isOpen, onClose }: { isOpen: boolean
                 { href: "/news", label: "News" },
                 { href: "/about", label: "About" },
                 { href: "/contact", label: "Contact" },
+                { href: "/opportunities", label: "Opportunities" },
               ].map((link, i) => (
                 <motion.div key={link.href} custom={i} variants={linkVariants}>
                   <Link 
