@@ -121,7 +121,7 @@ const MobileHero = () => (
                 fiveroses
             </h1>
             <p className="text-lg text-white/70 font-light max-w-md mx-auto mb-8">
-                Creative studio crafting meaningful experiences through design, content, and code
+                Less noise. More impact.
             </p>
             <motion.a
                 href="/contact"
