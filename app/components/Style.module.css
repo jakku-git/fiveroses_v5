@@ -1,7 +1,7 @@
 .project{
     border-top: 2px solid black;
-    padding-top: clamp(12px, 2vw, 0.6vw);
-    padding-bottom: clamp(12px, 2vw, 0.6vw);
+    padding-top: 0.6vw;
+    padding-bottom: 0.6vw;
     cursor: pointer;
     width: 100%;
     display: flex;
@@ -9,32 +9,17 @@
     align-items: center;
     color: black;
     position: relative;
-    min-height: clamp(60px, 15vw, 8vw);
-}
-
-@media (min-width: 768px) {
-    .project {
-        padding-top: 0.6vw;
-        padding-bottom: 0.6vw;
-        min-height: 8vw;
-    }
+    min-height: 8vw;
 }
   
 .project p{
-    font-size: clamp(20px, 6vw, 2.5vw);
+    font-size: 2.5vw;
     margin: 0px;
     white-space: nowrap;
     line-height: 1;
     display: flex;
     align-items: center;
-    height: clamp(60px, 15vw, 8vw);
-}
-
-@media (min-width: 768px) {
-    .project p {
-        font-size: 2.5vw;
-        height: 8vw;
-    }
+    height: 8vw;
 }
 
 .project p:nth-of-type(1){
@@ -55,16 +40,9 @@
     justify-content: center;
     align-items: center;
     width: 0;
-    height: clamp(60px, 15vw, 8vw);
+    height: 8vw;
     position: relative;
-    max-width: clamp(100px, 30vw, 12vw);
-}
-
-@media (min-width: 768px) {
-    .project .imgContainer {
-        height: 8vw;
-        max-width: 12vw;
-    }
+    max-width: 12vw;
 }
 
 /* Remove the img styles since we're using Next.js Image component */

@@ -47,7 +47,7 @@ const Header = memo(function Header() {
           : "bg-gradient-to-r from-black/30 via-black/25 to-black/30 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] border-white/15"
       } ${inter.className} rounded-full border`}
     >
-      <div className="w-full px-4 md:px-16 py-3 flex justify-between items-center">
+      <div className="w-full px-4 md:px-16 py-3 flex justify-between items-center relative">
         <nav className="hidden md:flex items-center gap-16">
           <NavLink href="/work" text="Work" />
           <NavLink href="/news" text="News" />
@@ -62,7 +62,7 @@ const Header = memo(function Header() {
           <NavLink href="/about" text="About" />
           <NavLink href="/contact" text="Contact" />
         </nav>
-        <div className="md:hidden">
+        <div className="md:hidden absolute right-4">
           <MobileNav />
         </div>
       </div>
@@ -74,74 +74,32 @@ const MobileNav = memo(function MobileNav() {
   const [isOpen, setIsOpen] = React.useState(false)
   
   const menuVariants = {
-    closed: { 
-      opacity: 0, 
-      scale: 0.95,
-      transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] } 
-    },
-    open: { 
-      opacity: 1, 
-      scale: 1,
-      transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] } 
-    },
+    closed: { opacity: 0, x: "100%", transition: { duration: 0.5 } },
+    open: { opacity: 1, x: 0, transition: { duration: 0.5 } },
   }
   
   const linkVariants = {
     closed: { opacity: 0, y: 20 },
-    open: (i: number) => ({ 
-      opacity: 1, 
-      y: 0, 
-      transition: { 
-        delay: 0.1 + i * 0.05,
-        duration: 0.3,
-        ease: [0.4, 0, 0.2, 1]
-      } 
-    }),
+    open: (i: number) => ({ opacity: 1, y: 0, transition: { delay: 0.3 + i * 0.1 } }),
   }
   
   return (
     <div className="md:hidden">
       <button 
         onClick={() => setIsOpen(!isOpen)} 
-        className="p-2 hover:bg-white/10 active:bg-white/20 rounded-full transition-all duration-200 touch-manipulation"
+        className="p-3 hover:bg-white/10 active:bg-white/20 rounded-full transition-colors touch-manipulation"
         aria-label={isOpen ? "Close menu" : "Open menu"}
       >
-        {isOpen ? <X className="h-5 w-5 text-white" /> : <Menu className="h-5 w-5 text-white" />}
+        {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
       </button>
       <motion.div
-        className="fixed inset-0 bg-black/98 backdrop-blur-xl z-40 flex flex-col items-center justify-center"
+        className={`fixed inset-0 bg-black/95 backdrop-blur-md z-40 flex flex-col items-center justify-center ${inter.className}`}
         initial="closed"
         animate={isOpen ? "open" : "closed"}
         variants={menuVariants}
         style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
       >
-        {/* Close button in menu */}
-        <button
-          onClick={() => setIsOpen(false)}
-          className="absolute top-6 right-6 p-3 hover:bg-white/10 active:bg-white/20 rounded-full transition-all duration-200 touch-manipulation"
-          aria-label="Close menu"
-        >
-          <X className="h-6 w-6 text-white" />
-        </button>
-
-        {/* Brand in menu */}
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : -20 }}
-          transition={{ delay: 0.1 }}
-          className="absolute top-6 left-6"
-        >
-          <Link 
-            href="/" 
-            onClick={() => setIsOpen(false)}
-            className="text-2xl font-black tracking-tighter text-white"
-          >
-            fiveroses
-          </Link>
-        </motion.div>
-
-        {/* Navigation links */}
-        <nav className="flex flex-col items-center gap-6 px-6">
+        <nav className="flex flex-col items-center gap-8">
           {[
             { href: "/work", label: "Work" },
             { href: "/news", label: "News" },
@@ -151,7 +109,7 @@ const MobileNav = memo(function MobileNav() {
             <motion.div key={link.href} custom={i} variants={linkVariants}>
               <Link 
                 href={link.href} 
-                className="text-4xl font-light tracking-tight text-white/90 hover:text-white active:text-white/70 transition-all duration-200 touch-manipulation min-h-[56px] flex items-center px-4" 
+                className="text-3xl font-[200] tracking-wide text-white/90 hover:text-white active:text-white/70 uppercase transition-all duration-300 touch-manipulation min-h-[44px] flex items-center" 
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
@@ -162,10 +120,10 @@ const MobileNav = memo(function MobileNav() {
         
         {/* Social links in mobile menu */}
         <motion.div 
-          className="absolute bottom-8 flex gap-4"
+          className="absolute bottom-12 flex gap-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: isOpen ? 1 : 0 }}
-          transition={{ delay: 0.4 }}
+          transition={{ delay: 0.7 }}
         >
           {[
             { icon: Instagram, label: "Instagram" },
@@ -174,10 +132,10 @@ const MobileNav = memo(function MobileNav() {
           ].map((social) => (
             <button
               key={social.label}
-              className="p-3 text-white/50 hover:text-white active:text-white/30 transition-all duration-200 touch-manipulation rounded-full hover:bg-white/10"
+              className="p-3 text-white/60 hover:text-white active:text-white/40 transition-colors touch-manipulation"
               aria-label={social.label}
             >
-              <social.icon className="w-5 h-5" />
+              <social.icon className="w-6 h-6" />
             </button>
           ))}
         </motion.div>
