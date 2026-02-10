@@ -420,6 +420,7 @@ function MorphingBlob() {
 // Opening Section
 function OpeningSection() {
   const ref = useRef<HTMLElement>(null)
+  const [isMobile, setIsMobile] = useState(false)
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
@@ -427,6 +428,13 @@ function OpeningSection() {
 
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
   const y = useTransform(scrollYProgress, [0, 0.5], [0, -100])
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const words = ["Build", "with", "us.", "Not", "for", "us."]
   
@@ -452,57 +460,71 @@ function OpeningSection() {
       className="min-h-screen w-full flex items-center justify-center px-6 md:px-12 lg:px-16 py-24 relative"
     >
       <div className="max-w-7xl mx-auto w-full relative z-10">
-        {/* Main Headline - CHARACTER BY CHARACTER WITH WORD WRAPPING */}
-        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] tracking-[-0.04em] mb-12 text-white">
-          {words.map((word, wordIndex) => {
-            let charOffset = 0
-            for (let i = 0; i < wordIndex; i++) {
-              charOffset += words[i].length
-            }
-            
-            return (
-              <React.Fragment key={wordIndex}>
-                <span className="inline-block mr-[0.2em] whitespace-nowrap">
-                  {word.split('').map((char, charIndex) => {
-                    const globalIndex = charOffset + charIndex
-                    const { x, y, rotate } = randomValues[globalIndex]
-                    
-                    return (
-                      <motion.span
-                        key={charIndex}
-                        initial={{ 
-                          x,
-                          y,
-                          rotate,
-                          opacity: 0,
-                          scale: 0
-                        }}
-                        whileInView={{ 
-                          x: 0,
-                          y: 0,
-                          rotate: 0,
-                          opacity: 1,
-                          scale: 1
-                        }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{
-                          duration: 0.8,
-                          delay: globalIndex * 0.015,
-                          ease: [0.16, 1, 0.3, 1]
-                        }}
-                        className="inline-block"
-                      >
-                        {char}
-                      </motion.span>
-                    )
-                  })}
-                </span>
-                {word === "us." && wordIndex === 2 && <br />}
-              </React.Fragment>
-            )
-          })}
+        {/* Main Headline */}
+        <h1 className="text-3xl sm:text-4xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[1.1] md:leading-[0.95] tracking-[-0.04em] mb-8 md:mb-12 text-white">
+          {isMobile ? (
+            // Simple fade-in for mobile
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            >
+              Build with us.<br />
+              Not for us.
+            </motion.div>
+          ) : (
+            // Complex character animation for desktop
+            words.map((word, wordIndex) => {
+              let charOffset = 0
+              for (let i = 0; i < wordIndex; i++) {
+                charOffset += words[i].length
+              }
+              
+              return (
+                <React.Fragment key={wordIndex}>
+                  <span className="inline-block mr-[0.2em] whitespace-nowrap">
+                    {word.split('').map((char, charIndex) => {
+                      const globalIndex = charOffset + charIndex
+                      const { x, y, rotate } = randomValues[globalIndex]
+                      
+                      return (
+                        <motion.span
+                          key={charIndex}
+                          initial={{ 
+                            x,
+                            y,
+                            rotate,
+                            opacity: 0,
+                            scale: 0
+                          }}
+                          whileInView={{ 
+                            x: 0,
+                            y: 0,
+                            rotate: 0,
+                            opacity: 1,
+                            scale: 1
+                          }}
+                          viewport={{ once: true, margin: "-100px" }}
+                          transition={{
+                            duration: 0.8,
+                            delay: globalIndex * 0.015,
+                            ease: [0.16, 1, 0.3, 1]
+                          }}
+                          className="inline-block"
+                        >
+                          {char}
+                        </motion.span>
+                      )
+                    })}
+                  </span>
+                  {word === "us." && wordIndex === 2 && <br />}
+                </React.Fragment>
+              )
+            })
+          )}
           <br />
-          <span className="inline-block whitespace-nowrap relative" style={{ fontSize: "1.7em" }}>
+          <span className="inline-block whitespace-nowrap relative text-[1.3em] sm:text-[1.5em] md:text-[1.7em]">
             {"fiveroses".split('').map((char, i) => {
               return (
                 <motion.span

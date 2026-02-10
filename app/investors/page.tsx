@@ -356,33 +356,39 @@ function GrowthChart() {
     <div ref={ref} className="w-full max-w-5xl mx-auto my-12 md:my-16 p-6 md:p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
       <h3 className="text-xl md:text-2xl font-light mb-8 md:mb-12 text-white tracking-wide">5-Year Revenue Projection (AUD)</h3>
       
-      {/* Chart with bars only - simpler and more reliable */}
-      <div className="relative h-64 md:h-80 mb-8">
-        <div className="flex items-end justify-between h-full gap-2 md:gap-4">
+      {/* Simplified chart - bars with values on top */}
+      <div className="relative mb-8">
+        <div className="flex items-end justify-between h-56 sm:h-64 md:h-80 gap-2 sm:gap-3 md:gap-6 relative">
           {years.map((item, i) => (
-            <div key={i} className="flex-1 flex flex-col items-center">
+            <div key={i} className="flex-1 flex flex-col items-center h-full justify-end">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: isInView ? 1 : 0, scale: isInView ? 1 : 0.8 }}
+                transition={{ duration: 0.6, delay: i * 0.15 + 0.5 }}
+                className="text-white font-light text-[9px] xs:text-[10px] sm:text-xs md:text-sm whitespace-nowrap mb-1.5 md:mb-2"
+              >
+                ${item.revenue}M
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: isInView ? 1 : 0, scale: isInView ? 1 : 0 }}
+                transition={{ duration: 0.4, delay: i * 0.15 + 0.7 }}
+                className="w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 rounded-full bg-white mb-0.5 md:mb-1"
+              />
               <motion.div
                 initial={{ height: 0 }}
                 whileInView={{ height: `${(item.revenue / maxRevenue) * 100}%` }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 1, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="w-full bg-gradient-to-t from-white/20 to-white/10 rounded-t-lg relative"
-              >
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 10 }}
-                  transition={{ duration: 0.6, delay: i * 0.15 + 0.5 }}
-                  className="absolute -top-10 md:-top-12 left-1/2 -translate-x-1/2 text-white font-light text-sm md:text-lg whitespace-nowrap tracking-wide"
-                >
-                  ${item.revenue}M
-                </motion.div>
-              </motion.div>
-              <div className="mt-3 md:mt-4 text-center">
-                <div className="text-white/90 font-light tracking-wide text-sm md:text-base">{item.year}</div>
-                <div className="text-white/80 text-xs md:text-sm font-light">{item.label}</div>
+                className="w-full bg-gradient-to-t from-white/30 to-white/10 rounded-t-lg relative"
+              />
+              <div className="mt-2 sm:mt-3 md:mt-4 text-center">
+                <div className="text-white/90 font-light text-[10px] xs:text-xs sm:text-sm md:text-base">{item.year}</div>
+                <div className="text-white/70 text-[9px] xs:text-[10px] sm:text-xs md:text-sm font-light">{item.label}</div>
               </div>
             </div>
           ))}
+          
         </div>
       </div>
     </div>
