@@ -30,19 +30,24 @@ export default function AboutPage() {
   return (
     <main className="flex flex-col">
       {/* Hero Section */}
-      <section className="w-full h-screen relative bg-black text-white">
+      <section className="w-full h-[60vh] md:h-screen relative bg-black text-white flex items-center justify-center">
         {isVisible && <BackgroundBoxes className="absolute inset-0" />}
+        <div className="relative z-10 px-6 text-center md:hidden">
+          <h1 className="text-4xl font-light tracking-tighter text-white">
+            <strong className="font-bold">fiveroses</strong>
+          </h1>
+        </div>
       </section>
 
       {/* About Section */}
       <div className="w-full bg-black text-white">
-        <div className="w-[80%] mx-auto pt-24">
-          <h1 className="text-3xl md:text-5xl font-light tracking-tighter mb-8">About <strong className="font-bold">fiveroses</strong></h1>
-          <div className="space-y-6 max-w-3xl mb-16">
-            <p className="text-xl font-light text-white/70 leading-relaxed">
+        <div className="w-[90%] md:w-[80%] mx-auto pt-12 md:pt-24 px-4 md:px-0">
+          <h1 className="text-3xl md:text-5xl font-light tracking-tighter mb-6 md:mb-8">About <strong className="font-bold">fiveroses</strong></h1>
+          <div className="space-y-4 md:space-y-6 max-w-3xl mb-12 md:mb-16">
+            <p className="text-base md:text-xl font-light text-white/70 leading-relaxed">
               At <strong className="font-bold">fiveroses</strong>, we're more than a creative studio. We're a collective of makers, thinkers, and storytellers driven by one goal: to turn ideas & imagination into execution. We exist to craft meaningful experiences that don't just look beautiful, but feel unforgettable.
             </p>
-            <p className="text-xl font-light text-white/70 leading-relaxed">
+            <p className="text-base md:text-xl font-light text-white/70 leading-relaxed">
               We believe creativity should make you feel something. It should stir curiosity, spark conversation, and leave a lasting imprint. Whether we're building brands, crafting content, or coding immersive digital experiences, our work is rooted in emotion and powered by intention.
             </p>
           </div>

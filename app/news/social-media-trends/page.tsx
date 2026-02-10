@@ -152,7 +152,7 @@ export default function ArticlePage() {
   return (
     <main className="min-h-screen bg-black text-white">
       {/* Hero Section */}
-      <section className="relative h-[80vh] w-full overflow-hidden">
+      <section className="relative h-[50vh] md:h-[80vh] w-full overflow-hidden">
         <motion.div
           ref={containerRef}
           style={{ y, opacity }}
@@ -174,10 +174,10 @@ export default function ArticlePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="max-w-4xl space-y-6">
+          <div className="max-w-4xl space-y-4 md:space-y-6">
             <Link
               href="/news"
-              className="inline-flex items-center gap-2 text-neutral-300 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-neutral-300 hover:text-white active:text-neutral-200 transition-colors touch-manipulation"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to News</span>
@@ -193,11 +193,11 @@ export default function ArticlePage() {
               </div>
             </div>
 
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight">
+            <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight leading-tight">
               Social Media Trends to Watch in 2023: The Complete Guide
             </h1>
 
-            <p className="text-xl text-neutral-300 font-light">
+            <p className="text-lg md:text-xl text-neutral-300 font-light">
               Stay ahead of the curve with these emerging social media trends that are reshaping digital marketing. From AI-powered features to the rise of social commerce, discover what's next in the world of social media.
             </p>
 
@@ -208,10 +208,10 @@ export default function ArticlePage() {
                 </div>
               </div>
               <div className="flex items-center gap-4 ml-auto">
-                <button className="p-2 hover:bg-white/5 rounded-full transition-colors">
+                <button className="p-3 hover:bg-white/5 active:bg-white/10 rounded-full transition-colors touch-manipulation">
                   <Share2 className="w-5 h-5" />
                 </button>
-                <button className="p-2 hover:bg-white/5 rounded-full transition-colors">
+                <button className="p-3 hover:bg-white/5 active:bg-white/10 rounded-full transition-colors touch-manipulation">
                   <BookmarkPlus className="w-5 h-5" />
                 </button>
               </div>
@@ -222,7 +222,7 @@ export default function ArticlePage() {
 
       {/* Content Section */}
       <motion.section 
-        className="py-16 px-4 md:px-8"
+        className="py-8 md:py-16 px-4 md:px-8"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
@@ -299,15 +299,15 @@ export default function ArticlePage() {
                 <h3 className="text-lg font-medium">Tags</h3>
               </div>
               <div className="flex items-center gap-4">
-                <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+                <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 active:bg-white/15 rounded-full transition-colors touch-manipulation">
                   <Share2 className="w-4 h-4" />
                   Share
                 </button>
-                <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+                <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 active:bg-white/15 rounded-full transition-colors touch-manipulation">
                   <BookmarkPlus className="w-4 h-4" />
                   Save
                 </button>
-                <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+                <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 active:bg-white/15 rounded-full transition-colors touch-manipulation">
                   <MessageCircle className="w-4 h-4" />
                   Comment
                 </button>
@@ -328,22 +328,22 @@ export default function ArticlePage() {
       </motion.section>
 
       {/* Related Articles Section */}
-      <section className="w-full py-24 px-4 md:px-6 bg-neutral-950">
+      <section className="w-full py-12 md:py-24 px-4 md:px-6 bg-neutral-950">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light tracking-tighter mb-12">Related Articles</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {relatedArticles.map((article, index) => (
-              <Link key={index} href={article.slug} className="group">
+              <Link key={index} href={article.slug} className="group touch-manipulation">
                 <div className="aspect-[16/9] w-full overflow-hidden rounded-lg mb-4">
                   <Image
                     src={article.image}
                     alt={article.title}
                     width={600}
                     height={400}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 group-active:scale-100"
                   />
                 </div>
-                <h3 className="text-xl font-light mb-2 group-hover:text-rose-400 transition-colors">
+                <h3 className="text-xl font-light mb-2 group-hover:text-rose-400 group-active:text-rose-500 transition-colors">
                   {article.title}
                 </h3>
                 <p className="text-sm text-neutral-400 mb-2">{article.excerpt}</p>

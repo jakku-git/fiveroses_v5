@@ -236,7 +236,7 @@ export default function NewsPage() {
 
       {/* Hero Section */}
       <motion.section 
-        className="relative h-screen flex items-center justify-center"
+        className="relative h-[60vh] md:h-screen flex items-center justify-center"
         style={{ 
           opacity: heroOpacity,
           y: heroY,
@@ -267,7 +267,7 @@ export default function NewsPage() {
             className="space-y-6"
           >
             <motion.h1 
-              className="text-4xl md:text-7xl font-light tracking-tighter"
+              className="text-3xl md:text-5xl lg:text-7xl font-light tracking-tighter"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -275,7 +275,7 @@ export default function NewsPage() {
               Inside the Studio
             </motion.h1>
             <motion.p 
-              className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto font-light"
+              className="text-base md:text-lg lg:text-xl text-white/80 max-w-2xl mx-auto font-light px-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
@@ -288,7 +288,7 @@ export default function NewsPage() {
 
       {/* Featured Articles Section */}
       <motion.section 
-        className="relative py-24 px-4 md:px-8"
+        className="relative py-12 md:py-24 px-4 md:px-8"
         style={{ 
           opacity: featuredOpacity,
           y: featuredY,
@@ -297,14 +297,14 @@ export default function NewsPage() {
       >
         <div className="w-full">
           <motion.h2 
-            className="text-3xl md:text-4xl font-light tracking-tighter mb-16 px-4 md:px-8"
+            className="text-2xl md:text-3xl lg:text-4xl font-light tracking-tighter mb-8 md:mb-16 px-4 md:px-8"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
             Featured Stories
           </motion.h2>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-12">
             {allArticles
               .filter(article => 
                 article.slug === 'blockchain-creative-ownership' ||
@@ -370,7 +370,7 @@ export default function NewsPage() {
 
       {/* Latest Articles Section */}
       <motion.section 
-        className="relative py-24 px-4 md:px-8 bg-black"
+        className="relative py-12 md:py-24 px-4 md:px-8 bg-black"
         style={{ 
           opacity: latestOpacity,
           y: latestY,
@@ -379,14 +379,14 @@ export default function NewsPage() {
       >
         <div className="w-full">
           <motion.h2 
-            className="text-3xl md:text-4xl font-light tracking-tighter mb-16 px-4 md:px-8 text-white"
+            className="text-2xl md:text-3xl lg:text-4xl font-light tracking-tighter mb-8 md:mb-16 px-4 md:px-8 text-white"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
             Latest Updates
           </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12">
             {allArticles.map((article, index) => (
               <motion.article
                 key={article.id}

@@ -127,7 +127,7 @@ export default function ArticlePage() {
   return (
     <main className="min-h-screen bg-black text-white">
       {/* Hero Section */}
-      <section className="relative h-[80vh] w-full overflow-hidden">
+      <section className="relative h-[50vh] md:h-[80vh] w-full overflow-hidden">
         <motion.div
           ref={containerRef}
           style={{ y, opacity }}
@@ -149,10 +149,10 @@ export default function ArticlePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="max-w-4xl space-y-8">
+          <div className="max-w-4xl space-y-4 md:space-y-8">
             <Link
               href="/news"
-              className="inline-flex items-center gap-2 text-neutral-300 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-neutral-300 hover:text-white active:text-white/80 transition-colors touch-manipulation"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to News</span>
@@ -184,10 +184,10 @@ export default function ArticlePage() {
                 </div>
               </div>
               <div className="flex items-center gap-4 ml-auto">
-                <button className="p-2 hover:bg-white/5 rounded-full transition-colors">
+                <button className="p-3 hover:bg-white/5 active:bg-white/10 rounded-full transition-colors touch-manipulation">
                   <Share2 className="w-5 h-5" />
                 </button>
-                <button className="p-2 hover:bg-white/5 rounded-full transition-colors">
+                <button className="p-3 hover:bg-white/5 active:bg-white/10 rounded-full transition-colors touch-manipulation">
                   <BookmarkPlus className="w-5 h-5" />
                 </button>
               </div>

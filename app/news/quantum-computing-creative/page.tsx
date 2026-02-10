@@ -111,7 +111,7 @@ export default function ArticlePage() {
   return (
     <main className="min-h-screen bg-black text-white">
       {/* Hero Section */}
-      <section className="relative h-[80vh] w-full overflow-hidden">
+      <section className="relative h-[50vh] md:h-[80vh] w-full overflow-hidden">
         <motion.div
           ref={containerRef}
           style={{ y, opacity }}
@@ -136,7 +136,7 @@ export default function ArticlePage() {
           <div className="max-w-4xl space-y-8">
             <Link
               href="/news"
-              className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-white/60 hover:text-white active:text-neutral-200 transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to News</span>
@@ -156,7 +156,7 @@ export default function ArticlePage() {
                 </div>
               </div>
 
-              <h1 className="text-4xl md:text-6xl font-light tracking-tighter">
+              <h1 className="text-3xl md:text-4xl lg:text-6xl font-light tracking-tighter">
                 Quantum Computing and Creative Industries: The Next Frontier
               </h1>
 
@@ -172,13 +172,13 @@ export default function ArticlePage() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                  <button className="p-2 hover:bg-white/10 active:bg-white/15 rounded-full transition-colors">
                     <Share2 className="w-5 h-5" />
                   </button>
-                  <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                  <button className="p-2 hover:bg-white/10 active:bg-white/15 rounded-full transition-colors">
                     <BookmarkPlus className="w-5 h-5" />
                   </button>
-                  <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                  <button className="p-2 hover:bg-white/10 active:bg-white/15 rounded-full transition-colors">
                     <MessageCircle className="w-5 h-5" />
                   </button>
                 </div>
@@ -253,15 +253,15 @@ export default function ArticlePage() {
             <h3 className={styles.tagLabel}>Tags</h3>
           </div>
           <div className="flex items-center gap-4">
-            <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+            <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 active:bg-white/15 rounded-full transition-colors touch-manipulation">
               <Share2 className="w-4 h-4" />
               Share
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+            <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 active:bg-white/15 rounded-full transition-colors touch-manipulation">
               <BookmarkPlus className="w-4 h-4" />
               Save
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-full transition-colors">
+            <button className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 active:bg-white/15 rounded-full transition-colors touch-manipulation">
               <MessageCircle className="w-4 h-4" />
               Comment
             </button>
@@ -277,19 +277,19 @@ export default function ArticlePage() {
       </motion.div>
 
       {/* Related Articles Section */}
-      <section className="w-full py-24 px-4 md:px-6 bg-neutral-950">
+      <section className="w-full py-12 md:py-24 px-4 md:px-6 bg-neutral-950">
         <div className="max-w-7xl mx-auto">
           <h2 className={styles.relatedTitle}>Related Articles</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {relatedArticles.map((article, index) => (
-              <Link key={index} href={article.slug} className="group">
+              <Link key={index} href={article.slug} className="group touch-manipulation">
                 <div className="aspect-[16/9] w-full overflow-hidden rounded-lg mb-4">
                   <Image
                     src={article.image}
                     alt={article.title}
                     width={600}
                     height={400}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 group-active:scale-100"
                   />
                 </div>
                 <h3 className={styles.relatedArticleTitle}>

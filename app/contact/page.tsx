@@ -108,12 +108,14 @@ export default function ContactPage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between bg-black text-white">
       {/* Hero Section */}
-      <section className="w-full h-screen flex flex-col items-center justify-center relative">
+      <section className="w-full h-[50vh] md:h-screen flex flex-col items-center justify-center relative">
         <div className="absolute inset-0 z-0">
-          <GlobeWrapper />
+          {!isMobile && <GlobeWrapper />}
+          {isMobile && <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-transparent to-transparent" />}
         </div>
         <div className="relative z-10 text-center px-4 md:px-6 max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-7xl font-bold tracking-tighter mb-6">fiveroses</h1>
+          <p className="text-base md:text-lg text-white/70 font-light">Let's create something together</p>
         </div>
       </section>
 
@@ -126,10 +128,10 @@ export default function ContactPage() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-6 text-white">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter mb-4 md:mb-6 text-white">
                 Get in Touch
               </h2>
-              <p className="text-lg text-neutral-400 mb-12 font-light leading-relaxed">
+              <p className="text-base md:text-lg text-neutral-400 mb-8 md:mb-12 font-light leading-relaxed">
                 Whether you have a question about our services, pricing, or anything else, our team is ready to answer all your questions.
               </p>
 
@@ -139,7 +141,7 @@ export default function ContactPage() {
                   whileHover={{ x: 5 }}
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white flex items-center justify-center group-hover:bg-neutral-100 transition-colors">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white flex items-center justify-center group-hover:bg-neutral-100 group-active:bg-neutral-200 transition-colors touch-manipulation">
                     <Mail className="w-6 h-6 text-black" />
                   </div>
                   <div>
@@ -162,7 +164,7 @@ export default function ContactPage() {
                     <motion.button
                       key={label}
                       type="button"
-                      className="w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-neutral-100 transition-colors"
+                      className="w-12 h-12 rounded-full bg-white flex items-center justify-center hover:bg-neutral-100 active:bg-neutral-200 transition-colors touch-manipulation"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       aria-label={label}
@@ -181,8 +183,8 @@ export default function ContactPage() {
               className="relative"
             >
               <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/10 rounded-2xl blur-3xl" />
-              <div className="relative bg-black/50 backdrop-blur-sm rounded-2xl p-8 border border-white/10">
-                <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="relative bg-black/50 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/10">
+                <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="relative">
                       <input
@@ -191,7 +193,7 @@ export default function ContactPage() {
                         name="firstName"
                         value={formData.firstName}
                         onChange={handleChange}
-                        className="w-full px-4 py-4 bg-white/5 border border-white rounded-lg focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-colors peer text-white"
+                        className="w-full px-4 py-3 md:py-4 bg-white/5 border border-white rounded-lg focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-colors peer text-white touch-manipulation text-base"
                         required
                       />
                       <label
@@ -212,7 +214,7 @@ export default function ContactPage() {
                         name="lastName"
                         value={formData.lastName}
                         onChange={handleChange}
-                        className="w-full px-4 py-4 bg-white/5 border border-white rounded-lg focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-colors peer text-white"
+                        className="w-full px-4 py-3 md:py-4 bg-white/5 border border-white rounded-lg focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-colors peer text-white touch-manipulation text-base"
                         required
                       />
                       <label
@@ -236,7 +238,7 @@ export default function ContactPage() {
                         name="jobTitle"
                         value={formData.jobTitle}
                         onChange={handleChange}
-                        className="w-full px-4 py-4 bg-white/5 border border-white rounded-lg focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-colors peer text-white"
+                        className="w-full px-4 py-3 md:py-4 bg-white/5 border border-white rounded-lg focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-colors peer text-white touch-manipulation text-base"
                         required
                       />
                       <label
@@ -257,7 +259,7 @@ export default function ContactPage() {
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
-                        className="w-full px-4 py-4 bg-white/5 border border-white rounded-lg focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-colors peer text-white"
+                        className="w-full px-4 py-3 md:py-4 bg-white/5 border border-white rounded-lg focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-colors peer text-white touch-manipulation text-base"
                         required
                       />
                       <label
@@ -281,7 +283,7 @@ export default function ContactPage() {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full px-4 py-4 bg-white/5 border border-white rounded-lg focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-colors peer text-white"
+                        className="w-full px-4 py-3 md:py-4 bg-white/5 border border-white rounded-lg focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-colors peer text-white touch-manipulation text-base"
                         required
                       />
                       <label
@@ -302,7 +304,7 @@ export default function ContactPage() {
                         name="location"
                         value={formData.location}
                         onChange={handleChange}
-                        className="w-full px-4 py-4 bg-white/5 border border-white rounded-lg focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-colors peer text-white"
+                        className="w-full px-4 py-3 md:py-4 bg-white/5 border border-white rounded-lg focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-colors peer text-white touch-manipulation text-base"
                         required
                       />
                       <label

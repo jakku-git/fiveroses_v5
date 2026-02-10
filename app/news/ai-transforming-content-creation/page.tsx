@@ -9,12 +9,12 @@ export default function AITransformingContentCreationPage() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between pt-16">
       {/* Hero Section */}
-      <section className="w-full py-24 px-4 md:px-6 bg-black text-white">
+      <section className="w-full py-12 md:py-24 px-4 md:px-6 bg-black text-white">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
             <Link
               href="/news"
-              className="inline-flex items-center gap-2 text-sm text-neutral-400 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-sm text-neutral-400 hover:text-white active:text-neutral-200 transition-colors touch-manipulation"
             >
               <ArrowLeft className="w-4 h-4" />
               Back to News
@@ -29,7 +29,7 @@ export default function AITransformingContentCreationPage() {
           </div>
 
           <motion.h1
-            className="text-4xl md:text-6xl font-light tracking-tighter mb-6"
+            className="text-3xl md:text-4xl lg:text-6xl font-light tracking-tighter mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -65,7 +65,7 @@ export default function AITransformingContentCreationPage() {
           </motion.div>
 
           <motion.p
-            className="text-xl leading-relaxed text-neutral-300 mb-12"
+            className="text-lg md:text-xl leading-relaxed text-neutral-300 mb-12"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
@@ -79,14 +79,14 @@ export default function AITransformingContentCreationPage() {
       </section>
 
       {/* Article Content with Sticky Scroll Reveal */}
-      <section className="w-full py-24 px-4 md:px-6 bg-neutral-950 text-white">
+      <section className="w-full py-12 md:py-24 px-4 md:px-6 bg-neutral-950 text-white">
         <div className="max-w-7xl mx-auto">
           <StickyScroll content={articleSections} />
         </div>
       </section>
 
       {/* Conclusion Section */}
-      <section className="w-full py-24 px-4 md:px-6 bg-black text-white">
+      <section className="w-full py-12 md:py-24 px-4 md:px-6 bg-black text-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light tracking-tighter mb-8">Conclusion</h2>
           <p className="text-lg text-neutral-300 mb-8">
@@ -105,7 +105,7 @@ export default function AITransformingContentCreationPage() {
           <div className="border-t border-neutral-800 pt-12">
             <h3 className="text-xl font-light mb-6">Share this article</h3>
             <div className="flex gap-4">
-              <button className="p-3 bg-neutral-900 rounded-full hover:bg-neutral-800 transition-colors">
+              <button className="p-3 bg-neutral-900 rounded-full hover:bg-neutral-800 active:bg-neutral-700 transition-colors touch-manipulation">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -120,7 +120,7 @@ export default function AITransformingContentCreationPage() {
                   <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                 </svg>
               </button>
-              <button className="p-3 bg-neutral-900 rounded-full hover:bg-neutral-800 transition-colors">
+              <button className="p-3 bg-neutral-900 rounded-full hover:bg-neutral-800 active:bg-neutral-700 transition-colors touch-manipulation">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -135,7 +135,7 @@ export default function AITransformingContentCreationPage() {
                   <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
                 </svg>
               </button>
-              <button className="p-3 bg-neutral-900 rounded-full hover:bg-neutral-800 transition-colors">
+              <button className="p-3 bg-neutral-900 rounded-full hover:bg-neutral-800 active:bg-neutral-700 transition-colors touch-manipulation">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -152,7 +152,7 @@ export default function AITransformingContentCreationPage() {
                   <circle cx="4" cy="4" r="2"></circle>
                 </svg>
               </button>
-              <button className="p-3 bg-neutral-900 rounded-full hover:bg-neutral-800 transition-colors">
+              <button className="p-3 bg-neutral-900 rounded-full hover:bg-neutral-800 active:bg-neutral-700 transition-colors touch-manipulation">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="20"
@@ -175,18 +175,18 @@ export default function AITransformingContentCreationPage() {
       </section>
 
       {/* Related Articles */}
-      <section className="w-full py-24 px-4 md:px-6 bg-neutral-950 text-white">
+      <section className="w-full py-12 md:py-24 px-4 md:px-6 bg-neutral-950 text-white">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl md:text-4xl font-light tracking-tighter mb-12">Related Articles</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {relatedArticles.map((article, index) => (
-              <Link key={index} href={article.slug} className="group">
+              <Link key={index} href={article.slug} className="group touch-manipulation">
                 <div className="aspect-[16/9] w-full overflow-hidden rounded-lg mb-4">
                   <img
                     src={article.image || "/placeholder.svg"}
                     alt={article.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 group-active:scale-100"
                   />
                 </div>
                 <h3 className="text-xl font-light mb-2 group-hover:text-accent transition-colors">{article.title}</h3>

@@ -108,36 +108,61 @@ const CanvasRevealEffect = dynamic(() => import("@/components/ui/canvas-reveal-e
 });
 
 const MobileMessage = () => (
-    <div className="fixed inset-0 bg-black z-[9999] flex items-center justify-center p-6 text-center">
+    <div className="fixed inset-0 bg-black z-[9999] flex items-center justify-center p-6 text-center overflow-y-auto">
         <div className="max-w-md">
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Desktop Experience Required</h2>
-            <p className="text-white/80 text-lg mb-6">
-                For the best experience, please view this website on a desktop device. The interactive elements and animations are optimized for larger screens.
+            <h2 className="text-2xl font-bold text-white mb-4">Desktop Experience Required</h2>
+            <p className="text-white/80 text-base mb-6">
+                Our homepage features interactive elements and animations optimized for larger screens.
             </p>
-            <div className="text-white/60 text-sm mb-8">
-                <p>In the meantime, follow us on social media to stay updated with our latest work and announcements.</p>
+            
+            <div className="mb-8 p-4 bg-white/5 rounded-lg border border-white/10">
+                <p className="text-white/90 text-sm font-medium mb-4">Mobile-Friendly Pages:</p>
+                <div className="flex flex-col gap-3">
+                    <a 
+                        href="/about" 
+                        className="px-4 py-3 bg-white/10 hover:bg-white/20 active:bg-white/15 rounded-lg text-white font-medium transition-colors touch-manipulation"
+                    >
+                        About Us
+                    </a>
+                    <a 
+                        href="/news" 
+                        className="px-4 py-3 bg-white/10 hover:bg-white/20 active:bg-white/15 rounded-lg text-white font-medium transition-colors touch-manipulation"
+                    >
+                        News & Insights
+                    </a>
+                    <a 
+                        href="/contact" 
+                        className="px-4 py-3 bg-white/10 hover:bg-white/20 active:bg-white/15 rounded-lg text-white font-medium transition-colors touch-manipulation"
+                    >
+                        Contact Us
+                    </a>
+                </div>
+            </div>
+
+            <div className="text-white/60 text-sm mb-6">
+                <p>Follow us on social media for updates:</p>
             </div>
             <div className="flex items-center justify-center gap-6">
                 <button 
-                    className="text-white/80 hover:text-white transition-colors"
+                    className="text-white/80 hover:text-white active:text-white/60 transition-colors p-2 touch-manipulation"
                     aria-label="Instagram"
                 >
                     <IconBrandInstagram className="w-8 h-8" />
                 </button>
                 <button 
-                    className="text-white/80 hover:text-white transition-colors"
+                    className="text-white/80 hover:text-white active:text-white/60 transition-colors p-2 touch-manipulation"
                     aria-label="Twitter"
                 >
                     <IconBrandTwitter className="w-8 h-8" />
                 </button>
                 <button 
-                    className="text-white/80 hover:text-white transition-colors"
+                    className="text-white/80 hover:text-white active:text-white/60 transition-colors p-2 touch-manipulation"
                     aria-label="LinkedIn"
                 >
                     <IconBrandLinkedin className="w-8 h-8" />
                 </button>
                 <button 
-                    className="text-white/80 hover:text-white transition-colors"
+                    className="text-white/80 hover:text-white active:text-white/60 transition-colors p-2 touch-manipulation"
                     aria-label="YouTube"
                 >
                     <IconBrandYoutube className="w-8 h-8" />
@@ -195,6 +220,14 @@ export default function Home() {
         cards.map((_, i) => 1 - ((cards.length - i) * 0.05)),
         [cards.length]
     );
+
+    if (isMobile) {
+        return (
+            <div className="fixed inset-0 bg-black">
+                <MobileMessage />
+            </div>
+        );
+    }
 
     if (isMobile) {
         return (

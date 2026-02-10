@@ -117,7 +117,7 @@ export default function ArticlePage() {
   return (
     <main className="min-h-screen bg-black text-white">
       {/* Hero Section */}
-      <section className="relative h-[80vh] w-full overflow-hidden">
+      <section className="relative h-[50vh] md:h-[80vh] w-full overflow-hidden">
         <motion.div
           ref={containerRef}
           style={{ y, opacity }}
@@ -142,7 +142,7 @@ export default function ArticlePage() {
           <div className="max-w-4xl space-y-8">
             <Link
               href="/news"
-              className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+              className="inline-flex items-center gap-2 text-white/60 hover:text-white active:text-neutral-200 transition-colors"
             >
               <ArrowLeft className="w-4 h-4" />
               <span>Back to News</span>
@@ -162,7 +162,7 @@ export default function ArticlePage() {
                 </div>
               </div>
 
-              <h1 className="text-4xl md:text-6xl font-light tracking-tighter">
+              <h1 className="text-3xl md:text-4xl lg:text-6xl font-light tracking-tighter">
                 Blockchain and Creative Ownership: The New Era of Digital Rights
               </h1>
 
@@ -178,13 +178,13 @@ export default function ArticlePage() {
                 </div>
 
                 <div className="flex items-center gap-4">
-                  <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                  <button className="p-2 hover:bg-white/10 active:bg-white/15 rounded-full transition-colors">
                     <Share2 className="w-5 h-5" />
                   </button>
-                  <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                  <button className="p-2 hover:bg-white/10 active:bg-white/15 rounded-full transition-colors">
                     <BookmarkPlus className="w-5 h-5" />
                   </button>
-                  <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+                  <button className="p-2 hover:bg-white/10 active:bg-white/15 rounded-full transition-colors">
                     <MessageCircle className="w-5 h-5" />
                   </button>
                 </div>
@@ -256,7 +256,7 @@ export default function ArticlePage() {
             {relatedArticles.map((article, index) => (
               <motion.article
                 key={article.slug}
-                className="group"
+                className="group touch-manipulation"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -268,14 +268,14 @@ export default function ArticlePage() {
                       src={article.image}
                       alt={article.title}
                       fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105 group-active:scale-100"
                     />
                   </div>
                   <div className="space-y-2">
                     <div className="text-sm text-white/60">
                       {article.date}
                     </div>
-                    <h3 className="text-xl font-light tracking-tight group-hover:text-white/80 transition-colors">
+                    <h3 className="text-xl font-light tracking-tight group-hover:text-white active:text-neutral-200/80 transition-colors">
                       {article.title}
                     </h3>
                     <p className="text-white/60 text-sm font-light">
