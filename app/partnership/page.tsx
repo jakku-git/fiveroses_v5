@@ -25,7 +25,7 @@ function AnimatedGrowthChart({
         <h3 className="text-xl md:text-2xl font-light mb-8 md:mb-10 text-white text-center tracking-wide">{title}</h3>
       )}
       <div className="relative h-64 md:h-80">
-        <svg className="w-full h-full" viewBox="0 0 1000 300" preserveAspectRatio="none">
+        <svg className="w-full h-full" viewBox="0 0 1000 300" preserveAspectRatio="xMidYMid meet">
           {/* Grid lines */}
           {[0, 1, 2, 3, 4].map((i) => (
             <motion.line
@@ -453,7 +453,7 @@ function OpeningSection() {
     >
       <div className="max-w-7xl mx-auto w-full relative z-10">
         {/* Main Headline - CHARACTER BY CHARACTER WITH WORD WRAPPING */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] tracking-[-0.04em] mb-12 text-white">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-[0.95] tracking-[-0.04em] mb-12 text-white">
           {words.map((word, wordIndex) => {
             let charOffset = 0
             for (let i = 0; i < wordIndex; i++) {
@@ -529,7 +529,7 @@ function OpeningSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-xl md:text-2xl text-white/70 font-light tracking-wide"
+          className="text-lg md:text-xl lg:text-2xl text-white/70 font-light tracking-wide"
         >
           We're looking for exceptional talent to grow with.
         </motion.p>
@@ -553,21 +553,24 @@ function ContentSection({
   const isInView = useInView(headingRef, { once: true, margin: "-100px" })
 
   const renderAnimatedHeading = () => {
-    const chars = heading.split('')
+    // Split by words for better mobile display
+    const words = heading.split(' ')
     
     switch (animationStyle) {
       case "splitReveal":
-        return chars.map((char, i) => {
-          const isEven = i % 2 === 0
-          return (
-            <motion.span
-              key={i}
-              initial={{ 
-                opacity: 0,
-                x: isEven ? -50 : 50,
-                rotateY: isEven ? -90 : 90,
-              }}
-              animate={{ 
+        return words.map((word, wordIndex) => (
+          <span key={wordIndex} className="inline-block whitespace-nowrap mr-[0.3em]">
+            {word.split('').map((char, i) => {
+              const isEven = i % 2 === 0
+              return (
+                <motion.span
+                  key={i}
+                  initial={{ 
+                    opacity: 0,
+                    x: isEven ? -50 : 50,
+                    rotateY: isEven ? -90 : 90,
+                  }}
+                  animate={{ 
                 opacity: isInView ? 1 : 0,
                 x: isInView ? 0 : (isEven ? -50 : 50),
                 rotateY: isInView ? 0 : (isEven ? -90 : 90),
@@ -584,54 +587,64 @@ function ContentSection({
             >
               {char === ' ' ? '\u00A0' : char}
             </motion.span>
-          )
-        })
+              )
+            })}
+          </span>
+        ))
       
       case "wave":
-        return chars.map((char, i) => (
-          <motion.span
-            key={i}
-            initial={{ y: 0 }}
-            animate={{ 
-              y: isInView ? [0, -20, 0] : 0,
-            }}
-            transition={{
-              duration: 0.6,
-              delay: i * 0.05,
-              ease: "easeInOut"
-            }}
-            className="inline-block"
-          >
-            {char === ' ' ? '\u00A0' : char}
-          </motion.span>
+        return words.map((word, wordIndex) => (
+          <span key={wordIndex} className="inline-block whitespace-nowrap mr-[0.3em]">
+            {word.split('').map((char, i) => (
+              <motion.span
+                key={i}
+                initial={{ y: 0 }}
+                animate={{ 
+                  y: isInView ? [0, -20, 0] : 0,
+                }}
+                transition={{
+                  duration: 0.6,
+                  delay: (wordIndex * word.length + i) * 0.05,
+                  ease: "easeInOut"
+                }}
+                className="inline-block"
+              >
+                {char === ' ' ? '\u00A0' : char}
+              </motion.span>
+            ))}
+          </span>
         ))
       
       case "perspective":
-        return chars.map((char, i) => (
-          <motion.span
-            key={i}
-            initial={{ 
-              opacity: 0,
-              rotateX: -90,
-              z: -100
-            }}
-            animate={{ 
-              opacity: isInView ? 1 : 0,
-              rotateX: isInView ? 0 : -90,
-              z: isInView ? 0 : -100
-            }}
-            transition={{
-              duration: 0.8,
-              delay: i * 0.04,
-              ease: [0.16, 1, 0.3, 1]
-            }}
-            style={{ 
-              transformStyle: "preserve-3d",
-              display: "inline-block"
-            }}
-          >
-            {char === ' ' ? '\u00A0' : char}
-          </motion.span>
+        return words.map((word, wordIndex) => (
+          <span key={wordIndex} className="inline-block whitespace-nowrap mr-[0.3em]">
+            {word.split('').map((char, i) => (
+              <motion.span
+                key={i}
+                initial={{ 
+                  opacity: 0,
+                  rotateX: -90,
+                  z: -100
+                }}
+                animate={{ 
+                  opacity: isInView ? 1 : 0,
+                  rotateX: isInView ? 0 : -90,
+                  z: isInView ? 0 : -100
+                }}
+                transition={{
+                  duration: 0.8,
+                  delay: (wordIndex * word.length + i) * 0.04,
+                  ease: [0.16, 1, 0.3, 1]
+                }}
+                style={{ 
+                  transformStyle: "preserve-3d",
+                  display: "inline-block"
+                }}
+              >
+                {char === ' ' ? '\u00A0' : char}
+              </motion.span>
+            ))}
+          </span>
         ))
       
       default:
@@ -647,7 +660,7 @@ function ContentSection({
       <div className="max-w-5xl mx-auto w-full relative z-10">
         <h2 
           ref={headingRef}
-          className="text-4xl md:text-5xl lg:text-6xl font-light mb-12 tracking-wide text-white"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light mb-12 tracking-wide text-white"
           style={{ 
             transformStyle: "preserve-3d",
             perspective: "1000px"

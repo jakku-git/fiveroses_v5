@@ -356,51 +356,9 @@ function GrowthChart() {
     <div ref={ref} className="w-full max-w-5xl mx-auto my-12 md:my-16 p-6 md:p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
       <h3 className="text-xl md:text-2xl font-light mb-8 md:mb-12 text-white tracking-wide">5-Year Revenue Projection (AUD)</h3>
       
-      {/* SVG Line Overlay */}
+      {/* Chart with bars only - simpler and more reliable */}
       <div className="relative h-64 md:h-80 mb-8">
-        <svg 
-          className="absolute inset-0 w-full h-full pointer-events-none" 
-          viewBox={`0 0 ${chartWidth} ${chartHeight}`}
-          preserveAspectRatio="none"
-        >
-          <motion.path
-            d={pathD}
-            fill="none"
-            stroke="rgba(255, 255, 255, 0.4)"
-            strokeWidth="0.5"
-            strokeLinecap="round"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: isInView ? 1 : 0 }}
-            transition={{ duration: 2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          />
-          {/* Glow effect */}
-          <motion.path
-            d={pathD}
-            fill="none"
-            stroke="rgba(255, 255, 255, 0.8)"
-            strokeWidth="1"
-            strokeLinecap="round"
-            filter="blur(2px)"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: isInView ? 1 : 0 }}
-            transition={{ duration: 2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-          />
-          {/* Animated dots at each point */}
-          {points.map((point, i) => (
-            <motion.circle
-              key={i}
-              cx={point.x}
-              cy={point.y}
-              r="1"
-              fill="white"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: isInView ? 1 : 0, scale: isInView ? 1 : 0 }}
-              transition={{ duration: 0.4, delay: 0.5 + (i * 0.15), ease: [0.16, 1, 0.3, 1] }}
-            />
-          ))}
-        </svg>
-        
-        <div className="flex items-end justify-between h-full gap-4">
+        <div className="flex items-end justify-between h-full gap-2 md:gap-4">
           {years.map((item, i) => (
             <div key={i} className="flex-1 flex flex-col items-center">
               <motion.div

@@ -10,7 +10,15 @@ export default function OpportunitiesPage() {
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
   const containerRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
@@ -122,7 +130,7 @@ export default function OpportunitiesPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="text-xl md:text-2xl text-white/70 font-light tracking-wide max-w-3xl mx-auto"
+              className="text-lg md:text-xl lg:text-2xl text-white/70 font-light tracking-wide max-w-3xl mx-auto px-4"
             >
               Whether you're looking to invest in our growth or collaborate on world-class work, <span className="font-semibold">fiveroses</span> offers a path forward.
             </motion.p>
@@ -133,23 +141,23 @@ export default function OpportunitiesPage() {
             {/* Partnership Card - NOW ON LEFT */}
             <Link href="/partnership">
               <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
                 onMouseEnter={() => setHoveredCard("partnership")}
                 onMouseLeave={() => setHoveredCard(null)}
-                className="group relative min-h-[500px] md:h-[600px] bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/30 transition-all duration-500 cursor-pointer overflow-hidden touch-manipulation"
+                className="group relative min-h-[500px] md:h-[600px] bg-white/5 backdrop-blur-sm border border-white/10 md:hover:border-white/30 transition-all duration-300 cursor-pointer overflow-hidden touch-manipulation"
               >
 
                 {/* Content */}
                 <div className="relative h-full flex flex-col justify-between p-6 sm:p-8 md:p-12">
                   <div>
                     <motion.div
-                      animate={{ 
+                      animate={!isMobile ? { 
                         x: hoveredCard === "partnership" ? 10 : 0,
                         y: hoveredCard === "partnership" ? -10 : 0,
                         rotate: hoveredCard === "partnership" ? 5 : 0
-                      }}
+                      } : {}}
                       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                       className="mb-6 md:mb-8"
                     >
@@ -160,9 +168,9 @@ export default function OpportunitiesPage() {
 
                     <motion.h2 
                       className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 tracking-tight"
-                      animate={{
+                      animate={!isMobile ? {
                         x: hoveredCard === "partnership" ? 5 : 0
-                      }}
+                      } : {}}
                       transition={{ duration: 0.3 }}
                     >
                       Partnership
@@ -170,9 +178,9 @@ export default function OpportunitiesPage() {
                     
                     <motion.p 
                       className="text-lg text-white/70 font-light leading-relaxed mb-8"
-                      animate={{
+                      animate={!isMobile ? {
                         x: hoveredCard === "partnership" ? 5 : 0
-                      }}
+                      } : {}}
                       transition={{ duration: 0.3, delay: 0.05 }}
                     >
                       Join our network of exceptional creative and technical specialists. Work on portfolio-grade projects with premium clients across international markets.
@@ -181,9 +189,9 @@ export default function OpportunitiesPage() {
                     <div className="space-y-4 text-white/60 text-sm font-light">
                       <motion.div 
                         className="flex items-start gap-3"
-                        animate={{
+                        animate={!isMobile ? {
                           x: hoveredCard === "partnership" ? 10 : 0
-                        }}
+                        } : {}}
                         transition={{ duration: 0.3, delay: 0.1 }}
                       >
                         <div className="w-1.5 h-1.5 rounded-full bg-white/40 mt-2 flex-shrink-0" />
@@ -191,9 +199,9 @@ export default function OpportunitiesPage() {
                       </motion.div>
                       <motion.div 
                         className="flex items-start gap-3"
-                        animate={{
+                        animate={!isMobile ? {
                           x: hoveredCard === "partnership" ? 10 : 0
-                        }}
+                        } : {}}
                         transition={{ duration: 0.3, delay: 0.15 }}
                       >
                         <div className="w-1.5 h-1.5 rounded-full bg-white/40 mt-2 flex-shrink-0" />
@@ -201,9 +209,9 @@ export default function OpportunitiesPage() {
                       </motion.div>
                       <motion.div 
                         className="flex items-start gap-3"
-                        animate={{
+                        animate={!isMobile ? {
                           x: hoveredCard === "partnership" ? 10 : 0
-                        }}
+                        } : {}}
                         transition={{ duration: 0.3, delay: 0.2 }}
                       >
                         <div className="w-1.5 h-1.5 rounded-full bg-white/40 mt-2 flex-shrink-0" />
@@ -211,9 +219,9 @@ export default function OpportunitiesPage() {
                       </motion.div>
                       <motion.div 
                         className="flex items-start gap-3"
-                        animate={{
+                        animate={!isMobile ? {
                           x: hoveredCard === "partnership" ? 10 : 0
-                        }}
+                        } : {}}
                         transition={{ duration: 0.3, delay: 0.25 }}
                       >
                         <div className="w-1.5 h-1.5 rounded-full bg-white/40 mt-2 flex-shrink-0" />
@@ -223,10 +231,10 @@ export default function OpportunitiesPage() {
                   </div>
 
                   <motion.div
-                    animate={{ 
+                    animate={!isMobile ? { 
                       x: hoveredCard === "partnership" ? 8 : 0,
                       y: hoveredCard === "partnership" ? -8 : 0
-                    }}
+                    } : {}}
                     transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                     className="flex items-center gap-3 text-white/80 group-hover:text-white transition-colors"
                   >
@@ -236,10 +244,10 @@ export default function OpportunitiesPage() {
                       fill="none" 
                       stroke="currentColor" 
                       viewBox="0 0 24 24"
-                      animate={{
+                      animate={!isMobile ? {
                         x: hoveredCard === "partnership" ? 5 : 0,
                         y: hoveredCard === "partnership" ? -5 : 0
-                      }}
+                      } : {}}
                       transition={{ duration: 0.3 }}
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" />
@@ -250,7 +258,7 @@ export default function OpportunitiesPage() {
                 {/* Animated Border Effect */}
                 <motion.div
                   initial={{ scaleX: 0 }}
-                  animate={{ scaleX: hoveredCard === "partnership" ? 1 : 0 }}
+                  animate={!isMobile ? { scaleX: hoveredCard === "partnership" ? 1 : 0 } : { scaleX: 0 }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   className="absolute bottom-0 left-0 right-0 h-[2px] bg-white origin-left"
                 />
@@ -260,12 +268,12 @@ export default function OpportunitiesPage() {
             {/* Investors Card - NOW ON RIGHT */}
             <Link href="/investors">
               <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 onMouseEnter={() => setHoveredCard("investors")}
                 onMouseLeave={() => setHoveredCard(null)}
-                className="group relative min-h-[500px] md:h-[600px] bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/30 transition-all duration-500 cursor-pointer overflow-hidden touch-manipulation"
+                className="group relative min-h-[500px] md:h-[600px] bg-white/5 backdrop-blur-sm border border-white/10 md:hover:border-white/30 transition-all duration-300 cursor-pointer overflow-hidden touch-manipulation"
               >
 
                 {/* Content */}
@@ -273,9 +281,9 @@ export default function OpportunitiesPage() {
                   <div>
                     <motion.div
                       animate={{ 
-                        x: hoveredCard === "investors" ? 10 : 0,
-                        y: hoveredCard === "investors" ? -10 : 0,
-                        rotate: hoveredCard === "investors" ? -5 : 0
+                        x: hoveredCard === "investors" && !isMobile ? 10 : 0,
+                        y: hoveredCard === "investors" && !isMobile ? -10 : 0,
+                        rotate: hoveredCard === "investors" && !isMobile ? -5 : 0
                       }}
                       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                       className="mb-6 md:mb-8"
@@ -287,9 +295,9 @@ export default function OpportunitiesPage() {
 
                     <motion.h2 
                       className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-4 tracking-tight"
-                      animate={{
+                      animate={!isMobile ? {
                         x: hoveredCard === "investors" ? 5 : 0
-                      }}
+                      } : {}}
                       transition={{ duration: 0.3 }}
                     >
                       Investors
@@ -297,9 +305,9 @@ export default function OpportunitiesPage() {
                     
                     <motion.p 
                       className="text-lg text-white/70 font-light leading-relaxed mb-8"
-                      animate={{
+                      animate={!isMobile ? {
                         x: hoveredCard === "investors" ? 5 : 0
-                      }}
+                      } : {}}
                       transition={{ duration: 0.3, delay: 0.05 }}
                     >
                       Strategic capital for scaling an integrated creative platform bridging international markets. Proven model with defensible advantages.
@@ -308,9 +316,9 @@ export default function OpportunitiesPage() {
                     <div className="space-y-4 text-white/60 text-sm font-light">
                       <motion.div 
                         className="flex items-start gap-3"
-                        animate={{
+                        animate={!isMobile ? {
                           x: hoveredCard === "investors" ? 10 : 0
-                        }}
+                        } : {}}
                         transition={{ duration: 0.3, delay: 0.1 }}
                       >
                         <div className="w-1.5 h-1.5 rounded-full bg-white/40 mt-2 flex-shrink-0" />
@@ -318,9 +326,9 @@ export default function OpportunitiesPage() {
                       </motion.div>
                       <motion.div 
                         className="flex items-start gap-3"
-                        animate={{
+                        animate={!isMobile ? {
                           x: hoveredCard === "investors" ? 10 : 0
-                        }}
+                        } : {}}
                         transition={{ duration: 0.3, delay: 0.15 }}
                       >
                         <div className="w-1.5 h-1.5 rounded-full bg-white/40 mt-2 flex-shrink-0" />
@@ -328,9 +336,9 @@ export default function OpportunitiesPage() {
                       </motion.div>
                       <motion.div 
                         className="flex items-start gap-3"
-                        animate={{
+                        animate={!isMobile ? {
                           x: hoveredCard === "investors" ? 10 : 0
-                        }}
+                        } : {}}
                         transition={{ duration: 0.3, delay: 0.2 }}
                       >
                         <div className="w-1.5 h-1.5 rounded-full bg-white/40 mt-2 flex-shrink-0" />
@@ -338,9 +346,9 @@ export default function OpportunitiesPage() {
                       </motion.div>
                       <motion.div 
                         className="flex items-start gap-3"
-                        animate={{
+                        animate={!isMobile ? {
                           x: hoveredCard === "investors" ? 10 : 0
-                        }}
+                        } : {}}
                         transition={{ duration: 0.3, delay: 0.25 }}
                       >
                         <div className="w-1.5 h-1.5 rounded-full bg-white/40 mt-2 flex-shrink-0" />
@@ -350,10 +358,10 @@ export default function OpportunitiesPage() {
                   </div>
 
                   <motion.div
-                    animate={{ 
+                    animate={!isMobile ? { 
                       x: hoveredCard === "investors" ? 8 : 0,
                       y: hoveredCard === "investors" ? -8 : 0
-                    }}
+                    } : {}}
                     transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                     className="flex items-center gap-3 text-white/80 group-hover:text-white transition-colors"
                   >
@@ -363,10 +371,10 @@ export default function OpportunitiesPage() {
                       fill="none" 
                       stroke="currentColor" 
                       viewBox="0 0 24 24"
-                      animate={{
+                      animate={!isMobile ? {
                         x: hoveredCard === "investors" ? 5 : 0,
                         y: hoveredCard === "investors" ? -5 : 0
-                      }}
+                      } : {}}
                       transition={{ duration: 0.3 }}
                     >
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7v10" />
@@ -377,7 +385,7 @@ export default function OpportunitiesPage() {
                 {/* Animated Border Effect */}
                 <motion.div
                   initial={{ scaleX: 0 }}
-                  animate={{ scaleX: hoveredCard === "investors" ? 1 : 0 }}
+                  animate={!isMobile ? { scaleX: hoveredCard === "investors" ? 1 : 0 } : { scaleX: 0 }}
                   transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                   className="absolute bottom-0 left-0 right-0 h-[2px] bg-white origin-left"
                 />
