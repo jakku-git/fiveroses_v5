@@ -47,14 +47,14 @@ const Header = memo(function Header() {
           : "bg-gradient-to-r from-black/30 via-black/25 to-black/30 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] border-white/15"
       } ${inter.className} rounded-full border`}
     >
-      <div className="w-full px-4 md:px-16 py-3 flex justify-between items-center relative">
+      <div className="w-full px-4 md:px-16 py-3 flex justify-center md:justify-between items-center relative">
         <nav className="hidden md:flex items-center gap-16">
           <NavLink href="/work" text="Work" />
           <NavLink href="/news" text="News" />
         </nav>
         <Link 
           href="/" 
-          className={`${styles.navLink} text-3xl font-bold tracking-tighter text-white hover:text-white/90 transition-colors duration-300`}
+          className={`${styles.navLink} text-2xl md:text-3xl font-bold tracking-tighter text-white hover:text-white/90 transition-colors duration-300`}
         >
           <span className="font-black">fiveroses</span>
         </Link>
@@ -62,7 +62,7 @@ const Header = memo(function Header() {
           <NavLink href="/about" text="About" />
           <NavLink href="/contact" text="Contact" />
         </nav>
-        <div className="md:hidden absolute right-4">
+        <div className="md:hidden absolute right-2">
           <MobileNav />
         </div>
       </div>
@@ -93,7 +93,7 @@ const MobileNav = memo(function MobileNav() {
         {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
       </button>
       <motion.div
-        className={`fixed inset-0 bg-black/95 backdrop-blur-md z-40 flex flex-col items-center justify-center ${inter.className}`}
+        className={`fixed inset-0 bg-black/95 backdrop-blur-md z-[60] flex flex-col items-center justify-center ${inter.className}`}
         initial="closed"
         animate={isOpen ? "open" : "closed"}
         variants={menuVariants}

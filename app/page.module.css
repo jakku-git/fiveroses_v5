@@ -6,7 +6,13 @@
 
 .originalSection {
   min-height: 100vh;
-  padding: 0.5rem 2rem 6rem 2rem;
+  padding: 0.5rem 1rem 3rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .originalSection {
+    padding: 0.5rem 2rem 6rem 2rem;
+  }
 }
 
 .projectList {
@@ -20,7 +26,13 @@
 
 .gallerySection {
   min-height: 100vh;
-  padding: 2rem 2rem 0.5rem 2rem;
+  padding: 2rem 1rem 0.5rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .gallerySection {
+    padding: 2rem 2rem 0.5rem 2rem;
+  }
 }
 
 .gallery {
@@ -61,5 +73,12 @@
 .cardsSection {
   position: relative;
   background-color: white;
-  height: 500vh;
+  height: auto;
+  min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+  .cardsSection {
+    height: 500vh;
+  }
 } 
