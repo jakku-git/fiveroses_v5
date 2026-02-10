@@ -238,6 +238,12 @@ const Footer = memo(function Footer() {
             <p className="text-sm md:text-base text-white/60 font-light tracking-wide leading-relaxed">
             We bring your ideas into reality. Petal by petal. Pixel by pixel.
             </p>
+            <div className="pt-2">
+              <a href="tel:1800981170" className="text-sm md:text-base text-white/80 hover:text-white transition-colors font-light flex items-center gap-2">
+                <span>📞</span>
+                <span>1800 981 170</span>
+              </a>
+            </div>
           </div>
 
           {/* Quick Links */}
