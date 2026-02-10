@@ -140,19 +140,23 @@ export const BackgroundBoxes = ({ className, ...props }: BackgroundBoxesProps) =
       )}
 
       {/* Text overlay */}
-      <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none px-4">
-        <MorphingText
-          texts={[
-            "BUILD",
-            "CRAFT",
-            "CREATE",
-            "DESIGN",
-            "GROW",
-            "SCALE",
-            "THINK"
-          ]}
-          className="text-[clamp(3rem,15vw,25rem)] md:text-[clamp(5rem,25vw,25rem)] font-medium text-white text-center tracking-tighter w-full"
-        />
+      <div className="absolute inset-0 z-10 pointer-events-none">
+        <div className="h-full w-full flex items-center justify-center px-4 md:px-0">
+          <div className="relative w-full max-w-[90vw] md:max-w-none h-[200px] md:h-auto flex items-center justify-center">
+            <MorphingText
+              texts={[
+                "BUILD",
+                "CRAFT",
+                "CREATE",
+                "DESIGN",
+                "GROW",
+                "SCALE",
+                "THINK"
+              ]}
+              className="text-[clamp(3rem,15vw,6rem)] md:text-[clamp(5rem,25vw,25rem)] font-medium text-white text-center tracking-tighter"
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
