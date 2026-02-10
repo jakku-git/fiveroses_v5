@@ -2710,10 +2710,6 @@ function ClosingSection() {
     offset: ["start end", "end start"],
   })
 
-  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0])
-  const scale = useTransform(scrollYProgress, [0, 0.3], [0.9, 1])
-  const y = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [50, 0, 0, -100])
-
   const words = ["Less", "noise.", "Less", "complexity.", "More", "growth."]
   
   // Pre-calculate random values for each character
@@ -2734,8 +2730,7 @@ function ClosingSection() {
   return (
     <motion.section 
       ref={ref}
-      style={{ opacity, scale, y }}
-      className="min-h-screen w-full flex items-center justify-center px-6 md:px-12 lg:px-16 py-24 relative mb-32"
+      className="min-h-screen w-full flex items-center justify-center px-6 md:px-12 lg:px-16 py-24 relative mb-32 z-20"
     >
       <div className="max-w-7xl mx-auto w-full relative z-10">
         {/* Closing Statement - CHARACTER BY CHARACTER WITH WORD WRAPPING */}
