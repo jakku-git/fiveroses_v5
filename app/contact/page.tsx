@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { Mail, Phone, MapPin, Send, Loader2, Facebook, Twitter, Instagram, Linkedin, Youtube } from "lucide-react"
+import { Mail, Phone, MapPin, Send, Loader2, Facebook, Twitter, Instagram, Linkedin, Youtube, ChevronDown } from "lucide-react"
 import { FaqAccordion } from "@/components/ui/faq-accordion"
 import Image from "next/image"
 import { GlobeWrapper } from "@/components/ui/globe-wrapper"
@@ -13,6 +13,7 @@ export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [cooldown, setCooldown] = useState(0);
+  const [expandedOffice, setExpandedOffice] = useState<number | null>(null);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -164,44 +165,60 @@ export default function ContactPage() {
                   </div>
                 </motion.div>
 
-                <motion.div 
-                  className="flex items-start gap-4 group"
-                  whileHover={{ x: 5 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white flex items-center justify-center group-hover:bg-neutral-100 group-active:bg-neutral-200 transition-colors touch-manipulation">
+              </div>
+
+              {/* Office Locations Accordion */}
+              <div className="mt-12">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white flex items-center justify-center">
                     <MapPin className="w-6 h-6 text-black" />
                   </div>
-                  <div>
-                    <h3 className="text-xl font-bold mb-2 text-white">Global Offices</h3>
-                    <div className="space-y-3 text-sm text-neutral-400">
-                      <div>
-                        <p className="font-medium text-white/90">Sydney, Australia</p>
-                        <p>383 George Street, Sydney</p>
-                      </div>
-                      <div>
-                        <p className="font-medium text-white/90">New York City, USA</p>
-                        <p>575 Fifth Avenue</p>
-                      </div>
-                      <div>
-                        <p className="font-medium text-white/90">London, United Kingdom</p>
-                        <p>16 Great Chapel Street, London W1F 8FL</p>
-                      </div>
-                      <div>
-                        <p className="font-medium text-white/90">Hong Kong</p>
-                        <p>8 Queen's Road East, Hong Kong</p>
-                      </div>
-                      <div>
-                        <p className="font-medium text-white/90">Tokyo, Japan</p>
-                        <p>Roppongi Hills Mori Tower, 6-10-1 Roppongi</p>
-                      </div>
-                      <div>
-                        <p className="font-medium text-white/90">Paris, France</p>
-                        <p>33 Rue La Fayette, 75009 Paris</p>
-                      </div>
+                  <h3 className="text-xl font-bold text-white">Global Offices</h3>
+                </div>
+                
+                <div className="space-y-2 ml-16">
+                  {[
+                    { city: "Sydney, Australia", address: "383 George Street, Sydney" },
+                    { city: "New York City, USA", address: "575 Fifth Avenue" },
+                    { city: "London, United Kingdom", address: "16 Great Chapel Street, London W1F 8FL" },
+                    { city: "Hong Kong", address: "8 Queen's Road East, Hong Kong" },
+                    { city: "Tokyo, Japan", address: "Roppongi Hills Mori Tower, 6-10-1 Roppongi, Tokyo" },
+                    { city: "Paris, France", address: "33 Rue La Fayette, 75009 Paris" }
+                  ].map((office, index) => (
+                    <div key={index} className="border-b border-white/10 last:border-b-0">
+                      <button
+                        onClick={() => setExpandedOffice(expandedOffice === index ? null : index)}
+                        className="w-full py-4 flex items-center justify-between text-left group hover:bg-white/5 active:bg-white/10 transition-colors rounded-lg px-3 touch-manipulation"
+                      >
+                        <span className="text-base font-light text-white/90 group-hover:text-white transition-colors">
+                          {office.city}
+                        </span>
+                        <motion.div
+                          animate={{ rotate: expandedOffice === index ? 180 : 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <ChevronDown className="w-5 h-5 text-white/60 group-hover:text-white/90 transition-colors" />
+                        </motion.div>
+                      </button>
+                      
+                      <motion.div
+                        initial={false}
+                        animate={{
+                          height: expandedOffice === index ? "auto" : 0,
+                          opacity: expandedOffice === index ? 1 : 0
+                        }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pb-4 px-3">
+                          <p className="text-sm text-neutral-400 font-light">
+                            {office.address}
+                          </p>
+                        </div>
+                      </motion.div>
                     </div>
-                  </div>
-                </motion.div>
+                  ))}
+                </div>
               </div>
 
               <div className="mt-16">
