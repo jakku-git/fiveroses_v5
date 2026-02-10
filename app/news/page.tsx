@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Image from 'next/image';
 import Link from 'next/link';
@@ -194,6 +194,15 @@ export const allArticles: Article[] = [
 
 export default function NewsPage() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start start', 'end end']
@@ -205,23 +214,23 @@ export default function NewsPage() {
     restDelta: 0.001
   });
 
-  // Hero section animations
-  const heroOpacity = useTransform(progress, [0, 0.3], [1, 0]);
-  const heroScale = useTransform(progress, [0, 0.3], [1, 1.2]);
-  const heroY = useTransform(progress, [0, 0.3], [0, -100]);
+  // Hero section animations - disabled on mobile
+  const heroOpacity = useTransform(progress, [0, 0.3], isMobile ? [1, 1] : [1, 0]);
+  const heroScale = useTransform(progress, [0, 0.3], isMobile ? [1, 1] : [1, 1.2]);
+  const heroY = useTransform(progress, [0, 0.3], isMobile ? [0, 0] : [0, -100]);
 
-  // Featured section animations
-  const featuredOpacity = useTransform(progress, [0.2, 0.4], [0, 1]);
-  const featuredY = useTransform(progress, [0.2, 0.4], [100, 0]);
-  const featuredScale = useTransform(progress, [0.2, 0.4], [0.8, 1]);
+  // Featured section animations - disabled on mobile
+  const featuredOpacity = useTransform(progress, [0.2, 0.4], isMobile ? [1, 1] : [0, 1]);
+  const featuredY = useTransform(progress, [0.2, 0.4], isMobile ? [0, 0] : [100, 0]);
+  const featuredScale = useTransform(progress, [0.2, 0.4], isMobile ? [1, 1] : [0.8, 1]);
 
-  // Latest section animations
-  const latestOpacity = useTransform(progress, [0.5, 0.7], [0, 1]);
-  const latestY = useTransform(progress, [0.5, 0.7], [100, 0]);
-  const latestScale = useTransform(progress, [0.5, 0.7], [0.8, 1]);
+  // Latest section animations - disabled on mobile
+  const latestOpacity = useTransform(progress, [0.5, 0.7], isMobile ? [1, 1] : [0, 1]);
+  const latestY = useTransform(progress, [0.5, 0.7], isMobile ? [0, 0] : [100, 0]);
+  const latestScale = useTransform(progress, [0.5, 0.7], isMobile ? [1, 1] : [0.8, 1]);
 
-  // Background parallax effect
-  const bgY = useTransform(progress, [0, 1], ['0%', '50%']);
+  // Background parallax effect - disabled on mobile
+  const bgY = useTransform(progress, [0, 1], isMobile ? ['0%', '0%'] : ['0%', '50%']);
 
   return (
     <main ref={containerRef} className="relative min-h-screen bg-black text-white overflow-hidden">

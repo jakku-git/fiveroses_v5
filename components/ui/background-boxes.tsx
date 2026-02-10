@@ -140,7 +140,7 @@ export const BackgroundBoxes = ({ className, ...props }: BackgroundBoxesProps) =
       )}
 
       {/* Text overlay */}
-      <div className="absolute inset-0 z-10 grid place-items-center pointer-events-none">
+      <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none px-4">
         <MorphingText
           texts={[
             "BUILD",
@@ -151,7 +151,7 @@ export const BackgroundBoxes = ({ className, ...props }: BackgroundBoxesProps) =
             "SCALE",
             "THINK"
           ]}
-          className="text-[clamp(5rem,25vw,25rem)] font-medium text-white text-center tracking-tighter"
+          className="text-[clamp(3rem,15vw,25rem)] md:text-[clamp(5rem,25vw,25rem)] font-medium text-white text-center tracking-tighter w-full"
         />
       </div>
     </div>
