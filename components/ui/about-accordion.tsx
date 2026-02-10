@@ -65,8 +65,8 @@ const AboutAccordion = () => {
 
   return (
     <div className="w-full bg-black text-white">
-      <div className="w-[90%] md:w-[80%] mx-auto pt-0 pb-20 px-4 md:px-0">
-        <div>
+      <div className="w-[90%] md:w-[80%] mx-auto pt-0 pb-20">
+        <div className="px-4 md:px-0">
           {aboutData.map((section, index) => (
             <div key={index} className="border-t border-white/10 first:border-t-0">
               <motion.button
