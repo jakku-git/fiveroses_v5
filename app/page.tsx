@@ -109,24 +109,37 @@ const CanvasRevealEffect = dynamic(() => import("@/components/ui/canvas-reveal-e
 
 // Mobile-optimized hero component
 const MobileHero = () => (
-    <section className="w-full min-h-screen flex flex-col items-center justify-center relative bg-gradient-to-b from-black via-black/95 to-black/90 text-white overflow-hidden px-6">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent" />
+    <section className="w-full min-h-screen flex flex-col items-center justify-center relative bg-gradient-to-b from-black via-black/98 to-black text-white overflow-hidden px-6">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent" />
         <motion.div 
-            className="relative z-10 text-center"
-            initial={{ opacity: 0, y: 20 }}
+            className="relative z-10 text-center max-w-lg"
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
         >
-            <h1 className="text-6xl font-black tracking-tighter text-white mb-6">
+            <motion.h1 
+                className="text-5xl font-black tracking-tighter text-white mb-4"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+            >
                 fiveroses
-            </h1>
-            <p className="text-lg text-white/70 font-light max-w-md mx-auto mb-8">
+            </motion.h1>
+            <motion.p 
+                className="text-base text-white/60 font-light leading-relaxed mb-10 px-4"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+            >
                 Creative studio crafting meaningful experiences through design, content, and code
-            </p>
+            </motion.p>
             <motion.a
                 href="/work"
-                className="inline-block px-8 py-4 bg-white text-black font-medium rounded-full hover:bg-white/90 active:bg-white/80 transition-colors touch-manipulation"
-                whileTap={{ scale: 0.95 }}
+                className="inline-block px-8 py-3.5 bg-white text-black font-medium text-sm rounded-full hover:bg-white/90 active:bg-white/80 transition-all duration-200 touch-manipulation shadow-lg"
+                whileTap={{ scale: 0.96 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
             >
                 View Our Work
             </motion.a>
@@ -291,25 +304,25 @@ export default function Home() {
                 <section className={styles.gallerySection}>
                     <h1 className="text-2xl md:text-3xl lg:text-5xl font-light tracking-tighter mb-6 md:mb-8 px-4">Previous Works</h1>
                     {isMobile ? (
-                        <div className="w-full px-4 space-y-8">
+                        <div className="w-full px-4 space-y-6 pb-12">
                             {galleryProjects.map((project, index) => (
                                 <motion.div 
                                     key={index}
-                                    className="relative h-[50vh] rounded-2xl overflow-hidden"
-                                    initial={{ opacity: 0, y: 20 }}
+                                    className="relative h-[45vh] min-h-[300px] rounded-xl overflow-hidden shadow-xl"
+                                    initial={{ opacity: 0, y: 30 }}
                                     whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true, margin: "-100px" }}
-                                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                                    viewport={{ once: true, margin: "-50px" }}
+                                    transition={{ duration: 0.4, delay: index * 0.1 }}
                                 >
                                     <img 
                                         src={project.src}
                                         alt={project.name}
                                         className="w-full h-full object-cover"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col justify-end p-6">
-                                        <p className="text-xs text-white/60 mb-2">{project.client} • {project.year}</p>
-                                        <h3 className="text-2xl font-light tracking-tight text-white mb-2">{project.name}</h3>
-                                        <p className="text-sm text-white/70 font-light line-clamp-3">{project.description}</p>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-transparent flex flex-col justify-end p-5">
+                                        <p className="text-xs text-white/50 mb-1.5 font-medium">{project.client} • {project.year}</p>
+                                        <h3 className="text-xl font-medium tracking-tight text-white mb-2">{project.name}</h3>
+                                        <p className="text-sm text-white/65 font-light leading-relaxed line-clamp-2">{project.description}</p>
                                     </div>
                                 </motion.div>
                             ))}
