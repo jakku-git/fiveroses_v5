@@ -54,7 +54,7 @@ const Header = memo(function Header() {
         </nav>
         <Link 
           href="/" 
-          className={`${styles.navLink} text-2xl md:text-3xl font-bold tracking-tighter text-white hover:text-white/90 transition-colors duration-300`}
+          className={`${styles.navLink} text-3xl font-bold tracking-tighter text-white hover:text-white/90 transition-colors duration-300`}
         >
           <span className="font-black">fiveroses</span>
         </Link>

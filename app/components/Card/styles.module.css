@@ -42,6 +42,7 @@
         border-radius: 35px;
         padding: 50px 200px;
         min-height: unset;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.08);
     }
 }
 
@@ -175,6 +176,7 @@
     .description p {
         font-size: 18px;
         line-height: 1.7;
+        color: rgba(0,0,0,0.7);
         font-weight: 350;
         margin-bottom: 40px;
     }
