@@ -72,17 +72,24 @@ const Header = memo(function Header() {
 
 const MobileNav = memo(function MobileNav() {
   const [isOpen, setIsOpen] = React.useState(false)
+  
   const menuVariants = {
     closed: { opacity: 0, x: "100%", transition: { duration: 0.5 } },
     open: { opacity: 1, x: 0, transition: { duration: 0.5 } },
   }
+  
   const linkVariants = {
     closed: { opacity: 0, y: 20 },
     open: (i: number) => ({ opacity: 1, y: 0, transition: { delay: 0.3 + i * 0.1 } }),
   }
+  
   return (
     <div className="md:hidden">
-      <button onClick={() => setIsOpen(!isOpen)} className="p-2">
+      <button 
+        onClick={() => setIsOpen(!isOpen)} 
+        className="p-3 hover:bg-white/10 active:bg-white/20 rounded-full transition-colors touch-manipulation"
+        aria-label={isOpen ? "Close menu" : "Open menu"}
+      >
         {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
       </button>
       <motion.div
@@ -90,6 +97,7 @@ const MobileNav = memo(function MobileNav() {
         initial="closed"
         animate={isOpen ? "open" : "closed"}
         variants={menuVariants}
+        style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
       >
         <nav className="flex flex-col items-center gap-8">
           {[
@@ -101,7 +109,7 @@ const MobileNav = memo(function MobileNav() {
             <motion.div key={link.href} custom={i} variants={linkVariants}>
               <Link 
                 href={link.href} 
-                className="text-2xl font-[200] tracking-wide text-white/90 hover:text-white uppercase transition-all duration-300" 
+                className="text-3xl font-[200] tracking-wide text-white/90 hover:text-white active:text-white/70 uppercase transition-all duration-300 touch-manipulation min-h-[44px] flex items-center" 
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
@@ -109,6 +117,28 @@ const MobileNav = memo(function MobileNav() {
             </motion.div>
           ))}
         </nav>
+        
+        {/* Social links in mobile menu */}
+        <motion.div 
+          className="absolute bottom-12 flex gap-6"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isOpen ? 1 : 0 }}
+          transition={{ delay: 0.7 }}
+        >
+          {[
+            { icon: Instagram, label: "Instagram" },
+            { icon: Twitter, label: "Twitter" },
+            { icon: Linkedin, label: "LinkedIn" },
+          ].map((social) => (
+            <button
+              key={social.label}
+              className="p-3 text-white/60 hover:text-white active:text-white/40 transition-colors touch-manipulation"
+              aria-label={social.label}
+            >
+              <social.icon className="w-6 h-6" />
+            </button>
+          ))}
+        </motion.div>
       </motion.div>
     </div>
   )
@@ -216,7 +246,7 @@ const Footer = memo(function Footer() {
                 isMobile ? (
                   <button
                     key={social.label}
-                    className="text-white/60 hover:text-white transition-colors duration-300"
+                    className="p-3 text-white/60 hover:text-white active:text-white/40 transition-colors duration-300 touch-manipulation"
                     aria-label={social.label}
                   >
                     <social.icon className="w-6 h-6" />
@@ -259,15 +289,13 @@ const Footer = memo(function Footer() {
 })
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
-  const isMobile = useIsMobile();
-
   return (
     <>
-      {!isMobile && <Header />}
+      <Header />
       <main className={`min-h-screen ${crimsonText.variable}`}>
         {children}
       </main>
-      {!isMobile && <Footer />}
+      <Footer />
     </>
   )
 }
