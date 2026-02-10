@@ -124,11 +124,11 @@ const MobileHero = () => (
                 Creative studio crafting meaningful experiences through design, content, and code
             </p>
             <motion.a
-                href="/work"
+                href="/contact"
                 className="inline-block px-8 py-4 bg-white text-black font-medium rounded-full hover:bg-white/90 active:bg-white/80 transition-colors touch-manipulation"
                 whileTap={{ scale: 0.95 }}
             >
-                View Our Work
+                Let's Talk.
             </motion.a>
         </motion.div>
     </section>

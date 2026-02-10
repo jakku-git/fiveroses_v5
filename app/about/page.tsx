@@ -32,11 +32,6 @@ export default function AboutPage() {
       {/* Hero Section */}
       <section className="w-full h-[60vh] md:h-screen relative bg-black text-white flex items-center justify-center">
         {isVisible && <BackgroundBoxes className="absolute inset-0" />}
-        <div className="relative z-10 px-6 text-center md:hidden">
-          <h1 className="text-4xl font-light tracking-tighter text-white">
-            <strong className="font-bold">fiveroses</strong>
-          </h1>
-        </div>
       </section>
 
       {/* About Section */}

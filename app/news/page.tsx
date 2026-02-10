@@ -252,9 +252,10 @@ export default function NewsPage() {
             muted
             loop
             playsInline
+            preload="metadata"
             className="absolute inset-0 w-full h-full object-cover"
           >
-            <source src="https://pub-d61a91ac755d41e3ab46bfa8c91179ce.r2.dev/heronews.webm" type="video/mp4" />
+            <source src="https://pub-d61a91ac755d41e3ab46bfa8c91179ce.r2.dev/heronews.webm" type="video/webm" />
           </video>
           <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black" />
         </motion.div>
