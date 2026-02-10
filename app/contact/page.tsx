@@ -179,7 +179,7 @@ export default function ContactPage() {
                 <div className="space-y-2 ml-16">
                   {[
                     { city: "Sydney, Australia", address: "383 George Street, Sydney" },
-                    { city: "New York City, USA", address: "575 Fifth Avenue" },
+                    { city: "New York City, USA", address: "575 Fifth Ave, New York, NY 10017" },
                     { city: "London, United Kingdom", address: "16 Great Chapel Street, London W1F 8FL" },
                     { city: "Hong Kong", address: "8 Queen's Road East, Hong Kong" },
                     { city: "Tokyo, Japan", address: "Roppongi Hills Mori Tower, 6-10-1 Roppongi, Tokyo" },
