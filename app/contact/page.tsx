@@ -142,11 +142,64 @@ export default function ContactPage() {
                   transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 >
                   <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white flex items-center justify-center group-hover:bg-neutral-100 group-active:bg-neutral-200 transition-colors touch-manipulation">
+                    <Phone className="w-6 h-6 text-black" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-1 text-white">Phone</h3>
+                    <a href="tel:1800981170" className="text-neutral-400 hover:text-white transition-colors">1800 981 170</a>
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  className="flex items-start gap-4 group"
+                  whileHover={{ x: 5 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white flex items-center justify-center group-hover:bg-neutral-100 group-active:bg-neutral-200 transition-colors touch-manipulation">
                     <Mail className="w-6 h-6 text-black" />
                   </div>
                   <div>
                     <h3 className="text-xl font-bold mb-1 text-white">Email</h3>
-                    <p className="text-neutral-400">hello@fiveroses.com.au</p>
+                    <a href="mailto:hello@fiveroses.com.au" className="text-neutral-400 hover:text-white transition-colors">hello@fiveroses.com.au</a>
+                  </div>
+                </motion.div>
+
+                <motion.div 
+                  className="flex items-start gap-4 group"
+                  whileHover={{ x: 5 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                >
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-white flex items-center justify-center group-hover:bg-neutral-100 group-active:bg-neutral-200 transition-colors touch-manipulation">
+                    <MapPin className="w-6 h-6 text-black" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold mb-2 text-white">Global Offices</h3>
+                    <div className="space-y-3 text-sm text-neutral-400">
+                      <div>
+                        <p className="font-medium text-white/90">Sydney, Australia</p>
+                        <p>383 George Street, Sydney</p>
+                      </div>
+                      <div>
+                        <p className="font-medium text-white/90">New York City, USA</p>
+                        <p>575 Fifth Avenue</p>
+                      </div>
+                      <div>
+                        <p className="font-medium text-white/90">London, United Kingdom</p>
+                        <p>16 Great Chapel Street, London W1F 8FL</p>
+                      </div>
+                      <div>
+                        <p className="font-medium text-white/90">Hong Kong</p>
+                        <p>8 Queen's Road East, Hong Kong</p>
+                      </div>
+                      <div>
+                        <p className="font-medium text-white/90">Tokyo, Japan</p>
+                        <p>Roppongi Hills Mori Tower, 6-10-1 Roppongi</p>
+                      </div>
+                      <div>
+                        <p className="font-medium text-white/90">Paris, France</p>
+                        <p>33 Rue La Fayette, 75009 Paris</p>
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
               </div>
