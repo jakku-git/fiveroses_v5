@@ -65,31 +65,31 @@ const AboutAccordion = () => {
 
   return (
     <div className="w-full bg-black text-white">
-      <div className="w-[80%] mx-auto pt-0 pb-20">
+      <div className="w-[90%] md:w-[80%] mx-auto pt-0 pb-20 px-4 md:px-0">
         <div>
           {aboutData.map((section, index) => (
             <div key={index} className="border-t border-white/10 first:border-t-0">
               <motion.button
                 onClick={() => toggleSection(index)}
-                className="w-full py-8 flex items-center justify-between text-left group"
+                className="w-full py-6 md:py-8 flex items-center justify-between text-left group"
               >
                 <motion.span 
-                  className="text-2xl md:text-3xl font-light tracking-tight"
+                  className="text-xl md:text-2xl lg:text-3xl font-light tracking-tight"
                   animate={{
                     opacity: expandedIndices.includes(index) ? 1 : 0.7
                   }}
                 >
                   {section.title}
                 </motion.span>
-                <motion.div
+                  <motion.div
                   animate={{ 
                     rotate: expandedIndices.includes(index) ? 180 : 0,
                     opacity: expandedIndices.includes(index) ? 1 : 0.7
                   }}
                   transition={{ duration: 0.3 }}
-                  className="transform group-hover:opacity-100 transition-opacity"
+                  className="transform group-hover:opacity-100 transition-opacity flex-shrink-0 ml-4"
                 >
-                  <ChevronDown className="w-6 h-6 opacity-70 group-hover:opacity-100 transition-opacity" />
+                  <ChevronDown className="w-5 h-5 md:w-6 md:h-6 opacity-70 group-hover:opacity-100 transition-opacity" />
                 </motion.div>
               </motion.button>
               
@@ -102,22 +102,22 @@ const AboutAccordion = () => {
                     transition={{ duration: 0.3 }}
                     className="overflow-hidden"
                   >
-                    <div className="pb-8">
+                    <div className="pb-6 md:pb-8">
                       {isFeatureSection(section.content) ? (
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                           {section.content.map((item, i) => (
-                            <div key={i} className="space-y-4">
-                              <h3 className="text-xl font-light tracking-tight">{item.subtitle}</h3>
-                              <p className="text-base md:text-lg font-light text-white/70 leading-relaxed">
+                            <div key={i} className="space-y-3 md:space-y-4">
+                              <h3 className="text-lg md:text-xl font-light tracking-tight">{item.subtitle}</h3>
+                              <p className="text-sm md:text-base lg:text-lg font-light text-white/70 leading-relaxed">
                                 {item.text}
                               </p>
                             </div>
                           ))}
                         </div>
                       ) : (
-                        <div className="space-y-4">
+                        <div className="space-y-3 md:space-y-4">
                           {section.content.map((paragraph, i) => (
-                            <p key={i} className="text-base md:text-lg font-light text-white/70 leading-relaxed">
+                            <p key={i} className="text-sm md:text-base lg:text-lg font-light text-white/70 leading-relaxed">
                               {paragraph}
                             </p>
                           ))}
