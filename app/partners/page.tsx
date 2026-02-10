@@ -2499,14 +2499,6 @@ function ContentSection({
 }) {
   const ref = useRef<HTMLElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
-  
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  })
-
-  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.7, 1], [0, 1, 1, 0])
-  const y = useTransform(scrollYProgress, [0, 0.2, 0.7, 1], [50, 0, 0, -100])
 
   const renderHeading = () => {
     const words = heading.split(' ')
@@ -2688,7 +2680,6 @@ function ContentSection({
   return (
     <motion.section
       ref={ref}
-      style={{ opacity, y }}
       className="min-h-screen w-full flex items-center justify-center px-6 md:px-12 lg:px-16 py-24 relative"
     >
       <div className="max-w-6xl mx-auto w-full relative z-10">
