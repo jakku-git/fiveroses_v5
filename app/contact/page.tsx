@@ -52,7 +52,10 @@ export default function ContactPage() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          comment: `[SOURCE: Contact Page]\n\n${formData.comment}`
+        }),
       });
 
       if (!response.ok) {

@@ -75,8 +75,13 @@ export function PasswordProtect({
                   setInputPassword(e.target.value)
                   setError(false)
                 }}
-                className="w-full bg-white/5 border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light"
+                className="w-full bg-zinc-900 border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/60 focus:bg-zinc-800 transition-colors font-light placeholder:text-white/40 caret-white"
+                placeholder="Enter password"
                 autoFocus
+                style={{ 
+                  WebkitTextFillColor: 'white',
+                  color: 'white'
+                }}
               />
               {error && (
                 <motion.p

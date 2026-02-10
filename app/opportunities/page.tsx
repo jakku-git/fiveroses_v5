@@ -138,11 +138,11 @@ export default function OpportunitiesPage() {
                 transition={{ duration: 1, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
                 onMouseEnter={() => setHoveredCard("partnership")}
                 onMouseLeave={() => setHoveredCard(null)}
-                className="group relative h-[600px] bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/30 transition-all duration-500 cursor-pointer overflow-hidden"
+                className="group relative min-h-[500px] md:h-[600px] bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/30 transition-all duration-500 cursor-pointer overflow-hidden touch-manipulation"
               >
 
                 {/* Content */}
-                <div className="relative h-full flex flex-col justify-between p-10 md:p-12">
+                <div className="relative h-full flex flex-col justify-between p-6 sm:p-8 md:p-12">
                   <div>
                     <motion.div
                       animate={{ 
@@ -151,9 +151,9 @@ export default function OpportunitiesPage() {
                         rotate: hoveredCard === "partnership" ? 5 : 0
                       }}
                       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                      className="mb-8"
+                      className="mb-6 md:mb-8"
                     >
-                      <svg className="w-20 h-20 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-16 h-16 md:w-20 md:h-20 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                       </svg>
                     </motion.div>
@@ -265,11 +265,11 @@ export default function OpportunitiesPage() {
                 transition={{ duration: 1, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
                 onMouseEnter={() => setHoveredCard("investors")}
                 onMouseLeave={() => setHoveredCard(null)}
-                className="group relative h-[600px] bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/30 transition-all duration-500 cursor-pointer overflow-hidden"
+                className="group relative min-h-[500px] md:h-[600px] bg-white/5 backdrop-blur-sm border border-white/10 hover:border-white/30 transition-all duration-500 cursor-pointer overflow-hidden touch-manipulation"
               >
 
                 {/* Content */}
-                <div className="relative h-full flex flex-col justify-between p-10 md:p-12">
+                <div className="relative h-full flex flex-col justify-between p-6 sm:p-8 md:p-12">
                   <div>
                     <motion.div
                       animate={{ 
@@ -278,9 +278,9 @@ export default function OpportunitiesPage() {
                         rotate: hoveredCard === "investors" ? -5 : 0
                       }}
                       transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                      className="mb-8"
+                      className="mb-6 md:mb-8"
                     >
-                      <svg className="w-20 h-20 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-16 h-16 md:w-20 md:h-20 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                       </svg>
                     </motion.div>
@@ -392,50 +392,50 @@ export default function OpportunitiesPage() {
             transition={{ duration: 1, delay: 1.2, ease: [0.16, 1, 0.3, 1] }}
             className="mt-24 max-w-5xl mx-auto"
           >
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-12 md:mb-16">
               <div className="text-center">
                 <motion.div 
-                  className="text-4xl md:text-5xl font-light text-white mb-2"
+                  className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-2"
                   whileInView={{ scale: [1, 1.05, 1] }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                 >
                   $8.5M
                 </motion.div>
-                <div className="text-sm text-white/70 font-light">Year 5 Revenue Target</div>
+                <div className="text-xs md:text-sm text-white/70 font-light">Year 5 Revenue Target</div>
               </div>
               <div className="text-center">
                 <motion.div 
-                  className="text-4xl md:text-5xl font-light text-white mb-2"
+                  className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-2"
                   whileInView={{ scale: [1, 1.05, 1] }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.3 }}
                 >
                   $473B
                 </motion.div>
-                <div className="text-sm text-white/70 font-light">Global Market Size</div>
+                <div className="text-xs md:text-sm text-white/70 font-light">Global Market Size</div>
               </div>
               <div className="text-center">
                 <motion.div 
-                  className="text-4xl md:text-5xl font-light text-white mb-2"
+                  className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-2"
                   whileInView={{ scale: [1, 1.05, 1] }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                 >
                   16+
                 </motion.div>
-                <div className="text-sm text-white/70 font-light">Platform Ecosystems</div>
+                <div className="text-xs md:text-sm text-white/70 font-light">Platform Ecosystems</div>
               </div>
               <div className="text-center">
                 <motion.div 
-                  className="text-4xl md:text-5xl font-light text-white mb-2"
+                  className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-2"
                   whileInView={{ scale: [1, 1.05, 1] }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.5 }}
                 >
                   5-8
                 </motion.div>
-                <div className="text-sm text-white/70 font-light">Partner Network (2026)</div>
+                <div className="text-xs md:text-sm text-white/70 font-light">Partner Network (2026)</div>
               </div>
             </div>
           </motion.div>
@@ -445,9 +445,9 @@ export default function OpportunitiesPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
-            className="text-center mt-12"
+            className="text-center mt-8 md:mt-12"
           >
-            <p className="text-white/50 font-light text-lg tracking-wide max-w-2xl mx-auto leading-relaxed mb-8">
+            <p className="text-white/50 font-light text-base md:text-lg tracking-wide max-w-2xl mx-auto leading-relaxed mb-6 md:mb-8">
               Both paths lead to the same destination: building something exceptional together. Choose the one that fits your goals.
             </p>
 
@@ -503,17 +503,21 @@ export default function OpportunitiesPage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/80 backdrop-blur-sm"
-          onClick={() => setIsModalOpen(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/80 backdrop-blur-sm overflow-y-auto"
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) {
+              setIsModalOpen(false)
+            }
+          }}
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-2xl bg-black border border-white/20 p-10 relative max-h-[90vh] overflow-y-auto"
+            className="w-full max-w-2xl bg-black border border-white/20 relative my-auto max-h-[90vh] flex flex-col"
           >
+            <div className="overflow-y-auto p-6 md:p-10">
             <button
               onClick={() => setIsModalOpen(false)}
               className="absolute top-6 right-6 text-white/60 hover:text-white text-3xl font-light leading-none transition-colors"
@@ -556,7 +560,7 @@ export default function OpportunitiesPage() {
                         company: String(data.company || ''),
                         location: String(data.phone || ''),
                         market: String(data.interest || 'Not specified'),
-                        comment: `Interest: ${String(data.interest || '')}\n\nMessage:\n${String(data.message || '')}`
+                        comment: `[SOURCE: Opportunities Page]\n\nInterest: ${String(data.interest || '')}\n\nMessage:\n${String(data.message || '')}`
                       })
                     })
 
@@ -583,7 +587,7 @@ export default function OpportunitiesPage() {
                     type="text"
                     name="name"
                     required
-                    className="w-full bg-white/5 border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light"
+                    className="w-full bg-black border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light"
                   />
                 </div>
 
@@ -593,7 +597,7 @@ export default function OpportunitiesPage() {
                     type="email"
                     name="email"
                     required
-                    className="w-full bg-white/5 border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light"
+                    className="w-full bg-black border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light"
                   />
                 </div>
 
@@ -603,7 +607,7 @@ export default function OpportunitiesPage() {
                     type="tel"
                     name="phone"
                     required
-                    className="w-full bg-white/5 border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light"
+                    className="w-full bg-black border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light"
                   />
                 </div>
 
@@ -612,7 +616,7 @@ export default function OpportunitiesPage() {
                   <input
                     type="text"
                     name="company"
-                    className="w-full bg-white/5 border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light"
+                    className="w-full bg-black border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light"
                   />
                 </div>
 
@@ -636,7 +640,7 @@ export default function OpportunitiesPage() {
                   <textarea
                     name="message"
                     rows={4}
-                    className="w-full bg-white/5 border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light resize-none"
+                    className="w-full bg-black border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light resize-none"
                     placeholder="Tell us more about your interest..."
                   />
                 </div>
@@ -677,6 +681,7 @@ export default function OpportunitiesPage() {
                 </motion.div>
               </motion.div>
             )}
+            </div>
           </motion.div>
         </motion.div>
       )}

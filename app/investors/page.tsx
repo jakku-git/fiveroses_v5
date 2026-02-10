@@ -20,7 +20,7 @@ function AnimatedBarChart({
   const maxValue = Math.max(...data.map(d => d.value))
   
   return (
-    <div ref={ref} className="w-full max-w-4xl mx-auto my-12 p-8 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
+    <div ref={ref} className="w-full max-w-4xl mx-auto my-8 md:my-12 p-4 sm:p-6 md:p-8 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
       {title && (
         <h3 className="text-2xl font-bold mb-8 text-white">{title}</h3>
       )}
@@ -80,7 +80,7 @@ function AnimatedDonutChart({
   let cumulativePercentage = 0
   
   return (
-    <div ref={ref} className="w-full max-w-md mx-auto my-16 p-8 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
+    <div ref={ref} className="w-full max-w-md mx-auto my-12 md:my-16 p-4 sm:p-6 md:p-8 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
       {title && (
         <h3 className="text-xl font-light mb-8 text-white text-center tracking-wide">{title}</h3>
       )}
@@ -155,11 +155,11 @@ function StatBlock({
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   
   return (
-    <div ref={ref} className="w-full max-w-5xl mx-auto my-16 p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
+    <div ref={ref} className="w-full max-w-5xl mx-auto my-12 md:my-16 p-6 md:p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
       {title && (
-        <h3 className="text-2xl font-light mb-10 text-white text-center tracking-wide">{title}</h3>
+        <h3 className="text-xl md:text-2xl font-light mb-8 md:mb-10 text-white text-center tracking-wide">{title}</h3>
       )}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
         {stats.map((stat, i) => (
           <motion.div
             key={i}
@@ -168,7 +168,7 @@ function StatBlock({
             transition={{ duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-center px-2"
           >
-            <div className={`${stat.valueSize || "text-4xl md:text-5xl"} font-light text-white mb-3 tracking-tight break-words`}>{stat.value}</div>
+            <div className={`${stat.valueSize || "text-3xl md:text-4xl lg:text-5xl"} font-light text-white mb-3 tracking-tight break-words`}>{stat.value}</div>
             <div className="text-sm font-light text-white/90 mb-2 tracking-wide uppercase break-words">{stat.label}</div>
             {stat.description && (
               <div className="text-xs text-white/80 font-light tracking-wide break-words">{stat.description}</div>
@@ -353,11 +353,11 @@ function GrowthChart() {
   }, 0)
   
   return (
-    <div ref={ref} className="w-full max-w-5xl mx-auto my-16 p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
-      <h3 className="text-2xl font-light mb-12 text-white tracking-wide">5-Year Revenue Projection (AUD)</h3>
+    <div ref={ref} className="w-full max-w-5xl mx-auto my-12 md:my-16 p-6 md:p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
+      <h3 className="text-xl md:text-2xl font-light mb-8 md:mb-12 text-white tracking-wide">5-Year Revenue Projection (AUD)</h3>
       
       {/* SVG Line Overlay */}
-      <div className="relative h-80 mb-8">
+      <div className="relative h-64 md:h-80 mb-8">
         <svg 
           className="absolute inset-0 w-full h-full pointer-events-none" 
           viewBox={`0 0 ${chartWidth} ${chartHeight}`}
@@ -414,14 +414,14 @@ function GrowthChart() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 10 }}
                   transition={{ duration: 0.6, delay: i * 0.15 + 0.5 }}
-                  className="absolute -top-12 left-1/2 -translate-x-1/2 text-white font-light text-lg whitespace-nowrap tracking-wide"
+                  className="absolute -top-10 md:-top-12 left-1/2 -translate-x-1/2 text-white font-light text-sm md:text-lg whitespace-nowrap tracking-wide"
                 >
                   ${item.revenue}M
                 </motion.div>
               </motion.div>
-              <div className="mt-4 text-center">
-                <div className="text-white/90 font-light tracking-wide">{item.year}</div>
-                <div className="text-white/80 text-sm font-light">{item.label}</div>
+              <div className="mt-3 md:mt-4 text-center">
+                <div className="text-white/90 font-light tracking-wide text-sm md:text-base">{item.year}</div>
+                <div className="text-white/80 text-xs md:text-sm font-light">{item.label}</div>
               </div>
             </div>
           ))}
@@ -670,7 +670,7 @@ function PartnersPage() {
               <MetricCard value="$99.6B" label="AU Gov't Procurement" subtitle="83,453 contracts (2023-24)" delay={0.2} highlight />
             </div>
 
-            <div className="w-full max-w-6xl mx-auto my-16 p-12 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl backdrop-blur-sm border border-white/20">
+            <div className="w-full max-w-6xl mx-auto my-16 p-6 md:p-12 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl backdrop-blur-sm border border-white/20">
               <h3 className="text-3xl font-light mb-12 text-white text-center tracking-wide">The Structural Advantage</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                 <div className="p-6 bg-black/20 rounded-xl">
@@ -902,7 +902,7 @@ function PartnersPage() {
             </p>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
-              <div className="p-10 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20">
+              <div className="p-6 md:p-10 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20">
                 <h3 className="text-2xl font-light text-white mb-8 tracking-wide">Western Platforms</h3>
                 <div className="space-y-6">
                   <div>
@@ -924,7 +924,7 @@ function PartnersPage() {
                 </div>
               </div>
 
-              <div className="p-10 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20">
+              <div className="p-6 md:p-10 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20">
                 <h3 className="text-2xl font-light text-white mb-8 tracking-wide">Chinese Platforms</h3>
                 <div className="space-y-6">
                   <div>
@@ -987,7 +987,7 @@ function PartnersPage() {
               </div>
             </div>
 
-            <div className="p-10 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20 mb-16">
+            <div className="p-6 md:p-10 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20 mb-16">
               <h3 className="text-2xl font-light text-white mb-8">The Practical Result</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
@@ -1053,7 +1053,7 @@ function PartnersPage() {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-              <div className="p-10 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20">
+              <div className="p-6 md:p-10 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20">
                 <div className="text-5xl mb-4">→</div>
                 <div className="text-2xl font-light text-white mb-6">Chinese Brands Going West</div>
                 <div className="space-y-6">
@@ -1068,7 +1068,7 @@ function PartnersPage() {
                 </div>
               </div>
 
-              <div className="p-10 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20">
+              <div className="p-6 md:p-10 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20">
                 <div className="text-5xl mb-4">←</div>
                 <div className="text-2xl font-light text-white mb-6">Western Brands Going East</div>
                 <div className="space-y-6">
@@ -1094,7 +1094,7 @@ function PartnersPage() {
               ]}
             />
 
-            <div className="my-16 p-10 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20">
+            <div className="my-16 p-6 md:p-10 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20">
               <h3 className="text-2xl font-light text-white mb-8 text-center">Annual Growth: 18%</h3>
               <p className="text-center text-white/80 font-light text-lg mb-8">
                 Cross-border e-commerce growing faster than domestic e-commerce in both markets
@@ -1520,7 +1520,7 @@ function PartnersPage() {
               </motion.div>
             </div>
 
-            <div className="p-10 bg-gradient-to-br from-red-500/10 to-white/5 rounded-2xl border border-red-500/20 mb-16">
+            <div className="p-6 md:p-10 bg-gradient-to-br from-red-500/10 to-white/5 rounded-2xl border border-red-500/20 mb-12 md:mb-16">
               <p className="text-white text-xl text-center">
                 Nobody optimizes for what actually matters: customer acquisition cost, lifetime value, revenue growth, market share, and return on marketing investment.
               </p>
@@ -1605,7 +1605,7 @@ function PartnersPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="p-10 bg-white/5 rounded-2xl border border-white/10"
+                className="p-6 md:p-10 bg-white/5 rounded-2xl border border-white/10"
               >
                 <div className="mb-6">
                   <div className="text-2xl font-light text-white mb-2">Traditional Creative Agencies</div>
@@ -1628,7 +1628,7 @@ function PartnersPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="p-10 bg-white/5 rounded-2xl border border-white/10"
+                className="p-6 md:p-10 bg-white/5 rounded-2xl border border-white/10"
               >
                 <div className="mb-6">
                   <div className="text-2xl font-light text-white mb-2">Media Buying Networks</div>
@@ -1651,7 +1651,7 @@ function PartnersPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="p-10 bg-white/5 rounded-2xl border border-white/10"
+                className="p-6 md:p-10 bg-white/5 rounded-2xl border border-white/10"
               >
                 <div className="mb-6">
                   <div className="text-2xl font-light text-white mb-2">Digital Agencies</div>
@@ -1674,7 +1674,7 @@ function PartnersPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="p-10 bg-white/5 rounded-2xl border border-white/10"
+                className="p-6 md:p-10 bg-white/5 rounded-2xl border border-white/10"
               >
                 <div className="mb-6">
                   <div className="text-2xl font-light text-white mb-2">Management Consultancies</div>
@@ -1692,7 +1692,7 @@ function PartnersPage() {
                 </div>
               </motion.div>
             </div>
-            <div className="my-16 p-10 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20">
+            <div className="my-16 p-6 md:p-10 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20">
               <h3 className="text-2xl font-light text-white mb-10 text-center">The Gap in the Market</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mb-10">
                 <div className="p-6 bg-black/20 rounded-xl text-center">
@@ -1721,7 +1721,7 @@ function PartnersPage() {
               </p>
             </div>
 
-            <div className="mb-16 p-10 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20">
+            <div className="mb-16 p-6 md:p-10 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20">
               <h3 className="text-2xl font-light text-white mb-10">The Moat: Why This Is Defensible</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <div className="p-6 bg-black/20 rounded-xl">
@@ -1996,7 +1996,7 @@ function PartnersPage() {
               Every dollar is allocated to revenue-generating activities with clear ROI. Based on $750K raise: $390K for team (52%), $150K for tech and infrastructure (20%), $135K for marketing and business development (18%), and $75K for operations and runway buffer (10%). This capital accelerates our path from $180K to $750K+ ARR within 18-24 months—not through speculation, but through hiring capacity to service existing proven demand.
             </p>
 
-            <div className="mb-16 p-10 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20">
+            <div className="mb-16 p-6 md:p-10 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20">
               <h3 className="text-2xl font-light text-white mb-10 tracking-wide">Team Expansion (52% — $390K total for 4 hires)</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <motion.div
@@ -2152,7 +2152,7 @@ function PartnersPage() {
               Three macro trends create unprecedented opportunity for integrated marketing platforms.
             </p>
 
-            <div className="mb-16 p-10 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10">
+            <div className="mb-16 p-6 md:p-10 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10">
               <h3 className="text-2xl font-light text-white mb-8 tracking-wide">1. The Great Unbundling of Agencies</h3>
               <p className="mb-6">
                 Traditional holding companies (WPP, Omnicom, Publicis, IPG) are struggling. Stock prices down 40-60% from 2018 peaks. 68% of marketing leaders are reassessing agency partnerships. They're actively seeking alternatives to bureaucracy, slow execution, and misaligned incentives.
@@ -2167,7 +2167,7 @@ function PartnersPage() {
               />
             </div>
 
-            <div className="mb-16 p-10 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10">
+            <div className="mb-16 p-6 md:p-10 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10">
               <h3 className="text-2xl font-light text-white mb-8 tracking-wide">2. Technology Enables Integration</h3>
               <p className="mb-6">
                 Modern tools allow small teams to operate like large agencies. 77% of agencies have adopted AI. Cloud infrastructure, AI assistance, and automation multiply individual productivity. A team of 6 today can deliver what required 20 people five years ago.
@@ -2182,7 +2182,7 @@ function PartnersPage() {
               />
             </div>
 
-            <div className="mb-16 p-10 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10">
+            <div className="mb-16 p-6 md:p-10 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10">
               <h3 className="text-2xl font-light text-white mb-8 tracking-wide">3. Brands Demand Accountability</h3>
               <p className="mb-6">
                 CMOs are under pressure to prove ROI. Marketing budgets are scrutinized like never before. Brands want partners who own outcomes, not vendors who execute tasks. Single-point accountability is the new requirement. Average client relationships last 2-5 years—retention is everything.
@@ -2235,7 +2235,7 @@ function PartnersPage() {
               The data is clear: agencies that leverage AI strategically report 60% greater revenue growth than peers. But adoption alone isn't enough—only 17% of marketing professionals have received comprehensive AI training, creating a dangerous gap between tool usage and actual expertise. Most agencies use AI to automate. <span className="font-semibold">fiveroses</span> uses AI to think.
             </p>
 
-            <div className="mb-16 p-10 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20">
+            <div className="mb-16 p-6 md:p-10 bg-gradient-to-br from-white/10 to-white/5 rounded-2xl border border-white/20">
               <h3 className="text-2xl font-light text-white mb-10 tracking-wide">How <span className="font-semibold">fiveroses</span> Uses AI to Amplify Human Intelligence</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div className="p-6 bg-black/20 rounded-xl">
@@ -2883,27 +2883,31 @@ function ClosingSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/80 backdrop-blur-sm"
-          onClick={() => setIsModalOpen(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/80 backdrop-blur-sm overflow-y-auto"
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) {
+              setIsModalOpen(false)
+            }
+          }}
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-2xl bg-black border border-white/20 p-10 relative max-h-[90vh] overflow-y-auto"
+            className="w-full max-w-2xl bg-black border border-white/20 relative my-auto max-h-[90vh] flex flex-col"
           >
             {/* Close Button */}
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-6 right-6 text-white/60 hover:text-white text-3xl font-light leading-none transition-colors"
+              className="absolute top-6 right-6 text-white/60 hover:text-white text-3xl font-light leading-none transition-colors z-10"
             >
               ×
             </button>
 
-            {/* Modal Content */}
-            {!isSubmitted ? (
+            <div className="overflow-y-auto p-6 md:p-10">
+              {/* Modal Content */}
+              {!isSubmitted ? (
               <>
                 <h3 className="text-4xl font-light text-white mb-3 tracking-tight">Let's Talk</h3>
                 <p className="text-white/60 font-light mb-10 text-lg">Share your details and we'll be in touch within 24 hours.</p>
@@ -2938,7 +2942,7 @@ function ClosingSection() {
                         company: String(data.organization || ''),
                         location: String(data.phone || ''),
                         market: String(data.range || 'Not specified'),
-                        comment: `Investment Interest: ${String(data.interest || '')}\nInvestment Range: ${String(data.range || 'Not specified')}\n\nMessage:\n${String(data.message || '')}`
+                        comment: `[SOURCE: Investors Page]\n\nInvestment Interest: ${String(data.interest || '')}\nInvestment Range: ${String(data.range || 'Not specified')}\n\nMessage:\n${String(data.message || '')}`
                       }),
                     })
 
@@ -2968,7 +2972,7 @@ function ClosingSection() {
                     type="text"
                     name="name"
                     required
-                    className="w-full bg-white/5 border border-white/20 px-4 py-3 text-white font-light focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full bg-black border border-white/20 px-4 py-3 text-white font-light focus:outline-none focus:border-white/40 transition-colors"
                     placeholder="John Smith"
                   />
                 </div>
@@ -2979,7 +2983,7 @@ function ClosingSection() {
                     type="email"
                     name="email"
                     required
-                    className="w-full bg-white/5 border border-white/20 px-4 py-3 text-white font-light focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full bg-black border border-white/20 px-4 py-3 text-white font-light focus:outline-none focus:border-white/40 transition-colors"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -2990,7 +2994,7 @@ function ClosingSection() {
                     type="tel"
                     name="phone"
                     required
-                    className="w-full bg-white/5 border border-white/20 px-4 py-3 text-white font-light focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full bg-black border border-white/20 px-4 py-3 text-white font-light focus:outline-none focus:border-white/40 transition-colors"
                     placeholder="+61 400 000 000"
                   />
                 </div>
@@ -3000,7 +3004,7 @@ function ClosingSection() {
                   <input
                     type="text"
                     name="organization"
-                    className="w-full bg-white/5 border border-white/20 px-4 py-3 text-white font-light focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full bg-black border border-white/20 px-4 py-3 text-white font-light focus:outline-none focus:border-white/40 transition-colors"
                     placeholder="Company or Fund Name"
                   />
                 </div>
@@ -3010,7 +3014,7 @@ function ClosingSection() {
                   <select
                     name="interest"
                     required
-                    className="w-full bg-white/5 border border-white/20 px-4 py-3 text-white font-light focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full bg-black border border-white/20 px-4 py-3 text-white font-light focus:outline-none focus:border-white/40 transition-colors"
                   >
                     <option value="" className="bg-black">Select an option</option>
                     <option value="Seed Round ($500K-$750K)" className="bg-black">Seed Round ($500K-$750K)</option>
@@ -3025,7 +3029,7 @@ function ClosingSection() {
                   <input
                     type="text"
                     name="range"
-                    className="w-full bg-white/5 border border-white/20 px-4 py-3 text-white font-light focus:outline-none focus:border-white/40 transition-colors"
+                    className="w-full bg-black border border-white/20 px-4 py-3 text-white font-light focus:outline-none focus:border-white/40 transition-colors"
                     placeholder="e.g., $50K-$100K"
                   />
                 </div>
@@ -3035,7 +3039,7 @@ function ClosingSection() {
                   <textarea
                     name="message"
                     rows={4}
-                    className="w-full bg-white/5 border border-white/20 px-4 py-3 text-white font-light focus:outline-none focus:border-white/40 transition-colors resize-none"
+                    className="w-full bg-black border border-white/20 px-4 py-3 text-white font-light focus:outline-none focus:border-white/40 transition-colors resize-none"
                     placeholder="Tell us about your interest in fiveroses..."
                   />
                 </div>
@@ -3079,6 +3083,7 @@ function ClosingSection() {
                 <p className="text-white/80 font-light text-center">Thank you for your interest. We'll be in touch soon.</p>
               </motion.div>
             )}
+            </div>
           </motion.div>
         </motion.div>
       )}

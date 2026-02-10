@@ -20,11 +20,11 @@ function AnimatedGrowthChart({
   const maxValue = Math.max(...data.map(d => d.value))
   
   return (
-    <div ref={ref} className="w-full max-w-4xl mx-auto my-16 p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
+    <div ref={ref} className="w-full max-w-4xl mx-auto my-12 md:my-16 p-6 md:p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
       {title && (
-        <h3 className="text-2xl font-light mb-10 text-white text-center tracking-wide">{title}</h3>
+        <h3 className="text-xl md:text-2xl font-light mb-8 md:mb-10 text-white text-center tracking-wide">{title}</h3>
       )}
-      <div className="relative h-80">
+      <div className="relative h-64 md:h-80">
         <svg className="w-full h-full" viewBox="0 0 1000 300" preserveAspectRatio="none">
           {/* Grid lines */}
           {[0, 1, 2, 3, 4].map((i) => (
@@ -106,8 +106,8 @@ function AnimatedGrowthChart({
               transition={{ duration: 0.6, delay: 1.5 + i * 0.1 }}
               className="text-center"
             >
-              <div className="text-white/80 text-sm font-light mb-1">{point.year}</div>
-              <div className="text-white font-bold text-lg">
+              <div className="text-white/80 text-xs md:text-sm font-light mb-1">{point.year}</div>
+              <div className="text-white font-bold text-sm md:text-lg">
                 {point.value >= 1000 ? `$${(point.value / 1000).toFixed(1)}M` : `$${point.value}K`}
               </div>
             </motion.div>
@@ -131,9 +131,9 @@ function AnimatedBarChart({
   const maxValue = Math.max(...data.map(d => d.value))
   
   return (
-    <div ref={ref} className="w-full max-w-4xl mx-auto my-12 p-8 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
+    <div ref={ref} className="w-full max-w-4xl mx-auto my-8 md:my-12 p-4 sm:p-6 md:p-8 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
       {title && (
-        <h3 className="text-2xl font-bold mb-8 text-white">{title}</h3>
+        <h3 className="text-xl md:text-2xl font-bold mb-6 md:mb-8 text-white">{title}</h3>
       )}
       <div className="space-y-6">
         {data.map((item, i) => (
@@ -191,7 +191,7 @@ function AnimatedDonutChart({
   let cumulativePercentage = 0
   
   return (
-    <div ref={ref} className="w-full max-w-md mx-auto my-16 p-8 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
+    <div ref={ref} className="w-full max-w-md mx-auto my-12 md:my-16 p-6 md:p-8 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
       {title && (
         <h3 className="text-xl font-light mb-8 text-white text-center tracking-wide">{title}</h3>
       )}
@@ -266,11 +266,11 @@ function StatBlock({
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   
   return (
-    <div ref={ref} className="w-full max-w-5xl mx-auto my-16 p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
+    <div ref={ref} className="w-full max-w-5xl mx-auto my-12 md:my-16 p-6 md:p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
       {title && (
-        <h3 className="text-2xl font-light mb-10 text-white text-center tracking-wide">{title}</h3>
+        <h3 className="text-xl md:text-2xl font-light mb-8 md:mb-10 text-white text-center tracking-wide">{title}</h3>
       )}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
         {stats.map((stat, i) => (
           <motion.div
             key={i}
@@ -279,7 +279,7 @@ function StatBlock({
             transition={{ duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-center px-2"
           >
-            <div className={`${stat.valueSize || "text-4xl md:text-5xl"} font-light text-white mb-3 tracking-tight break-words`}>{stat.value}</div>
+            <div className={`${stat.valueSize || "text-3xl md:text-4xl lg:text-5xl"} font-light text-white mb-3 tracking-tight break-words`}>{stat.value}</div>
             <div className="text-sm font-light text-white/90 mb-2 tracking-wide uppercase break-words">{stat.label}</div>
             {stat.description && (
               <div className="text-xs text-white/80 font-light tracking-wide break-words">{stat.description}</div>
@@ -847,33 +847,37 @@ function ClosingSection() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/80 backdrop-blur-sm"
-          onClick={() => setIsModalOpen(false)}
+          className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/80 backdrop-blur-sm overflow-y-auto"
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) {
+              setIsModalOpen(false)
+            }
+          }}
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-2xl bg-black border border-white/20 p-10 relative max-h-[90vh] overflow-y-auto"
+            className="w-full max-w-2xl bg-black border border-white/20 relative my-auto max-h-[90vh] flex flex-col"
           >
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-6 right-6 text-white/60 hover:text-white text-3xl font-light leading-none transition-colors"
+              className="absolute top-6 right-6 text-white/60 hover:text-white text-3xl font-light leading-none transition-colors z-10"
             >
               ×
             </button>
 
-            {!isSubmitted ? (
+            <div className="overflow-y-auto p-6 md:p-10">
+              {!isSubmitted ? (
               <>
-                <h3 className="text-4xl font-light text-white mb-3 tracking-tight">Let's Collaborate</h3>
-                <p className="text-white/60 font-light mb-10 text-lg">Tell us about your expertise and we'll be in touch within 48 hours.</p>
+                <h3 className="text-3xl md:text-4xl font-light text-white mb-3 tracking-tight">Let's Collaborate</h3>
+                <p className="text-white/60 font-light mb-8 md:mb-10 text-base md:text-lg">Tell us about your expertise and we'll be in touch within 48 hours.</p>
               </>
             ) : (
               <>
-                <h3 className="text-4xl font-light text-white mb-3 tracking-tight">Thank You</h3>
-                <p className="text-white/60 font-light mb-10 text-lg">We'll review your application and be in touch within 48 hours.</p>
+                <h3 className="text-3xl md:text-4xl font-light text-white mb-3 tracking-tight">Thank You</h3>
+                <p className="text-white/60 font-light mb-8 md:mb-10 text-base md:text-lg">We'll review your application and be in touch within 48 hours.</p>
               </>
             )}
 
@@ -900,7 +904,7 @@ function ClosingSection() {
                         company: String(data.company || ''),
                         location: String(data.phone || ''),
                         market: String(data.location || 'Not specified'),
-                        comment: `Expertise: ${String(data.expertise || '')}\nPortfolio/Website: ${String(data.portfolio || 'Not provided')}\nYears of Experience: ${String(data.experience || 'Not specified')}\n\nMessage:\n${String(data.message || '')}`
+                        comment: `[SOURCE: Partnership Page]\n\nExpertise: ${String(data.expertise || '')}\nPortfolio/Website: ${String(data.portfolio || 'Not provided')}\nYears of Experience: ${String(data.experience || 'Not specified')}\n\nMessage:\n${String(data.message || '')}`
                       })
                     })
 
@@ -927,7 +931,7 @@ function ClosingSection() {
                     type="text"
                     name="name"
                     required
-                    className="w-full bg-white/5 border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light"
+                    className="w-full bg-black border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light"
                   />
                 </div>
 
@@ -937,7 +941,7 @@ function ClosingSection() {
                     type="email"
                     name="email"
                     required
-                    className="w-full bg-white/5 border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light"
+                    className="w-full bg-black border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light"
                   />
                 </div>
 
@@ -947,7 +951,7 @@ function ClosingSection() {
                     type="tel"
                     name="phone"
                     required
-                    className="w-full bg-white/5 border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light"
+                    className="w-full bg-black border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light"
                   />
                 </div>
 
@@ -956,7 +960,7 @@ function ClosingSection() {
                   <input
                     type="text"
                     name="company"
-                    className="w-full bg-white/5 border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light"
+                    className="w-full bg-black border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light"
                   />
                 </div>
 
@@ -1027,10 +1031,10 @@ function ClosingSection() {
                 <div>
                   <label className="block text-white/80 mb-2 text-sm font-light">Portfolio/Website</label>
                   <input
-                    type="url"
+                    type="text"
                     name="portfolio"
-                    placeholder="https://"
-                    className="w-full bg-white/5 border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light"
+                    placeholder="https://yourwebsite.com or portfolio link"
+                    className="w-full bg-black border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light"
                   />
                 </div>
 
@@ -1040,7 +1044,7 @@ function ClosingSection() {
                     type="text"
                     name="location"
                     placeholder="City, Country"
-                    className="w-full bg-white/5 border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light"
+                    className="w-full bg-black border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light"
                   />
                 </div>
 
@@ -1049,7 +1053,7 @@ function ClosingSection() {
                   <textarea
                     name="message"
                     rows={4}
-                    className="w-full bg-white/5 border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light resize-none"
+                    className="w-full bg-black border border-white/20 text-white px-4 py-3 focus:outline-none focus:border-white/40 transition-colors font-light resize-none"
                     placeholder="What makes your work unique? What kind of projects are you passionate about?"
                   />
                 </div>
@@ -1090,6 +1094,7 @@ function ClosingSection() {
                 </motion.div>
               </motion.div>
             )}
+            </div>
           </motion.div>
         </motion.div>
       )}
@@ -1276,7 +1281,7 @@ function PartnershipsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10"
+                className="p-6 md:p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10"
               >
                 <h3 className="text-3xl font-bold text-white mb-6">Good Work, Good Reward</h3>
                 <p className="text-white/80 text-lg leading-relaxed mb-6">
@@ -1292,7 +1297,7 @@ function PartnershipsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10"
+                className="p-6 md:p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10"
               >
                 <h3 className="text-3xl font-bold text-white mb-6">Transparent Profit Sharing</h3>
                 <p className="text-white/80 text-lg leading-relaxed mb-6">
@@ -1308,7 +1313,7 @@ function PartnershipsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10"
+                className="p-6 md:p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10"
               >
                 <h3 className="text-3xl font-bold text-white mb-6">Performance-Based Growth</h3>
                 <p className="text-white/80 text-lg leading-relaxed mb-6">
@@ -1324,7 +1329,7 @@ function PartnershipsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10"
+                className="p-6 md:p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10"
               >
                 <h3 className="text-3xl font-bold text-white mb-6">No False Promises</h3>
                 <p className="text-white/80 text-lg leading-relaxed mb-6">
@@ -1336,7 +1341,7 @@ function PartnershipsPage() {
               </motion.div>
             </div>
 
-            <div className="mt-12 p-10 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/20">
+            <div className="mt-8 md:mt-12 p-6 md:p-10 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/20">
               <h3 className="text-3xl font-bold text-white mb-6 text-center">The Reality</h3>
               <p className="text-white/80 text-lg text-center leading-relaxed max-w-4xl mx-auto">
                 We're building a business, not a charity. <span className="font-semibold">fiveroses</span> needs to be profitable to survive and grow. But we also believe that extracting maximum value from talent while paying minimum rates is short-sighted and unsustainable. We'd rather pay more to exceptional partners and build long-term relationships than churn through cheap freelancers and produce mediocre work. That's the model. Fair compensation for exceptional work. Transparent economics. Merit-based growth. If you're the best at what you do and want to be paid accordingly, this is the right place.
@@ -1356,13 +1361,13 @@ function PartnershipsPage() {
               We work with specialists across creative, technical, strategic, and operational disciplines. If you're exceptional at what you do, there's likely a place for you here.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 my-12 md:my-16">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
+                className="p-6 md:p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
               >
                 <h3 className="text-2xl font-bold text-white mb-4">Creative & Production</h3>
                 <ul className="space-y-2 text-white/70 text-sm">
@@ -1385,7 +1390,7 @@ function PartnershipsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
+                className="p-6 md:p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
               >
                 <h3 className="text-2xl font-bold text-white mb-4">Technology & Development</h3>
                 <ul className="space-y-2 text-white/70 text-sm">
@@ -1408,7 +1413,7 @@ function PartnershipsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
+                className="p-6 md:p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
               >
                 <h3 className="text-2xl font-bold text-white mb-4">Media & Distribution</h3>
                 <ul className="space-y-2 text-white/70 text-sm">
@@ -1431,7 +1436,7 @@ function PartnershipsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
+                className="p-6 md:p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
               >
                 <h3 className="text-2xl font-bold text-white mb-4">Strategy & Consulting</h3>
                 <ul className="space-y-2 text-white/70 text-sm">
@@ -1454,7 +1459,7 @@ function PartnershipsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
+                className="p-6 md:p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
               >
                 <h3 className="text-2xl font-bold text-white mb-4">Specialized Roles</h3>
                 <ul className="space-y-2 text-white/70 text-sm">
@@ -1477,7 +1482,7 @@ function PartnershipsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
+                className="p-6 md:p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
               >
                 <h3 className="text-2xl font-bold text-white mb-4">Operations & Support</h3>
                 <ul className="space-y-2 text-white/70 text-sm">
@@ -1529,7 +1534,7 @@ function PartnershipsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10"
+                className="p-6 md:p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10"
               >
                 <div className="flex items-start justify-between mb-6">
                   <div>
@@ -1580,7 +1585,7 @@ function PartnershipsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10"
+                className="p-6 md:p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10"
               >
                 <div className="flex items-start justify-between mb-6">
                   <div>
@@ -1633,7 +1638,7 @@ function PartnershipsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10"
+                className="p-6 md:p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10"
               >
                 <div className="flex items-start justify-between mb-6">
                   <div>
@@ -1691,7 +1696,7 @@ function PartnershipsPage() {
               ]}
             />
 
-            <div className="mt-16 p-10 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/20">
+            <div className="mt-12 md:mt-16 p-6 md:p-10 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/20">
               <h3 className="text-2xl font-bold text-white mb-4 text-center">How Partnerships Typically Evolve</h3>
               <div className="flex flex-col md:flex-row items-center justify-center gap-6 mt-8">
                 <div className="text-center">
@@ -1754,13 +1759,13 @@ function PartnershipsPage() {
               ]}
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 my-12 md:my-16">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
+                className="p-6 md:p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
               >
                 <h3 className="text-2xl font-bold text-white mb-4">Access to Premium Clients</h3>
                 <p className="text-white/70 mb-4">
@@ -1779,7 +1784,7 @@ function PartnershipsPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
+                className="p-6 md:p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
               >
                 <h3 className="text-2xl font-bold text-white mb-4">Zero Client Management</h3>
                 <p className="text-white/70 mb-4">
@@ -1798,7 +1803,7 @@ function PartnershipsPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
+                className="p-6 md:p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
               >
                 <h3 className="text-2xl font-bold text-white mb-4">Consistent, Predictable Work</h3>
                 <p className="text-white/70 mb-4">
@@ -1817,7 +1822,7 @@ function PartnershipsPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
+                className="p-6 md:p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
               >
                 <h3 className="text-2xl font-bold text-white mb-4">International Market Exposure</h3>
                 <p className="text-white/70 mb-4">
@@ -1836,7 +1841,7 @@ function PartnershipsPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
+                className="p-6 md:p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
               >
                 <h3 className="text-2xl font-bold text-white mb-4">Work With Other Specialists</h3>
                 <p className="text-white/70 mb-4">
@@ -1855,7 +1860,7 @@ function PartnershipsPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
+                className="p-6 md:p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
               >
                 <h3 className="text-2xl font-bold text-white mb-4">Portfolio-Grade Work Only</h3>
                 <p className="text-white/70 mb-4">
@@ -1874,7 +1879,7 @@ function PartnershipsPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
+                className="p-6 md:p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
               >
                 <h3 className="text-2xl font-bold text-white mb-4">Fair, Transparent Pricing</h3>
                 <p className="text-white/70 mb-4">
@@ -1893,7 +1898,7 @@ function PartnershipsPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                className="p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
+                className="p-6 md:p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10 hover:border-white/20 transition-colors"
               >
                 <h3 className="text-2xl font-bold text-white mb-4">Growth & Equity Opportunities</h3>
                 <p className="text-white/70 mb-4">
@@ -1920,7 +1925,7 @@ function PartnershipsPage() {
               ]}
             />
 
-            <div className="mt-16 p-10 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/20">
+            <div className="mt-12 md:mt-16 p-6 md:p-10 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/20">
               <h3 className="text-3xl font-bold text-white mb-6 text-center">The Bottom Line</h3>
               <p className="text-white/80 text-lg text-center leading-relaxed max-w-4xl mx-auto">
                 Most freelancers spend 40-50% of their time on admin, client management, and chasing payments. Our partners spend 100% of their time on craft. That's the difference. You do what you're best at. We handle everything else. You earn more. Work on better projects. Build a better portfolio. And actually enjoy the work again.
@@ -1940,7 +1945,7 @@ function PartnershipsPage() {
               These aren't projections or aspirations. These are actual results from our current partner network in 2024.
             </p>
 
-            <div className="w-full max-w-5xl mx-auto my-16 p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
+            <div className="w-full max-w-5xl mx-auto my-12 md:my-16 p-6 md:p-10 bg-white/5 rounded-2xl backdrop-blur-sm border border-white/10">
               <h3 className="text-2xl font-light mb-10 text-white text-center tracking-wide">Partner Earnings Potential (Annual)</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {[
@@ -1969,15 +1974,15 @@ function PartnershipsPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 my-16">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 my-12 md:my-16">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                className="p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10"
+                className="p-6 md:p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10"
               >
-                <div className="text-5xl font-black text-white mb-3">$95K</div>
+                <div className="text-4xl md:text-5xl font-black text-white mb-3">$95K</div>
                 <h4 className="text-xl font-bold text-white mb-1">Video Director</h4>
                 <p className="text-sm text-white/60 font-light mb-3">(Year 2 Potential)</p>
                 <p className="text-white/70 text-sm mb-4">
@@ -1995,9 +2000,9 @@ function PartnershipsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10"
+                className="p-6 md:p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10"
               >
-                <div className="text-5xl font-black text-white mb-3">$82K</div>
+                <div className="text-4xl md:text-5xl font-black text-white mb-3">$82K</div>
                 <h4 className="text-xl font-bold text-white mb-1">Full-Stack Developer</h4>
                 <p className="text-sm text-white/60 font-light mb-3">(Year 2 Potential)</p>
                 <p className="text-white/70 text-sm mb-4">
@@ -2015,9 +2020,9 @@ function PartnershipsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10"
+                className="p-6 md:p-8 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10"
               >
-                <div className="text-5xl font-black text-white mb-3">$68K</div>
+                <div className="text-4xl md:text-5xl font-black text-white mb-3">$68K</div>
                 <h4 className="text-xl font-bold text-white mb-1">Brand Designer</h4>
                 <p className="text-sm text-white/60 font-light mb-3">(Year 2 Potential)</p>
                 <p className="text-white/70 text-sm mb-4">
@@ -2040,7 +2045,7 @@ function PartnershipsPage() {
               ]}
             />
 
-            <div className="mt-16 p-10 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/20">
+            <div className="mt-12 md:mt-16 p-6 md:p-10 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/20">
               <h3 className="text-2xl font-bold text-white mb-6">What Partners Say</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
