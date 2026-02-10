@@ -34,113 +34,179 @@ const NavLink = ({ href, text }: { href: string; text: string }) => {
 
 const Header = memo(function Header() {
   const [isScrolled, setIsScrolled] = React.useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
+  
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+  
   return (
-    <header
-      className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-[95%] md:w-[800px] ${
-        isScrolled 
-          ? "bg-gradient-to-r from-black/40 via-black/30 to-black/40 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.1)] border-white/20" 
-          : "bg-gradient-to-r from-black/30 via-black/25 to-black/30 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] border-white/15"
-      } ${inter.className} rounded-full border`}
-    >
-      <div className="w-full px-4 md:px-16 py-3 flex justify-center md:justify-between items-center relative">
-        <nav className="hidden md:flex items-center gap-16">
-          <NavLink href="/work" text="Work" />
-          <NavLink href="/news" text="News" />
-        </nav>
-        <Link 
-          href="/" 
-          className={`${styles.navLink} text-2xl md:text-3xl font-bold tracking-tighter text-white hover:text-white/90 transition-colors duration-300`}
-        >
-          <span className="font-black">fiveroses</span>
-        </Link>
-        <nav className="hidden md:flex items-center gap-16">
-          <NavLink href="/about" text="About" />
-          <NavLink href="/contact" text="Contact" />
-        </nav>
-        <div className="md:hidden absolute right-2">
-          <MobileNav />
+    <>
+      {/* Desktop Header */}
+      <header
+        className={`hidden md:block fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-[800px] ${
+          isScrolled 
+            ? "bg-gradient-to-r from-black/40 via-black/30 to-black/40 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.1)] border-white/20" 
+            : "bg-gradient-to-r from-black/30 via-black/25 to-black/30 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.1)] border-white/15"
+        } ${inter.className} rounded-full border`}
+      >
+        <div className="w-full px-16 py-3 flex justify-between items-center">
+          <nav className="flex items-center gap-16">
+            <NavLink href="/work" text="Work" />
+            <NavLink href="/news" text="News" />
+          </nav>
+          <Link 
+            href="/" 
+            className={`${styles.navLink} text-3xl font-bold tracking-tighter text-white hover:text-white/90 transition-colors duration-300`}
+          >
+            <span className="font-black">fiveroses</span>
+          </Link>
+          <nav className="flex items-center gap-16">
+            <NavLink href="/about" text="About" />
+            <NavLink href="/contact" text="Contact" />
+          </nav>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* Mobile Header */}
+      <header className="md:hidden fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-lg border-b border-white/10">
+        <div className="flex items-center justify-between px-4 py-4">
+          <Link 
+            href="/" 
+            className="text-2xl font-black tracking-tighter text-white"
+          >
+            fiveroses
+          </Link>
+          <button 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="p-2 text-white touch-manipulation"
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+          >
+            {isMobileMenuOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile Menu */}
+      <MobileNav isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+    </>
   )
 })
 
-const MobileNav = memo(function MobileNav() {
-  const [isOpen, setIsOpen] = React.useState(false)
-  
+const MobileNav = memo(function MobileNav({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const menuVariants = {
-    closed: { opacity: 0, x: "100%", transition: { duration: 0.5 } },
-    open: { opacity: 1, x: 0, transition: { duration: 0.5 } },
+    closed: { 
+      x: "100%",
+      transition: { 
+        duration: 0.3,
+        ease: [0.4, 0, 0.2, 1]
+      } 
+    },
+    open: { 
+      x: 0,
+      transition: { 
+        duration: 0.3,
+        ease: [0.4, 0, 0.2, 1]
+      } 
+    },
   }
   
   const linkVariants = {
-    closed: { opacity: 0, y: 20 },
-    open: (i: number) => ({ opacity: 1, y: 0, transition: { delay: 0.3 + i * 0.1 } }),
+    closed: { opacity: 0, x: 20 },
+    open: (i: number) => ({ 
+      opacity: 1, 
+      x: 0, 
+      transition: { 
+        delay: 0.1 + i * 0.05,
+        duration: 0.3
+      } 
+    }),
   }
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
   
   return (
-    <div className="md:hidden">
-      <button 
-        onClick={() => setIsOpen(!isOpen)} 
-        className="p-3 hover:bg-white/10 active:bg-white/20 rounded-full transition-colors touch-manipulation"
-        aria-label={isOpen ? "Close menu" : "Open menu"}
-      >
-        {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-      </button>
+    <>
+      {/* Backdrop */}
+      {isOpen && (
+        <motion.div
+          className="md:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={onClose}
+        />
+      )}
+
+      {/* Menu Panel */}
       <motion.div
-        className={`fixed inset-0 bg-black/95 backdrop-blur-md z-[60] flex flex-col items-center justify-center ${inter.className}`}
+        className={`md:hidden fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-black z-50 shadow-2xl ${inter.className}`}
         initial="closed"
         animate={isOpen ? "open" : "closed"}
         variants={menuVariants}
-        style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
       >
-        <nav className="flex flex-col items-center gap-8">
-          {[
-            { href: "/work", label: "Work" },
-            { href: "/news", label: "News" },
-            { href: "/about", label: "About" },
-            { href: "/contact", label: "Contact" },
-          ].map((link, i) => (
-            <motion.div key={link.href} custom={i} variants={linkVariants}>
-              <Link 
-                href={link.href} 
-                className="text-3xl font-[200] tracking-wide text-white/90 hover:text-white active:text-white/70 uppercase transition-all duration-300 touch-manipulation min-h-[44px] flex items-center" 
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </Link>
-            </motion.div>
-          ))}
-        </nav>
-        
-        {/* Social links in mobile menu */}
-        <motion.div 
-          className="absolute bottom-12 flex gap-6"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isOpen ? 1 : 0 }}
-          transition={{ delay: 0.7 }}
-        >
-          {[
-            { icon: Instagram, label: "Instagram" },
-            { icon: Twitter, label: "Twitter" },
-            { icon: Linkedin, label: "LinkedIn" },
-          ].map((social) => (
-            <button
-              key={social.label}
-              className="p-3 text-white/60 hover:text-white active:text-white/40 transition-colors touch-manipulation"
-              aria-label={social.label}
-            >
-              <social.icon className="w-6 h-6" />
-            </button>
-          ))}
-        </motion.div>
+        <div className="flex flex-col h-full">
+          {/* Menu Content */}
+          <div className="flex-1 flex flex-col justify-center px-8">
+            <nav className="flex flex-col gap-6">
+              {[
+                { href: "/work", label: "Work" },
+                { href: "/news", label: "News" },
+                { href: "/about", label: "About" },
+                { href: "/contact", label: "Contact" },
+              ].map((link, i) => (
+                <motion.div key={link.href} custom={i} variants={linkVariants}>
+                  <Link 
+                    href={link.href} 
+                    className="text-4xl font-light tracking-tight text-white/90 active:text-white transition-colors touch-manipulation py-2 block" 
+                    onClick={onClose}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
+            </nav>
+          </div>
+
+          {/* Social Links */}
+          <motion.div 
+            className="px-8 pb-12 border-t border-white/10 pt-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: isOpen ? 1 : 0, y: isOpen ? 0 : 20 }}
+            transition={{ delay: 0.4 }}
+          >
+            <p className="text-white/40 text-sm mb-4 uppercase tracking-wider">Connect</p>
+            <div className="flex gap-4">
+              {[
+                { icon: Instagram, label: "Instagram" },
+                { icon: Twitter, label: "Twitter" },
+                { icon: Linkedin, label: "LinkedIn" },
+              ].map((social) => (
+                <button
+                  key={social.label}
+                  className="p-3 text-white/60 active:text-white transition-colors touch-manipulation bg-white/5 rounded-full"
+                  aria-label={social.label}
+                >
+                  <social.icon className="w-5 h-5" />
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        </div>
       </motion.div>
-    </div>
+    </>
   )
 })
 
